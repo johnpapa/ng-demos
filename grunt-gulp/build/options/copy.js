@@ -4,10 +4,10 @@ module.exports = {
             // 3rd party scripts
             // Why are we filtering? Why are we flattening?
             {
-                cwd: '../',
+                cwd: '<%= pkg.webroot %>',
                 src: [
-                    '<%= pkg.webroot %>/scripts/*.js',
-                    '<%= pkg.webroot %>/scripts/*.map'
+                    './scripts/*.js',
+                    './scripts/*.map'
                 ],
                 dest: '<%= pkg.dest %>/',
                 expand: true,
@@ -15,10 +15,9 @@ module.exports = {
                 filter: 'isFile'
             },
             // Get all Content
-            // Why are we filtering? Why are we flattening?
             {
-                cwd: '../',
-                src: ['<%= pkg.webroot %>/content/**/*.*'],
+                cwd: '<%= pkg.webroot %>',
+                src: ['./content/**/*.*'],
                 dest: '<%= pkg.dest %>',
                 expand: true,
                 flatten: false,
@@ -26,9 +25,9 @@ module.exports = {
             },
             // Get all the HTML
             {
-                cwd: './',
-                src: ['<%= pkg.webroot %>/**/*.html'],
-                dest: '<%= pkg.dest %>',
+                cwd: '<%= pkg.webapp %>',
+                src: ['./**/*.html'],
+                dest: '<%= pkg.dest %>/app',
                 expand: true,
                 flatten: false,
                 filter: 'isFile'
