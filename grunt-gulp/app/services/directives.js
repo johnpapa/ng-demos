@@ -1,4 +1,4 @@
-﻿(function() {
+﻿(function () {
     'use strict';
 
     var app = angular.module('app');
@@ -15,13 +15,12 @@
         return directive;
 
         function link(scope, element, attrs) {
-            attrs.$observe('ccImgPerson', function(value) {
+            attrs.$observe('ccImgPerson', function (value) {
                 value = basePath + (value || unknownImage);
                 attrs.$set('src', value);
             });
         }
     }]);
-
 
     app.directive('ccSidebar', function () {
         // Opens and clsoes the sidebar menu.
@@ -79,9 +78,9 @@
         function link(scope, element, attrs) {
             attrs.$set('href', '#');
             attrs.$set('wclose');
-            element.click(close);
+            element.click(closeEl);
 
-            function close(e) {
+            function closeEl(e) {
                 e.preventDefault();
                 element.parent().parent().parent().hide(100);
             }
@@ -150,7 +149,11 @@
                 });
 
                 function toggleIcon() {
-                    $win.scrollTop() > 300 ? element.slideDown(): element.slideUp();
+                    if ($win.scrollTop() > 300) {
+                        element.slideDown();
+                    } else {
+                        element.slideUp();
+                    }
                 }
             }
         }
@@ -179,7 +182,7 @@
         }
     }]);
 
-    app.directive('ccWidgetHeader', function() {
+    app.directive('ccWidgetHeader', function () {
         //Usage:
         //<div data-cc-widget-header title="vm.map.title"></div>
         var directive = {

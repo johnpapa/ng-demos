@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    
+
     angular.module('common').factory('logger', ['$log', logger]);
 
     function logger($log) {
@@ -18,13 +18,17 @@
             fnName = fnName || 'log';
             switch (fnName.toLowerCase()) { // convert aliases
                 case 'success':
-                    fnName = 'logSuccess'; break;
+                    fnName = 'logSuccess';
+                    break;
                 case 'error':
-                    fnName = 'logError'; break;
+                    fnName = 'logError';
+                    break;
                 case 'warn':
-                    fnName = 'logWarning'; break;
+                    fnName = 'logWarning';
+                    break;
                 case 'warning':
-                    fnName = 'logWarning'; break;
+                    fnName = 'logWarning';
+                    break;
             }
 
             var logFn = service[fnName] || service.log;

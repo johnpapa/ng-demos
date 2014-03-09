@@ -26,13 +26,15 @@
 
         function getAvengerCount() {
             return datacontext.getAvengerCount().then(function (data) {
-                return vm.avengerCount = data;
+                vm.avengerCount = data;
+                return vm.avengerCount;
             });
         }
 
         function getAvengersCast() {
             return datacontext.getAvengersCast().then(function (data) {
-                return vm.avengers = data;
+                vm.avengers = data;
+                return vm.avengers;
             });
         }
     }

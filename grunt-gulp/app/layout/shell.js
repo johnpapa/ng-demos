@@ -43,5 +43,5 @@
         $rootScope.$on(events.spinnerToggle,
             function (data) { toggleSpinner(data.show); }
         );
-    };
+    }
 })();

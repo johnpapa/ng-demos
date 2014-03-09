@@ -1,4 +1,4 @@
-﻿(function () {
+(function () {
     'use strict';
     var controllerId = 'avengers';
     angular.module('app')
@@ -19,20 +19,23 @@
         function activate() {
             var promises = [getAvengersCast(), getMAA()];
             common.activateController(promises, controllerId)
-                .then(function () { log('Activated Avengers View'); });
+                .then(function () {
+                    log('Activated Avengers View');
+                });
         }
 
-        function getMAA(){
-            return datacontext.getMAA().then(function(data){
+        function getMAA() {
+            return datacontext.getMAA().then(function (data) {
 //                vm.maa = data.data[0].data.results;
-                    vm.maa = data;
+                vm.maa = data;
                 return vm.maa;
-            })
+            });
         }
 
         function getAvengersCast() {
             return datacontext.getAvengersCast().then(function (data) {
-                return vm.avengers = data;
+                vm.avengers = data;
+                return vm.avengers;
             });
         }
     }
