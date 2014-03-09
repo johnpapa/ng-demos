@@ -1,0 +1,14 @@
+﻿<div data-cc-sidebar data-ng-controller="sidebar as vm">
+    <div class="sidebar-filler"></div>
+    <div class="sidebar-dropdown"><a href="#">Menu</a></div>
+    <div class="sidebar-inner">
+        <div class="sidebar-widget">
+        </div>
+        <ul class="navi">
+            <li class="nlightblue fade-selection-animation" data-ng-class="vm.isCurrent(r)"
+                data-ng-repeat="r in vm.navRoutes">
+                <a href="#{{r.url}}" data-ng-bind-html="r.config.settings.content"></a>
+            </li>
+        </ul>
+    </div>
+</div>

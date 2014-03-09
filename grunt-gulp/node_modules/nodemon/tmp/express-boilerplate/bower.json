@@ -1,0 +1,10 @@
+{
+  "name": "express-boilerplate-chaplin",
+  "private": true,
+  "dependencies": {
+    "jade":                          "1.0.1",
+    "jquery":                        "~2.0.3",
+
+    "normalize-css":                 "2.1.3"
+  }
+}

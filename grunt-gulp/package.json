@@ -1,0 +1,8 @@
+{
+  "name": "grunt-gulp",
+  "version": "0.0.1",
+  "devDependencies": {
+    "express": "^3.5.0",
+    "nodemon": "^1.0.15"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "ignore": [
+    "\\.git",
+    "node_modules/*",
+    "public/*",
+    "npm-debug.log",
+    "*.coffee"
+  ],
+  "ext": "js json jade",
+  "verbose": true,
+  "watch": [
+    "app/server/*.*", "app/shared/*.*", "config/*.*", "views/server/*.*", "views/shared/*.*"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  ":ignore": [
+    ".git",
+    "node_modules/*",
+    "public/*",
+    "npm-debug.log",
+    "node_modules/*",
+    "*.coffee"
+  ],
+  ":verbose": true,
+  ":watch": [
+    "app/server/", "app/shared/", "config/", "views/server/*.coffee", "views/shared/"
+  ]
+}
