@@ -18,10 +18,8 @@
 
         function getMAA() {
             return $http({ method: 'GET', url: '/maa'})
-                .success(function(data, status, headers, config) {
-                    return data[0].data.results;
-                }).then(function(results) {
-                    return results.data[0].data.results;
+                .then(function(data, status, headers, config) {
+                    return data.data[0].data.results;
                 })
 //            return $q.when(results);
 //            var results = {data: null};
