@@ -1,3 +1,6 @@
+/*
+ * Create references
+ */
 var gulp = require('gulp');
 var pkg = require('./package.json');
 var common = require('./common.js');
@@ -8,10 +11,14 @@ var common = require('./common.js');
 var gulpLoadPlugins = require("gulp-load-plugins");
 var plug = gulpLoadPlugins();
 
-// Load common utilities for gulp
+/*
+ * Load common utilities for gulp
+ */
 var gutil = plug.loadUtils(['colors', 'env', 'log', 'date']);
 
-// Create comments for minified files
+/*
+ * Create comments for minified files
+ */
 var commentHeader = common.createComments(gutil);
 
 // Run `gulp --production`
@@ -22,15 +29,15 @@ gutil.log( 'Building for', gutil.colors.magenta(type) );
 gulp.task('build-watcher', function() {
     var jsWatcher = gulp.watch(pkg.paths.source.js, ['jshint']);
 
-    gulp.watch([pkg.paths.source.css,
-        pkg.paths.source.js,
-        pkg.paths.source.images], ['default']);
-//    gulp.watch(pkg.paths.source.js, ['bundlejs']);
-//    gulp.watch(pkg.paths.source.css, ['bundlecss']);
-//    gulp.watch(pkg.paths.source.images, ['images']);
+    /*
+     * Rebuild when any files changes
+     */
+//    gulp.watch([pkg.paths.source.css,
+//        pkg.paths.source.js,
+//        pkg.paths.source.images], ['default']);
 
     jsWatcher.on('change', function(event) {
-        console.log('*** File '+event.path+' was '+event.type+', running tasks...');
+        console.log('*** File ' + event.path + ' was ' + event.type + ', running tasks...');
     });
 });
 
@@ -61,17 +68,23 @@ gulp.task('bundlecss', function () {
 });
 
 gulp.task('bundlejs', ['jshint'], function () {
+    var bundlefile = pkg.name + ".min.js";
+    var opt = {newLine: ';'};
+
     return gulp.src(pkg.paths.source.js)
         .pipe(plug.size({showFiles: true}))
         .pipe(plug.uglify())
-        .pipe(plug.concat(pkg.name + ".min.js", {newLine: ';'}))
+        .pipe(plug.concat(bundlefile, opt))
         .pipe(plug.header(commentHeader))
         .pipe(gulp.dest(pkg.paths.dest.js))
         .pipe(plug.size({showFiles: true}));
 });
 
+// format c: /y
 gulp.task('cleanOutput', function(){
-    return gulp.src(pkg.paths.dest.base)
+    return gulp.src([
+            pkg.paths.dest.base,
+            pkg.paths.production])
         .pipe(plug.clean({force: true}))
 });
 
