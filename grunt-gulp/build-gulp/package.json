@@ -27,5 +27,22 @@
     "author": "John Papa",
     "webroot": "../",
     "webapp": "../app",
-    "dest": "../build-gulp/dist/"
+    "dest": "../build-gulp/dist/",
+    "paths": {
+        "source": {
+            "css": [
+                "../content/customtheme.css",
+                "../content/styles.css"
+            ],
+            "js": ["../app/**/*.js"],
+            "images": ["../content/images/**/*"]
+        },
+        "dest": {
+            "base": "./dist/",
+            "css": "./dist/content/",
+            "js": "./dist/js/",
+            "images": "./dist/content/images"
+        },
+        "production": "./livecode/"
+    }
 }

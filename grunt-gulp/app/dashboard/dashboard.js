@@ -1,4 +1,4 @@
-﻿(function () {
+(function () {
     'use strict';
     var controllerId = 'dashboard';
     angular.module('app').controller(controllerId, ['common', 'datacontext', dashboard]);
