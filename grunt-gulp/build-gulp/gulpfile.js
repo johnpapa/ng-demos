@@ -79,5 +79,6 @@ gulp.task('images', function () {
 gulp.task('lint', function () {
     return gulp.src(pkg.paths.source.js)
         .pipe(plug.jshint('jshintrc.json'))
+//        .pipe(plug.jshint.reporter('default'));
         .pipe(plug.jshint.reporter('jshint-stylish'));
 });
