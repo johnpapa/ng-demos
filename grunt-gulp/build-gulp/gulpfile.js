@@ -20,13 +20,18 @@ gutil.log( 'Building for', gutil.colors.magenta(type) );
 //gutil.beep();
 
 gulp.task('build-watcher', function() {
-    gulp.watch(pkg.paths.source.js, ['bundlejs']);
-    gulp.watch(pkg.paths.source.css, ['bundlecss']);
-    gulp.watch(pkg.paths.source.images, ['images']);
+    var jsWatcher = gulp.watch(pkg.paths.source.js, ['jshint']);
 
-//    jsWatcher.on('change', function(event) {
-//        console.log('File '+event.path+' was '+event.type+', running tasks...');
-//    });
+    gulp.watch([pkg.paths.source.css,
+        pkg.paths.source.js,
+        pkg.paths.source.images], ['default']);
+//    gulp.watch(pkg.paths.source.js, ['bundlejs']);
+//    gulp.watch(pkg.paths.source.css, ['bundlecss']);
+//    gulp.watch(pkg.paths.source.images, ['images']);
+
+    jsWatcher.on('change', function(event) {
+        console.log('*** File '+event.path+' was '+event.type+', running tasks...');
+    });
 });
 
 gulp.task('default', ['bundlejs', 'bundlecss', 'images'], function () {
@@ -55,7 +60,7 @@ gulp.task('bundlecss', function () {
         .pipe(plug.size({showFiles: true}));
 });
 
-gulp.task('bundlejs', ['lint'], function () {
+gulp.task('bundlejs', ['jshint'], function () {
     return gulp.src(pkg.paths.source.js)
         .pipe(plug.size({showFiles: true}))
         .pipe(plug.uglify())
@@ -76,7 +81,7 @@ gulp.task('images', function () {
         .pipe(gulp.dest(pkg.paths.dest.images));
 });
 
-gulp.task('lint', function () {
+gulp.task('jshint', function () {
     return gulp.src(pkg.paths.source.js)
         .pipe(plug.jshint('jshintrc.json'))
 //        .pipe(plug.jshint.reporter('default'));
