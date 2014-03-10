@@ -4,8 +4,10 @@ module.exports = function (grunt) {
 //        pkg: grunt.file.readJSON('package.json'),
         env: process.env
     };
+    var configLoader = require('./configloader.js');
 
-    grunt.util._.extend(config, loadConfig('./options/'));
+    // Load all of the options from the options folder
+    grunt.util._.extend(config, configLoader.load('./options/'));
     grunt.initConfig(config);
 
     grunt.loadNpmTasks('grunt-contrib-clean');
@@ -14,7 +16,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-ngmin');
 
     // This replaces all the individual ones
     // once we install load-grunt-tasks.
@@ -27,16 +28,3 @@ module.exports = function (grunt) {
     grunt.registerTask('default', ['build']);
     grunt.registerTask('build', ['jshint', 'clean', 'uglify', 'concat', 'copy']);
 };
-
-function loadConfig(path) {
-    var glob = require('glob');
-    var object = {};
-    var key;
-
-    glob.sync('*', {cwd: path}).forEach(function(option) {
-        key = option.replace(/\.js$/,'');
-        object[key] = require(path + option);
-    });
-
-    return object;
-}

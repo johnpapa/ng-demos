@@ -1,5 +1,5 @@
 var gulp = require('gulp');
-var pkg = require('./package.json');
+var pkg = require('./../build-grunt/package.json');
 var commentWrapper = require('./commentWrapper.js');
 
 var gulpLoadPlugins = require("gulp-load-plugins");
@@ -17,27 +17,26 @@ var commentHeader = commentWrapper.wrap(comments);
 
 var paths = {
     source: {
-//        vendorscripts: '../CC.Web/scripts/',
-//        vendorcss: '../CC.Web/content/*.css',
         css: [
-            '../CC.Web/content/customtheme.css',
-            '../CC.Web/content/styles.css'
+            '../content/customtheme.css',
+            '../content/styles.css'
         ],
-        js: ['../CC.Web/app/**/*.js'],
-        images: ['../CC.Web/content/images/**/*']
+        js: ['../app/**/*.js'],
+        images: ['../content/images/**/*']
     },
     dest: {
+        base: './dist/',
         css: './dist/content/',
         js: './dist/js/',
         images: './dist/content/images'
     },
-    production: '../../livedemo/CC.Web/'
+    production: './livecode/'
 };
 
 // Run `gulp --production`
 var type = gutil.env.production ? 'production' : 'development';
 gutil.log( 'Building for', gutil.colors.magenta(type) );
-//gutil.beep();
+gutil.beep();
 
 gulp.task('build-watcher', function() {
     gulp.watch(paths.source.js, ['bundlejs']);
@@ -82,7 +81,7 @@ gulp.task('bundlejs', ['lint'], function () {
 });
 
 gulp.task('cleanOutput', function(){
-    return gulp.src(paths.dest.js)
+    return gulp.src(paths.dest.base)
         .pipe(plug.clean({force: true}))
 });
 
@@ -97,8 +96,3 @@ gulp.task('lint', function () {
         .pipe(plug.cache(plug.jshint('jshintrc.json')))
         .pipe(plug.jshint.reporter('jshint-stylish'));
 });
-
-//gulp.task('test', function(){
-//    // run our tests
-//    spawn('npm', ['test'], {stdio: 'inherit'});
-//});
