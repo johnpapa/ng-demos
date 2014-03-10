@@ -17,7 +17,7 @@ var commentHeader = common.createComments(gutil);
 // Run `gulp --production`
 var type = gutil.env.production ? 'production' : 'development';
 gutil.log( 'Building for', gutil.colors.magenta(type) );
-gutil.beep();
+//gutil.beep();
 
 gulp.task('build-watcher', function() {
     gulp.watch(pkg.paths.source.js, ['bundlejs']);
@@ -47,20 +47,22 @@ gulp.task('default', ['bundlejs', 'bundlecss', 'images'], function () {
 
 gulp.task('bundlecss', function () {
     return gulp.src(pkg.paths.source.css)
+        .pipe(plug.size({showFiles: true}))
         .pipe(plug.minifyCss({}))
         .pipe(plug.concat(pkg.name + ".min.css"))
-        .pipe(plug.size())
         .pipe(plug.header(commentHeader))
-        .pipe(gulp.dest(pkg.paths.dest.css));
+        .pipe(gulp.dest(pkg.paths.dest.css))
+        .pipe(plug.size({showFiles: true}));
 });
 
 gulp.task('bundlejs', ['lint'], function () {
     return gulp.src(pkg.paths.source.js)
+        .pipe(plug.size({showFiles: true}))
         .pipe(plug.uglify())
         .pipe(plug.concat(pkg.name + ".min.js", {newLine: ';'}))
-        .pipe(plug.size())
         .pipe(plug.header(commentHeader))
-        .pipe(gulp.dest(pkg.paths.dest.js));
+        .pipe(gulp.dest(pkg.paths.dest.js))
+        .pipe(plug.size({showFiles: true}));
 });
 
 gulp.task('cleanOutput', function(){
