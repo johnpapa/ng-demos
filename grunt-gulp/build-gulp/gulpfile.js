@@ -1,39 +1,18 @@
 var gulp = require('gulp');
 var pkg = require('./package.json');
-var commentWrapper = require('./commentWrapper.js');
+var common = require('./common.js');
 
-// Auto load all gulp plugins
+/*
+ * Auto load all gulp plugins
+ */
 var gulpLoadPlugins = require("gulp-load-plugins");
 var plug = gulpLoadPlugins();
 
+// Load common utilities for gulp
 var gutil = plug.loadUtils(['colors', 'env', 'log', 'date']);
 
-// Create standard comments header for minified files
-var comments = [
-    'John Papa',
-    'Copyright 2014',
-    'MIT License',
-    'Compiled on ' + gutil.date('mmm d, yyyy h:MM:ss TT Z')
-    ];
-var commentHeader = commentWrapper.wrap(comments);
-
-//var paths = {
-//    source: {
-//        css: [
-//            '../content/customtheme.css',
-//            '../content/styles.css'
-//        ],
-//        js: ['../app/**/*.js'],
-//        images: ['../content/images/**/*']
-//    },
-//    dest: {
-//        base: './dist/',
-//        css: './dist/content/',
-//        js: './dist/js/',
-//        images: './dist/content/images'
-//    },
-//    production: './livecode/'
-//};
+// Create comments for minified files
+var commentHeader = common.createComments(gutil);
 
 // Run `gulp --production`
 var type = gutil.env.production ? 'production' : 'development';
