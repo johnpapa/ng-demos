@@ -1,0 +1,21 @@
+<div data-ng-controller="peopleControllerAs as vm">
+    <h2>{{vm.title}}</h2>
+    <div>
+        <label>Filter</label>
+        <input data-ng-model="personFilter"/>
+    </div>
+    <table class="table table-bordered table-striped table-condensed">
+        <thead>
+        <th>First</th>
+        <th>Last</th>
+        <th>Lunch $</th>
+        </thead>
+        <tbody>
+        <tr data-ng-repeat="p in vm.people | filter:personFilter">
+            <td>{{p.first}}</td>
+            <td>{{p.last}}</td>
+            <td>{{p.lunchMoney | currency}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

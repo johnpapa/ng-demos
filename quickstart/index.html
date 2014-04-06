@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html data-ng-app="app">
+<head>
+    <title>NG Jump-Start</title>
+    <link rel="stylesheet" href="content/bootstrap.css"/>
+    <link rel="stylesheet" href="content/styles.css"/>
+    <link rel="stylesheet" href="content/animations.css"/>
+</head>
+<body class="container">
+    <header class="navbar navbar-inverse navbar-fixed-top ani-nav" role="banner">
+        <div class="navbar-header">
+            <a href="http://johnpapa.net" class="navbar-brand">John Papa</a>
+            <a href="#" class="navbar-brand">Angular Jump-Start Demos</a>
+        </div>
+    </header>
+
+    <div class="example-animate-container">
+        <div class="shuffle-animation">
+            <ul class="nav nav-pills nav-stacked">
+                <li><a href="index0_databinding.html">data binding</a></li>
+                <li><a href="index1_ngrepeat.html">ng-repeat</a></li>
+                <li><a href="index2_controller_di.html">controller and dependency injection</a></li>
+                <li><a href="index3_controlleras.html">controller as</a></li>
+                <li><a href="index3_jquery.html">using jquery</a></li>
+                <li><a href="index4_service.html">services and factories</a></li>
+                <li><a href="index5_http.html">$http and ng-class</a></li>
+                <li><a href="index6_route.html">routes, ng-view, ng-include, ng-if and animations</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="scripts/jquery-2.0.3.js"></script>
+    <script src="scripts/bootstrap.js"></script>
+    <script src="scripts/angular.js"></script>
+    <script src="scripts/angular-route.js"></script>
+    <script src="scripts/angular-animate.js"></script>
+
+    <script src="app/app.js"></script>
+    <script src="app/people/peopleControllerAs.js"></script>
+    <script src="app/people/peopleService.js"></script>
+    <script src="app/tips/tipsController.js"></script>
+    <script src="app/tips/tipsService.js"></script>
+</body>
+</html>

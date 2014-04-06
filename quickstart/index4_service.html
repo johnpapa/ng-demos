@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html data-ng-app="app">
+<head>
+    <title>NG Jump-Start</title>
+    <link rel="stylesheet" href="content/bootstrap.css"/>
+    <link rel="stylesheet" href="content/styles.css"/>
+</head>
+<body class="container" data-ng-controller="peopleControllerAs as vm">
+    <h2>1st Service/Factory</h2>
+    <div>
+        <label>Filter</label>
+        <input data-ng-model="personFilter"/>
+    </div>
+    <table class="table table-bordered table-striped table-condensed">
+        <thead>
+            <th>First</th>
+            <th>Last</th>
+            <th>Lunch $</th>
+        </thead>
+        <tbody>
+            <tr data-ng-repeat="p in vm.people | filter:personFilter">
+                <td>{{p.first}}</td>
+                <td>{{p.last}}</td>
+                <td>{{p.lunchMoney | currency}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script src="scripts/angular.js"></script>
+    <script src="scripts/angular-route.js"></script>
+    <script src="scripts/angular-animate.js"></script>
+
+    <script src="app/app.js"></script>
+    <script src="app/people/peopleControllerAs.js"></script>
+    <script src="app/people/peopleService.js"></script>
+</body>
+</html>
