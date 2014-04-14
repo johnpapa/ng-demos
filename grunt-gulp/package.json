@@ -2,7 +2,14 @@
   "name": "grunt-gulp",
   "version": "0.0.1",
   "devDependencies": {
-    "express": "^3.5.0",
-    "nodemon": "^1.0.15"
+    "express": "^4.0.0",
+    "morgan": "^1.0.0",
+    "method-override": "^1.0.0",
+    "compression": "^1.0.1",
+    "body-parser": "^1.0.1",
+    "cors": "^2.2.0",
+    "debug": "^0.8.0",
+    "serve-static": "^1.0.4",
+    "static-favicon": "^1.0.2"
   }
 }

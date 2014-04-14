@@ -1,36 +1,42 @@
-var express = require('express');
-var routes = require('./routes');
-var http = require('http');
+var express      = require('express'),
+    app          = express(),
+    bodyParser   = require('body-parser'),
+    compress     = require('compression'),
+    cors         = require('cors'),
+//    errorHandler = require('./errorHandler'),
+    favicon      = require('static-favicon'),
+    fileServer   = require('serve-static'),
+    http         = require('http'),
+    isDev        = app.get('env') === 'development',
+    logger       = require('morgan'),
+    port         = process.env["PORT"] || 7070,
+    routes       = require('./routes');
 
-var app = express();
+//npm install express body-parser compression method-override morgan --save-dev
 
 // all environments
-app.set('port', process.env.PORT || 7070);
-//app.use(express.favicon());
-app.use(express.logger('dev'));
-app.use(express.compress()); // Compress response data with gzip
-app.use(express.json());
-app.use(express.static(__dirname));
-app.use(express.urlencoded());
-app.use(express.methodOverride());
-app.use(app.router);
+app.use(compress()); // Compress response data with gzip
+app.use('/', express.static(__dirname));
+app.use(logger('dev')); // logger
+app.use(bodyParser()); // body parser, json, and url encoding
+// Support static file content
+app.use( fileServer( process.cwd() ));
+app.use(cors());          // enable ALL CORS requests
 
-// Enable CORS
-app.all('*', function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");
-    next();
-});
+routes.init(app);
 
-// development only
-if ('development' == app.get('env')) {
-    app.use(express.errorHandler());
+if(isDev){
+    app.get('/test', function(req, res, next) {
+        console.log(req.body);
+        res.send('ping');
+    });
 }
 
-app.get('/maa', routes.maa);
-//app.get('/marvelavengersalliance', routes.marvelavengersalliance);
-//app.get('/thor', routes.thor);
+var server = http.createServer(app);
 
-http.createServer(app).listen(app.get('port'), function(){
-    console.log('Express server listening on port ' + app.get('port'));
+server.listen(port, function(){
+    console.log('Express server listening on port ' + port);
+    console.log('env = '+ app.get('env') +
+        '\n__dirname = ' + __dirname  +
+        '\nprocess.cwd = ' + process.cwd() );
 });
