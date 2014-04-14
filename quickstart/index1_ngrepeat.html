@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html data-ng-app>
+<head>
+    <title>NG Jump-Start</title>
+    <link rel="stylesheet" href="content/bootstrap.css"/>
+    <link rel="stylesheet" href="content/styles.css"/>
+</head>
+<body data-ng-init="people=['John', 'Mike', 'Troy', 'Santa', 'Anthony', 'Neta']"
+    class="container"
+>
+    <h2>ng-repeat with a filter</h2>
+    <div>
+        <label>Filter</label>
+        <input data-ng-model="personFilter"/>
+    </div>
+    <table class="table table-bordered table-striped table-condensed">
+        <thead>
+            <th>First</th>
+        </thead>
+        <tbody>
+            <tr data-ng-repeat="p in people | filter:personFilter">
+                <td>{{p}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script src="scripts/angular.js"></script>
+</body>
+</html>

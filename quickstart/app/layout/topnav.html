@@ -1,0 +1,24 @@
+<header class="navbar navbar-inverse navbar-fixed-top ani-nav" role="banner"
+        data-ng-controller="topnavController as vm">
+    <div class="navbar-header">
+        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a href="http://johnpapa.net" class="navbar-brand">John Papa</a>
+    </div>
+    <div class="navbar-collapse collapse">
+        <div class=" navbar-logo">
+            <ul class="nav navbar-nav">
+                <li data-ng-class="{active: vm.isRoute('people')}">
+                    <a data-ng-href="#/">People</a>
+                </li>
+                <li data-ng-class="{active: vm.isRoute('tips')}">
+                    <a data-ng-href="#/tips">Tips</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
