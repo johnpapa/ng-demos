@@ -1,4 +1,6 @@
-hottowel-ng
+grunt and gulp demos
 ===========
 
-Starter for Angular
+Simple grunt and gulp tasks that demonstrate how to use JavaScript task automation on a simple Angular app.
+
+Slides can be located [here](http://www.johnpapa.net/gulp-and-grunt-at-anglebrackets/)
