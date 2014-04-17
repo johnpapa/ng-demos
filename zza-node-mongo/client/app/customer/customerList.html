@@ -1,0 +1,17 @@
+﻿<div class="well">
+    <div data-ng-show="vm.isLoading">
+        <h2>Loading customers ... </h2>
+    </div>
+    <div data-ng-hide="vm.isLoading">
+        <p>
+            <input type="text" class="input-small search-query" autofocus placeholder="Filter"
+                   data-ng-model="vm.customerFilterText" />
+        </p>
+
+        <ul class="nav nav-list">
+            <li data-ng-repeat="customer in vm.filteredCustomers()" data-ng-class="{active: vm.isSelected(customer)}" >
+                <a data-ng-click="vm.select(customer)" class="hand">{{customer.fullName}}</a>
+            </li>
+        </ul>
+    </div>
+</div>

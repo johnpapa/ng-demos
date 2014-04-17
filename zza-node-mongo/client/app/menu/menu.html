@@ -1,0 +1,14 @@
+<div class="container-fluid" >
+    <div class="row-fluid" >
+
+        <div class="span3">
+            <div ui-view="orderSidebar"></div>
+        </div>
+
+        <div class="span9">
+            <div data-ng-controller="menu as vm">
+                <div data-ng-include="vm.template"></div>
+            </div>
+        </div>
+    </div>
+</div>

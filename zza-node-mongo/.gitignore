@@ -1,0 +1,13 @@
+#Don't commit Mongo Database files
+*.lock
+*.0
+*.1
+*.ns
+journal
+
+#Do commit the zip of the zza-mongo-database
+!zza-mongo-database.zip
+
+#Do commit the breeze files;
+!breeze*.js
+!breeze*.css

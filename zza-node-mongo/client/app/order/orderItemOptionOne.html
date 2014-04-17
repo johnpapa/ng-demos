@@ -1,0 +1,15 @@
+﻿<div data-ng-repeat="column in tab.columnOptions" >
+    <div class="span3">
+        <div data-ng-repeat="opt in column" >
+            <label class="radio" for="rad{{opt.id}}"
+                   data-ng-click="tab.selectOneOption(tab)">
+                <input type="radio"
+                       id="rad{{opt.id}}"
+                       value="{{opt.id}}"
+                       data-ng-model="tab.selectedOptionId"
+                       class="input-mini"/>
+                {{opt.name}}
+            </label>
+        </div>
+   </div>
+</div>

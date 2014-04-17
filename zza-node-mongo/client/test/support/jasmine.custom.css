@@ -1,0 +1,17 @@
+/**************
+ * css overrides make "pending" tests appear more prominent
+ * For use in a 'specrunner.html' when/if we create one
+ ***************/
+.html-reporter .symbol-summary li.pending:before {
+    color: #0c56aa /*#ba9d37*/;
+    content: "*";
+}
+
+.html-reporter .summary li.pending a {
+    color: #0c56aa /*#ba9d37*/;
+}
+
+.html-reporter .summary li.pending:after {
+    content: " (PENDING)";
+    color: #0c56aa /*#ba9d37*/;
+}

@@ -1,0 +1,19 @@
+﻿<div>
+    <h2>Order Pizza</h2>
+    <p>Handcrafted with fresh ingredients and baked in a woodburning oven. Our pizzas are so tasty and authentic you'll shout, "<em>Mamma Mia!</em>"</p>
+    <div>
+        <div class="row-fluid" data-ng-repeat="product in vm.products" >
+            <div class="span3">
+                <img data-ng-click="vm.go(product)" class="img-polaroid hand" data-product-img-src="{{product.image}}" title="{{product.name}}"/>
+            </div>
+            <div class="span9">
+                <h3><a data-ng-click="vm.go(product)" class="hand">{{product.name}}</a> &nbsp;
+                <img src="./images/products/icon_vegetarian.png" data-ng-show="product.isVegetarian" alt="Vegetarian" title="Vegetarian"/>
+                <img src="./images/products/icon_tomato.png" data-ng-show="product.withTomatoSauce" alt="Has Tomato Sauce" title="Has Tomato Sauce"/>
+                </h3>
+                <p>{{product.description}}</p>
+            </div>
+            <hr />
+        </div>
+    </div>
+</div>

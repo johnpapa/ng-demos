@@ -1,0 +1,66 @@
+﻿.ng-cloak {
+  display: none;
+}
+
+.hand {
+  cursor:pointer
+}
+
+#shell-content {
+  margin-top: 20px
+}
+
+/* Add some air above the description */
+p.description {
+   margin-top: 10px;
+}
+
+/* Ex: "These choices are all free" */
+p.optionMessage {
+   margin-bottom: 14px;
+    font-style: italic;
+}
+
+/* Narrow the spacing for the controls.  Bootstrap has margin-bottom: 20px */
+.form-horizontal .control-group {
+    margin-bottom: 10px;
+}
+
+/* Narrow the spacing between radio controls when they are in a table */
+td .radio {
+    min-height: 16px;
+    max-height: 16px;
+}
+
+tr.narrow td {
+    padding-top: 2px;
+    padding-bottom: 0px;
+}
+
+.tab-pane {
+    min-height: 6em;
+}
+
+/*** Bootstrap replacements ***/
+.navbar-fixed-top {
+    position:static; // keeps the top navbar from overlapping the content
+}
+/* put some horizontal space around the top nav and footer */
+.navbar .navbar-inner {
+    padding-left:20px;
+    padding-right:20px;
+}
+.navbar-inverse .brand,
+.navbar-inverse .nav > li > a {
+    color: #DDDDDD; //#999999;
+}
+.navbar-inverse .nav > li > a:hover,
+.navbar-inverse .nav > li > a:focus {
+    font-size: larger;
+}
+.navbar-inverse .nav .active > a,
+.navbar-inverse .nav .active > a:hover,
+.navbar-inverse .nav .active > a:focus {
+    font-size: larger;
+    font-weight: bold;
+}

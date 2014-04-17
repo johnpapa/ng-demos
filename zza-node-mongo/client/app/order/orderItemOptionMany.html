@@ -1,0 +1,14 @@
+﻿<div data-ng-repeat="column in tab.columnOptions" >
+    <div class="span3">
+        <div data-ng-repeat="opt in column" >
+            <label class="checkbox" for="chk{{opt.id}}"
+                    data-ng-click="tab.selectOption(opt)">
+                <input type="checkbox"
+                        id="chk{{opt.id}}"
+                        data-ng-model="opt.selected"
+                        class="input-mini"/>
+                {{opt.name}}
+            </label>
+        </div>
+    </div>
+</div>

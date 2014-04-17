@@ -1,0 +1,36 @@
+﻿<div class="well">
+    <div data-ng-if="vm.selectedCustomer">
+        <h1>{{vm.selectedCustomer.fullName}}</h1>
+        <p><b>Phone:</b> {{vm.selectedCustomer.phone}}</br>
+        <b>Email:</b> {{vm.selectedCustomer.email}}</br>
+        <b>Address:</b> {{vm.selectedCustomer.address.street}}, {{vm.selectedCustomer.address.city}},
+        {{vm.selectedCustomer.address.state}} {{vm.selectedCustomer.address.zip}}</p>
+        <hr/>
+        <div data-ng-show="vm.isLoadingOrders">
+            <h2>Loading orders ... </h2>
+        </div>
+        <div data-ng-hide="vm.isLoadingOrders">
+        <h3>Orders</h3>
+        <table class="table" >
+            <tr><th>Status</th><th>Ordered</th><th>Delivered</th><th>D.Chg</th><th>Total</th></tr>
+            <tbody >
+                <tr class="narrow" data-ng-repeat="order in vm.orderHeaders()">
+                    <td>{{order.status}}</td>
+                    <td>{{order.ordered | date:'shortDate'}}</td>
+                    <td>{{order.delivered | date:'shortDate'}}</td>
+                    <td>{{order.deliveryCharge | currency}}</td>
+                    <td>{{order.itemsTotal | currency}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!--
+        <ul>
+            <li data-ng-repeat="customer in vm.customers" data-ng-class="{active: vm.isSelected(customer)}" >
+                <a data-ng-click="vm.go(customer)" class="hand">{{customer.fullName}}</a>
+            </li>
+        </ul>
+        -->
+        </div>
+    </div>
+</div>

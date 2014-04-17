@@ -1,0 +1,16 @@
+﻿<div>
+    <h2>Order Salad</h2>
+    <p>Our fresh, crisp salads are meals in themselves and a complement to our hearty pizza pies.</p>
+    <div>
+        <div class="row-fluid" data-ng-repeat="product in vm.products" >
+            <div class="span3">
+                <img data-ng-click="vm.go(product)" class="img-polaroid hand" data-product-img-src="{{product.image}}" />
+            </div>
+            <div class="span9">
+                <h3><a data-ng-click="vm.go(product)" class="hand">{{product.name}}</a></h3>
+                <p>{{product.description}}</p>
+            </div>
+            <hr />
+        </div>
+    </div>
+</div>

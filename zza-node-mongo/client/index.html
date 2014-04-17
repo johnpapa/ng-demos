@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:ng="http://angularjs.org/" >
+
+<head>
+    <title>Zza-Node-Mongo with AngularJs</title>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+    <link rel="shortcut icon" type="image/png" href="images/logo.png">
+
+    <link href="./css/ie10mobile.css" rel="stylesheet" />
+    <link href="./css/bootstrap.css" rel="stylesheet" />
+    <link href="./css/bootstrap-responsive.css" rel="stylesheet" />
+    <link href="lib/toastr/toastr.css" rel="stylesheet" />
+    <link href="./css/styles.css" rel="stylesheet" />
+
+</head>
+
+<body class="ng-cloak" data-ng-app="app">
+
+    <!-- *** Shell of the SPA  *** -->
+    <div data-ui-view="header"></div>
+
+    <div id="shell-content" data-ui-view="content"></div>
+
+    <div data-ui-view="footer"></div>
+
+    <!-- *** Vendor scripts  *** -->
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular-sanitize/angular-sanitize.js"></script>
+    <script src="lib/angular-ui-router/angular-ui-router.js"></script>
+    <script src="lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+
+    <script src="lib/breeze/breeze.debug.js"></script>
+    <script src="lib/breeze/breeze.angular.js"></script>
+    <script src="lib/breeze/breeze.dataservice.mongo.js"></script>
+    <script src="lib/breeze/breeze.metadata-helper.js"></script>
+
+    <!-- toastr requires jQuery, not breeze or this app -->
+    <script src="lib/jquery/jquery.min.js"></script>
+    <script src="lib/toastr/toastr.js"></script>
+
+    <!-- *** Application scripts *** -->
+    <script src="app/app.js"></script>  <!-- must load first -->
+    <script src="app/appStart.js"></script>
+
+    <!-- Feature Areas: controllers -->
+    <script src="app/menu/menu.js"></script>
+    <script src="app/customer/customer.js"></script>
+    <script src="app/order/cart.js"></script>
+    <script src="app/order/orderItem.js"></script>
+    <script src="app/order/orderItemOptionVm.js"></script>
+    <script src="app/order/orderItemOptionTypeVm.js"></script>
+    <script src="app/order/orderSidebar.js"></script>
+    <script src="app/shell/header.js"></script>
+
+    <!-- Directives & Routing -->
+    <script src="app/directives/productImgSrcDirective.js"></script>
+    <script src="app/routeStates.js"></script>
+
+    <!-- Services -->
+    <script src="app/services/config.js"></script>
+    <script src="app/services/databaseReset.js"></script>
+    <script src="app/services/dataservice.js"></script>
+    <script src="app/services/entityManagerFactory.js"></script>
+    <script src="app/services/logger.js"></script>
+    <script src="app/services/lookups.js"></script>
+    <script src="app/services/metadata.js"></script>
+    <script src="app/services/model.js"></script>
+    <script src="app/services/pricing.js"></script>
+    <script src="app/services/util.js"></script>
+</body>
+
+</html>
+

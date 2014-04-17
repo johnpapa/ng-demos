@@ -1,0 +1,99 @@
+/* Reset and define common styles */
+* { box-sizing: border-box; -moz-box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Arial, Helvetica; background-color: #e0e0e0; }
+button { border: 1px solid #999; color: #555; background-color: #F4F4FA; padding: 0 10px; }
+button:disabled {background-color: #C1BABE; border-color: #CCCCCC; color: #F4F4FA;}
+button:enabled:hover { background-color: white; }
+input[type=text], input:not([type]) { padding: 0 10px; text-overflow: ellipsis; }
+
+/* Main page structure and masthead style */
+.wrapper { max-width: 800px; margin: auto; padding: 20px; }
+article { background-color: white; box-shadow: 0 0 12px rgba(0, 0, 0, 0.75); border-radius: 10px; }
+header { background-color: #71BCFA; padding: 20px; border-top-left-radius: 10px; border-top-right-radius: 10px; }
+header h1 { text-transform: uppercase; font-weight: normal; color: #545353; font-size: 28px; }
+header h2 { text-transform: uppercase; font-weight: normal; color: white; font-size: 20px; }
+.summary { text-align: center; padding: 8px 0; }
+
+/* "Button Bar" */
+.button-bar {margin:10px 0 0 0;}
+.button-bar button {margin-left: 8px; ; padding: 6px 10px;}
+.btn-sync {background-color: lightgreen;}
+.btn-sync:enabled:hover { background-color: green; color: white}
+.btn-refresh {background-color: orange;}
+.btn-refresh:enabled:hover { background-color:brown; color: white}
+.btn-reset {background-color: lightcoral;}
+.btn-reset:enabled:hover { background-color:red; color: white}
+
+/* "Add new" form */
+.add-item { height: 40px; margin: 17px 0 5px 0; font-size: 1.1em }
+.add-item div { overflow: hidden; }
+.add-item button { float: right; margin-left: 10px; padding: 0 10px; height: 100%; border-radius: 4px; }
+.new-item-text { width: 100%; height: 40px; border: 1px solid #999; font-size: 1em; border-radius: 4px; }
+
+/* List of items */
+.todo-items li { list-style-type: none; height: 36px; padding: 0px 5px; border-bottom: 1px solid #dadada;  }
+.item-complete { float: left; margin: 0 8px 0 15px; height: 100%; }
+.item-delete { float: right; margin: 5px; margin-right: 15px; height: 26px; }
+
+/* Textboxes in list of items */
+.todo-items li div { overflow: hidden; padding: 5px 2px; }
+.item-text { width: 100%; height: 26px; line-height: 24px; border: 1px solid transparent; background-color: transparent; }
+.item-text:focus, .item-text:hover { border-color: #aaa; background-color: #FFC; }
+
+
+
+
+/* Entity State Coloring Happens Here */
+.Added {color: darkmagenta; font-weight: bold}
+.Modified {color: darkcyan; font-weight: bold}
+.Deleted {color: grey; text-decoration: line-through;}
+
+
+
+
+
+/* Footer */
+footer { text-align: center; font-size: 0.8em; margin-top: 20px; }
+footer a { color: #666; }
+.errorlog { color: red; font-weight: bold; padding: 8px; text-align: left; }
+.errorlog li { list-style-type: none; text-align: left;  margin-top: 8px;  }
+.errorlog button { border-color: red; color: red;  }
+
+.wip-messages {  padding: 8px; margin: 8px 0 0 0; text-align: left; background-color: #B8DCFA;
+                 border-radius: 4px;  }
+.wip-messages li { list-style-type: none; text-align: left; margin-top: 8px; }
+
+/* Angular ng-include, ng-view, ng-repeat fader animation  - John Papa*/
+.fader-animation.ng-enter,
+.fader-animation.ng-leave,
+.fader-animation.ng-move {
+    position: relative;
+}
+
+.fader-animation.ng-enter,
+.fader-animation.ng-leave {
+    -webkit-transition: cubic-bezier(0.250, 0.460, 0.450, 0.940) all 0.5s;
+    -moz-transition: cubic-bezier(0.250, 0.460, 0.450, 0.940) all 0.5s;
+    -o-transition: cubic-bezier(0.250, 0.460, 0.450, 0.940) all 0.5s;
+    transition: cubic-bezier(0.250, 0.460, 0.450, 0.940) all 0.5s;
+    opacity: 1;
+}
+
+.fader-animation.ng-enter,
+.fader-animation.ng-leave.ng-leave-active {
+    opacity: 0;
+}
+
+.fader-animation.ng-enter.ng-enter-active {
+    opacity: 1;
+}
+
+.fader-animation.ng-move {
+    opacity: 0.5;
+}
+
+.fader-animation.ng-move.ng-move-active {
+    opacity: 1;
+}
+
+/*#endregion*/

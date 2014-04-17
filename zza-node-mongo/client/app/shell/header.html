@@ -1,0 +1,18 @@
+﻿<nav class="navbar navbar-inverse navbar-fixed-top" data-ng-controller="header as vm">
+    <div class="navbar-inner">
+        <a href="#" class="brand" data-ui-sref="{{vm.homeSref}}">
+            <span class="title">Zza!</span>
+        </a>
+        <div>
+            <ul class="nav">
+                <li data-ng-repeat="state in vm.states"
+                    data-ng-class="{ active: vm.isSelected(state) }" data-ng-click="vm.selectState(state)" >
+                    <a href="#" data-ui-sref="{{state.sref}}" >{{state.name}}</a>
+                </li>
+            </ul>
+        </div>
+        <div class="btn-group pull-right">
+            <a href="#" class="btn btn-warning" ui-sref="{{vm.cartSref}}"><i class="icon-shopping-cart icon-white"></i> Cart</a>
+        </div>
+    </div>
+</nav>

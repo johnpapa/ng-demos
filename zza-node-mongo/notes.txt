@@ -1,0 +1,15 @@
+
+cd <zza install>/client
+mongod -dbpath ../database/zza   #start mongo database server
+
+mongo   #start mongo explorer
+show dbs
+use zza; db
+show collections
+db.collections.find()
+db.Customer.find({"firstName":"Derek"})
+
+
+Need Bower installs and Grunt build script
+
+

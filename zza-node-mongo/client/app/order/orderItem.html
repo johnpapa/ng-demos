@@ -1,0 +1,46 @@
+﻿<div data-ng-class="{hide: !vm.product}" data-ng-controller="orderItem as vm">
+    <h2>{{vm.product.name}}
+        <img src="./images/products/icon_vegetarian.png" data-ng-class="{hide: !vm.product.isVegetarian}" alt="Vegetarian" title="Vegetarian"/>
+        <img src="./images/products/icon_tomato.png" data-ng-class="{hide: !vm.product.withTomatoSauce}" alt="Has Tomato Sauce" title="Has Tomato Sauce"/>
+    </h2>
+    <div>
+        <img class="img-polaroid" data-product-img-src="{{vm.product.image}}" title="{{vm.product.name}}"/>
+        <p class="description">{{vm.product.description}}</p>
+        <form class="form-horizontal">
+            <table class="table-condensed control-group">
+                <tr><th style="min-width: 160px">Size</th><th>Price</th></tr>
+                <tr data-ng-repeat="svm in vm.sizeVms">
+                    <td><label class="radio" for="size{{svm.id}}">{{svm.name}}</label> </td>
+                    <td><label class="radio" for="size{{svm.id}}">
+                            <input type="radio" data-ng-model="vm.orderItem.productSizeId"
+                                   value="{{svm.id}}" name="selectedSize" id="size{{svm.id}}"/>
+                            {{svm.price | currency}}
+                        </label>
+                    </td>
+                </tr>
+            </table>
+            <div class="control-group">
+                <label class="control-label" for="quantity">Quantity</label>
+                <div class="controls">
+                    <input type="text" id="quantity" data-ng-model="vm.orderItem.quantity" class="input-mini">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="instructions">Instructions</label>
+                <div class="controls">
+                    <textarea rows="2" id="instructions" data-ng-model="vm.orderItem.instructions"></textarea>
+                </div>
+            </div>
+
+            <tabset>
+                <tab data-ng-repeat="tab in vm.typeVms" heading="{{tab.title}}">
+                    <p data-ng-show="tab.allFree" class="optionMessage">These choices are all free! Enjoy!</p>
+                    <p data-ng-show="tab.someCostMore" class="optionMessage">Choices with an (*) after the name count as 2.</p>
+                    <div data-ng-include="tab.choiceTemplate"></div>
+                </tab>
+            </tabset>
+            <p></p>
+            <button class="btn" data-ng-show="vm.isDraftOrder" data-ng-click="vm.addToCart()">Add to Cart</button>
+        </form>
+    </div>
+</div>

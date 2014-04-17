@@ -1,0 +1,359 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1c620aef-ea1e-4aa9-b2d2-63cda374c530}</ProjectGuid>
+    <ProjectHome />
+    <ProjectView>ProjectFiles</ProjectView>
+    <StartupFile>server\server.js</StartupFile>
+    <WorkingDirectory>$(SolutionDir)client</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <StartWebBrowser>True</StartWebBrowser>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <ItemGroup>
+    <Compile Include="server\repository.js" />
+    <Compile Include="server\server.js" />
+    <Content Include=".gitignore" />
+    <Content Include="client\app\shell\home.html" />
+    <Content Include="client\lib\angular-animate\angular-animate.min.js.map" />
+    <Content Include="client\lib\angular-sanitize\angular-sanitize.min.js.map" />
+    <Content Include="client\lib\angular\angular.min.js.map" />
+    <Content Include="client\lib\jquery\jquery.min.map" />
+    <Content Include="client\lib\toastr\toastr.css" />
+    <Content Include="client\lib\toastr\toastr.min.css" />
+    <Content Include="client\lib\toastr\toastr.min.js.map" />
+    <Content Include="notes.txt" />
+    <Content Include="package.json" />
+    <Content Include="readme.md" />
+    <Content Include="client\index.html" />
+    <Content Include="client\restAPI.html" />
+    <Compile Include="client\lib\angular-animate\angular-animate.js" />
+    <Compile Include="client\lib\angular-animate\angular-animate.min.js" />
+    <Compile Include="client\lib\angular-bootstrap\ui-bootstrap-tpls.js" />
+    <Compile Include="client\lib\angular-bootstrap\ui-bootstrap-tpls.min.js" />
+    <Compile Include="client\lib\angular-bootstrap\ui-bootstrap.js" />
+    <Compile Include="client\lib\angular-bootstrap\ui-bootstrap.min.js" />
+    <Compile Include="client\lib\angular-sanitize\angular-sanitize.js" />
+    <Compile Include="client\lib\angular-sanitize\angular-sanitize.min.js" />
+    <Compile Include="client\lib\angular-ui-router\angular-ui-router.js" />
+    <Compile Include="client\lib\angular-ui-router\angular-ui-router.min.js" />
+    <Compile Include="client\lib\angular\angular.js" />
+    <Compile Include="client\lib\angular\angular.min.js" />
+    <Compile Include="client\lib\breeze\breeze.angular.js" />
+    <Compile Include="client\lib\breeze\breeze.dataservice.mongo.js" />
+    <Compile Include="client\lib\breeze\breeze.debug.js" />
+    <Compile Include="client\lib\breeze\breeze.metadata-helper.js" />
+    <Compile Include="client\lib\breeze\breeze.min.js" />
+    <Compile Include="client\lib\jquery\jquery.js" />
+    <Compile Include="client\lib\jquery\jquery.min.js" />
+    <Compile Include="client\lib\toastr\toastr.js" />
+    <Compile Include="client\lib\toastr\toastr.min.js" />
+    <Compile Include="server\breeze-routes.js" />
+    <Compile Include="server\database.js" />
+    <Compile Include="server\errorHandler.js" />
+    <Compile Include="client\app\app.js" />
+    <Compile Include="client\app\appStart.js" />
+    <Compile Include="client\app\routeStates.js" />
+    <Compile Include="client\test\karma.conf.js" />
+    <Content Include="client\app\customer\customerList.html" />
+    <Content Include="client\app\customer\customerDetail.html" />
+    <Content Include="client\app\customer\customer.html" />
+    <Compile Include="client\app\customer\customer.js" />
+    <Compile Include="client\app\directives\productImgSrcDirective.js" />
+    <Content Include="client\images\products\icon_tomato.png" />
+    <Content Include="client\images\products\icon_vegetarian.png" />
+    <Content Include="client\images\logo.png" />
+    <Content Include="client\app\menu\menu.drink.html" />
+    <Content Include="client\app\menu\menu.pizza.html" />
+    <Content Include="client\app\menu\menu.salad.html" />
+    <Content Include="client\app\menu\menu.html" />
+    <Compile Include="client\app\menu\menu.js" />
+    <Content Include="client\app\order\cart.html" />
+    <Content Include="client\app\order\orderItemOptionMany.html" />
+    <Content Include="client\app\order\orderItemOptionOne.html" />
+    <Content Include="client\app\order\orderItem.html" />
+    <Content Include="client\app\order\orderSidebar.html" />
+    <Content Include="client\app\order\order.html" />
+    <Compile Include="client\app\order\cart.js" />
+    <Compile Include="client\app\order\orderItem.js" />
+    <Compile Include="client\app\order\orderItemOptionTypeVm.js" />
+    <Compile Include="client\app\order\orderItemOptionVm.js" />
+    <Compile Include="client\app\order\orderSidebar.js" />
+    <Compile Include="client\app\services\config.js" />
+    <Compile Include="client\app\services\databaseReset.js" />
+    <Compile Include="client\app\services\dataservice.js" />
+    <Compile Include="client\app\services\entityManagerFactory.js" />
+    <Compile Include="client\app\services\logger.js" />
+    <Compile Include="client\app\services\lookups.js" />
+    <Compile Include="client\app\services\metadata-old.js" />
+    <Compile Include="client\app\services\metadata.js" />
+    <Compile Include="client\app\services\model.js" />
+    <Compile Include="client\app\services\pricing.js" />
+    <Compile Include="client\app\services\util.js" />
+    <Content Include="client\app\shell\about.html" />
+    <Content Include="client\app\shell\footer.html" />
+    <Content Include="client\app\shell\header.html" />
+    <Compile Include="client\app\shell\header.js" />
+    <Content Include="client\images\products\amadeus.jpg" />
+    <Content Include="client\images\products\applejuice.jpg" />
+    <Content Include="client\images\products\aquah2o.jpg" />
+    <Content Include="client\images\products\asianchicken.jpg" />
+    <Content Include="client\images\products\bigcountrysalad.jpg" />
+    <Content Include="client\images\products\caesarsalad.jpg" />
+    <Content Include="client\images\products\cascadefog.jpg" />
+    <Content Include="client\images\products\chefsalad.jpg" />
+    <Content Include="client\images\products\chickencaesarsalad.jpg" />
+    <Content Include="client\images\products\chickencoolness.jpg" />
+    <Content Include="client\images\products\cola.jpg" />
+    <Content Include="client\images\products\dietcola.jpg" />
+    <Content Include="client\images\products\dr.popper.jpg" />
+    <Content Include="client\images\products\drink.jpg" />
+    <Content Include="client\images\products\energade.jpg" />
+    <Content Include="client\images\products\farmersalad.jpg" />
+    <Content Include="client\images\products\gardengallop.jpg" />
+    <Content Include="client\images\products\gardensalad.jpg" />
+    <Content Include="client\images\products\grecoirish.jpg" />
+    <Content Include="client\images\products\greeksalad.jpg" />
+    <Content Include="client\images\products\greentea.jpg" />
+    <Content Include="client\images\products\holysmokes.jpg" />
+    <Content Include="client\images\products\hulapie.jpg" />
+    <Content Include="client\images\products\italianstallion.jpg" />
+    <Content Include="client\images\products\jerusalem.jpg" />
+    <Content Include="client\images\products\lemonspruce.jpg" />
+    <Content Include="client\images\products\lisbon.jpg" />
+    <Content Include="client\images\products\littlevenus.jpg" />
+    <Content Include="client\images\products\makeyourown.jpg" />
+    <Content Include="client\images\products\mamamia.jpg" />
+    <Content Include="client\images\products\nocheese.jpg" />
+    <Content Include="client\images\products\orangejuice.jpg" />
+    <Content Include="client\images\products\pestolante.jpg" />
+    <Content Include="client\images\products\plaincheese.jpg" />
+    <Content Include="client\images\products\porkbbq.jpg" />
+    <Content Include="client\images\products\rootbeer.jpg" />
+    <Content Include="client\images\products\shanghai.jpg" />
+    <Content Include="client\images\products\southoftheborder.jpg" />
+    <Content Include="client\images\products\spinachsalad.jpg" />
+    <Content Include="client\images\products\tajmahal.jpg" />
+    <Content Include="client\images\products\thaichickensalad.jpg" />
+    <Content Include="client\images\products\tomterrific.jpg" />
+    <Content Include="client\images\products\unknown.jpg" />
+    <Content Include="client\css\bootstrap-responsive.css" />
+    <Content Include="client\css\bootstrap-responsive.min.css" />
+    <Content Include="client\css\bootstrap.css" />
+    <Content Include="client\css\bootstrap.min.css" />
+    <Content Include="client\css\ie10mobile.css" />
+    <Content Include="client\css\styles.css" />
+    <Content Include="client\images\glyphicons-halflings-white.png" />
+    <Content Include="client\images\glyphicons-halflings.png" />
+    <Compile Include="client\test\lib\angular-mocks.js" />
+    <Compile Include="client\test\lib\bind-polyfill.js" />
+    <Compile Include="client\test\lib\ngMidwayTester.js" />
+    <Compile Include="client\test\lib\ngSpecPrep.js" />
+    <Compile Include="client\test\lib\sinon-1.9.0.js" />
+    <Compile Include="client\test\specs\appstart.spec.js" />
+    <Compile Include="client\test\specs\dummy.spec.js" />
+    <Compile Include="client\test\specs\menu-controller.spec.js" />
+    <Compile Include="client\test\specs\orderItemOptionTypeVm.spec.js" />
+    <Compile Include="client\test\specs\orderItemOptionVm.spec.js" />
+    <Content Include="client\test\support\jasmine.custom.css" />
+    <Compile Include="client\test\support\emFactory-mock-spec.js" />
+    <Compile Include="client\test\support\emFactory-mock.js" />
+    <Compile Include="client\test\support\lookupsExport.js" />
+    <Compile Include="client\test\support\testFns.js" />
+    <Content Include="client\test\lib\jasmine\jasmine.css" />
+    <Compile Include="client\test\lib\jasmine\boot.js" />
+    <Compile Include="client\test\lib\jasmine\console.js" />
+    <Compile Include="client\test\lib\jasmine\jasmine-html.js" />
+    <Compile Include="client\test\lib\jasmine\jasmine.js" />
+    <Content Include="server\obj\Debug\Zza-Node-Mongo-Server.njsproj.FileListAbsolute.txt" />
+    <Content Include="server\obj\Debug\package.json" />
+    <Compile Include="server\obj\Debug\app-server.js" />
+    <Compile Include="server\obj\Debug\breeze-routes.js" />
+    <Compile Include="server\obj\Debug\database.js" />
+    <Compile Include="server\obj\Debug\errorHandler.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="client" />
+    <Folder Include="client\app" />
+    <Folder Include="client\app\customer" />
+    <Folder Include="client\app\directives" />
+    <Folder Include="client\images\products" />
+    <Folder Include="client\app\menu" />
+    <Folder Include="client\app\order" />
+    <Folder Include="client\app\services" />
+    <Folder Include="client\app\shell" />
+    <Folder Include="client\css" />
+    <Folder Include="client\images" />
+    <Folder Include="client\lib\" />
+    <Folder Include="client\lib\angular-animate\" />
+    <Folder Include="client\lib\angular-bootstrap\" />
+    <Folder Include="client\lib\angular-sanitize\" />
+    <Folder Include="client\lib\angular-ui-router\" />
+    <Folder Include="client\lib\angular\" />
+    <Folder Include="client\lib\breeze\" />
+    <Folder Include="client\lib\jquery\" />
+    <Folder Include="client\lib\toastr\" />
+    <Folder Include="client\test" />
+    <Folder Include="client\test\lib" />
+    <Folder Include="client\test\lib\jasmine" />
+    <Folder Include="client\test\specs" />
+    <Folder Include="client\test\support" />
+    <Folder Include="server" />
+    <Folder Include="server\obj" />
+    <Folder Include="server\obj\Debug" />
+    <Folder Include="server\obj\Debug\bin" />
+    <Folder Include="server\obj\Debug\node_modules" />
+    <Folder Include="server\obj\Debug\node_modules\body-parser" />
+    <Folder Include="server\obj\Debug\node_modules\body-parser\node_modules" />
+    <Folder Include="server\obj\Debug\node_modules\body-parser\node_modules\qs" />
+    <Folder Include="server\obj\Debug\node_modules\body-parser\node_modules\raw-body" />
+    <Folder Include="server\obj\Debug\node_modules\body-parser\node_modules\raw-body\node_modules" />
+    <Folder Include="server\obj\Debug\node_modules\body-parser\node_modules\raw-body\node_modules\bytes" />
+    <Folder Include="server\obj\Debug\node_modules\breeze-mongodb" />
+    <Folder Include="server\obj\Debug\node_modules\compression" />
+    <Folder Include="server\obj\Debug\node_modules\compression\node_modules" />
+    <Folder Include="server\obj\Debug\node_modules\compression\node_modules\bytes" />
+    <Folder Include="server\obj\Debug\node_modules\compression\node_modules\compressible" />
+    <Folder Include="server\obj\Debug\node_modules\compression\node_modules\negotiator" />
+    <Folder Include="server\obj\Debug\node_modules\compression\node_modules\negotiator\examples" />
+    <Folder Include="server\obj\Debug\node_modules\compression\node_modules\negotiator\lib" />
+    <Folder Include="server\obj\Debug\node_modules\compression\node_modules\negotiator\test" />
+    <Folder Include="server\obj\Debug\node_modules\debug" />
+    <Folder Include="server\obj\Debug\node_modules\debug\lib" />
+    <Folder Include="server\obj\Debug\node_modules\express" />
+    <Folder Include="server\obj\Debug\node_modules\express\benchmarks" />
+    <Folder Include="server\obj\Debug\node_modules\express\lib" />
+    <Folder Include="server\obj\Debug\node_modules\express\lib\middleware" />
+    <Folder Include="server\obj\Debug\node_modules\express\lib\router" />
+    <Folder Include="server\obj\Debug\node_modules\express\node_modules" />
+    <Folder Include="server\obj\Debug\node_modules\express\node_modules\accepts" />
+    <Folder Include="server\obj\Debug\node_modules\express\node_modules\accepts\node_modules" />
+    <Folder Include="server\obj\Debug\node_modules\express\node_modules\accepts\node_modules\mime" />
+    <Folder Include="server\obj\Debug\node_modules\express\node_modules\accepts\node_modules\mime\types" />
+    <Folder Include="server\obj\Debug\node_modules\express\node_modules\accepts\node_modules\negotiator" />
+    <Folder Include="server\obj\Debug\node_modules\express\node_modules\accepts\node_modules\negotiator\examples" />
+    <Folder Include="server\obj\Debug\node_modules\express\node_modules\accepts\node_modules\negotiator\lib" />
+    <Folder Include="server\obj\Debug\node_modules\express\node_modules\accepts\node_modules\negotiator\test" />
+    <Folder Include="server\obj\Debug\node_modules\express\node_modules\accepts\test" />
+    <Folder Include="server\obj\Debug\node_modules\express\node_modules\buffer-crc32" />
+    <Folder Include="server\obj\Debug\node_modules\express\node_modules\buffer-crc32\tests" />
+    <Folder Include="server\obj\Debug\node_modules\express\node_modules\cookie" />
+    <Folder Include="server\obj\Debug\node_modules\express\node_modules\cookie\test" />
+    <Folder Include="server\obj\Debug\node_modules\express\node_modules\cookie-signature" />
+    <Folder Include="server\obj\Debug\node_modules\express\node_modules\escape-html" />
+    <Folder Include="server\obj\Debug\node_modules\express\node_modules\fresh" />
+    <Folder Include="server\obj\Debug\node_modules\express\node_modules\merge-descriptors" />
+    <Folder Include="server\obj\Debug\node_modules\express\node_modules\methods" />
+    <Folder Include="server\obj\Debug\node_modules\express\node_modules\parseurl" />
+    <Folder Include="server\obj\Debug\node_modules\express\node_modules\path-to-regexp" />
+    <Folder Include="server\obj\Debug\node_modules\express\node_modules\qs" />
+    <Folder Include="server\obj\Debug\node_modules\express\node_modules\range-parser" />
+    <Folder Include="server\obj\Debug\node_modules\express\node_modules\send" />
+    <Folder Include="server\obj\Debug\node_modules\express\node_modules\send\lib" />
+    <Folder Include="server\obj\Debug\node_modules\express\node_modules\send\node_modules" />
+    <Folder Include="server\obj\Debug\node_modules\express\node_modules\send\node_modules\mime" />
+    <Folder Include="server\obj\Debug\node_modules\express\node_modules\send\node_modules\mime\types" />
+    <Folder Include="server\obj\Debug\node_modules\express\node_modules\serve-static" />
+    <Folder Include="server\obj\Debug\node_modules\express\node_modules\serve-static\node_modules" />
+    <Folder Include="server\obj\Debug\node_modules\express\node_modules\serve-static\node_modules\send" />
+    <Folder Include="server\obj\Debug\node_modules\express\node_modules\serve-static\node_modules\send\lib" />
+    <Folder Include="server\obj\Debug\node_modules\express\node_modules\serve-static\node_modules\send\node_modules" />
+    <Folder Include="server\obj\Debug\node_modules\express\node_modules\serve-static\node_modules\send\node_modules\fresh" />
+    <Folder Include="server\obj\Debug\node_modules\express\node_modules\serve-static\node_modules\send\node_modules\mime" />
+    <Folder Include="server\obj\Debug\node_modules\express\node_modules\serve-static\node_modules\send\node_modules\mime\types" />
+    <Folder Include="server\obj\Debug\node_modules\express\node_modules\serve-static\node_modules\send\node_modules\range-parser" />
+    <Folder Include="server\obj\Debug\node_modules\express\node_modules\type-is" />
+    <Folder Include="server\obj\Debug\node_modules\express\node_modules\type-is\node_modules" />
+    <Folder Include="server\obj\Debug\node_modules\express\node_modules\type-is\node_modules\mime" />
+    <Folder Include="server\obj\Debug\node_modules\express\node_modules\type-is\node_modules\mime\types" />
+    <Folder Include="server\obj\Debug\node_modules\express\node_modules\utils-merge" />
+    <Folder Include="server\obj\Debug\node_modules\mongodb" />
+    <Folder Include="server\obj\Debug\node_modules\mongodb\lib" />
+    <Folder Include="server\obj\Debug\node_modules\mongodb\lib\mongodb" />
+    <Folder Include="server\obj\Debug\node_modules\mongodb\lib\mongodb\auth" />
+    <Folder Include="server\obj\Debug\node_modules\mongodb\lib\mongodb\collection" />
+    <Folder Include="server\obj\Debug\node_modules\mongodb\lib\mongodb\commands" />
+    <Folder Include="server\obj\Debug\node_modules\mongodb\lib\mongodb\connection" />
+    <Folder Include="server\obj\Debug\node_modules\mongodb\lib\mongodb\connection\repl_set" />
+    <Folder Include="server\obj\Debug\node_modules\mongodb\lib\mongodb\connection\repl_set\strategies" />
+    <Folder Include="server\obj\Debug\node_modules\mongodb\lib\mongodb\gridfs" />
+    <Folder Include="server\obj\Debug\node_modules\mongodb\lib\mongodb\responses" />
+    <Folder Include="server\obj\Debug\node_modules\mongodb\node_modules" />
+    <Folder Include="server\obj\Debug\node_modules\mongodb\node_modules\bson" />
+    <Folder Include="server\obj\Debug\node_modules\mongodb\node_modules\bson\browser_build" />
+    <Folder Include="server\obj\Debug\node_modules\mongodb\node_modules\bson\ext" />
+    <Folder Include="server\obj\Debug\node_modules\mongodb\node_modules\bson\ext\win32" />
+    <Folder Include="server\obj\Debug\node_modules\mongodb\node_modules\bson\ext\win32\ia32" />
+    <Folder Include="server\obj\Debug\node_modules\mongodb\node_modules\bson\ext\win32\x64" />
+    <Folder Include="server\obj\Debug\node_modules\mongodb\node_modules\bson\lib" />
+    <Folder Include="server\obj\Debug\node_modules\mongodb\node_modules\bson\lib\bson" />
+    <Folder Include="server\obj\Debug\node_modules\mongodb\node_modules\bson\tools" />
+    <Folder Include="server\obj\Debug\node_modules\mongodb\node_modules\bson\tools\jasmine-1.1.0" />
+    <Folder Include="server\obj\Debug\node_modules\mongodb\node_modules\kerberos" />
+    <Folder Include="server\obj\Debug\node_modules\mongodb\node_modules\kerberos\lib" />
+    <Folder Include="server\obj\Debug\node_modules\mongodb\node_modules\kerberos\lib\auth_processes" />
+    <Folder Include="server\obj\Debug\node_modules\mongodb\node_modules\kerberos\lib\win32" />
+    <Folder Include="server\obj\Debug\node_modules\mongodb\node_modules\kerberos\lib\win32\wrappers" />
+    <Folder Include="server\obj\Debug\node_modules\mongodb\node_modules\kerberos\test" />
+    <Folder Include="server\obj\Debug\node_modules\mongodb\node_modules\kerberos\test\win32" />
+    <Folder Include="server\obj\Debug\node_modules\morgan" />
+    <Folder Include="server\obj\Debug\node_modules\morgan\node_modules" />
+    <Folder Include="server\obj\Debug\node_modules\morgan\node_modules\bytes" />
+    <Folder Include="server\obj\Debug\node_modules\serve-static" />
+    <Folder Include="server\obj\Debug\node_modules\serve-static\node_modules" />
+    <Folder Include="server\obj\Debug\node_modules\serve-static\node_modules\send" />
+    <Folder Include="server\obj\Debug\node_modules\serve-static\node_modules\send\lib" />
+    <Folder Include="server\obj\Debug\node_modules\serve-static\node_modules\send\node_modules" />
+    <Folder Include="server\obj\Debug\node_modules\serve-static\node_modules\send\node_modules\fresh" />
+    <Folder Include="server\obj\Debug\node_modules\serve-static\node_modules\send\node_modules\mime" />
+    <Folder Include="server\obj\Debug\node_modules\serve-static\node_modules\send\node_modules\mime\types" />
+    <Folder Include="server\obj\Debug\node_modules\serve-static\node_modules\send\node_modules\range-parser" />
+    <Folder Include="server\obj\Debug\node_modules\static-favicon" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:48022/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost:1337</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

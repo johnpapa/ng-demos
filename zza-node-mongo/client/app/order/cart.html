@@ -1,0 +1,52 @@
+﻿<div data-ng-controller="cart as vm" >
+
+<div data-ng-if="!vm.haveItems">
+    <h2>Your cart is empty</h2>
+</div>
+<div data-ng-if="vm.haveItems">
+    <h2>Your Order</h2>
+    <div>
+        <table class="table" >
+            <tr><th></th><th>Item</th><th>Size</th><th>Qty</th><th>Price</th></tr>
+            <tbody data-ng-repeat="item in vm.cartOrder.orderItems">
+                <tr>
+                    <td><button class="btn" data-ng-click="vm.removeItem(item)">Remove</button></td>
+                    <td><a href="#" data-ui-sref="{{vm.cartItemState(item)}}"><strong>{{item.product.name}}</strong></a></td>
+                    <td>{{item.productSize.name}}</td>
+                    <td><input type="text" data-ng-model="item.quantity" data-ng-change="vm.updateCosts()" class="input-mini" /></td>
+                    <td>{{item.unitPrice | currency}}</td>
+                </tr>
+                <tr class="narrow" data-ng-repeat="option in item.orderItemOptions">
+                    <td></td>
+                    <td>{{option.productOption.name}}</td>
+                    <td></td>
+                    <td></td>
+                    <td>{{option.price | currency}}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Item Total</td>
+                    <td>{{item.totalPrice | currency}}</td>
+                </tr>
+            </tbody>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Order Total</td>
+                    <td>{{vm.cartOrder.itemsTotal | currency}}</td>
+                </tr>
+                <tr data-ng-show="vm.hasExtraCost" >
+                    <td></td>
+                    <td colspan="3">
+                    <p class="optionMessage">Options with an (*) count as 2.</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
