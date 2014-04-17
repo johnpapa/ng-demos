@@ -21,9 +21,6 @@ node_modules
 *.ns
 journal
 
-#Do commit the zip of the zza-mongo-database
-!zza-mongo-database.zip
-
 # Ignore Web Storm #
 .idea
 
