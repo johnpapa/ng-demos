@@ -97,6 +97,7 @@
     <Compile Include="client\app\services\pricing.js" />
     <Compile Include="client\app\services\util.js" />
     <Content Include="client\app\shell\about.html" />
+    <Content Include="client\app\shell\about.md" />
     <Content Include="client\app\shell\footer.html" />
     <Content Include="client\app\shell\header.html" />
     <Compile Include="client\app\shell\header.js" />

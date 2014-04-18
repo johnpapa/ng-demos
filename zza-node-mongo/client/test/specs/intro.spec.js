@@ -4,7 +4,7 @@
  *  For matchers: https://github.com/pivotal/jasmine/wiki/Matchers
  *  prove that we can get specs running here
  */
-ddescribe('intro to Jasmine', function () {
+xdescribe('intro to Jasmine', function () {
     'use strict';
 
     it('should pass an "always true" spec', function () {

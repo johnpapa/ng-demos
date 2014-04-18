@@ -114,16 +114,16 @@
                     name: 'Order',
                     dataProperties: {
                         id:        { type: ID },
-                        customerId:{ type: ID, null: false },
-                        name:      { max: 50, null: false },
-                        statusId:  { type: LUID, null: false, default: 1 },//default is 'Ordered'
-                        status:    { max: 20, null: false },
-                        ordered:   { type: DATE, null: false, default: "2014-01-01T08:00:00Z"},
+                        customerId:{ type: ID, required: true },
+                        name:      { max: 50, required: true },
+                        statusId:  { type: LUID, required: true, default: 1 },//default is 'Ordered'
+                        status:    { max: 20, required: true },
+                        ordered:   { type: DATE, required: true, default: "2014-01-01T08:00:00Z"},
                         phone:     { max: 100 },
                         delivered:      { type: DATE },
-                        deliveryCharge: { type: DECIMAL, null: false, default: 0 },
+                        deliveryCharge: { type: DECIMAL, required: true, default: 0 },
                         deliveryAddress:{ complex: 'Address'},
-                        itemsTotal:     { type: DECIMAL, null: false, default: 0 },
+                        itemsTotal:     { type: DECIMAL, required: true, default: 0 },
                         orderItems:     { complex: 'OrderItem', hasMany: true }
                     },
                     navigationProperties: {
@@ -137,14 +137,14 @@
                     name: 'OrderItem',
                     isComplexType: true,
                     dataProperties: {
-                        productId:     { type: LUID, null: false, default: 0 },
-                        name:          { max: 50, null: false },
-                        type:          { max: 50, null: false },
-                        productSizeId: { type: LUID, null: false, default: 0 },
-                        size:          { max: 50, null: false },
-                        quantity:      { type: DT.Int32, null: false, default: 1 },
-                        unitPrice:     { type: DECIMAL, null: false, default: 0 },
-                        totalPrice:    { type: DECIMAL, null: false, default: 0 },
+                        productId:     { type: LUID, required: true, default: 0 },
+                        name:          { max: 50, required: true },
+                        type:          { max: 50, required: true },
+                        productSizeId: { type: LUID, required: true, default: 0 },
+                        size:          { max: 50, required: true },
+                        quantity:      { type: DT.Int32, required: true, default: 1 },
+                        unitPrice:     { type: DECIMAL, required: true, default: 0 },
+                        totalPrice:    { type: DECIMAL, required: true, default: 0 },
                         instructions:  { max: 255 },
                         orderItemOptions: { complex: 'OrderItemOption', hasMany: true }
                     }
@@ -155,10 +155,10 @@
                     name: 'OrderItemOption',
                     isComplexType: true,
                     dataProperties: {
-                        productOptionId: { type: LUID, null: false, default: 0 },
-                        name:            { max: 50, null: false },
-                        quantity:        { type: DT.Int32, null: false, default: 1 },
-                        price:           { type: DECIMAL, null: false, default: 0 }
+                        productOptionId: { type: LUID, required: true, default: 0 },
+                        name:            { max: 50, required: true },
+                        quantity:        { type: DT.Int32, required: true, default: 1 },
+                        price:           { type: DECIMAL, required: true, default: 0 }
                     }
                 });
             }
@@ -167,7 +167,7 @@
                     name: 'OrderStatus',
                     dataProperties: {
                         id:   { type: LUID },
-                        name: { max: 50, null: false }
+                        name: { max: 50, required: true }
                     }
                 });
             }
@@ -176,14 +176,14 @@
                     name: 'Product',
                     dataProperties: {
                         id:             { type: LUID },
-                        type:           { max: 20, null: false },
-                        name:           { max: 50, null: false },
+                        type:           { max: 20, required: true },
+                        name:           { max: 50, required: true },
                         description:    { max: 255 },
                         image:          { max: 50 }, // image name
-                        hasOptions:     { type: BOOL, null: false },
-                        isPremium:      { type: BOOL, null: false },
-                        isVegetarian:   { type: BOOL, null: false },
-                        withTomatoSauce:{ type: BOOL, null: false },
+                        hasOptions:     { type: BOOL, required: true },
+                        isPremium:      { type: BOOL, required: true },
+                        isVegetarian:   { type: BOOL, required: true },
+                        withTomatoSauce:{ type: BOOL, required: true },
                         sizeIds:        { type: LUID, hasMany: true }
                     }
                 });
@@ -193,8 +193,8 @@
                     name: 'ProductOption',
                     dataProperties: {
                         id:             { type: LUID },
-                        type:           { max: 20, null: false },
-                        name:           { max: 50, null: false },
+                        type:           { max: 20, required: true },
+                        name:           { max: 50, required: true },
                         factor:         { max: 255 },
                         productTypes:   { hasMany: true }
                     }
@@ -205,9 +205,9 @@
                     name: 'ProductSize',
                     dataProperties: {
                         id:           { type: LUID },
-                        type:         { max: 20, null: false },
-                        name:         { max: 50, null: false },
-                        price:        { type: DECIMAL, null: false, default: 0 },
+                        type:         { max: 20, required: true },
+                        name:         { max: 50, required: true },
+                        price:        { type: DECIMAL, required: true, default: 0 },
                         premiumPrice: { type: DECIMAL },
                         toppingPrice: { type: DECIMAL },
                         isGlutenFree: { type: BOOL }
