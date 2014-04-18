@@ -58,7 +58,7 @@
 
             // Execute the query
             return manager.executeQuery(query)
-                .then(success).catch(handleError);
+                .then(success).catch(queryFailed);
 
             function success(data){
                 // Interested in what server has then we are done.
@@ -75,6 +75,7 @@
                 // Warning: the cache will accumulate entities that
                 // have been deleted by other users until it is entirely rebuilt via 'refresh'
             }
+
         }
 
 
@@ -82,12 +83,6 @@
 
 
 
-        function handleError(error) {
-            error.message = prettifyErrorMessage(error.message);
-            var status = error.status ? error.status + ' - ' : '';
-            var err = status + (error.message ? error.message : 'unknown error; check console.log');
-            throw new Error(err); // so downstream listener gets it.
-        }
 
         function hasChanges(){
             return manager.hasChanges();
@@ -113,6 +108,13 @@
             return message;
         }
 
+        function queryFailed(error) {
+            error.message = prettifyErrorMessage(error.message);
+            var status = error.status ? error.status + ' - ' : '';
+            var err = status + (error.message ? error.message : 'unknown error; check console.log');
+            throw new Error(err); // so downstream listener gets it.
+        }
+
         // Clear everything local and reload from server.
         function reset(){
             wip.stop();
@@ -129,7 +131,14 @@
                     wip.clear();
                     return getAllTodoItems();
                 })
-                .catch(handleError);
+                .catch(saveFailed);
+
+            function saveFailed(error) {
+                var msg = 'Save failed: ' +
+                    breeze.saveErrorMessageService.getErrorMessage(error);
+                error.message = msg;
+                throw error; // for downstream callers to see
+            }
         }
 
         function updateCounts() {

@@ -29,17 +29,21 @@
                     dataProperties: {
                         id:       { dataType: DT.Guid },
                         text:     { maxLength: 50, nullOk: false  },
-                        complete: { dataType: DT.Boolean, nullOk: false }
+                        complete: { dataType: DT.Boolean, required: true }
                     }
                 };
 
                 helper.addTypeToStore(store, entityType);
 
                 /**********************************************
+                 * TODO: Consider enabling this extension to the model
                  * Add non-persistent ("unmapped") members:
                  * ---------------------------------------
                  * read-only 'entityStateName' indicating the entity's change-state
-                 * Two styles:
+                 * Adding this property would allow a less "dotted" binding in page.html
+                 * Now:  class="item-text {{item.entityAspect.entityState.name}}"
+                 * Then: class="item-text {{item.entityStateName}}"
+                 * Two approaches:
                  *   ES5 defineProperty (via Object.defineProperty)
                  *   function on prototype
                  **********************************************/

@@ -5,7 +5,7 @@
  * conditions of the IdeaBlade Breeze license, available at http://www.breezejs.com/license
  *
  * Author: Ward Bell
- * Version: 1.0.6
+ * Version: 1.0.7
  * --------------------------------------------------------------------------------
  * Adds metadataHelper extensions to Breeze
  * Source:
@@ -336,6 +336,9 @@
                 } else if (keyLc === 'max' && (prop.dataType === undefined || prop.dataType === DT.String)) {
                     renameAttrib(prop, key, 'maxLength');
                 } else if (keyLc.indexOf('null') > -1 && key !== 'isNullable' && typeof (prop[key]) === 'boolean') {
+                    renameAttrib(prop, key, 'isNullable');
+                } else if (keyLc === 'required') {
+                    prop[key] = !prop[key];
                     renameAttrib(prop, key, 'isNullable');
                 } else if (keyLc.indexOf('key') > -1 && key !== 'isPartOfKey' && typeof (prop[key]) === 'boolean') {
                     renameAttrib(prop, key, 'isPartOfKey');

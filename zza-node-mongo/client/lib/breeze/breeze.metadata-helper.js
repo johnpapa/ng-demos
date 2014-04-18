@@ -5,11 +5,11 @@
  * conditions of the IdeaBlade Breeze license, available at http://www.breezejs.com/license
  *
  * Author: Ward Bell
- * Version: 1.0.6
+ * Version: 1.0.7
  * --------------------------------------------------------------------------------
  * Adds metadataHelper extensions to Breeze
  * Source:
- * https://github.com/IdeaBlade/Breeze/blob/master/Breeze.Client/Scripts/Labs/breeze.metadata-helper.js
+ * https://github.com/IdeaBlade/Breeze/blob/master/Breeze.Client/Scripts/Labs/vendor.metadata-helper.js
  *
  * Depends on Breeze which it patches
  *
@@ -34,13 +34,13 @@
         definition(window.breeze);
     } else if (typeof require === "function" && typeof exports === "object" && typeof module === "object") {
         // CommonJS or Node
-        var b = require('breeze');
+        var b = require('vendor');
         definition(b);
     } else if (typeof define === "function" && define["amd"] && !window.breeze) {
         // Requirejs / AMD
-        define(['breeze'], definition);
+        define(['vendor'], definition);
     } else {
-        throw new Error("Can't find breeze");
+        throw new Error("Can't find vendor");
     }
 }(function (breeze) {
     'use strict';
@@ -102,7 +102,7 @@
     // This function adds the type's 'shortName' as one of the resource names for the type.
     // Theoretically two types in different models could have the same 'shortName'
     // and thus we would associate the same resource name with the two different types.
-    // While unlikely, breeze should offer a way to remove a resource name for a type.
+    // While unlikely, vendor should offer a way to remove a resource name for a type.
     function addTypeNameAsResource(store, type) {
         if (!type.isComplexType) {
             store.setEntityTypeForResourceName(type.shortName, type);
@@ -210,7 +210,7 @@
     }
 
     // Patch some defaults in the type definition object
-    // Todo: consider moving some of these patches into breeze itself
+    // Todo: consider moving some of these patches into vendor itself
     function patch(typeDef) {
         var key, prop;
         if (typeDef.name) { // 'name' -> 'shortName' property
@@ -336,6 +336,9 @@
                 } else if (keyLc === 'max' && (prop.dataType === undefined || prop.dataType === DT.String)) {
                     renameAttrib(prop, key, 'maxLength');
                 } else if (keyLc.indexOf('null') > -1 && key !== 'isNullable' && typeof (prop[key]) === 'boolean') {
+                    renameAttrib(prop, key, 'isNullable');
+                } else if (keyLc === 'required') {
+                    prop[key] = !prop[key];
                     renameAttrib(prop, key, 'isNullable');
                 } else if (keyLc.indexOf('key') > -1 && key !== 'isPartOfKey' && typeof (prop[key]) === 'boolean') {
                     renameAttrib(prop, key, 'isPartOfKey');
