@@ -1,0 +1,1070 @@
+{"code": 200, "status": "Ok", "copyright": "© 2014 MARVEL", "attributionText": "Data provided by Marvel. © 2014 MARVEL", "attributionHTML": "<a href=\"http://marvel.com\">Data provided by Marvel. © 2014 MARVEL</a>", "etag": "8fa0f4d8dcd809ccdb35f65cd0d83c856b34d9f1", "data": {
+    "offset": 0,
+    "limit": 20,
+    "total": 7,
+    "count": 7,
+    "results": [
+        {
+            "id": 1009664,
+            "name": "Thor",
+            "description": "As the Norse God of thunder and lightning, Thor wields one of the greatest weapons ever made, the enchanted hammer Mjolnir.\r\nWhile others have described Thor as an over-muscled, oafish imbecile, he's quite smart and compassionate.  He's self-assured, and he would never, ever stop fighting for a worthwhile cause.\r\n\r\n",
+            "modified": "2013-10-24T14:24:12-0400",
+            "thumbnail": {
+                "path": "http://i.annihil.us/u/prod/marvel/i/mg/d/d0/5269657a74350",
+                "extension": "jpg"
+            },
+            "resourceURI": "http://gateway.marvel.com/v1/public/characters/1009664",
+            "comics": {
+                "available": 1239,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1009664/comics",
+                "items": [
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/comics/12637",
+                        "name": "Alpha Flight (1983) #1"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/comics/12725",
+                        "name": "Alpha Flight (1983) #61"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/comics/12668",
+                        "name": "Alpha Flight (1983) #127"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/comics/6233",
+                        "name": "Alpha Flight Classic Vol. 1 (Trade Paperback)"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/comics/39896",
+                        "name": "Art of Marvel Studios TPB Slipcase (Hardcover)"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/comics/32769",
+                        "name": "Astonishing Thor (2010) #1"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/comics/33652",
+                        "name": "Astonishing Thor (2010) #1 (FOILOGRAM VARIANT)"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/comics/32771",
+                        "name": "Astonishing Thor (2010) #2"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/comics/32774",
+                        "name": "Astonishing Thor (2010) #3"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/comics/32776",
+                        "name": "Astonishing Thor (2010) #4"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/comics/32778",
+                        "name": "Astonishing Thor (2010) #5"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/comics/6951",
+                        "name": "Avengers (1963) #1"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/comics/17490",
+                        "name": "Avengers (1998) #1"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/comics/29195",
+                        "name": "Avengers (2010) #1"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/comics/6952",
+                        "name": "Avengers (1996) #1"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/comics/17751",
+                        "name": "Avengers (1996) #1"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/comics/33335",
+                        "name": "Avengers (2010) #1 (HEROIC AGE VARIANT)"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/comics/33336",
+                        "name": "Avengers (2010) #1 (ROMITA JR. VARIANT)"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/comics/33483",
+                        "name": "Avengers (2010) #1 (DJURDJEVIC VARIANT)"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/comics/33562",
+                        "name": "Avengers (2010) #1 (ROMITA SR. VARIANT)"
+                    }
+                ],
+                "returned": 20
+            },
+            "series": {
+                "available": 301,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1009664/series",
+                "items": [
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/series/2116",
+                        "name": "Alpha Flight (1983 - 1994)"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/series/1983",
+                        "name": "Alpha Flight Classic Vol. 1 (2007)"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/series/14779",
+                        "name": "Art of Marvel Studios TPB Slipcase (2011 - Present)"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/series/9858",
+                        "name": "Astonishing Thor (2010)"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/series/3621",
+                        "name": "Avengers (1996 - 1997)"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/series/1991",
+                        "name": "Avengers (1963 - 1996)"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/series/354",
+                        "name": "Avengers (1998 - 2004)"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/series/9085",
+                        "name": "Avengers (2010 - 2012)"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/series/9086",
+                        "name": "Avengers Academy (2010 - 2012)"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/series/13320",
+                        "name": "Avengers Annual (2010 - Present)"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/series/1988",
+                        "name": "Avengers Annual (1967 - 1994)"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/series/1340",
+                        "name": "Avengers Assemble (2004)"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/series/15373",
+                        "name": "AVENGERS ASSEMBLE (2012 - Present)"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/series/1496",
+                        "name": "Avengers Assemble Vol. 2 (2005)"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/series/1737",
+                        "name": "Avengers Assemble Vol. 3 (2006)"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/series/1816",
+                        "name": "Avengers Assemble Vol. 4 (2007)"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/series/2929",
+                        "name": "Avengers Assemble Vol. 5 (2007)"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/series/2384",
+                        "name": "Avengers Classic (2007 - 2008)"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/series/1359",
+                        "name": "Avengers Disassembled: Thor (2004)"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/series/2111",
+                        "name": "Avengers Forever (1998 - 2001)"
+                    }
+                ],
+                "returned": 20
+            },
+            "stories": {
+                "available": 1947,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1009664/stories",
+                "items": [
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/stories/877",
+                        "name": "Interior #877",
+                        "type": "interiorStory"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/stories/879",
+                        "name": "Interior #879",
+                        "type": "interiorStory"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/stories/881",
+                        "name": "Interior #881",
+                        "type": "interiorStory"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/stories/883",
+                        "name": "Interior #883",
+                        "type": "interiorStory"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/stories/885",
+                        "name": "Interior #885",
+                        "type": "interiorStory"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/stories/887",
+                        "name": "Interior #887",
+                        "type": "interiorStory"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/stories/889",
+                        "name": "Interior #889",
+                        "type": "interiorStory"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/stories/891",
+                        "name": "Interior #891",
+                        "type": "interiorStory"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/stories/892",
+                        "name": "Cover #892",
+                        "type": "cover"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/stories/893",
+                        "name": "Interior #893",
+                        "type": "interiorStory"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/stories/895",
+                        "name": "AVENGERS DISASSEMBLED TIE-IN! “RAGNAROK” PART 4 (OF 6) What makes a god? Is it birthright, is it happenstance, or is it in the m",
+                        "type": "interiorStory"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/stories/896",
+                        "name": "AVENGERS DISASSEMBLED TIE-IN! \"RAGNAROK\" PART 6 (OF 6) It's the end of all that is, and you've got a ringside seat for the last ",
+                        "type": "cover"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/stories/897",
+                        "name": "AVENGERS DISASSEMBLED TIE-IN! \"RAGNAROK\" PART 6 (OF 6) It's the end of all that is, and you've got a ringside seat for the last ",
+                        "type": "interiorStory"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/stories/903",
+                        "name": "Interior #903",
+                        "type": "interiorStory"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/stories/975",
+                        "name": "Interior #975",
+                        "type": "interiorStory"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/stories/1009",
+                        "name": "Interior #1009",
+                        "type": "interiorStory"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/stories/1208",
+                        "name": "Interior #1208",
+                        "type": "interiorStory"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/stories/1660",
+                        "name": "Interior #1660",
+                        "type": "interiorStory"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/stories/1733",
+                        "name": "Cover #1733",
+                        "type": "cover"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/stories/1734",
+                        "name": "Interior #1734",
+                        "type": "interiorStory"
+                    }
+                ],
+                "returned": 20
+            },
+            "events": {
+                "available": 21,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1009664/events",
+                "items": [
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/events/116",
+                        "name": "Acts of Vengeance!"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/events/233",
+                        "name": "Atlantis Attacks"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/events/234",
+                        "name": "Avengers Disassembled"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/events/310",
+                        "name": "Avengers VS X-Men"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/events/235",
+                        "name": "Blood and Thunder"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/events/296",
+                        "name": "Chaos War"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/events/238",
+                        "name": "Civil War"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/events/318",
+                        "name": "Dark Reign"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/events/246",
+                        "name": "Evolutionary War"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/events/302",
+                        "name": "Fear Itself"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/events/253",
+                        "name": "Infinity Gauntlet"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/events/29",
+                        "name": "Infinity War"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/events/37",
+                        "name": "Maximum Security"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/events/263",
+                        "name": "Mutant Massacre"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/events/154",
+                        "name": "Onslaught"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/events/269",
+                        "name": "Secret Invasion"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/events/270",
+                        "name": "Secret Wars"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/events/271",
+                        "name": "Secret Wars II"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/events/309",
+                        "name": "Shattered Heroes"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/events/273",
+                        "name": "Siege"
+                    }
+                ],
+                "returned": 20
+            },
+            "urls": [
+                {
+                    "type": "detail",
+                    "url": "http://marvel.com/comics/characters/1009664/thor?utm_campaign=apiRef&utm_source=28a2b529d14dd7bd6ef673b35df7c8c2"
+                },
+                {
+                    "type": "wiki",
+                    "url": "http://marvel.com/universe/Thor_(Thor_Odinson)?utm_campaign=apiRef&utm_source=28a2b529d14dd7bd6ef673b35df7c8c2"
+                }
+            ]
+        },
+        {
+            "id": 1017106,
+            "name": "Thor (MAA)",
+            "description": "Thor is the Asgardian Prince of Thunder, the son of Odin, and the realm's mightiest warrior. He loves the thrill of battle and is always eager to show off his power to the other Avengers, especially the Hulk. Thor's legendary Uru hammer, Mjolnir, gives him the power to control thunder and the ability to fly. He's found a new home on Earth and will defend it as his own... even if he doesn't understand its sayings and customs.",
+            "modified": "2013-09-18T15:49:30-0400",
+            "thumbnail": {
+                "path": "http://i.annihil.us/u/prod/marvel/i/mg/2/03/52321948a51f2",
+                "extension": "jpg"
+            },
+            "resourceURI": "http://gateway.marvel.com/v1/public/characters/1017106",
+            "comics": {
+                "available": 0,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1017106/comics",
+                "items": [],
+                "returned": 0
+            },
+            "series": {
+                "available": 0,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1017106/series",
+                "items": [],
+                "returned": 0
+            },
+            "stories": {
+                "available": 0,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1017106/stories",
+                "items": [],
+                "returned": 0
+            },
+            "events": {
+                "available": 0,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1017106/events",
+                "items": [],
+                "returned": 0
+            },
+            "urls": [
+                {
+                    "type": "detail",
+                    "url": "http://marvel.com/comics/characters/1017106/thor_maa?utm_campaign=apiRef&utm_source=28a2b529d14dd7bd6ef673b35df7c8c2"
+                }
+            ]
+        },
+        {
+            "id": 1017315,
+            "name": "Thor (Marvel Heroes)",
+            "description": "",
+            "modified": "2013-09-18T10:52:05-0400",
+            "thumbnail": {
+                "path": "http://i.annihil.us/u/prod/marvel/i/mg/c/20/5239be0b8ecd1",
+                "extension": "jpg"
+            },
+            "resourceURI": "http://gateway.marvel.com/v1/public/characters/1017315",
+            "comics": {
+                "available": 0,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1017315/comics",
+                "items": [],
+                "returned": 0
+            },
+            "series": {
+                "available": 0,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1017315/series",
+                "items": [],
+                "returned": 0
+            },
+            "stories": {
+                "available": 0,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1017315/stories",
+                "items": [],
+                "returned": 0
+            },
+            "events": {
+                "available": 0,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1017315/events",
+                "items": [],
+                "returned": 0
+            },
+            "urls": [
+                {
+                    "type": "detail",
+                    "url": "http://marvel.com/comics/characters/1017315/thor_marvel_heroes?utm_campaign=apiRef&utm_source=28a2b529d14dd7bd6ef673b35df7c8c2"
+                }
+            ]
+        },
+        {
+            "id": 1017328,
+            "name": "Thor (Marvel War of Heroes)",
+            "description": "",
+            "modified": "2013-09-18T10:57:41-0400",
+            "thumbnail": {
+                "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/d0/5239bf547de26",
+                "extension": "jpg"
+            },
+            "resourceURI": "http://gateway.marvel.com/v1/public/characters/1017328",
+            "comics": {
+                "available": 0,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1017328/comics",
+                "items": [],
+                "returned": 0
+            },
+            "series": {
+                "available": 0,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1017328/series",
+                "items": [],
+                "returned": 0
+            },
+            "stories": {
+                "available": 0,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1017328/stories",
+                "items": [],
+                "returned": 0
+            },
+            "events": {
+                "available": 0,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1017328/events",
+                "items": [],
+                "returned": 0
+            },
+            "urls": [
+                {
+                    "type": "detail",
+                    "url": "http://marvel.com/comics/characters/1017328/thor_marvel_war_of_heroes?utm_campaign=apiRef&utm_source=28a2b529d14dd7bd6ef673b35df7c8c2"
+                }
+            ]
+        },
+        {
+            "id": 1017302,
+            "name": "Thor (Marvel: Avengers Alliance)",
+            "description": "",
+            "modified": "2013-09-18T10:15:49-0400",
+            "thumbnail": {
+                "path": "http://i.annihil.us/u/prod/marvel/i/mg/c/03/5239b58b84821",
+                "extension": "jpg"
+            },
+            "resourceURI": "http://gateway.marvel.com/v1/public/characters/1017302",
+            "comics": {
+                "available": 0,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1017302/comics",
+                "items": [],
+                "returned": 0
+            },
+            "series": {
+                "available": 0,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1017302/series",
+                "items": [],
+                "returned": 0
+            },
+            "stories": {
+                "available": 0,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1017302/stories",
+                "items": [],
+                "returned": 0
+            },
+            "events": {
+                "available": 0,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1017302/events",
+                "items": [],
+                "returned": 0
+            },
+            "urls": [
+                {
+                    "type": "detail",
+                    "url": "http://marvel.com/comics/characters/1017302/thor_marvel_avengers_alliance?utm_campaign=apiRef&utm_source=28a2b529d14dd7bd6ef673b35df7c8c2"
+                }
+            ]
+        },
+        {
+            "id": 1011025,
+            "name": "Thor (Ultimate)",
+            "description": "He claims he is the legendary Norse thunder deity Thor, sent to Earth by his father Odin, but official records say he is Thorlief Golmen, who stole his scientist brother Gunnar Golmen's super-soldier technology after suffering a nervous breakdown.",
+            "modified": "2014-03-05T13:58:19-0500",
+            "thumbnail": {
+                "path": "http://i.annihil.us/u/prod/marvel/i/mg/3/80/5317738e6dc12",
+                "extension": "jpg"
+            },
+            "resourceURI": "http://gateway.marvel.com/v1/public/characters/1011025",
+            "comics": {
+                "available": 30,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1011025/comics",
+                "items": [
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/comics/1282",
+                        "name": "The Ultimates Vol. 2: Homeland Security (Trade Paperback)"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/comics/18481",
+                        "name": "Ultimate Adventures (2002) #3"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/comics/1934",
+                        "name": "Ultimate Adventures Vol. 1: One Tin Soldier (Trade Paperback)"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/comics/1204",
+                        "name": "Ultimate Adventures Vol. I (Trade Paperback)"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/comics/36129",
+                        "name": "Ultimate Comics Avengers Vs New Ultimates (2010) #2"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/comics/38503",
+                        "name": "Ultimate Comics Avengers Vs New Ultimates (2010) #2 (HITCH VARIANT)"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/comics/37520",
+                        "name": "Ultimate Comics Spider-Man (2009) #150 (WRAPAROUND VARIANT)"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/comics/37460",
+                        "name": "Ultimate Comics Spider-Man (2009) #151"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/comics/33577",
+                        "name": "Ultimate Comics Thor (2010) #3"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/comics/33578",
+                        "name": "Ultimate Comics Thor (2010) #4"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/comics/38693",
+                        "name": "Ultimate Comics Ultimates  (2011) #1"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/comics/38690",
+                        "name": "Ultimate Comics Ultimates  (2011) #2"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/comics/41845",
+                        "name": "Ultimate Comics Ultimates  (2011) #2 (2nd Printing Variant)"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/comics/1416",
+                        "name": "Ultimate Spider-Man (2000) #70"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/comics/1754",
+                        "name": "Ultimate Spider-Man Vol. 12: Superstars (Trade Paperback)"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/comics/18474",
+                        "name": "Ultimate War (2003) #1"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/comics/18475",
+                        "name": "Ultimate War (2003) #2"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/comics/18476",
+                        "name": "Ultimate War (2003) #3"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/comics/18477",
+                        "name": "Ultimate War (2003) #4"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/comics/1158",
+                        "name": "Ultimate X-Men Vol. 5: Ultimate War (Trade Paperback)"
+                    }
+                ],
+                "returned": 20
+            },
+            "series": {
+                "available": 19,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1011025/series",
+                "items": [
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/series/334",
+                        "name": "The Ultimates Vol. 2: Homeland Security (2004)"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/series/469",
+                        "name": "Ultimate Adventures (2002 - 2003)"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/series/1173",
+                        "name": "Ultimate Adventures Vol. 1: One Tin Soldier (2005)"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/series/261",
+                        "name": "Ultimate Adventures Vol. I (2003)"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/series/12615",
+                        "name": "Ultimate Comics Avengers Vs New Ultimates (2010 - 2011)"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/series/8509",
+                        "name": "Ultimate Comics Spider-Man (2009 - 2012)"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/series/11272",
+                        "name": "Ultimate Comics Thor (2010 - 2011)"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/series/13936",
+                        "name": "Ultimate Comics Ultimates  (2011 - Present)"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/series/466",
+                        "name": "Ultimate Spider-Man (2000 - 2009)"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/series/1383",
+                        "name": "Ultimate Spider-Man Vol. 12: Superstars (2005)"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/series/3659",
+                        "name": "Ultimate War (2003)"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/series/216",
+                        "name": "Ultimate X-Men Vol. 5: Ultimate War (1999)"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/series/664",
+                        "name": "Ultimates (2002 - 2003)"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/series/709",
+                        "name": "Ultimates 2 (2004 - 2006)"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/series/1178",
+                        "name": "Ultimates 2 Vol. 1: Gods and Monsters (2005)"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/series/2422",
+                        "name": "Ultimates 2 Vol. 2: Grand Theft America (2007)"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/series/3188",
+                        "name": "Ultimates 3 (2007 - 2008)"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/series/7515",
+                        "name": "Ultimates 3: Who Killed the Scarlet Witch? (2009 - Present)"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/series/1176",
+                        "name": "Ultimates Vol. 2: Homeland Security (2005)"
+                    }
+                ],
+                "returned": 19
+            },
+            "stories": {
+                "available": 24,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1011025/stories",
+                "items": [
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/stories/1334",
+                        "name": "1 of 2 - Sorceror Supreme",
+                        "type": "cover"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/stories/2732",
+                        "name": "2 of 2 - Thor War",
+                        "type": "interiorStory"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/stories/2749",
+                        "name": "6 of 6 - Grand Theft America",
+                        "type": "cover"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/stories/8131",
+                        "name": "6 of 6 - Grand Theft America",
+                        "type": "cover"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/stories/31007",
+                        "name": "",
+                        "type": ""
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/stories/36428",
+                        "name": "Sex, Lies, and DVDs 1 of 5",
+                        "type": "cover"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/stories/36430",
+                        "name": "Sex, Lies, and DVDs 1 of 5",
+                        "type": "cover"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/stories/39348",
+                        "name": "Interior #39348",
+                        "type": "interiorStory"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/stories/39350",
+                        "name": "The Ultimates vs. Ultimate X-Men",
+                        "type": "cover"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/stories/39351",
+                        "name": "Interior #39351",
+                        "type": "interiorStory"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/stories/39354",
+                        "name": "Interior #39354",
+                        "type": "interiorStory"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/stories/39357",
+                        "name": "Interior #39357",
+                        "type": "interiorStory"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/stories/39362",
+                        "name": "Orangutans are skeptical of changes in their cages...",
+                        "type": "interiorStory"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/stories/44588",
+                        "name": "Cover #44588",
+                        "type": "cover"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/stories/75632",
+                        "name": "Cover #75632",
+                        "type": "cover"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/stories/75634",
+                        "name": "Cover #75634",
+                        "type": "cover"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/stories/75635",
+                        "name": "Interior #75635",
+                        "type": "interiorStory"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/stories/79955",
+                        "name": "ULTIMATE COMICS AVENGERS VS. NEW ULTIMATES 2",
+                        "type": "cover"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/stories/82918",
+                        "name": "Cover From Ultimate Comics Spider-Man (2009) #151",
+                        "type": "cover"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/stories/82990",
+                        "name": "Cover #82990",
+                        "type": "cover"
+                    }
+                ],
+                "returned": 20
+            },
+            "events": {
+                "available": 0,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1011025/events",
+                "items": [],
+                "returned": 0
+            },
+            "urls": [
+                {
+                    "type": "detail",
+                    "url": "http://marvel.com/comics/characters/1011025/thor_ultimate?utm_campaign=apiRef&utm_source=28a2b529d14dd7bd6ef673b35df7c8c2"
+                },
+                {
+                    "type": "wiki",
+                    "url": "http://marvel.com/universe/Thor_%28Ultimate%29?utm_campaign=apiRef&utm_source=28a2b529d14dd7bd6ef673b35df7c8c2"
+                }
+            ]
+        },
+        {
+            "id": 1010820,
+            "name": "Thor Girl",
+            "description": "Tarene, aware of her true nature as the Designate, a being foretold to elevate all life to greatness, sought adventure and, using Thor as a template, transformed herself into an Asgardian goddess and journeyed to Earth.",
+            "modified": "2013-10-24T13:29:36-0400",
+            "thumbnail": {
+                "path": "http://i.annihil.us/u/prod/marvel/i/mg/9/e0/526957cdcf6d1",
+                "extension": "jpg"
+            },
+            "resourceURI": "http://gateway.marvel.com/v1/public/characters/1010820",
+            "comics": {
+                "available": 13,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1010820/comics",
+                "items": [
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/comics/17638",
+                        "name": "Avengers: The Initiative (2007) #9"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/comics/22299",
+                        "name": "Avengers: The Initiative (2007) #18"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/comics/23112",
+                        "name": "Avengers: The Initiative (2007) #21"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/comics/23608",
+                        "name": "Avengers: The Initiative (2007) #22"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/comics/23968",
+                        "name": "Avengers: The Initiative (2007) #23"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/comics/38447",
+                        "name": "Fear Itself: Youth in Revolt (2011) #1"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/comics/38445",
+                        "name": "Fear Itself: Youth in Revolt (2011) #2"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/comics/38448",
+                        "name": "Fear Itself: Youth in Revolt (2011) #4"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/comics/38444",
+                        "name": "Fear Itself: Youth in Revolt (2011) #5"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/comics/38446",
+                        "name": "Fear Itself: Youth in Revolt (2011) #6"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/comics/18645",
+                        "name": "Thor (1998) #22"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/comics/18647",
+                        "name": "Thor (1998) #24"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/comics/18648",
+                        "name": "Thor (1998) #25"
+                    }
+                ],
+                "returned": 13
+            },
+            "series": {
+                "available": 3,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1010820/series",
+                "items": [
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/series/1945",
+                        "name": "Avengers: The Initiative (2007 - 2010)"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/series/13855",
+                        "name": "Fear Itself: Youth in Revolt (2011)"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/series/581",
+                        "name": "Thor (1998 - 2004)"
+                    }
+                ],
+                "returned": 3
+            },
+            "stories": {
+                "available": 16,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1010820/stories",
+                "items": [
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/stories/36907",
+                        "name": "Avengers: The Initiative (2007) #9",
+                        "type": "cover"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/stories/39952",
+                        "name": "Cover #39952",
+                        "type": "cover"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/stories/39953",
+                        "name": "Thor (1998) #22",
+                        "type": "interiorStory"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/stories/39957",
+                        "name": "And With His Death, The End of All That Is...",
+                        "type": "cover"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/stories/39958",
+                        "name": "Thor (1998) #24",
+                        "type": "interiorStory"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/stories/39960",
+                        "name": "Thor (1998) #25",
+                        "type": "interiorStory"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/stories/49103",
+                        "name": "Avengers: The Initiative (2007) #18",
+                        "type": "cover"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/stories/51249",
+                        "name": "Avengers: The Initiative (2007) #21 - Int",
+                        "type": "interiorStory"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/stories/52276",
+                        "name": "Avengers: The Initiative (2007) #22 - Int",
+                        "type": "interiorStory"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/stories/53155",
+                        "name": "Avengers: The Initiative (2007) #23",
+                        "type": "cover"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/stories/89800",
+                        "name": "Fear Itself: Youth in Revolt #1 cover",
+                        "type": "cover"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/stories/90541",
+                        "name": "Fear itself: Youth In Revolt #2",
+                        "type": "interiorStory"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/stories/93006",
+                        "name": "Interior #93006",
+                        "type": "interiorStory"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/stories/93636",
+                        "name": "Fear Itself: Youth in Revolt (2011) #5",
+                        "type": "cover"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/stories/93637",
+                        "name": "Interior #93637",
+                        "type": "interiorStory"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/stories/94171",
+                        "name": "Fear Itself: Youth in Revolt (2011) #6",
+                        "type": "cover"
+                    }
+                ],
+                "returned": 16
+            },
+            "events": {
+                "available": 3,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1010820/events",
+                "items": [
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/events/318",
+                        "name": "Dark Reign"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/events/302",
+                        "name": "Fear Itself"
+                    },
+                    {
+                        "resourceURI": "http://gateway.marvel.com/v1/public/events/269",
+                        "name": "Secret Invasion"
+                    }
+                ],
+                "returned": 3
+            },
+            "urls": [
+                {
+                    "type": "detail",
+                    "url": "http://marvel.com/comics/characters/1010820/thor_girl?utm_campaign=apiRef&utm_source=28a2b529d14dd7bd6ef673b35df7c8c2"
+                },
+                {
+                    "type": "wiki",
+                    "url": "http://marvel.com/universe/Thor_Girl?utm_campaign=apiRef&utm_source=28a2b529d14dd7bd6ef673b35df7c8c2"
+                }
+            ]
+        }
+    ]
+}}
