@@ -204,13 +204,13 @@ small {
 }
 
 .navbar .navbar-brand {
-    background: url(../content/images/gg.png) no-repeat left top !important;
+    /*background: url(../content/images/gg.png) no-repeat left top !important;*/
     margin: 0 1em;
     height: 45px;
 }
 
 .navbar .brand-title {
-    margin-left: 4em;
+    /*margin-left: 4em;*/
     color: #FFFFFF;
 }
 

@@ -26,16 +26,7 @@
 
     app.value('config', config);
 
-//    //Empty factory to hook into $httpProvider.interceptors
-////    app.factory('authInterceptor', authInterceptor);
-////    function authInterceptor () { return {} }
-//
-//    //Hook authInterceptor factory into the $httpProvider
-//    // interceptors so that we can monitor XHR calls
-//    app.config(['authInterceptor', authInterceptor]);
-//    function authInterceptor ($httpProvider) {
-//        $httpProvider.interceptors.push('authInterceptor');
-//    }
+    app.constant('toastr', toastr);
 
     app.config(['$logProvider', function ($logProvider) {
         // turn debugging off/on (no info or warn)

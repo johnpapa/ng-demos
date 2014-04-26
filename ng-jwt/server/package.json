@@ -13,5 +13,9 @@
     "static-favicon": "^1.0.2",
     "jsonwebtoken": "^0.3.0",
     "express-jwt": "^0.1.3"
+  },
+  "paths": {
+      "api": "/api",
+      "data": "/data"
   }
 }
