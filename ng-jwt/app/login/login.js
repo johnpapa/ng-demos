@@ -31,7 +31,7 @@
                     vm.isAuthenticated = true;
                     var encodedProfile = data.token.split('.')[1];
                     var profile = JSON.parse(url_base64_decode(encodedProfile));
-                    vm.welcome = 'Welcome ' + profile.first_name + ' ' + profile.last_name;
+                    vm.welcome = 'Welcome ' + profile.firstName + ' ' + profile.lastName;
                 })
                 .error(function (data, status, headers, config) {
                     // Erase the token if the user fails to log in

@@ -13,6 +13,7 @@
                 return config;
             },
             responseError: function (rejection) {
+                console.log(rejection);
                 if (rejection.status === 401) {
                     // handle the case where the user is not authenticated
                 }

@@ -3,19 +3,20 @@
     var jsonfileservice = require('./jsonfileservice.js');
     var apiPath = '/api';
     var datapath = '/data/';
+    var jwt = require('jsonwebtoken');
 
     routes.init = init;
 
     function init(_app_){
         app = _app_;
         handleUnauth();
-        configureRoutes;
+        configureRoutes();
     }
 
-    function configureRoutes(app){
-        app.post('/xauthenticate', postAuth);
+    function configureRoutes(){
+//        app.get(apiPath + '/restricted', getRestricted);
         app.get(apiPath + '/maa', getMaa);
-        app.get(apiPath + '/restricted', getRestricted);
+//        app.post('/authenticate', postAuth);
     }
 
     function handleUnauth() {
@@ -37,7 +38,7 @@
     }
 
     function getRestricted (req, res) {
-        console.log('user ' + req.user.email + ' is calling /api/restricted');
+        console.log('user ' + req.username + ' is calling /api/restricted');
         res.json({
             name: 'foo'
         });

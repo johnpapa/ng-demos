@@ -8,7 +8,7 @@
                 <input type="submit" value="Login" />
             </form>
             <div>{{vm.error}}</div>
-            <div ng-show="vm.isAuthenticated">
+            <div ng-show="vm.isAuthenticated || true">
                 <a ng-click="vm.callRestricted()" href="">Shh, this is private!</a>
                 <br>
                 <div>{{vm.message}}</div>
