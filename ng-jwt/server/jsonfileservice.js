@@ -20,7 +20,7 @@ module.exports = (function(){
         }
 
         function getConfig(file){
-            var filepath = __dirname + '/' + file;
+            var filepath = __dirname + file;
             return readJsonFileSync(filepath);
         }
     }

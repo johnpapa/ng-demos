@@ -56,5 +56,4 @@
         res.json({ token: token });
     }
 
-
 })(module.exports);
