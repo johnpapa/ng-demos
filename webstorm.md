@@ -1,6 +1,11 @@
 WebStorm Tips
 ============
 
+## Set your keymap
+ - Go to `Preferences`
+ - Type `keymap`
+ - Use drop down to select `Mac OS X 10.5+`
+ 
 #Node.js
 Manually install node.js and configure WebStorm to use it.
 
@@ -36,6 +41,11 @@ Set the appropriate and desired settings for JSHint in the dialog.
 
 Scroll to the bottom and click the `Set` link in the `Predefined` globals setting. Then enter any globals for node, comma delimited, such as `require, process, __dirname, console`
 
+#Installing NPM Packages Globally
+When installing NPM packages globally you may need superuser permissions. Prefix your commands with `sudo` and you will be prompted for your admin password.
+
+`sudo npm install grunt-cli -g`
+
 #Bower
 
 ##Install Bower
@@ -46,9 +56,15 @@ Use NPM from terminal to install bower globally.
 
 Alternatively, install bower globally from the Mac's terminal
 
+## Create a Bower File
+The `bower.json` file is a manifest describing what bower packages your project will use.
+
+- Use terminal to create a `bower.json` by typing `bower init`
+
 ## Tell WebStorm About Bower
 - `CMD SHIFT A` and type `bower`
 - Enter the bower executable's location (e.g. `/usr/local/bin/bower`)
+- Enter the path of the `bower.json` 
 
 ## Install packages via WebStorm
 - `CMD SHIFT A` and type `bower`
@@ -58,10 +74,10 @@ Alternatively, install bower globally from the Mac's terminal
 - Set any options you desire such as `--save-dev`
 - Click `install package`
 
-Alternatively, install bower locally from the Mac's terminal (e.g.  `bower install toastr`)
+Alternatively, install using bower locally from the Mac's terminal (e.g.  `bower install toastr`)
 
 ##Install NPM Global Packages
-Install any globla packages you require. Some examples include:
+Install any global packages you require. Some examples include:
 - bower
 - grunt-cli
 - gulp
