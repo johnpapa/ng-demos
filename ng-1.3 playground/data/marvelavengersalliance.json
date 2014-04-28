@@ -1,0 +1,336 @@
+{"code": 200, "status": "Ok", "copyright": "© 2014 MARVEL", "attributionText": "Data provided by Marvel. © 2014 MARVEL", "attributionHTML": "<a href=\"http://marvel.com\">Data provided by Marvel. © 2014 MARVEL</a>", "etag": "243fa0df6cfebb6b35b48c22d17d82edc855017a", "data": {
+    "offset": 0,
+    "limit": 20,
+    "total": 8,
+    "count": 8,
+    "results": [
+        {
+            "id": 1017307,
+            "name": "Cable (Marvel: Avengers Alliance)",
+            "description": "",
+            "modified": "2013-09-18T10:17:39-0400",
+            "thumbnail": {
+                "path": "http://i.annihil.us/u/prod/marvel/i/mg/3/d0/5239b5f863d43",
+                "extension": "jpg"
+            },
+            "resourceURI": "http://gateway.marvel.com/v1/public/characters/1017307",
+            "comics": {
+                "available": 0,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1017307/comics",
+                "items": [],
+                "returned": 0
+            },
+            "series": {
+                "available": 0,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1017307/series",
+                "items": [],
+                "returned": 0
+            },
+            "stories": {
+                "available": 0,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1017307/stories",
+                "items": [],
+                "returned": 0
+            },
+            "events": {
+                "available": 0,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1017307/events",
+                "items": [],
+                "returned": 0
+            },
+            "urls": [
+                {
+                    "type": "detail",
+                    "url": "http://marvel.com/comics/characters/1017307/cable_marvel_avengers_alliance?utm_campaign=apiRef&utm_source=28a2b529d14dd7bd6ef673b35df7c8c2"
+                }
+            ]
+        },
+        {
+            "id": 1017300,
+            "name": "Dr. Strange (Marvel: Avengers Alliance)",
+            "description": "",
+            "modified": "2013-09-18T10:17:22-0400",
+            "thumbnail": {
+                "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/f0/5239b5e7d7f70",
+                "extension": "jpg"
+            },
+            "resourceURI": "http://gateway.marvel.com/v1/public/characters/1017300",
+            "comics": {
+                "available": 0,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1017300/comics",
+                "items": [],
+                "returned": 0
+            },
+            "series": {
+                "available": 0,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1017300/series",
+                "items": [],
+                "returned": 0
+            },
+            "stories": {
+                "available": 0,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1017300/stories",
+                "items": [],
+                "returned": 0
+            },
+            "events": {
+                "available": 0,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1017300/events",
+                "items": [],
+                "returned": 0
+            },
+            "urls": [
+                {
+                    "type": "detail",
+                    "url": "http://marvel.com/comics/characters/1017300/dr_strange_marvel_avengers_alliance?utm_campaign=apiRef&utm_source=28a2b529d14dd7bd6ef673b35df7c8c2"
+                }
+            ]
+        },
+        {
+            "id": 1017303,
+            "name": "Hulk (Marvel: Avengers Alliance)",
+            "description": "",
+            "modified": "2013-09-18T10:17:06-0400",
+            "thumbnail": {
+                "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/b0/5239b5d891fc1",
+                "extension": "jpg"
+            },
+            "resourceURI": "http://gateway.marvel.com/v1/public/characters/1017303",
+            "comics": {
+                "available": 0,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1017303/comics",
+                "items": [],
+                "returned": 0
+            },
+            "series": {
+                "available": 0,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1017303/series",
+                "items": [],
+                "returned": 0
+            },
+            "stories": {
+                "available": 0,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1017303/stories",
+                "items": [],
+                "returned": 0
+            },
+            "events": {
+                "available": 0,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1017303/events",
+                "items": [],
+                "returned": 0
+            },
+            "urls": [
+                {
+                    "type": "detail",
+                    "url": "http://marvel.com/comics/characters/1017303/hulk_marvel_avengers_alliance?utm_campaign=apiRef&utm_source=28a2b529d14dd7bd6ef673b35df7c8c2"
+                }
+            ]
+        },
+        {
+            "id": 1017301,
+            "name": "Invisible Woman (Marvel: Avengers Alliance)",
+            "description": "",
+            "modified": "2013-09-18T10:16:47-0400",
+            "thumbnail": {
+                "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/80/5239b5c4cb782",
+                "extension": "jpg"
+            },
+            "resourceURI": "http://gateway.marvel.com/v1/public/characters/1017301",
+            "comics": {
+                "available": 0,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1017301/comics",
+                "items": [],
+                "returned": 0
+            },
+            "series": {
+                "available": 0,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1017301/series",
+                "items": [],
+                "returned": 0
+            },
+            "stories": {
+                "available": 0,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1017301/stories",
+                "items": [],
+                "returned": 0
+            },
+            "events": {
+                "available": 0,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1017301/events",
+                "items": [],
+                "returned": 0
+            },
+            "urls": [
+                {
+                    "type": "detail",
+                    "url": "http://marvel.com/comics/characters/1017301/invisible_woman_marvel_avengers_alliance?utm_campaign=apiRef&utm_source=28a2b529d14dd7bd6ef673b35df7c8c2"
+                }
+            ]
+        },
+        {
+            "id": 1017306,
+            "name": "Punisher (Marvel: Avengers Alliance)",
+            "description": "",
+            "modified": "2013-09-18T10:16:29-0400",
+            "thumbnail": {
+                "path": "http://i.annihil.us/u/prod/marvel/i/mg/0/03/5239b5b358300",
+                "extension": "jpg"
+            },
+            "resourceURI": "http://gateway.marvel.com/v1/public/characters/1017306",
+            "comics": {
+                "available": 0,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1017306/comics",
+                "items": [],
+                "returned": 0
+            },
+            "series": {
+                "available": 0,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1017306/series",
+                "items": [],
+                "returned": 0
+            },
+            "stories": {
+                "available": 0,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1017306/stories",
+                "items": [],
+                "returned": 0
+            },
+            "events": {
+                "available": 0,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1017306/events",
+                "items": [],
+                "returned": 0
+            },
+            "urls": [
+                {
+                    "type": "detail",
+                    "url": "http://marvel.com/comics/characters/1017306/punisher_marvel_avengers_alliance?utm_campaign=apiRef&utm_source=28a2b529d14dd7bd6ef673b35df7c8c2"
+                }
+            ]
+        },
+        {
+            "id": 1017305,
+            "name": "Spider-Man (Marvel: Avengers Alliance)",
+            "description": "",
+            "modified": "2013-09-18T10:16:10-0400",
+            "thumbnail": {
+                "path": "http://i.annihil.us/u/prod/marvel/i/mg/9/03/5239b59f49020",
+                "extension": "jpg"
+            },
+            "resourceURI": "http://gateway.marvel.com/v1/public/characters/1017305",
+            "comics": {
+                "available": 0,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1017305/comics",
+                "items": [],
+                "returned": 0
+            },
+            "series": {
+                "available": 0,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1017305/series",
+                "items": [],
+                "returned": 0
+            },
+            "stories": {
+                "available": 0,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1017305/stories",
+                "items": [],
+                "returned": 0
+            },
+            "events": {
+                "available": 0,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1017305/events",
+                "items": [],
+                "returned": 0
+            },
+            "urls": [
+                {
+                    "type": "detail",
+                    "url": "http://marvel.com/comics/characters/1017305/spider-man_marvel_avengers_alliance?utm_campaign=apiRef&utm_source=28a2b529d14dd7bd6ef673b35df7c8c2"
+                }
+            ]
+        },
+        {
+            "id": 1017302,
+            "name": "Thor (Marvel: Avengers Alliance)",
+            "description": "",
+            "modified": "2013-09-18T10:15:49-0400",
+            "thumbnail": {
+                "path": "http://i.annihil.us/u/prod/marvel/i/mg/c/03/5239b58b84821",
+                "extension": "jpg"
+            },
+            "resourceURI": "http://gateway.marvel.com/v1/public/characters/1017302",
+            "comics": {
+                "available": 0,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1017302/comics",
+                "items": [],
+                "returned": 0
+            },
+            "series": {
+                "available": 0,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1017302/series",
+                "items": [],
+                "returned": 0
+            },
+            "stories": {
+                "available": 0,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1017302/stories",
+                "items": [],
+                "returned": 0
+            },
+            "events": {
+                "available": 0,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1017302/events",
+                "items": [],
+                "returned": 0
+            },
+            "urls": [
+                {
+                    "type": "detail",
+                    "url": "http://marvel.com/comics/characters/1017302/thor_marvel_avengers_alliance?utm_campaign=apiRef&utm_source=28a2b529d14dd7bd6ef673b35df7c8c2"
+                }
+            ]
+        },
+        {
+            "id": 1017304,
+            "name": "War Machine (Marvel: Avengers Alliance)",
+            "description": "",
+            "modified": "2013-09-18T10:15:32-0400",
+            "thumbnail": {
+                "path": "http://i.annihil.us/u/prod/marvel/i/mg/c/03/5239b57a59812",
+                "extension": "jpg"
+            },
+            "resourceURI": "http://gateway.marvel.com/v1/public/characters/1017304",
+            "comics": {
+                "available": 0,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1017304/comics",
+                "items": [],
+                "returned": 0
+            },
+            "series": {
+                "available": 0,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1017304/series",
+                "items": [],
+                "returned": 0
+            },
+            "stories": {
+                "available": 0,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1017304/stories",
+                "items": [],
+                "returned": 0
+            },
+            "events": {
+                "available": 0,
+                "collectionURI": "http://gateway.marvel.com/v1/public/characters/1017304/events",
+                "items": [],
+                "returned": 0
+            },
+            "urls": [
+                {
+                    "type": "detail",
+                    "url": "http://marvel.com/comics/characters/1017304/war_machine_marvel_avengers_alliance?utm_campaign=apiRef&utm_source=28a2b529d14dd7bd6ef673b35df7c8c2"
+                }
+            ]
+        }
+    ]
+}}
