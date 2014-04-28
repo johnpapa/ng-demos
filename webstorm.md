@@ -20,7 +20,6 @@ Manually install node.js and configure WebStorm to use it.
 
 ![](/assets/enabled-js-libraries.png)
 
-
 When you open a project with node_modules directory in it, WebStorm will suggest creating a Node.js Dependencies JavaScript library. This action will add these modules to the list of JavaScript libraries used WebStorm for code completion, syntax highlighting, navigation and documentation lookup:
 
 ![](/assets/add-node-modules.png)
@@ -96,5 +95,137 @@ Creating a keyboard shortcut for Presentation Mode makes it eaier to enter and l
 - Enter the keystroke(s) (e.g. `CMD SHIFT P`)
 - Click `OK`
 
+# AngularJS
+AngularJS tips for WebStorm.
 
+##AngularJS File Templates
+- Download the [AngularJS file templates](/assets/angularFileTemplateSettings.jar)
+- `CMD SHIFT A` and type `import`
+- Select `import settings`
+- Browse to the file and select it
+- Click `OK` and allow the restart of WebStorm, if prompted
+
+### Angular Controller As
+
+```javascript
+(function () {
+    'use strict';
+
+    var controllerId = 'people';
+
+    angular.module('demoApp')
+        .controller(controllerId, ['$scope', people]);
+
+    function people($scope) {
+        var vm = this;
+
+        vm.activate = activate;
+        vm.title = 'people';
+
+        activate();
+
+        function activate() {
+        }
+    }
+})();
+```
+
+### Angular Clasic Controller ($scope)
+
+```javascript
+(function () {
+    'use strict';
+
+    var controllerId = 'widgets';
+
+    angular.module('demoApp')
+        .controller(controllerId, ['$scope', widgets]);
+
+    function widgets($scope) {
+        $scope.activate = activate;
+        $scope.title = 'widgets';
+
+        activate()
+
+        function activate() {
+        }
+    }
+})();
+```
+
+### Angular Directive
+
+```javascript
+(function () {
+    'use strict';
+
+    angular.module('demoApp')
+        .directive('peopleSearch', ['$window', peopleSearch]);
+
+    function peopleSearch($window) {
+        // Usage:
+        // 
+        // Creates:
+        // 
+        var directive = {
+            link: link,
+            restrict: 'A'
+        };
+        return directive;
+
+        function link(scope, element, attrs) {
+        }
+    }
+})();
+```
+
+### Angular Factory
+
+```javascript
+(function () {
+    'use strict';
+
+    var serviceId = 'dataservice';
+
+    angular.module('demoApp')
+        .factory(serviceId, ['$http', dataservice]);
+
+    function dataservice($http) {
+        // TODO: Define the functions and properties to reveal.
+        var service = {
+            getData: getData
+        };
+
+        return service;
+
+        function getData() {
+        }
+    }
+})();
+```
+
+### Angular Module
+
+```javascript
+(function () {
+    'use strict';
+
+    var demoApp = angular.module('demoApp', [
+        // Angular modules 
+        'ngAnimate',        // animations
+        'ngRoute'           // routing
+
+        // Custom modules 
+
+        // 3rd Party Modules
+
+    ]);
+
+    // Execute bootstrapping code and any dependencies.
+    demoApp.run(['$rootScope',
+        function ($rootScope) {
+
+        }]);
+})();
+```
 
