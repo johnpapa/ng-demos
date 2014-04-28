@@ -1,6 +1,11 @@
 WebStorm Tips
 ============
 
+## Set your keymap
+- Go to `settings`
+- Click on `keymap`
+- Use drop down to select `Mac OS X 10.5+`
+
 #Node.js
 Manually install node.js and configure WebStorm to use it.
 
@@ -43,12 +48,18 @@ Use NPM from terminal to install bower globally.
 
 - `CMD F12` opens the WebStorm terminal
 - type `npm install bower -g` to install bower globally
+- If you receive access errors, become superuser temporarily
+-  * enter `su -1` and enter your system password
+- * retry `npm install bower -g` to install bower globally
+- * type exit to exit superuser mode
 
 Alternatively, install bower globally from the Mac's terminal
 
 ## Tell WebStorm About Bower
 - `CMD SHIFT A` and type `bower`
 - Enter the bower executable's location (e.g. `/usr/local/bin/bower`)
+- Use terminal to create a bower json file (e.g., `bower init`)
+- Place that path in bower.json in this same dialog
 
 ## Install packages via WebStorm
 - `CMD SHIFT A` and type `bower`
@@ -58,7 +69,7 @@ Alternatively, install bower globally from the Mac's terminal
 - Set any options you desire such as `--save-dev`
 - Click `install package`
 
-Alternatively, install bower locally from the Mac's terminal (e.g.  `bower install toastr`)
+Alternatively, install using bower locally from the Mac's terminal (e.g.  `bower install toastr`)
 
 ##Install NPM Global Packages
 Install any globla packages you require. Some examples include:
