@@ -10,7 +10,7 @@ var express      = require('express'),
     http         = require('http'),
     isDev        = app.get('env') === 'development',
     logger       = require('morgan'),
-    port         = process.env["PORT"] || 7171,
+    port         = process.env['PORT'] || 7171,
     routes       = require('./routes');
 
 var appDir =  __dirname + '/../'; // Our NG code
