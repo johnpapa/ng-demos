@@ -228,4 +228,79 @@ AngularJS tips for WebStorm.
         }]);
 })();
 ```
+# Testing XHR from WebStorm
+
+You can test XHR calls using the REST Client
+-  `CMD SHIFT A`
+-  Type `RESTful` 
+-  Select `Test RESTful Web Service`
+
+Enter a new XHR request in the newly opened dialog
+
+# Trailing Spaces
+Strip trailing whitespace at the end of lines when saving a file.
+
+- `CMD SHIFT A` and enter `strip`
+- Select `strip trailing spaces on save`
+- Scroll down to the `Other` section
+- Select when to strip the trailing spaces as `modified lines` or on `all` files
+
+# MongoDB and WebStorm
+
+## MongoDB Primer
+http://openmymind.net/mongodb.pdf
+
+## Install
+http://docs.mongodb.org/manual/tutorial/install-mongodb-on-os-x/
+
+## Permissions
+Allow users to read the the database
+`sudo chown `id -u` /data/db`
+
+## Configure MongoDb Integration with WebStorm
+
+This creates a menu option under Tools called `Start MongoDB`
+
+- Enter `CMD + SHIFT + A`
+- Type `Configure Tools`
+- Press `+` to add a new tool
+- Name it `Start MongoDB` and give it a description
+- Under Options, only check the `Open console`
+- Show in `main menu` only
+- Tools settings Program`/Users/papaj015/mongodb/bin/mongod`
+- Tools settings Parameters `--config mongodb.config`
+- Tools settings working directory `/Users/papaj015/mongodb/bin`
+ 
+### Config
+	#logpath=c:\mongodb\log\mongo.log
+	dbpath=/Users/papaj015/mongodb/data
+	rest=true
+
+# Configure the Node + Express Server with WebStorm
+- Enter `CMD + SHIFT + A`
+- Type `Edit Configurations`
+- Press `+` to add a new configuration
+- Select `node.js`
+- Name it `MEAN server`
+- Set the working directory to your project such as `/Users/papaj015/_git/CC-Angular-Breeze/final/CC.Web`
+- Set the JavaScript file to start as the server `mean/server.js`
+
+# Configure the Grunt Build Task with WebStorm
+- Enter `CMD + SHIFT + A`
+- Type `Edit Configurations`
+- Press `+` to add a new configuration
+- Select `node.js`
+- Name it `Grunt Build`
+- Set the working directory to your project such as `/Users/papaj015/_git/CC-Angular-Breeze/final/build`
+- Set the JavaScript file to `/usr/local/lib/node_modules/grunt-cli/bin/grunt`
+- Set Application Parameters to the name of the grunt task such as `build`
+
+# Installing the AngularJS plugin for Webstorm
+(only applicable to WebStorm 7, as this is built into WebStorm 8)
+
+- Navigate to File->Settings->Plugins
+- Click "Browse Repositories"
+- Select "AngularJS"
+- Double-click (or right-click) and, when prompted, choose "Yes"
+- Restart WebStorm
 
