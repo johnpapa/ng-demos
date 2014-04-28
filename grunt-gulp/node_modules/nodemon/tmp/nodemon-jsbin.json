@@ -1,5 +1,0 @@
-{
-  "ignore": "public/*",
-  "ext": "json,js,html",
-  "verbose": true
-}
