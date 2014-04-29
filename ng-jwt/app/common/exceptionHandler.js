@@ -39,7 +39,7 @@
 
             var errorData = { exception: exception, cause: cause };
             var msg = appErrorPrefix + exception.message;
-            logger.error(msg, errorData, true);
+            logger.error(msg, errorData);
         };
     }
 })(this.angular);

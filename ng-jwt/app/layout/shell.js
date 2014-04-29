@@ -26,7 +26,7 @@
         activate();
 
         function activate() {
-            logSuccess(config.appTitle + ' loaded!', null, true);
+            logSuccess(config.appTitle + ' loaded!', null);
             common.activateController([], controllerId);
         }
 
