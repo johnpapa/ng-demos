@@ -1,5 +1,6 @@
 {
-  "name": "AngularJS JSON Web Token Demo",
+  "name": "NG-JWT",
+  "description": "AngularJS JSON Web Token Demo",
   "version": "0.0.1",
   "devDependencies": {
     "express": "^4.1.0",
