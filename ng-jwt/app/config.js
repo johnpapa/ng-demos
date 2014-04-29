@@ -34,7 +34,13 @@
             $logProvider.debugEnabled(true);
         }
     }]);
-    
+
+    //#region Configure the common exception handler
+    app.config(['exceptionConfigProvider', function (cfg) {
+        cfg.config.appErrorPrefix = config.appErrorPrefix;
+    }]);
+    //#endregion
+
     //#region Configure the common services via commonConfig
     app.config(['commonConfigProvider', function (cfg) {
         cfg.config.controllerActivateSuccessEvent = config.events.controllerActivateSuccess;

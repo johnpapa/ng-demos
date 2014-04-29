@@ -4,8 +4,7 @@
     angular.module('app').controller(controllerId, ['common', 'datacontext', dashboard]);
 
     function dashboard(common, datacontext) {
-        var getLogFn = common.logger.getLogFn;
-        var log = getLogFn(controllerId);
+        var log = common.logger.info;
 
         var vm = this;
         vm.news = {

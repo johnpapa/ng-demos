@@ -6,8 +6,7 @@
             ['common', 'datacontext', avengers]);
 
     function avengers(common, datacontext) {
-        var getLogFn = common.logger.getLogFn;
-        var log = getLogFn(controllerId);
+        var log = common.logger.info;
 
         var vm = this;
         vm.avengers = [];

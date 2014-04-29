@@ -1,73 +1,43 @@
-(function () {
+(function(angular) {
     'use strict';
 
-    angular.module('common').factory('logger', ['$log', logger]);
+    angular.module('common').factory('logger',
+        ['$log', factory ] );
 
-    function logger($log) {
-        var service = {
-            getLogFn: getLogFn,
-            log: log,
-            logError: logError,
-            logSuccess: logSuccess,
-            logWarning: logWarning
+    function factory( $log ) {
+        var logger = {
+            source: '',
+            showToasts: true,
+
+            error   : error,
+            info    : info,
+            success : success,
+            warning : warning,
+
+            // straight to console; bypass toastr
+            log     : $log.log
         };
 
-        return service;
-
-        function getLogFn(moduleId, fnName) {
-            fnName = fnName || 'log';
-            switch (fnName.toLowerCase()) { // convert aliases
-                case 'success':
-                    fnName = 'logSuccess';
-                    break;
-                case 'error':
-                    fnName = 'logError';
-                    break;
-                case 'warn':
-                    fnName = 'logWarning';
-                    break;
-                case 'warning':
-                    fnName = 'logWarning';
-                    break;
-            }
-
-            var logFn = service[fnName] || service.log;
-            return function (msg, data, showToast) {
-                logFn(msg, data, moduleId, (showToast === undefined) ? true : showToast);
-            };
+        return logger;
+        /////////////////////
+        function error(message, title) {
+            if(logger.showToasts) { toastr.error(message, title); }
+            $log.error(logger.source + ' Error: ' + message);
         }
 
-        function log(message, data, source, showToast) {
-            logIt(message, data, source, showToast, 'info');
+        function info(message, title) {
+            if(logger.showToasts) { toastr.info(message, title); }
+            $log.info(logger.source + ' Info: ' + message);
         }
 
-        function logWarning(message, data, source, showToast) {
-            logIt(message, data, source, showToast, 'warning');
+        function success(message, title) {
+            if(logger.showToasts) { toastr.success(message, title); }
+            $log.info(logger.source + ' Success: ' + message);
         }
 
-        function logSuccess(message, data, source, showToast) {
-            logIt(message, data, source, showToast, 'success');
-        }
-
-        function logError(message, data, source, showToast) {
-            logIt(message, data, source, showToast, 'error');
-        }
-
-        function logIt(message, data, source, showToast, toastType) {
-            var write = (toastType === 'error') ? $log.error : $log.log;
-            source = source ? '[' + source + '] ' : '';
-            write(source, message, data);
-            if (showToast) {
-                if (toastType === 'error') {
-                    toastr.error(message);
-                } else if (toastType === 'warning') {
-                    toastr.warning(message);
-                } else if (toastType === 'success') {
-                    toastr.success(message);
-                } else {
-                    toastr.info(message);
-                }
-            }
+        function warning(message, title) {
+            if(logger.showToasts) { toastr.warning(message, title); }
+            $log.warn(logger.source + ' Warning: ' + message);
         }
     }
-})();
+}( this.angular ));

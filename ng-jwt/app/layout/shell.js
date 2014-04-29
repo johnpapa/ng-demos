@@ -7,7 +7,7 @@
 
     function shell($rootScope, common, config) {
         var vm = this;
-        var logSuccess = common.logger.getLogFn(controllerId, 'success');
+        var logSuccess = common.logger.success;
         var events = config.events;
         vm.title = config.appTitle;
         vm.busyMessage = 'Please wait ...';
