@@ -51,7 +51,7 @@ When installing NPM packages globally you may need superuser permissions. Prefix
 ##Install Bower
 Use NPM from terminal to install bower globally. 
 
-- `CMD F12` opens the WebStorm terminal
+- `OPTION F12` opens the WebStorm terminal
 - type `npm install bower -g` to install bower globally
 
 Alternatively, install bower globally from the Mac's terminal
@@ -273,6 +273,13 @@ http://docs.mongodb.org/manual/tutorial/install-mongodb-on-os-x/
 Allow users to read the the database
 `sudo chown `id -u` /data/db`
 
+## Install MongoDB Plugin for WebStorm
+- Enter `CMD + SHIFT + A`
+- Type `plugin`
+- Select `Plugins`
+- Search for `mongo`
+- Install the `Mongo Plugin`
+
 ## Configure MongoDb Integration with WebStorm
 
 This creates a menu option under Tools called `Start MongoDB`
@@ -283,13 +290,14 @@ This creates a menu option under Tools called `Start MongoDB`
 - Name it `Start MongoDB` and give it a description
 - Under Options, only check the `Open console`
 - Show in `main menu` only
-- Tools settings Program`/Users/papaj015/mongodb/bin/mongod`
-- Tools settings Parameters `--config mongodb.config`
-- Tools settings working directory `/Users/papaj015/mongodb/bin`
+- Under `Tools settings` 
+	- set the `Program` to `/Users/johnpapa/mongodb/bin/mongod`
+	- set `Parameters` to `--config mongodb.config`
+	- set  `working directory` to `/Users/johnpapa/mongodb/bin`
  
 ### Config
 	#logpath=c:\mongodb\log\mongo.log
-	dbpath=/Users/papaj015/mongodb/data
+	dbpath=/Users/johnpapa/mongodb/data
 	rest=true
 
 # Configure the Node + Express Server with WebStorm
@@ -298,7 +306,7 @@ This creates a menu option under Tools called `Start MongoDB`
 - Press `+` to add a new configuration
 - Select `node.js`
 - Name it `MEAN server`
-- Set the working directory to your project such as `/Users/papaj015/_git/CC-Angular-Breeze/final/CC.Web`
+- Set the working directory to your project such as `/Users/johnpapa/_git/CC-Angular-Breeze/final/CC.Web`
 - Set the JavaScript file to start as the server `mean/server.js`
 
 # Configure the Grunt Build Task with WebStorm
@@ -307,7 +315,7 @@ This creates a menu option under Tools called `Start MongoDB`
 - Press `+` to add a new configuration
 - Select `node.js`
 - Name it `Grunt Build`
-- Set the working directory to your project such as `/Users/papaj015/_git/CC-Angular-Breeze/final/build`
+- Set the working directory to your project such as `/Users/johnpapa/_git/CC-Angular-Breeze/final/build`
 - Set the JavaScript file to `/usr/local/lib/node_modules/grunt-cli/bin/grunt`
 - Set Application Parameters to the name of the grunt task such as `build`
 
