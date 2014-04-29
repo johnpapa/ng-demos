@@ -30,13 +30,15 @@
 
     // Extend the $exceptionHandler service to also display a toast.
     function extendExceptionHandler($delegate, exceptionConfig, logger) {
-        logger.source = exceptionConfig.appErrorPrefix || '';
+        var appErrorPrefix = exceptionConfig.config.appErrorPrefix || '';
         return function (exception, cause) {
             $delegate(exception, cause);
-            if (logger.source && exception.message.indexOf(logger.source) === 0) { return; }
+//            if (appErrorPrefix && exception.message.indexOf(appErrorPrefix) === 0) {
+//                return;
+//            }
 
             var errorData = { exception: exception, cause: cause };
-            var msg = logger.source + exception.message;
+            var msg = appErrorPrefix + exception.message;
             logger.error(msg, errorData, true);
         };
     }
