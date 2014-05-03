@@ -10,6 +10,7 @@ obj
 # Ignore Node modules
 ###################
 node_modules
+bower_components
 **/test/coverage
 
 # mongo db
