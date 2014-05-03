@@ -1,0 +1,165 @@
+<div class="page page-charts" data-ng-controller="morrisChartCtrl">
+
+    <section class="panel panel-default">
+        <div class="panel-heading"><span class="glyphicon glyphicon-th"></span> Area Chart</div>
+        <div class="panel-body">
+            <div morris-chart
+                 data-data="mainData"
+                 data-type="area"
+                 data-xkey="month"
+                 data-ykeys='["xbox", "will", "playstation"]'
+                 data-labels='["xbox", "will", "playstation"]'
+                 data-line-colors='["#6A55C2","#E94B3B","#2EC1CC"]'
+                 data-line-width="0"
+                 data-behave-like-line="true"
+                 data-point-size="0"
+                 ></div>
+        </div>
+    </section> 
+
+    <div class="row">
+        <div class="col-md-6">
+            <section class="panel panel-default">
+                <div class="panel-heading"><span class="glyphicon glyphicon-th"></span> Line Chart</div>
+                <div class="panel-body">
+                    <div morris-chart
+                         data-data="simpleData"
+                         data-type="line"
+                         data-xkey="year"
+                         data-ykeys='["value"]'
+                         data-labels='["Value"]'
+                         data-line-colors='["#1C7EBB"]'
+                         data-line-width="2"
+                         ></div>
+                </div>
+            </section>            
+        </div>
+        <div class="col-md-6">
+            <section class="panel panel-default">
+                <div class="panel-heading"><span class="glyphicon glyphicon-th"></span> Area Chart</div>
+                <div class="panel-body">
+                    <div morris-chart
+                         data-data="simpleData"
+                         data-type="area"
+                         data-xkey="year"
+                         data-ykeys='["value"]'
+                         data-labels='["Value A"]'
+                         data-line-colors='["#1C7EBB"]'
+                         data-line-width="2"
+                         ></div>
+                </div>
+            </section>              
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-6">
+            <section class="panel panel-default">
+                <div class="panel-heading"><span class="glyphicon glyphicon-th"></span> Line Chart</div>
+                <div class="panel-body">
+                    <div morris-chart
+                         data-data="comboData"
+                         data-type="line"
+                         data-xkey="year"
+                         data-ykeys='["a", "b", "c"]'
+                         data-labels='["Value A", "Value B", "Value C"]'
+                         data-line-colors='["#FF7857","#FDD761","#A3C86D"]'
+                         data-line-width="2"
+                         ></div>
+                </div>
+            </section>
+        </div>
+        <div class="col-md-6">
+            <section class="panel panel-default">
+                <div class="panel-heading"><span class="glyphicon glyphicon-th"></span> Area Chart</div>
+                <div class="panel-body">
+                    <div morris-chart
+                         data-data="comboData"
+                         data-type="area"
+                         data-xkey="year"
+                         data-ykeys='["a", "b", "c"]'
+                         data-labels='["Value A", "Value B", "Value C"]'
+                         data-line-colors='["#23AE89","#FFB61C","#2EC1CC"]'
+                         data-line-width="2"
+                         ></div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <section class="panel panel-default">
+                <div class="panel-heading"><span class="glyphicon glyphicon-th"></span> Bar Chart</div>
+                <div class="panel-body">
+                    <div morris-chart
+                         data-data="comboData"
+                         data-type="bar"
+                         data-xkey="year"
+                         data-ykeys='["a", "b", "c"]'
+                         data-labels='["Value A", "Value B", "Value C"]'
+                         data-bar-colors='["#23AE89","#FFB61C","#2EC1CC"]'
+                         ></div>
+                </div>
+            </section>            
+        </div>
+        <div class="col-md-6">
+            <section class="panel panel-default">
+                <div class="panel-heading"><span class="glyphicon glyphicon-th"></span> Stacked Bar Chart</div>
+                <div class="panel-body">
+                    <div morris-chart
+                         data-data="comboData"
+                         data-type="bar"
+                         data-xkey="year"
+                         data-ykeys='["a", "b", "c"]'
+                         data-labels='["Value A", "Value B", "Value C"]'
+                         data-bar-colors='["#23AE89","#FFB61C","#2EC1CC"]'
+                         data-stacked="true"
+                         ></div>
+                </div>
+            </section>            
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <section class="panel panel-default">
+                <div class="panel-heading"><span class="glyphicon glyphicon-th"></span> Donut Chart</div>
+                <div class="panel-body">
+                    <div morris-chart
+                         data-data="donutData"
+                         data-type="donut"
+                         data-xkey="year"
+                         ></div>
+                </div>
+            </section>              
+        </div>
+        <div class="col-md-4">
+            <section class="panel panel-default">
+                <div class="panel-heading"><span class="glyphicon glyphicon-th"></span> Colorful Donut Chart</div>
+                <div class="panel-body">
+                    <div morris-chart
+                         data-data="donutData"
+                         data-type="donut"
+                         data-xkey="year"
+                         data-colors='["#23AE89","#2EC1CC","#FFB61C","#E94B3B"]'
+                         ></div>
+                </div>
+            </section>
+        </div>
+        <div class="col-md-4">
+            <section class="panel panel-default">
+                <div class="panel-heading"><span class="glyphicon glyphicon-th"></span> Formatted Donut Chart</div>
+                <div class="panel-body">
+                    <div morris-chart
+                         data-data="donutData"
+                         data-type="donut"
+                         data-xkey="year"
+                         data-formatter="return '$' + y;"
+                         ></div>
+                </div>
+            </section>            
+        </div>
+    </div>
+</div>

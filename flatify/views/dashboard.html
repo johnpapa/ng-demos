@@ -1,0 +1,204 @@
+<div class="page page-dashboard" data-ng-controller="DashboardCtrl">
+
+    <!-- stats -->
+    <div class="row">
+        <div class="col-lg-3 col-xsm-6">
+            <div class="panel mini-box">
+                <span class="box-icon bg-success">
+                    <i class="fa fa-rocket"></i>
+                </span>
+                <div class="box-info">
+                    <p class="size-h2">25 <span class="size-h4">%</span></p>
+                    <p class="text-muted"><span data-i18n="Growth"></span></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-xsm-6">
+            <div class="panel mini-box">
+                <span class="box-icon bg-info">
+                    <i class="fa fa-users"></i>
+                </span>
+                <div class="box-info">
+                    <p class="size-h2">112</p>
+                    <p class="text-muted"><span data-i18n="New users"></span></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-xsm-6">
+            <div class="panel mini-box">
+                <span class="box-icon bg-warning">
+                    <i class="fa fa-dollar"></i>
+                </span>
+                <div class="box-info">
+                    <p class="size-h2">4,550</p>
+                    <p class="text-muted"><span data-i18n="Profit"></span></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-xsm-6">
+            <div class="panel mini-box">
+                <span class="box-icon bg-danger">
+                    <i class="fa fa-shopping-cart"></i>
+                </span>
+                <div class="box-info">
+                    <p class="size-h2">262</p>
+                    <p class="text-muted"><span data-i18n="Sales"></span></p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- end stats -->
+
+    <div class="row">
+        <div class="col-md-8">
+            <section class="panel panel-default">
+                <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> <span data-i18n="Data"></span></strong></div>
+                <div class="panel-body" data-ng-controller="morrisChartCtrl">
+                    <div morris-chart
+                         data-data="comboData"
+                         data-type="bar"
+                         data-xkey="year"
+                         data-ykeys='["a", "b", "c"]'
+                         data-labels='["Value A", "Value B", "Value C"]'
+                         data-bar-colors='["#176799","#42A4BB","#78D6C7"]'
+                         style="height: 300px;"
+                         ></div>
+                </div>
+            </section> 
+        </div>
+        <div class="col-md-4">
+
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> <span data-i18n="Data"></span></strong></div>
+                <div class="panel-body"  data-ng-controller="flotChartCtrl">
+                    <div data-flot-chart
+                         data-data="donutChart2.data"
+                         data-options="donutChart2.options"
+                         style="width: 100%; height: 300px;"
+                         ></div>                    
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> <span data-i18n="Realtime Data"></span></strong></div>
+                <div class="panel-body">
+                    <div data-flot-chart-realtime
+                         data-type="realtime"
+                         style="width: 100%; height: 275px;"
+                         ></div>                    
+                </div>
+            </div>        
+        </div>
+        <div class="col-md-4">
+            <section class="panel panel-box">
+                <div class="panel-top bg-info">
+                    <div class="text-left">SNOW</div>
+                    <div class="divider divider-xl"></div>
+                    <div class="divider divider-lg"></div>
+                </div>
+                <div class="panel-icon bg-info">
+                    <!-- <i class="wi-day-cloudy"></i> -->
+                    <canvas ui-weather
+                            icon="SNOW"
+                            color="#fff"
+                            width="70"
+                            height="70"></canvas>
+                </div>
+                <div class="panel-bottom bg-reverse">
+                    <ul class="list-justified text-center">
+                        <li>
+                            <canvas ui-weather
+                                    icon="RAIN"
+                                    color="#23AE89"
+                                    width="40"
+                                    height="40"></canvas>                            
+                            <p class="text-muted">Wednesday</p>
+                        </li>
+                        <li>
+                            <canvas ui-weather
+                                    icon="WIND"
+                                    color="#6A55C2"
+                                    width="40"
+                                    height="40"></canvas>  
+                            <p class="text-muted">Thursday</p>
+                        </li>
+                        <li>
+                            <canvas ui-weather
+                                    icon="CLEAR_DAY"
+                                    color="#FFB61C"
+                                    width="40"
+                                    height="40"></canvas> 
+                            <p class="text-muted">Friday</p>
+                        </li>                        
+                    </ul>
+                </div>
+            </section>
+        </div>
+
+    </div>
+
+
+
+    <div class="panel panel-default">
+        <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> <span data-i18n="Table"></span></strong></div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Project</th>
+                    <th>Manager</th>
+                    <th>Status</th>
+                    <th>Progress</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td><span class="color-success"><i class="fa fa-level-up"></i></span> TWLT</td>
+                    <td>Amery Lee</td>
+                    <td><span class="label label-info">Pending</span></td>
+                    <td><progressbar class="progressbar-xs no-margin" value="55"></progressbar>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td><span class="color-success"><i class="fa fa-level-up"></i></span> A16Z</td>
+                    <td>Romayne Carlyn</td>
+                    <td><span class="label label-primary">Due</span></td>
+                    <td><progressbar class="progressbar-xs no-margin" value="34" type="success"></progressbar></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td><span class="color-warning"><i class="fa fa-level-down"></i></span> DARK</td>
+                    <td>Marybeth Joanna</td>
+                    <td><span class="label label-success">Due</span></td>
+                    <td><progressbar class="progressbar-xs no-margin" value="68" type="info"></progressbar></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td><span class="color-info"><i class="fa fa-level-up"></i></span> Q300</td>
+                    <td>Jonah Benny</td>
+                    <td><span class="label label-danger">Blocked</span></td>
+                    <td><progressbar class="progressbar-xs no-margin" value="52" type="warning"></progressbar></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td><span class="color-danger"><i class="fa fa-level-down"></i></span> RVNG</td>
+                    <td>Daly Royle</td>
+                    <td><span class="label label-warning">Suspended</span></td>
+                    <td><progressbar class="progressbar-xs no-margin" value="77" type="danger"></progressbar></td></td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+</div>
+  

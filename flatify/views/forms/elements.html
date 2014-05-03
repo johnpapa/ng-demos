@@ -1,0 +1,582 @@
+
+<section class="page-form-ele page">
+
+
+
+    <!-- Tags -->
+<!--     <section class="panel panel-default">
+        <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Tags Input</strong></div>
+        <div class="panel-body" data-ng-controller="TagsDemoCtrl">
+            <bootstrap-tagsinput ng-model="cities"
+                                 tagclass="getTagClass"
+                                 itemvalue="value"
+                                 itemtext="text"></bootstrap-tagsinput>
+        </div>
+    </section>  -->
+    <!-- end Tags -->
+
+
+    <!-- Rating -->
+    <section class="panel panel-default">
+        <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Rating</strong></div>
+        <div class="panel-body" data-ng-controller="RatingDemoCtrl">
+            <rating class="ui-rating size-h3"
+                    value="rate"
+                    max="max"
+                    readonly="isReadonly"
+                    on-hover="hoveringOver(value)"
+                    on-leave="overStar = null"
+                    state-on="'fa fa-star'"
+                    state-off="'fa fa-star-o'"></rating>
+            <span class="label" ng-class="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}" ng-show="overStar && !isReadonly">{{percent}}%</span>
+
+            <div class="callout callout-info">
+                <p>Rate: <b>{{rate}}</b> - Readonly is: <i>{{isReadonly}}</i> - Hovering over: <b>{{overStar || "none"}}</b></p>
+            </div>
+
+            <button class="btn btn-danger" ng-click="rate = 0" ng-disabled="isReadonly">Clear</button>
+            <button class="btn btn-info" ng-click="isReadonly = ! isReadonly">Toggle Readonly</button>
+    </section> 
+    <!-- end Rating -->
+
+
+    <!-- Switch -->
+    <section class="panel panel-default">
+        <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Switchs</strong></div>
+        <div class="panel-body">
+            <label class="switch"><input type="checkbox" checked><i></i></label>
+            <div class="space"></div>
+            <label class="switch switch-success"><input type="checkbox" checked><i></i></label>
+            <div class="space"></div>
+            <label class="switch switch-info"><input type="checkbox" checked><i></i></label>
+            <div class="space"></div>
+            <label class="switch switch-warning"><input type="checkbox" checked><i></i></label>
+            <div class="space"></div>
+            <label class="switch switch-danger"><input type="checkbox" checked><i></i></label>
+        </div>
+    </section> 
+    <!-- end Switch -->
+
+
+    <!-- Range sliders -->
+    <section class="panel panel-default">
+        <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Slider</strong></div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Basic slider</h5>
+                    <input type="text"
+                           ui-range-slider
+                           data-slider-min="0"
+                           data-slider-max="10"
+                           data-slider-step="1"
+                           data-slider-orientation="horizontal"
+                           data-slider-value="6"
+                           data-slider-selection="before"
+                           data-slider-tooltip="show"
+                           data-slider-handle="round">
+                    <h5>Range slider disabled</h5>
+                    <input type="text"
+                           ui-range-slider
+                           data-slider-min="0"
+                           data-slider-max="10"
+                           data-slider-step="1"
+                           data-slider-orientation="horizontal"
+                           data-slider-value="5"
+                           data-slider-selection="before"
+                           data-slider-tooltip="show"
+                           data-slider-handle="round"
+                           data-slider-enabled="false">
+                    <h5>Range slider with step set to 10</h5>
+                    <input type="text"
+                           value=""
+                           ui-range-slider
+                           data-slider-min="0"
+                           data-slider-max="100"
+                           data-slider-step="10"
+                           data-slider-orientation="horizontal"
+                           data-slider-value="60"
+                           data-slider-selection="before"
+                           data-slider-tooltip="show"
+                           data-slider-handle="round">
+                    <h5>Range slider with predifined value to 30</h5>
+                    <input type="text"
+                           value=""
+                           ui-range-slider
+                           data-slider-min="0"
+                           data-slider-max="100"
+                           data-slider-step="10"
+                           data-slider-orientation="horizontal"
+                           data-slider-value="30"
+                           data-slider-selection="before"
+                           data-slider-tooltip="show"
+                           data-slider-handle="round">
+                    <h5>Range slider with range</h5>
+                    <input type="text"
+                           value=""
+                           ui-range-slider
+                           data-slider-min="0"
+                           data-slider-max="100"
+                           data-slider-step="10"
+                           data-slider-orientation="horizontal"
+                           data-slider-value="[20, 80]"
+                           data-slider-selection="before"
+                           data-slider-tooltip="show"
+                           data-slider-handle="round">
+                </div>
+                <div class="col-md-6">
+                    <h5>Vertical slider</h5>
+                    <div class="space space-lg"></div>
+                    <input type="text"
+                           ui-range-slider
+                           data-slider-min="0"
+                           data-slider-max="10"
+                           data-slider-step="1"
+                           data-slider-orientation="vertical"
+                           data-slider-value="5"
+                           data-slider-selection="before"
+                           data-slider-tooltip="show"
+                           data-slider-handle="round">
+                    <div class="space space-lg"></div>
+                    <input type="text"
+                           value=""
+                           ui-range-slider
+                           data-slider-min="0"
+                           data-slider-max="100"
+                           data-slider-step="10"
+                           data-slider-orientation="vertical"
+                           data-slider-value="50"
+                           data-slider-selection="before"
+                           data-slider-tooltip="show"
+                           data-slider-handle="round">
+                    <div class="space space-lg"></div>
+                    <input type="text"
+                           value=""
+                           ui-range-slider
+                           data-slider-min="0"
+                           data-slider-max="100"
+                           data-slider-step="10"
+                           data-slider-orientation="vertical"
+                           data-slider-value="30"
+                           data-slider-selection="before"
+                           data-slider-tooltip="show"
+                           data-slider-handle="round">
+                    <div class="space space-lg"></div>
+                    <input type="text"
+                           value=""
+                           ui-range-slider
+                           data-slider-min="0"
+                           data-slider-max="100"
+                           data-slider-step="10"
+                           data-slider-orientation="vertical"
+                           data-slider-value="[10, 90]"
+                           data-slider-selection="before"
+                           data-slider-tooltip="show"
+                           data-slider-handle="round">                 
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- end Range sliders -->
+
+
+    <!-- Radio buttons and checkbox -->
+    <section class="panel panel-default">
+        <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Radio Buttons and Checkbox</strong></div>
+        <div class="panel-body">
+            <dl class="dl-horizontal">
+                <dt>Radio buttons</dt>
+                <dd>
+                    <label class="ui-radio"><input name="radio1" type="radio" value="option1" ><span>Option 1</span></label>
+                    <label class="ui-radio"><input name="radio1" type="radio" value="option2" checked><span>Option 2</span></label>
+                    <label class="ui-radio"><input name="radio1" type="radio" value="option3"><span>Option 3</span></label>
+                </dd>
+                <dt>Disabled radio buttons</dt>
+                <dd>
+                    <label class="ui-radio"><input name="radio2" type="radio" value="option3" disabled><span>Radio disabled</span></label>
+                    <label class="ui-radio"><input name="radio2" type="radio" value="option4" checked disabled><span>Radio checked disabled</span></label>
+                </dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt>Checkbox</dt>
+                <dd>
+                    <label class="ui-checkbox"><input name="checkbox1" type="checkbox" value="option1" ><span>Option 1</span></label>
+                    <label class="ui-checkbox"><input name="checkbox1" type="checkbox" value="option2" checked><span>Option 2</span></label>
+                    <label class="ui-checkbox"><input name="checkbox1" type="checkbox" value="option3"><span>Option 3</span></label>
+                </dd>
+                <dt>Disabled checkbox</dt>
+                <dd>
+                    <label class="ui-checkbox"><input name="checkbox2" type="checkbox" value="option3" disabled><span>Radio disabled</span></label>
+                    <label class="ui-checkbox"><input name="checkbox2" type="checkbox" value="option4" checked disabled><span>Radio checked disabled</span></label>
+                </dd>
+            </dl>
+
+        </div>
+    </section>
+    <!-- end Radio buttons and checkbox -->
+
+
+    <!-- Select -->
+    <section class="panel panel-default">
+        <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Select</strong></div>
+        <div class="panel-body">
+            <span class="ui-select">
+                <select>
+                    <option>Mustard</option>
+                    <option>Ketchup</option>
+                    <option>Barbecue</option>
+                </select>
+            </span>
+        </div>
+    </section>
+    <!-- end Select -->
+
+    <!-- Spinner -->
+    <section class="panel panel-default">
+        <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Spinner</strong></div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-xs-4">
+                    <div class="input-group" data-ui-spinner>
+                        <input type="text" class="form-control" value="1">
+                        <div class="input-group-btn btn-group-vertical">
+                            <button type="button" class="btn btn-xs btn-default" data-spin="up">
+                                <i class="fa fa-angle-up"></i>
+                            </button>
+                            <button type="button" class="btn spinner-down btn-xs btn-default" data-spin="down">
+                                <i class="fa fa-angle-down"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-4">
+                    <div class="input-group" data-ui-spinner>
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-primary" data-spin="up">
+                                <i class="fa fa-plus"></i>
+                            </button>
+                        </span>
+                        <input type="text" class="spinner-input form-control">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" data-spin="down">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+
+        </div>
+    </section> 
+    <!-- end Spinner -->
+
+
+    <!-- File upload button -->
+    <section class="panel panel-default">
+        <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> File upload button</strong></div>
+        <div class="panel-body">
+            <input type="file" title="Choose File" data-ui-file-upload>
+            <div class="space"></div>
+            <input type="file" title="Choose File" data-ui-file-upload class="btn-primary">
+            <div class="space"></div>
+            <input type="file" title="Choose File" data-ui-file-upload class="btn-success">
+            <div class="space"></div>
+            <input type="file" title="Choose File" data-ui-file-upload class="btn-info">
+            <div class="space"></div>
+            <input type="file" title="Choose File" data-ui-file-upload class="btn-warning">
+            <div class="space"></div>
+            <input type="file" title="Choose File" data-ui-file-upload class="btn-danger">
+        </div>
+    </section>
+    <!-- end File upload button -->
+
+
+    <!-- Typeahead -->
+    <section class="panel panel-default">
+        <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Typeahead (Autocomplete)</strong></div>
+        <div class="panel-body" data-ng-controller="TypeaheadCtrl">
+            <div class="callout callout-info">
+                <p>State is: {{selected}}</p>
+            </div> 
+            <div class="row">
+                <div class="col-sm-2">
+                    <input type="text" 
+                           ng-model="selected"
+                           typeahead="state for state in states | filter:$viewValue | limitTo:8"
+                           class="form-control"
+                           placeholder="Search">                    
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end Typeahead -->
+
+
+    <!-- Datepicker -->
+    <section class="panel panel-default">
+        <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Datepicker</strong></div>
+        <div class="panel-body" data-ng-controller="DatepickerDemoCtrl">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="input-group ui-datepicker">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                        <input type="text" 
+                               class="form-control"
+                               datepicker-popup="{{format}}"
+                               ng-model="dt"
+                               is-open="opened"
+                               min="minDate"
+                               max="'2015-06-22'"
+                               datepicker-options="dateOptions" 
+                               date-disabled="disabled(date, mode)"
+                               ng-required="true" 
+                               close-text="Close">
+                    </div>
+                    <div class="callout callout-info">
+                        <p>Date is: {{dt | date:'fullDate'}}</p>
+                    </div>
+                </div>
+
+                <div class="col-sm-8">
+                    <p>
+                        Format:
+                        <span class="ui-select">
+                            <select ng-model="format"
+                                    ng-options="f for f in formats"></select>
+                        </span>
+                    </p>
+
+                    <button class="btn btn-sm btn-info" ng-click="today()">Today</button>
+                    <div class="space"></div>
+                    <button class="btn btn-sm btn-default" ng-click="dt = '2009-08-24'">2009-08-24</button>
+                    <div class="space"></div>
+                    <button class="btn btn-sm btn-success" ng-click="toggleWeeks()" tooltip="For inline datepicker">Toggle Weeks</button>
+                    <div class="space"></div>
+                    <button class="btn btn-sm btn-danger" ng-click="clear()">Clear</button>
+                    <div class="space"></div>
+                    <button class="btn btn-sm btn-default" ng-click="toggleMin()" tooltip="After today restriction">Min date</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end Datepicker -->
+
+
+    <!-- Timepicker -->
+    <section class="panel panel-default">
+        <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Timepicker</strong></div>
+        <div class="panel-body" data-ng-controller="TimepickerDemoCtrl">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div ng-model="mytime" ng-change="changed()" style="display:inline-block;">
+                        <timepicker class="ui-timepicker" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+                    </div>                    
+                    <div class="callout callout-info">
+                        <p>Time is: {{mytime | date:'shortTime' }}</p>
+                    </div>
+                </div>
+
+                <div class="col-sm-8"> 
+                    <p>
+                        Hours step is: 
+                        <span class="space"></span>
+                        <span class="ui-select"><select ng-model="hstep" ng-options="opt for opt in options.hstep"></select></span>
+                    </p>
+                    <p>
+                        Minutes step is: 
+                        <span class="ui-select"><select ng-model="mstep" ng-options="opt for opt in options.mstep"></select></span>
+                    </p>
+                        
+                    <button class="btn btn-info" ng-click="toggleMode()">12H / 24H</button>
+                    <div class="space"></div>
+                    <button class="btn btn-default" ng-click="update()">Set to 14:00</button>
+                    <div class="space"></div>
+                    <button class="btn btn-danger" ng-click="clear()">Clear</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end Timepicker -->
+
+
+    <!-- Input -->
+    <section class="panel panel-default">
+        <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Inputs, Input Variants, Textarea</strong></div>
+        <div class="panel-body">
+            <form class="form-horizontal">
+
+                <div class="form-group">
+                    <label for="" class="col-sm-2">Normal input</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="label-focus" class="col-sm-2">Label focus</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="label-focus">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2">With help</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control">
+                        <span class="help-block">Some help text goes here.</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2">Password</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2">Placeholder</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" placeholder="placeholder goes here">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2">Disabled</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" disabled value="disabled">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2">Predefined value</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" value="http://">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2">Input with tooltip on focus</label>
+                    <div class="col-sm-10">
+                        <input tooltip="Tooltip on top" type="text" class="form-control" data-toggle="tooltip" data-placement="top" tooltip-trigger="focus">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2">Input with icons</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control">
+                        <span class="icon glyphicon glyphicon-star"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2">Input primary</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control input-primary">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2">Input info</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control input-info">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2">Input success</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control input-success">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2">Input warning</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control input-warning">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2">Input error</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control input-danger">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2">Control sizing</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control input-lg">
+                        <div class="divider"></div>
+                        <input type="text" class="form-control">
+                        <div class="divider"></div>
+                        <input type="text" class="form-control input-sm">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2">Input Group</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon">@</span>
+                            <input type="text" class="form-control" placeholder="Username">
+                        </div>
+                        <div class="divider"></div>
+                        <div class="input-group">
+                            <input type="text" class="form-control">
+                            <span class="input-group-addon">.00</span>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="input-group">
+                            <span class="input-group-addon">$</span>
+                            <input type="text" class="form-control">
+                            <span class="input-group-addon">.00</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2">Button addons</label>
+                    <div class="col-sm-10">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="input-group">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button">Go!</button>
+                                    </span>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="input-group">
+                                    <input type="text" class="form-control">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button">Go!</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2">Textarea</label>
+                    <div class="col-sm-10">
+                        <textarea name="" id="" class="form-control" rows="4"></textarea>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+    <!-- end Input -->
+
+
+    <!-- Upload -->
+    <section class="panel panel-default">
+        <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> File upload with Drag and Drop</strong></div>
+        <div class="panel-body">
+            <div>
+                <div class="drop-box">Drag and drop files here</div>
+            </div>
+        </div>
+    </section>
+    <!-- end Upload -->
+
+
+    <!-- Editor -->
+    <section class="panel panel-default">
+        <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Editor</strong></div>
+        <div class="panel-body">
+            <div text-angular ng-model="mailContent" class="ui-editor"></div>
+        </div>
+    </section>
+    <!-- end Editor -->
+
+</section>
