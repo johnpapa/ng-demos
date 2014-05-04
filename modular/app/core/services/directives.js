@@ -1,9 +1,9 @@
 (function () {
     'use strict';
 
-    var app = angular.module('app');
+    var app = angular.module('app.core');
 
-    app.directive('ccImgPerson', ['config', function (config) {
+    app.directive('ccImgPerson', ['core.config', function (config) {
         //Usage:
         //<img data-cc-img-person="{{s.speaker.imageSource}}"/>
         var basePath = config.imageSettings.imageBasePath;
@@ -193,7 +193,7 @@
                 'rightText': '@',
                 'allowCollapse': '@'
             },
-            templateUrl: 'app/layout/widgetheader.html',
+            templateUrl: 'app/core/layout/widgetheader.html',
             restrict: 'A'
         };
         return directive;

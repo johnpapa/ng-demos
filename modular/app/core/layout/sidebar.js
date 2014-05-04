@@ -2,11 +2,12 @@
     'use strict';
 
     var controllerId = 'sidebar';
-    angular.module('app').controller(controllerId,
-        ['$route', 'routes', sidebar]);
+    angular.module('app.core').controller(controllerId,
+        ['$route', sidebar]);
 
-    function sidebar($route, routes) {
+    function sidebar($route) {
         var vm = this;
+        var routes = $route.routeStore;
 
         vm.isCurrent = isCurrent;
 

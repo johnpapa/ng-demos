@@ -21,7 +21,7 @@
 </head>
 <body>
     <div>
-        <div data-ng-include="'app/layout/shell.html'"></div>
+        <div data-ng-include="'app/core/layout/shell.html'"></div>
         <div id="splash-page" data-ng-show="false">
             <div class="page-splash">
                 <div class="page-splash-message">
@@ -34,8 +34,6 @@
         </div>
     </div>
 
-    <span data-cc-scroll-to-top></span>
-
     <!-- Vendor Scripts -->
     <script src="../bower_components/jquery/dist/jquery.js"></script>
     <script src="../bower_components/angular/angular.js"></script>
@@ -45,13 +43,7 @@
     <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="../bower_components/toastr/toastr.js"></script>
     <script src="../bower_components/moment/moment.js"></script>
-    <script src="../bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls.min.js"></script>
     <script src="../bower_components/spin.js/spin.js"></script>
-
-    <!-- Bootstrapping -->
-    <script src="../app/app.js"></script>
-    <script src="../app/config.js"></script>
-    <script src="../app/config.route.js"></script>
 
     <!-- common Modules -->
     <script src="../app/common/common.js"></script>
@@ -59,17 +51,25 @@
     <script src="../app/common/spinner.js"></script>
     <script src="../app/common/exceptionHandler.js"></script>
 
-    <!-- common.bootstrap Modules -->
-    <script src="../app/common/bootstrap/bootstrap.dialog.js"></script>
+    <!-- core module -->
+    <script src="../app/core/app.js"></script>
+    <script src="../app/core/config.js"></script>
+    <script src="../app/core/config.route.js"></script>
+    <script src="../app/core/dashboard/dashboard.js"></script>
+    <script src="../app/core/layout/shell.js"></script>
+    <script src="../app/core/layout/sidebar.js"></script>
 
-    <!-- app -->
-    <script src="../app/avengers/avengers.js"></script>
-    <script src="../app/dashboard/dashboard.js"></script>
-    <script src="../app/layout/shell.js"></script>
-    <script src="../app/layout/sidebar.js"></script>
+    <!-- core services -->
+    <script src="../app/core/services/datacontext.js"></script>
+    <script src="../app/core/services/directives.js"></script>
 
-    <!-- app Services -->
-    <script src="../app/services/datacontext.js"></script>
-    <script src="../app/services/directives.js"></script>
+    <!--avengers module-->
+    <script src="../app/avengers/app.js"></script>
+    <script src="../app/avengers/config.route.js"></script>
+    <script src="../app/avengers/search/avengers.js"></script>
+
+    <!-- Bootstrapping -->
+    <script src="../app/app.js"></script>
+    <script src="../app/config.route.js"></script>
 </body>
 </html>

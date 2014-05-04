@@ -1,6 +1,6 @@
 ﻿<div data-ng-controller="shell as vm">
     <header class="clearfix">
-        <div data-ng-include="'app/layout/topnav.html'"></div>
+        <div data-ng-include="'app/core/layout/topnav.html'"></div>
     </header>
     <section id="content" class="content">
         <div data-ng-show="vm.isBusy" class="page-splash dissolve-animation">
@@ -8,7 +8,7 @@
             <div class="page-splash-message page-splash-message-subtle">{{vm.busyMessage}}</div>
         </div>
 
-        <div data-ng-include="'app/layout/sidebar.html'"></div>
+        <div data-ng-include="'app/core/layout/sidebar.html'"></div>
 
         <div data-ng-view class="shuffle-animation"></div>
     </section>

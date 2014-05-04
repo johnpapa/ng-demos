@@ -1,11 +1,11 @@
 (function () {
     'use strict';
     var controllerId = 'avengers';
-    angular.module('app')
+    angular.module('app.avengers')
         .controller(controllerId,
-            ['common', 'datacontext', avengers]);
+            ['common', 'core.datacontext', avengers]);
 
-    function avengers(common, datacontext) {
+    function avengers(common, coreDatacontext) {
         var log = common.logger.info;
 
         var vm = this;
@@ -24,15 +24,14 @@
         }
 
         function getMAA() {
-            return datacontext.getMAA().then(function (data) {
-//                vm.maa = data.data[0].data.results;
+            return coreDatacontext.getMAA().then(function (data) {
                 vm.maa = data;
                 return vm.maa;
             });
         }
 
         function getAvengersCast() {
-            return datacontext.getAvengersCast().then(function (data) {
+            return coreDatacontext.getAvengersCast().then(function (data) {
                 vm.avengers = data;
                 return vm.avengers;
             });

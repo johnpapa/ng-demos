@@ -1,8 +1,8 @@
 (function () {
     'use strict';
 
-    var serviceId = 'datacontext';
-    angular.module('app')
+    var serviceId = 'core.datacontext';
+    angular.module('app.core')
         .factory(serviceId, ['$http', 'common', datacontext]);
 
     function datacontext($http, common) {

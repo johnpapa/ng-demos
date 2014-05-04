@@ -2,7 +2,7 @@
     'use strict';
 
     var controllerId = 'shell';
-    angular.module('app').controller(controllerId,
+    angular.module('app.core').controller(controllerId,
         ['$rootScope', 'common', 'config', shell]);
 
     function shell($rootScope, common, config) {
@@ -32,9 +32,9 @@
 
         function toggleSpinner(on) { vm.isBusy = on; }
 
-        $rootScope.$on('$routeChangeStart',
-            function (event, next, current) { toggleSpinner(true); }
-        );
+//        $rootScope.$on('$routeChangeStart',
+//            function (event, next, current) { toggleSpinner(true); }
+//        );
 
         $rootScope.$on(events.controllerActivateSuccess,
             function (data) { toggleSpinner(false); }
