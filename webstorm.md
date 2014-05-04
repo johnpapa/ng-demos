@@ -305,7 +305,18 @@ This creates a menu option under Tools called `Start MongoDB`
 - Type `Edit Configurations`
 - Press `+` to add a new configuration
 - Select `node.js`
-- Name it `MEAN server`
+- Name it `MEAN server` (or whatever)
+- Set the working directory to your project such as `/Users/johnpapa/_git/CC-Angular-Breeze/final/CC.Web`
+- Set the JavaScript file to start as the server `mean/server.js`
+
+# Configure the nodemon with WebStorm
+- Make sure you have installed nodemon globally. if not, run `npm install -g nodemon` using `sudo`
+- Enter `CMD + SHIFT + A`
+- Type `Edit Configurations`
+- Press `+` to add a new configuration
+- Select `node.js`
+- Name it `MEAN server` (or whatever)
+- Set the `node parameters` to `/usr/local/bin/nodemon`
 - Set the working directory to your project such as `/Users/johnpapa/_git/CC-Angular-Breeze/final/CC.Web`
 - Set the JavaScript file to start as the server `mean/server.js`
 
