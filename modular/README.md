@@ -20,12 +20,13 @@ modularApp --> [
         modularApp.dashboard,
         modularApp.layout,
         modularApp.widgets
-    ] -->
-        modularApp.core --> [
-            ngAnimate,
-            ngRoute,
-            ngSanitize,
-            common,
-            common.exceptionHandler
-        ]
+    ]
+                            -->
+                                modularApp.core --> [
+                                    ngAnimate,
+                                    ngRoute,
+                                    ngSanitize,
+                                    common,
+                                    common.exceptionHandler
+                                ]
 ```
