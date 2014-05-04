@@ -2,9 +2,18 @@ AngularJS Modular Demo
 ===========
 Demonstrating Angular Modularity
 
+## Installing Node.js Packages
+- Open terminal
+- Type `cd server`
+- Type `npm install`
+
+## Installing Bower Packages
+- Open terminal
+- Type `bower install`
+
 ## Running
 Runs locally, no database required.
-From terminal type `cd server` then type `node server.js` and browse to port 7200
+From terminal type `cd server` then type `node server.js` and browse to `http://localhost:7200`
 
 ## How It Works
 The app is quite simple and has 2 main routes:
