@@ -3,14 +3,14 @@ var express      = require('express'),
     bodyParser   = require('body-parser'),
     compress     = require('compression'),
     cors         = require('cors'),
-    errorHandler = require('./errorHandler'),
+    errorHandler = require('./services/errorHandler'),
     favicon      = require('static-favicon'),
     fileServer   = require('serve-static'),
     http         = require('http'),
     isDev        = app.get('env') === 'development',
     logger       = require('morgan'),
     port         = process.env['PORT'] || 7200,
-    routes       = require('./routes');
+    routes       = require('./services/routes');
 
 var appDir =  __dirname + '/../'; // Our NG code
 

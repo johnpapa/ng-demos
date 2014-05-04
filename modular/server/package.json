@@ -15,6 +15,6 @@
   },
   "paths": {
       "api": "/api",
-      "data": "/data/"
+      "data": "/../data/"
   }
 }
