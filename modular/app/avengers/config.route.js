@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    var app = angular.module('app.avengers');
+    var app = angular.module('modularApp.avengers');
 
     app.constant('avengers.routes', getRoutes());
     app.config(['$routeProvider', 'avengers.routes', routeConfigurator]);

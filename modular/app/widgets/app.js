@@ -1,5 +1,5 @@
 (function () {
     'use strict';
 
-    var app = angular.module('app.widgets', ['app.core']);
+    var app = angular.module('modularApp.widgets', ['modularApp.core']);
 })();

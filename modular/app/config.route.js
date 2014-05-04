@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    var app = angular.module('app');
+    var app = angular.module('modularApp');
 
     app.config(['$routeProvider', routeConfigurator]);
     function routeConfigurator($routeProvider) {

@@ -2,7 +2,7 @@
     'use strict';
 
     var serviceId = 'avengers.dataservice';
-    angular.module('app.core')
+    angular.module('modularApp.avengers')
         .factory(serviceId, ['$http', 'common', dataservice]);
 
     function dataservice($http, common) {

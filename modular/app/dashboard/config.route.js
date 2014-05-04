@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    var app = angular.module('app.dashboard');
+    var app = angular.module('modularApp.dashboard');
 
     app.constant('dashboard.routes',  getRoutes());
 

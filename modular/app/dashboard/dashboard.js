@@ -1,7 +1,8 @@
 (function () {
     'use strict';
     var controllerId = 'dashboard';
-    angular.module('app.dashboard').controller(controllerId, ['common', 'avengers.dataservice', dashboard]);
+    angular.module('modularApp.dashboard')
+        .controller(controllerId, ['common', 'avengers.dataservice', dashboard]);
 
     function dashboard(common, avengersData) {
         var log = common.logger.info;

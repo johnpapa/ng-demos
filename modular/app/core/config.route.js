@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    var app = angular.module('app.core');
+    var app = angular.module('modularApp.core');
 
     app.constant('core.routes', []);
 

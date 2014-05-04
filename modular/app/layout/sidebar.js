@@ -2,7 +2,7 @@
     'use strict';
 
     var controllerId = 'sidebar';
-    angular.module('app.core').controller(controllerId,
+    angular.module('modularApp.core').controller(controllerId,
         ['$route', sidebar]);
 
     function sidebar($route) {
