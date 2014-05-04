@@ -1,11 +1,11 @@
 (function () {
     'use strict';
 
-    var serviceId = 'core.datacontext';
+    var serviceId = 'avengers.dataservice';
     angular.module('app.core')
-        .factory(serviceId, ['$http', 'common', datacontext]);
+        .factory(serviceId, ['$http', 'common', dataservice]);
 
-    function datacontext($http, common) {
+    function dataservice($http, common) {
         var $q = common.$q;
 
         var service = {
@@ -17,20 +17,13 @@
         return service;
 
         function getMAA() {
-            return $http({ method: 'GET', url: '/api/maa'})
+            return $http.get('/api/maa')
                 .then(function(data, status, headers, config) {
                     return data.data[0].data.results;
                 }, function(error){
                     console.log(error);
                     return error;
                 });
-//            return $q.when(results);
-//            var results = {data: null};
-//            $http({ method: 'GET', url: '/maa'})
-//                .success(function(data, status, headers, config) {
-//                    results.data = data[0].data.results;
-//                })
-//            return $q.when(results);
         }
 
         function getAvengerCount() {

@@ -21,7 +21,7 @@
 </head>
 <body>
     <div>
-        <div data-ng-include="'app/core/layout/shell.html'"></div>
+        <div data-ng-include="'app/layout/shell.html'"></div>
         <div id="splash-page" data-ng-show="false">
             <div class="page-splash">
                 <div class="page-splash-message">
@@ -55,18 +55,31 @@
     <script src="../app/core/app.js"></script>
     <script src="../app/core/config.js"></script>
     <script src="../app/core/config.route.js"></script>
-    <script src="../app/core/dashboard/dashboard.js"></script>
-    <script src="../app/core/layout/shell.js"></script>
-    <script src="../app/core/layout/sidebar.js"></script>
 
-    <!-- core services -->
-    <script src="../app/core/services/datacontext.js"></script>
-    <script src="../app/core/services/directives.js"></script>
+    <!-- layout -->
+    <script src="../app/layout/app.js"></script>
+    <script src="../app/layout/shell.js"></script>
+    <script src="../app/layout/sidebar.js"></script>
+
+    <!--widgets-->
+    <script src="../app/widgets/app.js"></script>
+    <script src="../app/widgets/ccImgPerson.js"></script>
+    <script src="../app/widgets/ccSidebar.js"></script>
+    <script src="../app/widgets/ccSpinner.js"></script>
+    <script src="../app/widgets/ccWidgetClose.js"></script>
+    <script src="../app/widgets/ccWidgetHeader.js"></script>
+    <script src="../app/widgets/ccWidgetMinimize.js"></script>
+
+    <!-- dashboard -->
+    <script src="../app/dashboard/app.js"></script>
+    <script src="../app/dashboard/config.route.js"></script>
+    <script src="../app/dashboard/dashboard.js"></script>
 
     <!--avengers module-->
     <script src="../app/avengers/app.js"></script>
     <script src="../app/avengers/config.route.js"></script>
-    <script src="../app/avengers/search/avengers.js"></script>
+    <script src="../app/avengers/avengers.js"></script>
+    <script src="../app/avengers/dataservice.js"></script>
 
     <!-- Bootstrapping -->
     <script src="../app/app.js"></script>

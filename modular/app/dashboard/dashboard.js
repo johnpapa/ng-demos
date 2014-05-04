@@ -1,9 +1,9 @@
 (function () {
     'use strict';
     var controllerId = 'dashboard';
-    angular.module('app.core').controller(controllerId, ['common', 'core.datacontext', dashboard]);
+    angular.module('app.dashboard').controller(controllerId, ['common', 'avengers.dataservice', dashboard]);
 
-    function dashboard(common, coreDatacontext) {
+    function dashboard(common, avengersData) {
         var log = common.logger.info;
 
         var vm = this;
@@ -24,14 +24,14 @@
         }
 
         function getAvengerCount() {
-            return coreDatacontext.getAvengerCount().then(function (data) {
+            return avengersData.getAvengerCount().then(function (data) {
                 vm.avengerCount = data;
                 return vm.avengerCount;
             });
         }
 
         function getAvengersCast() {
-            return coreDatacontext.getAvengersCast().then(function (data) {
+            return avengersData.getAvengersCast().then(function (data) {
                 vm.avengers = data;
                 return vm.avengers;
             });

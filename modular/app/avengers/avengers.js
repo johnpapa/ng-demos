@@ -3,9 +3,9 @@
     var controllerId = 'avengers';
     angular.module('app.avengers')
         .controller(controllerId,
-            ['common', 'core.datacontext', avengers]);
+            ['common', 'avengers.dataservice', avengers]);
 
-    function avengers(common, coreDatacontext) {
+    function avengers(common, avengersData) {
         var log = common.logger.info;
 
         var vm = this;
@@ -24,14 +24,14 @@
         }
 
         function getMAA() {
-            return coreDatacontext.getMAA().then(function (data) {
+            return avengersData.getMAA().then(function (data) {
                 vm.maa = data;
                 return vm.maa;
             });
         }
 
         function getAvengersCast() {
-            return coreDatacontext.getAvengersCast().then(function (data) {
+            return avengersData.getAvengersCast().then(function (data) {
                 vm.avengers = data;
                 return vm.avengers;
             });
