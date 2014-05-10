@@ -3,13 +3,9 @@
 
     var app = angular.module('modularApp.avengers');
 
-    app.constant('avengers.routes', getRoutes());
-    app.config(['$routeProvider', 'avengers.routes', routeConfigurator]);
-    function routeConfigurator($routeProvider, routes) {
-        routes.forEach(function (r) {
-            $routeProvider.when(r.url, r.config);
-        });
-    }
+    app.run(['routehelper', function(routehelper){
+        routehelper.configureRoutes(getRoutes());
+    }]);
 
     function getRoutes() {
         return [

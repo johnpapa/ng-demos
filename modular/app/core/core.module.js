@@ -5,10 +5,6 @@
         'ngAnimate',
         'ngRoute',
         'ngSanitize',
-        'common',
-        'common.exceptionHandler'
+        'common'
     ]);
-    app.run(['$route', 'core.routes', function($route, routes) {
-        $route.routeStore = routes;
-    }]);
 })();

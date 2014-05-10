@@ -31,6 +31,13 @@
         }
     }]);
 
+    //#region Configure the common route provider
+    app.config(['$routeProvider', 'routehelperConfigProvider',
+        function ($routeProvider, cfg) {
+            cfg.config.$routeProvider = $routeProvider;
+        }]);
+    //#endregion
+
     //#region Configure the common exception handler
     app.config(['exceptionConfigProvider', function (cfg) {
         cfg.config.appErrorPrefix = config.appErrorPrefix;

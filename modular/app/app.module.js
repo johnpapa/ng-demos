@@ -7,9 +7,6 @@
         'modularApp.layout',
         'modularApp.widgets'
     ]);
-
-
-
 })();
 
 

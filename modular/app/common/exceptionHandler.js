@@ -3,11 +3,11 @@
 (function (angular) {
     'use strict';
 
-    var commonEH = angular.module('common.exceptionHandler', []);
+    var common = angular.module('common');
 
     // Must configure the common service and set its
     // events via the exceptionConfigProvider
-    commonEH.provider('exceptionConfig', function () {
+    common.provider('exceptionConfig', function () {
         this.config = {
             // These are the properties we need to set
             //appErrorPrefix: ''
@@ -23,7 +23,7 @@
     // Configure by setting an optional string value for appErrorPrefix.
     // Accessible via config.appErrorPrefix (via config value).
 
-    commonEH.config(['$provide', function ($provide) {
+    common.config(['$provide', function ($provide) {
         $provide.decorator('$exceptionHandler',
             ['$delegate', 'exceptionConfig', 'logger',
                 extendExceptionHandler]);

@@ -3,15 +3,9 @@
 
     var app = angular.module('modularApp.dashboard');
 
-    app.constant('dashboard.routes',  getRoutes());
-
-    app.config(['$routeProvider', 'dashboard.routes', routeConfigurator]);
-    function routeConfigurator($routeProvider, routes) {
-        routes.forEach(function (r) {
-            $routeProvider.when(r.url, r.config);
-        });
-        $routeProvider.otherwise({ redirectTo: '/' });
-    }
+    app.run(['routehelper', function(routehelper){
+        routehelper.configureRoutes(getRoutes());
+    }]);
 
     function getRoutes() {
         return [
