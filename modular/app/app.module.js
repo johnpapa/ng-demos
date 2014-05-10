@@ -7,4 +7,9 @@
         'modularApp.layout',
         'modularApp.widgets'
     ]);
+
+
+
 })();
+
+

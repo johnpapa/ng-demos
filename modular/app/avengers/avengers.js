@@ -24,10 +24,11 @@
         }
 
         function getMAA() {
-            return avengersData.getMAA().then(function (data) {
-                vm.maa = data;
-                return vm.maa;
-            });
+            avengersData.getMAA()
+                .then(function (data) {
+                    vm.maa = data;
+                    return vm.maa;
+                });
         }
 
         function getAvengersCast() {

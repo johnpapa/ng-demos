@@ -1,0 +1,11 @@
+{
+  "name": "grunt-livereload-renewed",
+  "version": "1.0.0",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "matchdep": "~0.1.2",
+    "grunt-contrib-watch": "~0.5.1",
+    "grunt-open": "~0.2.1",
+    "grunt-express": "^1.3.3"
+  }
+}

@@ -25,7 +25,8 @@
 
     commonEH.config(['$provide', function ($provide) {
         $provide.decorator('$exceptionHandler',
-            ['$delegate', 'exceptionConfig', 'logger', extendExceptionHandler]);
+            ['$delegate', 'exceptionConfig', 'logger',
+                extendExceptionHandler]);
     }]);
 
     // Extend the $exceptionHandler service to also display a toast.
