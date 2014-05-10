@@ -7,6 +7,10 @@
         'modularApp.layout',
         'modularApp.widgets'
     ]);
+
+    app.run(['$route', function($route)  {
+    }]);
+
 })();
 
 
