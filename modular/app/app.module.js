@@ -8,8 +8,8 @@
         'modularApp.widgets'
     ]);
 
-    app.run(['$route', function($route)  {
-    }]);
+//    app.run(['$route', function($route)  {
+//    }]);
 
 })();
 
