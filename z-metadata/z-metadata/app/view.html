@@ -1,0 +1,69 @@
+﻿<div data-ng-controller="TodoController as vm">
+    <header>
+        <h1>Breeze Todos</h1><h2>with AngularJs</h2>
+        <form data-ng-submit="vm.addItem()">
+            <input type="text"
+                   data-ng-model="vm.newTodoDescription"
+                   placeholder="What needs to be done?" />
+        </form>
+    </header>
+    <section>
+        <div class="mark-all">
+            <span data-ng-show="vm.items.length">
+                <input id="markAll" type="checkbox"
+                       data-ng-model="vm.allCompleted"
+                       data-ng-click="vm.toggleCompleted()" />
+                <label for="markAll">Mark all as complete </label>
+            </span>
+
+            <input id="includeArchived" type="checkbox"
+                   data-ng-model="vm.includeArchived"
+                   data-ng-click="vm.getTodos()" />
+            <label for="includeArchived" class="archived">Show archived</label>
+        </div>
+        <div>
+            <input type="search" placeholder="Filter by name ..."
+                   data-ng-model="vm.itemFilterText" />
+        </div>
+        <ul>
+            <li data-ng-repeat="item in vm.items | filter:vm.itemFilter">
+
+                <!-- Readonly View -->
+                <div data-ng-hide="vm.isEditing(item)">
+                    <input type="checkbox"
+                           data-ng-model="item.IsDone"
+                           data-ng-class="{done: item.IsDone}" />
+                    <label data-ng-click="vm.editBegin(item)"
+                           data-ng-class="{done: item.IsDone, archived: item.IsArchived}">
+                        {{item.Description}}
+                    </label>
+                    <a href="#" data-ng-click="vm.deleteItem(item)">X</a>
+                </div>
+
+                <!-- Editing View -->
+                <div data-ng-show="vm.isEditing(item)">
+                    <form data-ng-submit="vm.editEnd()">
+                        <input type="text" autofocus
+                               data-ng-model="item.Description"
+                               data-ng-blur="vm.editEnd()"
+                               data-ng-mouseout="vm.editEnd()" />
+                    </form>
+                </div>
+            </li>
+
+        </ul>
+
+        <div class="controlLinks">
+            <a href="#" data-ng-click="vm.purge()">Purge</a>&nbsp;&nbsp;
+            <a href="#" data-ng-click="vm.reset()">Reset</a>
+        </div>
+    </section>
+
+    <footer>
+        <div data-ng-show="vm.itemsLeftMessage()">{{vm.itemsLeftMessage()}}</div>
+        <a href="#"
+           data-ng-show="vm.archiveCompletedMessage()"
+           data-ng-click="vm.archiveCompletedItems()">{{vm.archiveCompletedMessage()}}</a>
+    </footer>
+
+</div>
