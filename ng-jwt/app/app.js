@@ -3,17 +3,17 @@
 
     var app = angular.module('app', [
         // Angular modules
-        'ngAnimate',        // animations
-        'ngRoute',          // routing
-        'ngSanitize',       // sanitizes html bindings (ex: sidebar.js)
+        'ngAnimate',
+        'ngRoute',
+        'ngSanitize',
 
         // Custom modules
-        'common',           // common functions, logger, spinner
-        'common.bootstrap', // bootstrap dialog wrapper functions
-        'common.exceptionHandler', // exceptionHandler
+        'common',
+        'common.bootstrap',
+        'common.exceptionHandler',
 
         // 3rd Party Modules
-        'ui.bootstrap'      // ui-bootstrap (ex: carousel, pagination, dialog)
+        'ui.bootstrap'
     ]);
 
     // Handle routing errors and success events
