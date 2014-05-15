@@ -1,4 +1,4 @@
-#The Breeze/Angular Todo App
+<img src="http://www.breezejs.com/sites/all/images/BreezeB.png" alt="Todo App with Azure" style="float:left; height:70px; margin-right: 8px;"/><h1>The Breeze/Angular Todo App</h1>
 
 The "Todo" folder in ngDemos is a simple Todo application that demonstrates features of a Breeze/Angular app.
 
@@ -115,8 +115,6 @@ You can configure the app to use metadata defined on the *client* instead.
 
 Now the application uses metadata defined on the client in *model.js* 
 
->The toggle is in the `getEntityManager` method of *entityManagerFactory.js*. >
->
 >Note that Azure Mobile Services cannot generate metadata and so *that* version of the application must always use the client-defined metadata.
 
 The `TodoItem` entity only has three properties so it's pretty easy to write and read the metadata by hand:
