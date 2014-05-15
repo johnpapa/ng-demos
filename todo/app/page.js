@@ -22,7 +22,7 @@
 
         var wipMsgCount = 0;
         reportWipMessages();
-        datacontext.ready(onReady);
+        datacontext.ready().then(onReady).catch(handleError);
 
         function onReady(){
             // members that depend on a ready datacontext

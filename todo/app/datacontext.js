@@ -26,16 +26,15 @@
 
         return datacontext;
         /////////////////////////////
-        function ready(callback){
-
-            entityManagerFactory.getEntityManager().then(haveEntityManager);
+        function ready(){
+            return entityManagerFactory.getEntityManager().then(haveEntityManager);
 
             function haveEntityManager(em){
                 manager = em;
                 manager.entityChanged.subscribe(entityCountsChanged);
                 todoItemType = manager.metadataStore.getEntityType('TodoItem');
                 updateCounts();
-                callback();
+                return true;
             }
         }
 
