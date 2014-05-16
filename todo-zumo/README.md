@@ -1,6 +1,10 @@
-<img src="http://www.breezejs.com/sites/all/images/BreezeB.png" alt="Todo App with Azure" style="float:left; height:70px; margin-right: 8px;"/><h1>The Breeze/Angular Todo App</h1>
+<img src="http://www.breezejs.com/sites/all/images/BreezeB.png" alt="Todo App with Azure" style="float:left; height:70px; margin-right: 8px;"/><h1>The Breeze/Angular Todo-Zumo App</h1>
 
-The "Todo" folder in ngDemos is a simple Todo application that demonstrates features of a Breeze/Angular app.
+"**todo-zumo**" is a simple **one-screen Angular Todo app**  that demonstrates features of a Breeze + Angular.
+
+To keep your attention squarely on client development, this app can run without defining a server on your machine. By default it queries and saves data to a **Microsoft Azure Mobile Services** (AKA "Zumo") back-end that is waiting for your call.
+
+>The Zumo aspect alone may be interesting to you. Alternatively, if you're developing in a Windows environment, you can reconfigure the app to talk to an ASP.NET Web API back-end running on localhost. That server is included in this project in the *todo.WebAPI* folder as [discussed below](#buildWebAPI).
 
 The **Breeze** features of particular interest are:
 
