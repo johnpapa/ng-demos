@@ -34,7 +34,6 @@
                 manager.entityChanged.subscribe(entityCountsChanged);
                 todoItemType = manager.metadataStore.getEntityType('TodoItem');
                 updateCounts();
-                return true;
             }
         }
 
