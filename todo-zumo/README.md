@@ -1,4 +1,4 @@
-<img src="http://www.breezejs.com/sites/all/images/BreezeB.png" alt="Todo App with Azure" style="float:left; height:70px; margin-right: 8px;"/><h1>The Breeze/Angular Todo-Zumo App</h1>
+<img src="http://www.breezejs.com/sites/all/images/BreezeZumo.png" alt="Todo App with Azure" style="float:left; height:70px; margin-right: 8px;"/><h1>The Breeze/Angular Todo-Zumo App</h1>
 
 "**todo-zumo**" is a simple **one-screen Angular Todo app**  that demonstrates features of a Breeze + Angular.
 
@@ -53,7 +53,7 @@ You'll need to launch a web application server to host the client-side assets (H
 
 1. Open the *launchers* folder.
 
-1. Pick the launch option appropriate to your OS. For example, Windows users should choose *launch-windows*. The launcher opens the web server in a console/terminal window. Confirm that the server is running.
+1. Pick the launch option appropriate to your OS and double-click to launch. For example, Windows users should choose *launch-windows*. The launcher opens the web server in a console/terminal window. Confirm that the server is running.
 
 1. Open a browser to **http://localhost:8000/**
 
