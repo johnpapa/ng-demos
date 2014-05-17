@@ -10,7 +10,7 @@
 
     function controller($state, $stateParams, dataservice ) {
         var vm  = this;
-        dataservice.ready(onReady);
+        dataservice.ready().then(onReady);
 
         function onReady() {
             var type = $stateParams.productType;

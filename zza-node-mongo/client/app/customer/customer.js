@@ -29,7 +29,7 @@
         vm.select = select;
         vm.selectedCustomer = null;
         /////////////////////
-        dataservice.ready(getCustomers);
+        dataservice.ready().then(getCustomers);
 
         // filter for customers with first or last name starting with filter text
         function filteredCustomers(){

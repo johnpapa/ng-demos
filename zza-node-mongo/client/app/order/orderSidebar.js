@@ -10,7 +10,7 @@
 
     function controller( $location, dataservice ) {
         var vm = this;
-        dataservice.ready(onReady );
+        dataservice.ready().then(onReady);
 
         function onReady() {
             vm.cartItemStateRef  = cartItemStateRef;

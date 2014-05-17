@@ -9,7 +9,7 @@
 
     function controller(dataservice, pricing) {
         var vm   = this;
-        dataservice.ready( onReady );
+        dataservice.ready().then(onReady);
 
         function onReady(){
             vm.hasExtraCost  = false;

@@ -26,11 +26,8 @@
         };
         return service;
         /////////////////////
-        function ready(success, fail) {
-            if (!isReady){ isReady = initialize();}
-            if (success) { isReady = isReady.then(success);}
-            if (fail)    { isReady = isReady.catch(fail);}
-            return isReady;
+        function ready() {
+            return isReady || (isReady = initialize());
         }
 
         function initialize() {
