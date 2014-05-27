@@ -1,10 +1,12 @@
 /*
+ * SPAGHETTI CODE
+ *
  * Do not use this!
- * This controller is not functional!
  * Use sessions.js instead.
- * This exists to demonstrate the spaghetti code concept.
- * All functionality is contained within this controller,
- * with no code reuse, difficult to test, and high fragility.
+ *
+ * Pure example of making a controller do all the work and not delegating to dependencies.
+ * We lose code reuse, make it difficult to test, difficult to maintain,
+ * and increases the chances for introducing bugs since the code is duplicated.
  */
 (function () {
     'use strict';
