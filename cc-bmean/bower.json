@@ -26,6 +26,8 @@
     "angular-sanitize": "~1.2.16",
     "font-awesome": "~4.0.3",
     "angular-ui-bootstrap-bower": "~0.10.0",
-    "breezejs": "~1.4.12-pre"
+    "breezejs": "~1.4.12",
+    "angular.breeze.storagewip": "~1.0.3",
+    "extras.angular.plus": "~0.9.0"
   }
 }
