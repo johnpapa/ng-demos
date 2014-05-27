@@ -12,3 +12,10 @@ Code Camper with Breeze, Mongo, Express, Angular, and Node
 2. Enter `bower install` to install the bower packages
 3. Go to the `server` folder and enter `npm install` to install the node modules
 
+## MongoDB
+After installing MongoDB, create put your path to your MongoDB location in the file `\server\data\mongodb.config`. It may look something like this:
+
+```
+dbpath=/Users/johnpapa/_git/ng-demos/cc-bmean/server/data/ngCodeCamper
+```
+
