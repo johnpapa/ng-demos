@@ -1,0 +1,53 @@
+<section id="sessions-view" class="mainbar"
+         data-ng-controller="sessions as vm">
+    <section class="matter">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <input class="input-xlarge search-query"
+                           data-ng-model="vm.sessionsSearch"
+                           data-ng-keyup="vm.search($event)"
+                           placeholder="Filter room, speaker, tag, title, or track">
+                </div>
+                <div class="col-sm-8">
+                    <div class="btn-group pull-right">
+                        <a class="btn btn-info btn-form-md"
+                           data-ng-click="vm.refresh()"><i class="fa fa-refresh"></i><span>Refresh</span></a>
+                        <a class="btn btn-info btn-form-md"
+                           href="#/session/new"><i class="fa fa-plus"></i><span>Add Session</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="widget worange col-sm-12">
+                <div data-cc-widget-header title="{{vm.title}}"
+                     subtitle="{{vm.filteredSessions.length}} / {{vm.sessions.length}}">
+                </div>
+                <div class="widget-content user">
+                    <div class="padd" data-ng-repeat="s in vm.filteredSessions track by s.id"
+                         data-ng-click="vm.gotoSession(s)">
+                        <div class="user" title="Go to session details">
+                            <img data-cc-img-person="{{s.speaker.imageSource}}" class="img-thumbnail user-pic"/>
+
+                            <div class="user-details">
+                                <small>{{s.timeSlot.name}}</small>
+                                at
+                                <small>{{s.room.name}}</small>
+                                <small class="right hidden-xs">{{s.level}}</small>
+                                <small class="right hidden-xs">{{s.track.name}}</small>
+                                <small class="right hidden-xs">{{s.code}}</small>
+                                <h3>{{s.title}}</h3>
+                                <h6>{{s.speaker.fullName}}</h6>
+                                <small class="text-subtle hidden-xs">{{s.tagsFormatted}}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="widget-foot">
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>

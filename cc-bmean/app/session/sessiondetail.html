@@ -1,0 +1,123 @@
+<section id="session-view" class="mainbar" data-ng-controller="sessiondetail as vm">
+    <section class="matter">
+        <div class="container">
+            <button class="btn btn-info btn-form-md"
+                    data-ng-click="vm.goBack()">
+                <i class="fa fa-hand-o-left"></i>Back
+            </button>
+            <button class="btn btn-info btn-form-md"
+                    data-ng-click="vm.cancel()" data-ng-disabled="!vm.canSave">
+                <i class="fa fa-undo"></i>Cancel
+            </button>
+            <button class="btn btn-info btn-form-md"
+                    data-ng-click="vm.save()" data-ng-disabled="!vm.canSave">
+                <i class="fa fa-save"></i>Save
+            </button>
+            <button class="btn btn-danger btn-form-md" data-ng-click="vm.deleteSession()">
+                <i class="fa fa-trash-o"></i>Delete
+            </button>
+
+            <!--Need ng-hide for show/hide animations-->
+                <span data-ng-show="vm.hasChanges" class="dissolve-animation ng-hide flag-haschanges">
+                    <i class="fa fa-asterisk fa fa-asterisk-large" rel="tooltip" title="You have changes"></i>
+                </span>
+        </div>
+        <div class="widget wgreen">
+            <div data-cc-widget-header title="Edit {{vm.session.title || 'New Session'}}"></div>
+            <form class="widget-content user">
+                <div class="form-group">
+                    <label class="control-label">Title</label>
+
+                    <div class="">
+                        <input class="form-control"
+                               data-ng-model="vm.session.title"
+                               data-z-validate
+                               placeholder="Session title"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Track</label>
+
+                    <div>
+                        <select class="form-control"
+                                data-ng-options="t.name for t in vm.tracks"
+                                data-ng-model="vm.session.track"
+                                data-z-validate></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Time Slot</label>
+
+                    <div>
+                        <select class="form-control"
+                                data-ng-options="ts.name for ts in vm.timeslots"
+                                data-ng-model="vm.session.timeSlot"
+                                data-z-validate></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Room</label>
+
+                    <div>
+                        <select class="form-control"
+                                data-ng-options="r.name for r in vm.rooms"
+                                data-ng-model="vm.session.room"
+                                data-z-validate></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Code</label>
+
+                    <div>
+                        <input class="form-control"
+                               data-ng-model="vm.session.code"
+                               data-z-validate
+                               placeholder="Code"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Level</label>
+
+                    <div>
+                        <input class="form-control"
+                               data-ng-model="vm.session.level"
+                               data-z-validate
+                               placeholder="Level"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Tags</label>
+
+                    <div>
+                        <input class="form-control"
+                               data-ng-model="vm.session.tagsFormatted"
+                               data-z-validate
+                               placeholder="Tags"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="control-label">
+                        <img data-cc-img-person="{{vm.session.speaker.imageSource}}" class="img-thumbnail"/>
+                        <address data-ng-model="vm.session.speaker.fullName"></address>
+                    </div>
+                    <div>
+                        <select class="form-control"
+                                data-ng-model="vm.session.speaker"
+                                data-ng-options="speaker.fullName for speaker in vm.speakers"
+                                data-z-validate></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Description</label>
+
+                    <div>
+                        <textarea class="form-control"
+                                  data-ng-model="vm.session.description"
+                                  data-z-validate
+                                  placeholder="Enter description"></textarea>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</section>

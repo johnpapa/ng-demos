@@ -1,0 +1,94 @@
+<section id="speaker-view" class="mainbar"
+         data-ng-controller="speakerdetail as vm">
+    <section class="matter">
+        <div class="container">
+            <div>
+                <button class="btn btn-info btn-form-md"
+                        data-ng-click="vm.goBack()">
+                    <i class="fa fa-hand-o-left"></i>Back
+                </button>
+                <button class="btn btn-info btn-form-md"
+                        data-ng-click="vm.cancel()" data-ng-disabled="!vm.canSave">
+                    <i class="fa fa-undo"></i>Cancel
+                </button>
+                <button class="btn btn-info btn-form-md"
+                        data-ng-click="vm.save()" data-ng-disabled="!vm.canSave">
+                    <i class="fa fa-save"></i>Save
+                </button>
+
+                <!--Need ng-hide for show/hide animations-->
+                <span data-ng-show="vm.hasChanges" class="dissolve-animation ng-hide flag-haschanges">
+                    <i class="fa fa-asterisk fa fa-asterisk-large" rel="tooltip" title="You have changes"></i>
+                </span>
+            </div>
+            <div class="widget wgreen">
+                <div data-cc-widget-header title="Edit {{vm.speaker.fullName || 'New Speaker'}}"></div>
+                <div class="widget-content user">
+                    <div class="form-group">
+                        <label class="control-label">First Name</label>
+
+                        <div>
+                            <input class="form-control"
+                                   data-ng-model="vm.speaker.firstName"
+                                   data-z-validate
+                                   placeholder="First Name"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Last Name</label>
+
+                        <div>
+                            <input class="form-control"
+                                   data-ng-model="vm.speaker.lastName"
+                                   data-z-validate
+                                   placeholder="Last Name"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Email</label>
+
+                        <div>
+                            <input class="form-control"
+                                   data-ng-model="vm.speaker.email"
+                                   data-z-validate
+                                   placeholder="Email"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Blog</label>
+
+                        <div>
+                            <input class="form-control"
+                                   data-ng-model="vm.speaker.blog"
+                                   data-z-validate
+                                   placeholder="Blog"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Twitter</label>
+
+                        <div>
+                            <input class="form-control"
+                                   data-ng-model="vm.speaker.twitter"
+                                   data-z-validate
+                                   placeholder="Twitter"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <img data-cc-img-person="{{vm.speaker.imageSource}}" class="img-thumbnail"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Bio</label>
+
+                        <div>
+                            <textarea class="form-control"
+                                      data-ng-model="vm.speaker.bio"
+                                      data-z-validate
+                                      placeholder="Enter speaker bio"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>

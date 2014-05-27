@@ -1,0 +1,22 @@
+<div class="widget-content referrer" data-ng-switch="!!vm.wip.length">
+    <div data-ng-switch-when="false">No work in progress found</div>
+    <table class="table table-bordered table-hover" data-ng-switch-when="true">
+        <thead>
+        <tr>
+            <th><a data-ng-click="vm.setSort('entityName')" href="">Item</a></th>
+            <th><a data-ng-click="vm.setSort('description')" href="">Description</a></th>
+            <th><a data-ng-click="vm.setSort('state')" href="">State</a></th>
+            <th><a data-ng-click="vm.setSort('date')" href="">Date Changed</a></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr data-ng-repeat="item in vm.wip track by item.key | orderBy:vm.predicate:vm.reverse"
+            data-ng-click="vm.gotoWip(item)">
+            <td>{{item.entityName}}</td>
+            <td>{{item.description}}</td>
+            <td>{{item.state}}</td>
+            <td>{{item.date | date:'MM/dd/yyyy @ h:mma'}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

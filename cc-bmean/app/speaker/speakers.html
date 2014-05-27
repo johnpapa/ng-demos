@@ -1,0 +1,48 @@
+<section id="speakers-view" class="mainbar" data-ng-controller="speakers as vm">
+    <section class="matter">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <input class="input-md search-query"
+                           data-ng-model="vm.speakerSearch"
+                           data-ng-keyup="vm.search($event)"
+                           placeholder="live search...">
+                </div>
+                <div class="col-sm-8">
+                    <div class="btn-group pull-right">
+                        <a class="btn btn-info btn-form-md"
+                           data-ng-click="vm.refresh()"><i class="fa fa-refresh"></i><span>Refresh</span></a>
+                        <a class="btn btn-info btn-form-md"
+                           data-ng-href="#/speaker/new"><i class="fa fa-plus"></i><span>Add Speaker</span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="widget wviolet col-sm-12">
+                    <div data-cc-widget-header title="{{vm.title}}"
+                         subtitle="{{vm.filteredSpeakers.length}} / {{vm.speakers.length}}">
+                    </div>
+                    <div class="widget-content user">
+                        <div class="padd list-flow" data-ng-repeat="s in vm.filteredSpeakers track by s.id"
+                             data-ng-click="vm.gotoSpeaker(s)">
+                            <div class="user" title="Go to speaker details">
+                                <!--Learning Points-->
+                                <!--<input ng-model="s.imageSource"/>-->
+                                <!--giggles="what happens"-->
+                                <img data-cc-img-person="{{s.imageSource}}" class="img-thumbnail stacked"/>
+
+                                <div class="name-stack">
+                                    <h5>{{s.firstName}}</h5>
+                                    <h5>{{s.lastName}}</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-foot">
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
