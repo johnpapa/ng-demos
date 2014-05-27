@@ -12,7 +12,7 @@
         };
         var $q = common.$q;
 
-        function Ctor(entityManager, entityName, repoServiceId) {
+        function Ctor(entityManager, entityName) {
             // instance members that are stateful
             this.entityName = entityName;
             this.getById = getById.bind(this);

@@ -3,14 +3,13 @@
 
     var controllerId = 'sessions';
     angular.module('app').controller(controllerId,
-        ['$location', '$scope', '$route', '$routeParams',
+        ['$location', '$routeParams',
             'common', 'config', 'datacontext', sessions]);
 
-    function sessions($location, $scope, $route, $routeParams, common, config, datacontext) {
+    function sessions($location, $routeParams, common, config, datacontext) {
         var vm = this;
         var keyCodes = config.keyCodes;
-        var applyFilter = function () {
-        };
+        var applyFilter = function () {};
 
         vm.filteredSessions = [];
         vm.gotoSession = gotoSession;
@@ -25,25 +24,11 @@
 
         function activate() {
             common.activateController([getSessions()], controllerId).then(function () {
-                // createSearchThrottle uses values by convention, via its parameters:
-                //     vm.sessionsSearch is where the user enters the search
-                //     vm.sessions is the original unfiltered array
-                //     vm.filteredSessions is the filtered array
-                //     vm.sessionsFilter is the filtering function
                 applyFilter = common.createSearchThrottle(vm, 'sessions');
                 if (vm.sessionsSearch) {
                     applyFilter(true /*now*/);
                 }
             });
-        }
-
-        function search($event) {
-            if ($event.keyCode === keyCodes.esc) {
-                vm.sessionsSearch = '';
-                applyFilter(true /*now*/);
-            } else {
-                applyFilter();
-            }
         }
 
         function getSessions(forceRefresh) {
@@ -61,6 +46,15 @@
 
         function refresh() {
             getSessions(true);
+        }
+
+        function search($event) {
+            if ($event.keyCode === keyCodes.esc) {
+                vm.sessionsSearch = '';
+                applyFilter(true /*now*/);
+            } else {
+                applyFilter();
+            }
         }
 
         function sessionsFilter(session) {

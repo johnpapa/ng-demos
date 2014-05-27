@@ -15,7 +15,7 @@
 
         /* Implementation */
         function createRepo(manager) {
-            var base = new AbstractRepository(manager, entityName, serviceId);
+            var base = new AbstractRepository(manager, entityName);
 
             // Using the type is a little faster than the the type name
             // worth doing when frequently called as in 'calcIsSpeaker'

@@ -61,6 +61,13 @@
             // After a delay, search a viewmodel's list using
             // a filter function, and return a filteredList.
 
+            // createSearchThrottle uses values by convention, via its parameters:
+            //     vm.sessionsSearch is where the user enters the search
+            //     vm.sessions is the original unfiltered array
+            //     vm.filteredSessions is the filtered array
+            //     vm.sessionsFilter is the filtering function
+
+
             // custom delay or use default
             delay = +delay || 300;
             // if only vm and list parameters were passed, set others by naming convention
