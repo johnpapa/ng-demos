@@ -37,10 +37,6 @@
             var promises = [getAttendeeCount(), getSessionCount(), getTrackCounts()];
             getSpeakers();
             common.activateController(promises, controllerId);
-
-            // Learning Point
-            //$q.all([getAttendeeCount(), getSessionCount(), getTrackCounts()])
-            //    .then(function (data) { common.activateSuccess(controllerId); });
         }
 
         function getTrackCounts() {

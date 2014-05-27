@@ -24,10 +24,6 @@
         activate();
 
         function activate() {
-            // Learning point
-            // Could use $q here, but we wrapped it instead.
-            //$q.all([getSessions()])
-            //    .then(function (data) { common.activateSuccess(controllerId); });
             common.activateController([getSessions()], controllerId).then(function () {
                 // createSearchThrottle uses values by convention, via its parameters:
                 //     vm.sessionsSearch is where the user enters the search
@@ -59,8 +55,6 @@
 
         function gotoSession(session) {
             if (session && session.id) {
-                // '#/session/71'
-                //$route.transition(url)
                 $location.path('/session/' + session.id);
             }
         }

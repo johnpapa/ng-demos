@@ -43,10 +43,6 @@
             });
         }
 
-        function getAttendeeFilteredCount() {
-            vm.attendeeFilteredCount = datacontext.attendee.getFilteredCount(vm.attendeeSearch);
-        }
-
         function getAttendees(forceRefresh) {
             return datacontext.attendee.getAll(
                     forceRefresh,
@@ -62,6 +58,10 @@
                     getAttendeeFilteredCount();
                     return data;
                 });
+        }
+
+        function getAttendeeFilteredCount() {
+            vm.attendeeFilteredCount = datacontext.attendee.getFilteredCount(vm.attendeeSearch);
         }
 
         function pageChanged(page) {

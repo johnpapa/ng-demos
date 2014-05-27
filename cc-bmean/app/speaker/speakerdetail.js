@@ -47,10 +47,6 @@
             }
         }
 
-        function gotoSpeakers() {
-            $location.path('/speakers');
-        }
-
         function canSave() {
             return vm.hasChanges && !vm.isSaving;
         }
@@ -83,16 +79,20 @@
             $window.history.back();
         }
 
-        function onEveryChange() {
-            $scope.$on(config.events.entitiesChanged, function (event, data) {
-                autoStoreWip();
-            });
+        function gotoSpeakers() {
+            $location.path('/speakers');
         }
 
         function onDestroy() {
             $scope.$on('$destroy', function () {
                 autoStoreWip(true);
                 datacontext.cancel();
+            });
+        }
+
+        function onEveryChange() {
+            $scope.$on(config.events.entitiesChanged, function (event, data) {
+                autoStoreWip();
             });
         }
 

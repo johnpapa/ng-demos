@@ -32,7 +32,6 @@
         activate();
 
         function activate() {
-            //routemediator.register(vm);
             initLookups();
             onDestroy();
             onHasChanges();
@@ -52,10 +51,6 @@
             if (vm.session.entityAspect.entityState.isDetached()) {
                 gotoSessions();
             }
-        }
-
-        function gotoSessions() {
-            $location.path('/sessions');
         }
 
         function canSave() {
@@ -109,6 +104,10 @@
             $window.history.back();
         }
 
+        function gotoSessions() {
+            $location.path('/sessions');
+        }
+
         function initLookups() {
             // Get the lookups lists and their nullo option
             var lookups = datacontext.lookup.cachedData;
@@ -119,18 +118,18 @@
             vm.speakers = datacontext.speaker.getAllLocal(true);
         }
 
-        function onEveryChange() {
-            $scope.$on(config.events.entitiesChanged,
-                function (event, data) {
-                    autoStoreWip();
-                });
-        }
-
         function onDestroy() {
             $scope.$on('$destroy', function () {
                 autoStoreWip(true);
                 datacontext.cancel();
             });
+        }
+
+        function onEveryChange() {
+            $scope.$on(config.events.entitiesChanged,
+                function (event, data) {
+                    autoStoreWip();
+                });
         }
 
         function onHasChanges() {
@@ -167,38 +166,5 @@
             var description = vm.session.title || '[New Session]' + vm.session.id;
             wipEntityKey = datacontext.zStorageWip.storeWipEntity(vm.session, wipEntityKey, entityName, description);
         }
-
-        //#region canDeactivate - dead code
-        //function ___canDeactivate() {
-        //    var deferred = $q.defer();
-
-        //    if (vm.isDeleting) {
-        //        deferred.reject('Is Deleting');
-        //        return deferred.promise;
-        //    }
-        //    if (!vm.hasChanges) {
-        //        deferred.resolve('Has no changes, let em go');
-        //        return deferred.promise;
-        //    }
-
-        //    var title = 'Do you want to leave "' + vm.session.title + '" ?';
-        //    var msg = 'Navigate away and cancel your changes?';
-        //    var btns = [{ result: 'no', label: 'No' },
-        //        { result: 'yes', label: 'Yes', cssClass: 'btn-primary' }];
-
-        //    $dialog.messageBox(title, msg, btns)
-        //        .open().then(function (result) {
-        //            if (result.toLowerCase() === 'yes') {
-        //                cancel();
-        //                deferred.resolve('Allow leave, canceled changes');
-        //            } else {
-        //                var msg = 'You can check out any time you like, but you can never leave! [sessiondetail.js]';
-        //                logger.logWarning(msg, null, controllerId, true);
-        //                deferred.reject('User decided to stay on screen');
-        //            }
-        //        });
-        //    return deferred.promise;
-        //}
-        //#endregion
     }
 })();
