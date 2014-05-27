@@ -25,7 +25,6 @@
 
             return $q.all(promises).then(function (eventArgs) {
                 var data = { controllerId: controllerId };
-//                $rootScope.$broadcast.apply($rootScope, ['controller.activateSuccess', data]);
                 $rootScope.$broadcast('controller.activateSuccess', data);
                 toastr.info('Activated Avengers View');
                 $log.info('Activated Avengers View');
