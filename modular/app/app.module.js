@@ -1,16 +1,12 @@
 (function () {
     'use strict';
 
-    var app = angular.module('modularApp', [
+    angular.module('modularApp', [
         'modularApp.avengers',
         'modularApp.dashboard',
         'modularApp.layout',
         'modularApp.widgets'
     ]);
-
-//    app.run(['$route', function($route)  {
-//    }]);
-
 })();
 
 

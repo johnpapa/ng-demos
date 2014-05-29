@@ -1,7 +1,7 @@
 (function(angular) {
     'use strict';
 
-    angular.module('common')
+    angular.module('blocks.logger')
         .factory('logger', ['$log', factory ] );
 
     function factory( $log ) {
@@ -19,6 +19,7 @@
 
         return logger;
         /////////////////////
+
         function error(message, data, title) {
             toastr.error(message, title);
             $log.error('Error: ' + message, data);

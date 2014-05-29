@@ -3,11 +3,11 @@
 (function (angular) {
     'use strict';
 
-    var common = angular.module('common');
+    var exceptionModule = angular.module('blocks.exception');
 
-    // Must configure the common service and set its
+    // Must configure the service and set its
     // events via the exceptionConfigProvider
-    common.provider('exceptionConfig', function () {
+    exceptionModule.provider('exceptionConfig', function () {
         this.config = {
             // These are the properties we need to set
             //appErrorPrefix: ''
@@ -22,8 +22,7 @@
 
     // Configure by setting an optional string value for appErrorPrefix.
     // Accessible via config.appErrorPrefix (via config value).
-
-    common.config(['$provide', function ($provide) {
+    exceptionModule.config(['$provide', function ($provide) {
         $provide.decorator('$exceptionHandler',
             ['$delegate', 'exceptionConfig', 'logger',
                 extendExceptionHandler]);
@@ -34,10 +33,6 @@
         var appErrorPrefix = exceptionConfig.config.appErrorPrefix || '';
         return function (exception, cause) {
             $delegate(exception, cause);
-//            if (appErrorPrefix && exception.message.indexOf(appErrorPrefix) === 0) {
-//                return;
-//            }
-
             var errorData = { exception: exception, cause: cause };
             var msg = appErrorPrefix + exception.message;
             logger.error(msg, errorData);
