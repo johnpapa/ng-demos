@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('modularApp.dashboard',
-        ['modularApp.core', 'modularApp.avengers']
+    angular.module('app.dashboard', ['app.core', 'app.avengers']
+
     );
 })();

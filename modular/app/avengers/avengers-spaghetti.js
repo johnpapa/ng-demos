@@ -12,7 +12,7 @@
 (function () {
     'use strict';
     var controllerId = 'avengers';
-    angular.module('modularApp.avengers')
+    angular.module('app.avengers')
         .controller(controllerId, ['$http', '$log', '$q', '$rootScope', avengers]);
 
     function avengers($http, $log, $q, $rootScope) {

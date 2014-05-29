@@ -6,5 +6,7 @@
     //  - common
     //  - spinner
     //  - routehelper
+
     angular.module('common', []);
+
 })();

@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('modularApp.widgets')
+    angular.module('app.widgets')
         .directive('ccSpinner', ['$window', ccSpinner]);
 
     function ccSpinner ($window) {

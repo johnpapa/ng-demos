@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    var app = angular.module('modularApp.avengers');
+    var app = angular.module('app.avengers');
 
     app.run(['routehelper', function(routehelper){
         routehelper.configureRoutes(getRoutes());

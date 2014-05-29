@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('modularApp.widgets')
+    angular.module('app.widgets')
         .directive('ccWidgetMinimize', [ccWidgetMinimize]);
 
     function ccWidgetMinimize () {

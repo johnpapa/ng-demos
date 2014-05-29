@@ -1,12 +1,10 @@
 (function () {
     'use strict';
 
-    angular.module('modularApp.core', [
-        'ngAnimate',
-        'ngRoute',
-        'ngSanitize',
+    angular.module('app.core', [
+        'ngAnimate', 'ngRoute', 'ngSanitize',
         'common',
-        'blocks.exception',
-        'blocks.logger'
+        'blocks.exception', 'blocks.logger'
     ]);
+
 })();

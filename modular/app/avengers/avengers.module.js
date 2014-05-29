@@ -1,5 +1,6 @@
 (function () {
     'use strict';
 
-    angular.module('modularApp.avengers', ['modularApp.core']);
+    angular.module('app.avengers', ['app.core']);
+
 })();

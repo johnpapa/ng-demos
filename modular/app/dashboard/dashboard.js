@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     var controllerId = 'dashboard';
-    angular.module('modularApp.dashboard')
+    angular.module('app.dashboard')
         .controller(controllerId, ['common', 'avengers.dataservice', dashboard]);
 
     function dashboard(common, avengersData) {

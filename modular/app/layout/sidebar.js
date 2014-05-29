@@ -2,7 +2,7 @@
     'use strict';
 
     var controllerId = 'sidebar';
-    angular.module('modularApp.layout')
+    angular.module('app.layout')
         .controller(controllerId,
             ['$route', 'routehelper', sidebar]);
 

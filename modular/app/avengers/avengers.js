@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     var controllerId = 'avengers';
-    angular.module('modularApp.avengers')
+    angular.module('app.avengers')
         .controller(controllerId,
             ['common', 'avengers.dataservice', avengers]);
 
