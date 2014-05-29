@@ -6,5 +6,5 @@
     //  - common
     //  - spinner
     //  - routehelper
-    var commonModule = angular.module('common', []);
+    angular.module('common', []);
 })();
