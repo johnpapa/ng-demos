@@ -12,18 +12,12 @@
     <section id="content" class="content">
         <div data-ng-include="'/app/layout/sidebar.html'"></div>
 
-        <div data-ng-show="vm.useSpinner && vm.isBusy" class="page-spinner dissolve-animation">
-            <div data-cc-spinner="vm.spinnerOptions"></div>
-            <div class="page-spinner-message page-spinner-message-subtle">{{vm.busyMessage}}</div>
-        </div>
-
         <div data-ng-view class="shuffle-animation"></div>
 
         <div ngplus-overlay
              ngplus-overlay-delay-in="50"
              ngplus-overlay-delay-out="700"
-             ngplus-overlay-animation="dissolve-animation"
-             ng-hide="vm.useSpinner">
+             ngplus-overlay-animation="dissolve-animation">
             <img src="../../content/images/busy.gif"/>
 
             <div class="page-spinner-message overlay-message">{{vm.busyMessage}}</div>

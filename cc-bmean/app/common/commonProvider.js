@@ -9,7 +9,6 @@
         this.config = {
             // These are the properties we need to set
             //controllerActivateSuccessEvent: '',
-            //spinnerToggleEvent: ''
         };
 
         this.$get = function () {

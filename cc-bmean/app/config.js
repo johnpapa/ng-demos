@@ -36,7 +36,6 @@
         entitiesChanged: 'datacontext.entitiesChanged',
         entitiesImported: 'datacontext.entitiesImported',
         hasChangesChanged: 'datacontext.hasChangesChanged',
-        spinnerToggle: 'spinner.toggle',
         storage: {
             error: 'store.error',
             storeChanged: 'store.changed',
@@ -46,7 +45,6 @@
 
     var config = {
         appErrorPrefix: '[CC Error] ', //Configure the exceptionHandler decorator
-        busyIndicator: 'overlay', // 2 options: spinner or overlay
         docTitle: 'CC: ',
         events: events,
         imageSettings: imageSettings,
@@ -70,7 +68,6 @@
 
     app.config(['commonConfigProvider', function (cfg) {
         cfg.config.controllerActivateSuccessEvent = config.events.controllerActivateSuccess;
-        cfg.config.spinnerToggleEvent = config.events.spinnerToggle;
     }]);
 
 })();

@@ -16,18 +16,6 @@
             setRoutingEventHandlers: setRoutingEventHandlers
         };
 
-        //$rootScope.$on('$locationChangeStart',
-        //    function (event, next, current) {
-        //        var answer = confirm('Leave?');
-        //        if (!answer) {
-        //            event.preventDefault();
-        //            toggleSpinner(false);
-        //            return;
-        //        }
-        //        toggleSpinner(true);
-        //    }
-        //);
-
         function setRoutingEventHandlers() {
             handleRoutingErrors();
             updateDocTitle();

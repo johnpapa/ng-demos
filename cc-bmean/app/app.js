@@ -8,7 +8,7 @@
         'ngSanitize',       // sanitizes html bindings (ex: sidebar.js)
 
         // Custom modules
-        'common',           // common functions, spinner
+        'common',           // common functions
         'common.bootstrap', // bootstrap dialog wrapper functions
 
         // Blocks
