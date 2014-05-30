@@ -2,7 +2,7 @@
     'use strict';
 
     var controllerId = 'sidebar';
-    angular.module('app').controller(controllerId,
+    angular.module('app.layout').controller(controllerId,
         ['$location', '$route', 'bootstrap.dialog', 'config', 'datacontext', 'routes', sidebar]);
 
     function sidebar($location, $route, bsDialog, config, datacontext, routes) {
@@ -14,7 +14,6 @@
         vm.routes = routes;
         vm.search = search;
         vm.searchText = '';
-        //vm.navPredicate = 'settings.nav';
         vm.wip = [];
         vm.wipChangedEvent = config.events.storage.wipChanged;
 
