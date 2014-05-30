@@ -3,7 +3,8 @@
 
     var app = angular.module('app', [
         'app.core',
-        'app.layout'
+        'app.layout',
+        'app.widgets'
     ]);
 
     // Handle routing errors and success events
