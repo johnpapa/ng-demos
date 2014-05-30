@@ -1,7 +1,8 @@
 (function () {
     'use strict';
 
-    var app = angular.module('app').factory('breeze.config', ['breeze', breezeConfig]);
+    var app = angular.module('app.core')
+        .factory('breeze.config', ['breeze', breezeConfig]);
 
     function breezeConfig(breeze) {
         var service = {

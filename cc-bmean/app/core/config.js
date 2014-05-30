@@ -2,11 +2,8 @@
     'use strict';
 
     // Configure Toastr
-    var tos = toastr.options;
-    tos.timeOut = 4000;
-    tos.positionClass = 'toast-bottom-right';
-//    tos.showMethod = 'slideDown';
-//    tos.hideMethod = 'slideUp';
+    toastr.options.timeOut = 4000;
+    toastr.options.positionClass = 'toast-bottom-right';
 
     var keyCodes = {
         backspace: 8,
@@ -52,22 +49,21 @@
         version: '1.1.0'
     };
 
-    var app = angular.module('app');
-    app.constant('config', config); // a constant is available at config time
+    var core = angular.module('app.core');
+    core.constant('config', config); // a constant is available at config time
 
     /*********************************************************************
      * Other provider configuration based on these config constant values
      *********************************************************************/
 
-    app.config(['$logProvider', function ($logProvider) {
+    core.config(['$logProvider', function ($logProvider) {
         // turn debugging off/on (no info or warn)
         if ($logProvider.debugEnabled) {
             $logProvider.debugEnabled(true);
         }
     }]);
 
-    app.config(['commonConfigProvider', function (cfg) {
+    core.config(['commonConfigProvider', function (cfg) {
         cfg.config.controllerActivateSuccessEvent = config.events.controllerActivateSuccess;
     }]);
-
 })();
