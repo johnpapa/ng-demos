@@ -1,0 +1,15 @@
+{
+    "name": "grunt",
+    "version": "0.0.1",
+    "description": "grunt",
+    "main": "app.js",
+    "devDependencies": {
+        "grunt": "~0.4.2",
+        "grunt-contrib-jshint": "~0.7.2",
+        "grunt-contrib-watch": "~0.5.3",
+        "glob": "~3.2.9"
+    },
+    "author": "John Papa",
+    "webroot": "../server",
+    "webapp": "../app"
+}
