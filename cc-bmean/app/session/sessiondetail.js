@@ -4,10 +4,10 @@
     var controllerId = 'sessiondetail';
     angular.module('app').controller(controllerId,
         ['$location', '$scope', '$routeParams', '$window',
-            'bootstrap.dialog', 'common', 'config', 'datacontext', 'helper', 'model', sessiondetail]);
+            'bootstrap.dialog', 'common', 'config', 'datacontext', 'model', sessiondetail]);
 
     function sessiondetail($location, $scope, $routeParams, $window,
-                           bsDialog, common, config, datacontext, helper, model) {
+                           bsDialog, common, config, datacontext, model) {
         var vm = this;
         var entityName = model.entityNames.session;
         var logger = common.logger;
@@ -46,7 +46,7 @@
         function cancel() {
             datacontext.cancel();
             removeWipEntity();
-            helper.replaceLocationUrlGuidWithId(vm.session.id);
+            common.replaceLocationUrlGuidWithId(vm.session.id);
             if (vm.session.entityAspect.entityState.isDetached()) {
                 gotoSessions();
             }
@@ -151,7 +151,7 @@
             return datacontext.save().then(function (saveResult) {
                 vm.isSaving = false;
                 removeWipEntity();
-                helper.replaceLocationUrlGuidWithId(vm.session.id);
+                common.replaceLocationUrlGuidWithId(vm.session.id);
                 datacontext.speaker.calcIsSpeaker();
             }).catch(function (error) {
                     vm.isSaving = false;

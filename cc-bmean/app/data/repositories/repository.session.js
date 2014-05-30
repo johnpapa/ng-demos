@@ -2,7 +2,7 @@
     'use strict';
 
     var serviceId = 'repository.session';
-    angular.module('app').factory(serviceId,
+    angular.module('app.data').factory(serviceId,
         ['breeze.config', 'model', 'repository.abstract', RepositorySession]);
 
     function RepositorySession(breezeConfig, model, AbstractRepository) {

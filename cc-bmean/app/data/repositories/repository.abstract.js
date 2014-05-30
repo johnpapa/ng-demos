@@ -2,7 +2,7 @@
     'use strict';
 
     var serviceId = 'repository.abstract';
-    angular.module('app').factory(serviceId,
+    angular.module('app.data').factory(serviceId,
         ['breeze', 'common', 'config', 'zStorage', 'zStorageWip', AbstractRepository]);
 
     function AbstractRepository(breeze, common, config, zStorage, zStorageWip) {

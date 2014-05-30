@@ -2,7 +2,7 @@
     'use strict';
 
     var serviceId = 'repository.attendee';
-    angular.module('app').factory(serviceId,
+    angular.module('app.data').factory(serviceId,
         ['breeze', 'model', 'repository.abstract', RepositoryAttendee]);
 
     function RepositoryAttendee(breeze, model, AbstractRepository) {

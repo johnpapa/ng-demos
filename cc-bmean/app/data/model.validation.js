@@ -2,7 +2,7 @@
     'use strict';
 
     var serviceId = 'model.validation';
-    angular.module('app').factory(serviceId, ['breeze', 'common', modelValidation]);
+    angular.module('app.data').factory(serviceId, ['breeze', 'common', modelValidation]);
 
     function modelValidation(breeze, common) {
         var entityNames;

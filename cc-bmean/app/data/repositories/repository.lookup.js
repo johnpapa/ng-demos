@@ -2,7 +2,7 @@
     'use strict';
 
     var serviceId = 'repository.lookup';
-    angular.module('app').factory(serviceId,
+    angular.module('app.data').factory(serviceId,
         ['breeze', 'model', 'repository.abstract', RepositoryLookup]);
 
     function RepositoryLookup(breeze, model, AbstractRepository) {

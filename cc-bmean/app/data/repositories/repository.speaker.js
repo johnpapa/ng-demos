@@ -2,7 +2,7 @@
     'use strict';
 
     var serviceId = 'repository.speaker';
-    angular.module('app').factory(serviceId,
+    angular.module('app.data').factory(serviceId,
         ['breeze', 'model', 'repository.abstract', RepositorySpeaker]);
 
     function RepositorySpeaker(breeze, model, AbstractRepository) {

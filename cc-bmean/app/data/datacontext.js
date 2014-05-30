@@ -2,7 +2,7 @@
     'use strict';
 
     var serviceId = 'datacontext';
-    angular.module('app').factory(serviceId,
+    angular.module('app.data').factory(serviceId,
         ['$injector', '$rootScope', 'breeze',
             'common', 'config', 'entityManagerFactory',
             'model', 'zStorage', 'zStorageWip', datacontext]);

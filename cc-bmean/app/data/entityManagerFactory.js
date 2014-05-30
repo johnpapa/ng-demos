@@ -2,7 +2,7 @@
     'use strict';
 
     var serviceId = 'entityManagerFactory';
-    angular.module('app')
+    angular.module('app.data')
         .factory(serviceId, ['breeze.config', 'model', emFactory]);
 
     function emFactory(breezeConfig, model) {

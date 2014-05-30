@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    var app = angular.module('app');
+    var app = angular.module('app.routemediator');
 
     var serviceId = 'routeMediator';
     app.factory(serviceId,

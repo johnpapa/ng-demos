@@ -4,10 +4,10 @@
     var controllerId = 'speakerdetail';
     angular.module('app').controller(controllerId,
         ['$location', '$scope', '$routeParams', '$window',
-            'common', 'config', 'datacontext', 'helper', 'model', speakerdetail]);
+            'common', 'config', 'datacontext', 'model', speakerdetail]);
 
     function speakerdetail($location, $scope, $routeParams, $window,
-                           common, config, datacontext, helper, model) {
+                           common, config, datacontext, model) {
         var vm = this;
         var entityName = model.entityNames.speaker;
         var logger = common.logger;
@@ -40,7 +40,7 @@
         function cancel() {
             datacontext.cancel();
             removeWipEntity();
-            helper.replaceLocationUrlGuidWithId(vm.speaker.id);
+            common.replaceLocationUrlGuidWithId(vm.speaker.id);
             if (vm.speaker.entityAspect.entityState.isDetached()) {
                 gotoSpeakers();
             }
@@ -115,7 +115,7 @@
             return datacontext.save().then(function (saveResult) {
                 vm.isSaving = false;
                 removeWipEntity();
-                helper.replaceLocationUrlGuidWithId(vm.speaker.id);
+                common.replaceLocationUrlGuidWithId(vm.speaker.id);
             }).catch(function (error) {
                     vm.isSaving = false;
                 });
