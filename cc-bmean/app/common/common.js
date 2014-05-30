@@ -1,28 +1,10 @@
 (function () {
     'use strict';
 
-    // Define the common module
-    // Contains services:
-    //  - common
-    //  - logger
-    //  - spinner
-    var commonModule = angular.module('common', []);
+    var serviceId = 'common';
+    var commonModule = angular.module('common')
+        .factory(serviceId, ['$http', common]);
 
-    // Must configure the common service and set its
-    // events via the commonConfigProvider
-    commonModule.provider('commonConfig', function () {
-        this.config = {
-            // These are the properties we need to set
-            //controllerActivateSuccessEvent: '',
-            //spinnerToggleEvent: ''
-        };
-
-        this.$get = function () {
-            return {
-                config: this.config
-            };
-        };
-    });
 
     commonModule.factory('common',
         ['$q', '$rootScope', '$timeout', 'commonConfig', 'logger', common]);
@@ -60,13 +42,6 @@
         function createSearchThrottle(viewmodel, list, filteredList, filter, delay) {
             // After a delay, search a viewmodel's list using
             // a filter function, and return a filteredList.
-
-            // createSearchThrottle uses values by convention, via its parameters:
-            //     vm.sessionsSearch is where the user enters the search
-            //     vm.sessions is the original unfiltered array
-            //     vm.filteredSessions is the filtered array
-            //     vm.sessionsFilter is the filtering function
-
 
             // custom delay or use default
             delay = +delay || 300;

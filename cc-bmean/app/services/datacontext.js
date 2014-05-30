@@ -9,9 +9,7 @@
 
     function datacontext($injector, $rootScope, breeze, common, config, emFactory, model, zStorage, zStorageWip) {
         var events = config.events;
-        var log = common.logger.info;;
-        var logError = common.logger.error;
-        var logSuccess = common.logger.success;
+        var logger = common.logger;
         var manager = emFactory.newManager();
         var primePromise;
         var repoNames = ['attendee', 'lookup', 'session', 'speaker'];
@@ -49,7 +47,7 @@
         function cancel() {
             if (manager.hasChanges()) {
                 manager.rejectChanges();
-                logSuccess('Canceled changes');
+                logger.success('Canceled changes');
             }
         }
 
@@ -84,13 +82,13 @@
 
         function listenForStorageEvents() {
             $rootScope.$on(config.events.storage.storeChanged, function (event, data) {
-                log('Updated local storage', data);
+                logger.info('Updated local storage', data);
             });
             $rootScope.$on(config.events.storage.wipChanged, function (event, data) {
-                log('Updated WIP', data);
+                logger.info('Updated WIP', data);
             });
             $rootScope.$on(config.events.storage.error, function (event, data) {
-                logError('Error with local storage. ' + data.activity, data);
+                logger.error('Error with local storage. ' + data.activity, data);
             });
         }
 
@@ -110,7 +108,7 @@
             // grab it. otherwise get from 'resources'
             var storageEnabledAndHasData = zStorage.load(manager);
             var promise = storageEnabledAndHasData ?
-                $q.when(log('Loading entities and metadata from local storage')) :
+                $q.when(logger.info('Loading entities and metadata from local storage')) :
                 loadLookupsFromRemote();
 
             primePromise = promise.then(success);
@@ -130,9 +128,8 @@
                 });
             }
 
-
             function success() {
-                log('Primed data', service.lookup.cachedData);
+                logger.info('Primed data', service.lookup.cachedData);
             }
         }
 
@@ -143,7 +140,7 @@
             return manager.saveChanges().then(saveSucceeded).catch(saveFailed);
 
             function saveSucceeded(result) {
-                logSuccess('Saved data', result);
+                logger.success('Saved data', result);
                 zStorage.save();
             }
 
@@ -151,7 +148,7 @@
                 var msg = config.appErrorPrefix + 'Save failed: ' +
                     breeze.saveErrorMessageService.getErrorMessage(error);
                 error.message = msg;
-                logError(msg, error);
+                logger.error(msg, error);
                 throw error;
             }
         }

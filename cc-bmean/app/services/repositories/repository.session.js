@@ -70,7 +70,7 @@
                     sessions = base.setIsPartialTrue(response.results);
                     localSessionSort(sessions); // meaningful for Mongo
                     base.zStorage.areItemsLoaded('sessions', true);
-                    base.log('Retrieved [Session Partials] from remote data source', sessions.length);
+                    base.logger.info('Retrieved [Session Partials] from remote data source', sessions.length);
                     base.zStorage.save();
                     return sessions;
                 }

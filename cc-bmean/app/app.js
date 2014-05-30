@@ -8,9 +8,12 @@
         'ngSanitize',       // sanitizes html bindings (ex: sidebar.js)
 
         // Custom modules
-        'common',           // common functions, logger, spinner
+        'common',           // common functions, spinner
         'common.bootstrap', // bootstrap dialog wrapper functions
-        'common.exceptionHandler', // exceptionHandler
+
+        // Blocks
+        'blocks.logger',    // logger
+        'blocks.exception', // exceptionHandler
 
         // 3rd Party Modules
         'ui.bootstrap',     // ui-bootstrap (ex: carousel, pagination, dialog)

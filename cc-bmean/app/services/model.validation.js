@@ -6,7 +6,7 @@
 
     function modelValidation(breeze, common) {
         var entityNames;
-        var log = common.logger.info;
+        var logger = common.logger;
         var Validator = breeze.Validator,
             requireReferenceValidator,
             twitterValidator;
@@ -23,7 +23,7 @@
             applyTwitterValidators(metadataStore);
             applyEmailValidators(metadataStore);
             applyUrlValidators(metadataStore);
-            log('Validators applied', null);
+            logger.info('Validators applied', null);
         }
 
         function createAndRegister(eNames) {
@@ -35,7 +35,7 @@
             Validator.register(requireReferenceValidator);
             Validator.register(twitterValidator);
             // Step 3) Later we will apply them to the properties/entities via applyValidators
-            log('Validators created and registered', null);
+            logger.info('Validators created and registered', null);
         }
 
         function applyEmailValidators(metadataStore) {

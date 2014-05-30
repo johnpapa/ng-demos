@@ -7,8 +7,7 @@
 
     function shell($rootScope, common, config) {
         var vm = this;
-        var logSuccess = common.logger.success;
-
+        var logger = common.logger;
         var events = config.events;
 
         vm.busyMessage = 'Please wait ...';
@@ -29,7 +28,7 @@
         activate();
 
         function activate() {
-            logSuccess('CodeCamper loaded!', null);
+            logger.success('CodeCamper loaded!', null);
             common.activateController([], controllerId).then(function () {
                 hideSplash();
             });
@@ -68,7 +67,5 @@
                 );
             }
         }
-
-
     }
 })();

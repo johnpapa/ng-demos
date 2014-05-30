@@ -10,8 +10,7 @@
                            bsDialog, common, config, datacontext, helper, model) {
         var vm = this;
         var entityName = model.entityNames.session;
-        var logError = common.logger.error;
-        var logWarning = common.logger.warn;
+        var logger = common.logger;
         var $q = common.$q;
         var wipEntityKey;
 
@@ -90,12 +89,12 @@
                         wipEntityKey = data.key;
                         vm.session = data.entity || data;
                     } else {
-                        logWarning('Could not find session id = ' + val);
+                        logger.warning('Could not find session id = ' + val);
                         gotoSessions();
                     }
                 })
                 .catch(function (error) {
-                    logError('Error while getting session id = ' + val + '; ' + error);
+                    logger.error('Error while getting session id = ' + val + '; ' + error);
                     gotoSessions();
                 });
         }

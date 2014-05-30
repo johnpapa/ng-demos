@@ -46,7 +46,7 @@
                     var destination = (current && (current.title || current.name || current.loadedTemplateUrl)) ||
                         'unknown target';
                     var msg = 'Error routing to ' + destination + '. ' + (rejection.msg || '');
-                    logger.logWarning(msg, [current, serviceId]);
+                    logger.warning(msg, [current, serviceId]);
                     $location.path('/');
                 }
             );

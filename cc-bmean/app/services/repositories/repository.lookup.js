@@ -33,7 +33,7 @@
 
                 function processLookups(data) {
                     model.createNullos(manager);
-                    base.log('Retrieved lookups', data);
+                    base.logger.info('Retrieved lookups', data);
                     base.zStorage.save();
                     return true;
                 }

@@ -17,8 +17,7 @@
             this.entityName = entityName;
             this.getById = getById.bind(this);
             this.getEntityByIdOrFromWip = getEntityByIdOrFromWip.bind(this);
-            this.log = common.logger.info;
-            this.logError = common.logger.error;
+            this.logger = common.logger;
             this.manager = entityManager;
             this.queryFailed = queryFailed.bind(this); // Bind to self so we establish 'this' as the context
         }
@@ -55,7 +54,7 @@
                 // Check cache first (synchronous)
                 var entity = manager.getEntityByKey(entityName, id);
                 if (entity && !entity.isPartial) {
-                    self.log('Retrieved [' + entityName + '] id:' + entity.id + ' from cache.', entity);
+                    self.logger.info('Retrieved [' + entityName + '] id:' + entity.id + ' from cache.', entity);
                     if (entity.entityAspect.entityState.isDeleted()) {
                         entity = null; // hide session marked-for-delete
                     }
@@ -73,11 +72,11 @@
             function querySucceeded(data) {
                 entity = data.entity;
                 if (!entity) {
-                    self.log('Could not find [' + entityName + '] id:' + id, null);
+                    self.logger.info('Could not find [' + entityName + '] id:' + id, null);
                     return null;
                 }
                 entity.isPartial = false;
-                self.log('Retrieved [' + entityName + '] id ' + entity.id + ' from remote data source', entity);
+                self.logger.info('Retrieved [' + entityName + '] id ' + entity.id + ' from remote data source', entity);
                 zStorage.save();
                 return entity;
             }
@@ -107,7 +106,7 @@
                 importedEntity.entityAspect.validateEntity();
                 wipResult = { entity: importedEntity, key: wipEntityKey };
             } else {
-                self.log('Could not find [' + entityName + '] id in WIP:' + wipEntityKey, null);
+                self.logger.info('Could not find [' + entityName + '] id in WIP:' + wipEntityKey, null);
             }
             return $q.when(wipResult);
         }
@@ -122,7 +121,7 @@
 
         function queryFailed(error) {
             var msg = config.appErrorPrefix + 'Error retrieving data. ' + (error.message || '');
-            this.logError(msg, error);
+            this.logger.error(msg, error);
             return $q.reject(new Error(msg));
         }
 

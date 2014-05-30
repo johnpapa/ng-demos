@@ -94,7 +94,7 @@
                         speakers[i].isPartial = true;
                         speakers[i].isSpeaker = true;
                     }
-                    base.log('Retrieved [Speaker Partials] from remote data source', speakers.length);
+                    base.logger.info('Retrieved [Speaker Partials] from remote data source', speakers.length);
                     base.zStorage.save();
                     return speakers;
                 }

@@ -10,8 +10,7 @@
                            common, config, datacontext, helper, model) {
         var vm = this;
         var entityName = model.entityNames.speaker;
-        var logError = common.logger.error;
-        var logWarning = common.logger.warn;
+        var logger = common.logger;
         var $q = common.$q;
         var wipEntityKey;
 
@@ -65,12 +64,12 @@
                         wipEntityKey = data.key;
                         vm.speaker = data.entity || data;
                     } else {
-                        logWarning('Could not find session id = ' + val);
+                        logger.warning('Could not find session id = ' + val);
                         gotoSpeakers();
                     }
                 })
                 .catch(function (error) {
-                    logError('Error while getting speaker id = ' + val + '; ' + error);
+                    logger.error('Error while getting speaker id = ' + val + '; ' + error);
                     gotoSpeakers();
                 });
         }

@@ -157,7 +157,7 @@
                 sessions = base.setIsPartialTrue(response.results);
                 mongoSessionSort(sessions);
                 base.zStorage.areItemsLoaded('sessions', true);
-                base.log('Retrieved [Session Partials] from remote data source', sessions.length);
+                base.logger.info('Retrieved [Session Partials] from remote data source', sessions.length);
                 base.zStorage.save();
                 return sessions;
             }
