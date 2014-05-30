@@ -21,11 +21,9 @@
     "moment": "~2.6.0",
     "spin.js": "~2.0.0",
     "jquery": "~2.1.0",
-    "angular-ui-bootstrap": "~0.10.0",
     "angular-route": "~1.2.16",
     "angular-animate": "~1.2.16",
     "angular-sanitize": "~1.2.16",
-    "font-awesome": "~4.0.3",
-    "angular-ui-bootstrap-bower": "~0.10.0"
+    "font-awesome": "~4.0.3"
   }
 }
