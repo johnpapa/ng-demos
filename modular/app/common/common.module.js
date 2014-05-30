@@ -7,6 +7,6 @@
     //  - spinner
     //  - routehelper
 
-    angular.module('common', []);
+    angular.module('common', ['blocks.logger']);
 
 })();
