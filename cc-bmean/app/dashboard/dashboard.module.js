@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('app.layout', [
+    angular.module('app.dashboard', [
         'app.core',
         'app.data'
     ]);

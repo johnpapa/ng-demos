@@ -1,8 +1,10 @@
 (function () {
-    /*jshint validthis:true */
     'use strict';
+
     var controllerId = 'dashboard';
-    angular.module('app').controller(controllerId, ['common', 'datacontext', dashboard]);
+
+    angular.module('app.dashboard')
+        .controller(controllerId, ['common', 'datacontext', dashboard]);
 
     function dashboard(common, datacontext) {
         var vm = this;

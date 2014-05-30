@@ -5,8 +5,14 @@
         'app.core',
         'app.data',
         'app.routemediator',
+
         'app.layout',
-        'app.widgets'
+        'app.widgets',
+        'app.dashboard',
+        'app.attendees',
+        'app.session',
+        'app.speaker',
+        'app.wip'
     ]);
 
     // Handle routing errors and success events

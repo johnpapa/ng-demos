@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    var app = angular.module('app.core');
+    var core = angular.module('app.core');
 
     // Configure Toastr
     toastr.options.timeOut = 4000;
@@ -20,34 +20,31 @@
         version: '1.0.0'
     };
 
-    app.value('config', config);
+    core.value('config', config);
 
-    app.constant('toastr', toastr);
+    core.constant('toastr', toastr);
 
-    app.config(['$logProvider', function ($logProvider) {
+    core.config(['$logProvider', function ($logProvider) {
         // turn debugging off/on (no info or warn)
         if ($logProvider.debugEnabled) {
             $logProvider.debugEnabled(true);
         }
     }]);
 
-    //#region Configure the common route provider
-    app.config(['$routeProvider', 'routehelperConfigProvider',
+    // Configure the common route provider
+    core.config(['$routeProvider', 'routehelperConfigProvider',
         function ($routeProvider, cfg) {
             cfg.config.$routeProvider = $routeProvider;
         }]);
-    //#endregion
 
-    //#region Configure the common exception handler
-    app.config(['exceptionConfigProvider', function (cfg) {
+    // Configure the common exception handler
+    core.config(['exceptionConfigProvider', function (cfg) {
         cfg.config.appErrorPrefix = config.appErrorPrefix;
     }]);
-    //#endregion
 
-    //#region Configure the common services via commonConfig
-    app.config(['commonConfigProvider', function (cfg) {
+    // Configure the common services via commonConfig
+    core.config(['commonConfigProvider', function (cfg) {
         cfg.config.controllerActivateSuccessEvent = config.events.controllerActivateSuccess;
         cfg.config.spinnerToggleEvent = config.events.spinnerToggle;
     }]);
-    //#endregion
 })();

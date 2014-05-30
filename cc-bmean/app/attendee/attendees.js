@@ -2,7 +2,7 @@
     'use strict';
 
     var controllerId = 'attendees';
-    angular.module('app').controller(controllerId,
+    angular.module('app.attendees').controller(controllerId,
         ['common', 'config', 'datacontext', attendees]);
 
     function attendees(common, config, datacontext) {

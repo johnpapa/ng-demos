@@ -5,18 +5,22 @@
 
     var serviceId = 'routeMediator';
     app.factory(serviceId,
-        ['$location', '$rootScope', '$route', 'config', 'logger', routeMediator]);
-    // We inject $route because of an
-    // issue in Angular that requires $route
-    // to be loaded to handle the routing
+        ['$location', '$rootScope', 'config', 'logger', routeMediator]);
 
-    function routeMediator($location, $rootScope, $route, config, logger) {
+    function routeMediator($location, $rootScope, config, logger) {
         var handlingRouteChangeError = false;
+        var routeCounts = {
+            errors: 0,
+            changes: 0
+        };
         var service = {
-            setRoutingEventHandlers: setRoutingEventHandlers
+            init: init,
+            routeCounts: routeCounts
         };
 
-        function setRoutingEventHandlers() {
+        return service;
+
+        function init() {
             handleRoutingErrors();
             updateDocTitle();
         }
@@ -30,6 +34,7 @@
                     if (handlingRouteChangeError) {
                         return;
                     }
+                    routeCounts.errors++;
                     handlingRouteChangeError = true;
                     var destination = (current && (current.title || current.name || current.loadedTemplateUrl)) ||
                         'unknown target';
@@ -43,13 +48,12 @@
         function updateDocTitle() {
             $rootScope.$on('$routeChangeSuccess',
                 function (event, current, previous) {
+                    routeCounts.changes++;
                     handlingRouteChangeError = false;
                     var title = config.docTitle + ' ' + (current.title || '');
                     $rootScope.title = title; // data bind to <title>
                 }
             );
         }
-
-        return service;
     }
 })();

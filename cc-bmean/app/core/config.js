@@ -66,4 +66,16 @@
     core.config(['commonConfigProvider', function (cfg) {
         cfg.config.controllerActivateSuccessEvent = config.events.controllerActivateSuccess;
     }]);
+
+    // Configure the common exception handler
+    core.config(['exceptionConfigProvider', function (cfg) {
+        cfg.config.appErrorPrefix = config.appErrorPrefix;
+    }]);
+
+    // Configure the common route provider
+    core.config(['$routeProvider', 'routehelperConfigProvider',
+        function ($routeProvider, cfg) {
+            cfg.config.$routeProvider = $routeProvider;
+        }]);
+
 })();

@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('app.widgets')
-        .directive('ccWip', ['$window', ccWip]);
+        .directive('ccWip', ['$route', ccWip]);
 
     function ccWip($route) {
         //Usage:
@@ -60,13 +60,13 @@
                     $scope.wip = data.wip;
                 });
                 $scope.wipRoute = $scope.routes.filter(function (r) {
-                    return r.config.title === wipRouteName;
+                    return r.title === wipRouteName;
                 })[0];
             }
         }
 
         function getTemplate() {
-            return '<a href="#{{wipRoute.url}}" >' +
+            return '<a href="#{{wipRoute.originalPath}}" >' +
                 '<i class="fa fa-asterisk" data-ng-class="getWipClass()"></i>' +
                 'Work in Progress ({{wip.length}})</a>';
         }

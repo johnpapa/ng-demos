@@ -18,7 +18,8 @@
         <ul class="navi">
             <li class="nlightblue" data-ng-class="vm.isCurrent(r)"
                 data-ng-repeat="r in vm.navRoutes track by $id(r)">
-                <a href="#{{r.url}}" data-ng-bind-html="r.config.settings.content"></a>
+                <a href="#{{r.originalPath}}"
+                   data-ng-bind-html="r.settings.content"></a>
             </li>
 
             <li data-cc-wip

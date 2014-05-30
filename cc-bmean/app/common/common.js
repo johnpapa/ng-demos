@@ -7,9 +7,9 @@
 
 
     commonModule.factory('common',
-        ['$q', '$rootScope', '$timeout', 'commonConfig', 'logger', common]);
+        ['$location', '$q', '$rootScope', '$timeout', 'commonConfig', 'logger', common]);
 
-    function common($q, $rootScope, $timeout, commonConfig, logger) {
+    function common($location, $q, $rootScope, $timeout, commonConfig, logger) {
         var throttles = {};
 
         var service = {
@@ -114,7 +114,7 @@
             var slashPos = currentPath.lastIndexOf('/', currentPath.length - 2);
             var currentParameter = currentPath.substring(slashPos - 1);
 
-            if (common.isNumber(currentParameter)) {
+            if (isNumber(currentParameter)) {
                 return;
             }
 
