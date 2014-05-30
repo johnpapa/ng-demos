@@ -14,7 +14,7 @@
 
         return service;
 
-        function configureMongoForBreeze(){
+        function configureMongoForBreeze() {
             // Do not validate when we attach a newly created entity to an EntityManager.
             // We could also set this per entityManager
             new breeze.ValidationOptions({ validateOnAttach: false }).setAsDefault();
@@ -22,17 +22,27 @@
             setMongoDbNamingConvention();
         }
 
-        function mongoSessionSort(sessions){
+        function mongoSessionSort(sessions) {
             // must sort sessions locally
             // because MongoDb lacks relationships to TimeSlot and Speaker
             // so it can't perform the proper sort on the data tier
             // This sort should reproduce effect of 'orderBy' in repository.session.js
-            sessions.sort(function(left, right){
-                if (left.timeSlot.start < right.timeSlot.start) {return -1;}
-                if (left.timeSlot.start > right.timeSlot.start) {return 1;}
-                if (left.speaker.firstName < right.speaker.firstName) {return -1;}
-                if (left.speaker.firstName > right.speaker.firstName) {return 1;}
-                if (left.title < right.title) {return -1;}
+            sessions.sort(function (left, right) {
+                if (left.timeSlot.start < right.timeSlot.start) {
+                    return -1;
+                }
+                if (left.timeSlot.start > right.timeSlot.start) {
+                    return 1;
+                }
+                if (left.speaker.firstName < right.speaker.firstName) {
+                    return -1;
+                }
+                if (left.speaker.firstName > right.speaker.firstName) {
+                    return 1;
+                }
+                if (left.title < right.title) {
+                    return -1;
+                }
                 return (left.title > right.title) ? 1 : 0;
             });
         }
@@ -41,16 +51,20 @@
             // Translate certain property names between MongoDb names and client names
             var convention = new breeze.NamingConvention({
                 name: 'mongo-naming-convention',
-                serverPropertyNameToClient: function(serverPropertyName) {
+                serverPropertyNameToClient: function (serverPropertyName) {
                     switch (serverPropertyName) {
-                        case '_id':   return 'id';
-                        default: return serverPropertyName;
+                        case '_id':
+                            return 'id';
+                        default:
+                            return serverPropertyName;
                     }
                 },
-                clientPropertyNameToServer: function(clientPropertyName) {
+                clientPropertyNameToServer: function (clientPropertyName) {
                     switch (clientPropertyName) {
-                        case 'id':   return '_id';
-                        default: return clientPropertyName;
+                        case 'id':
+                            return '_id';
+                        default:
+                            return clientPropertyName;
                     }
                 }
             });
@@ -89,7 +103,7 @@
             // We would be fine with the out-of-the-box format
             zDir.zValidateTemplate =
                 '<span class="invalid"><i class="fa fa-warning-sign"></i>' +
-                    'Inconceivable! %error%</span>';
+                'Inconceivable! %error%</span>';
 
             //zDir.zRequiredTemplate =
             //    '<i class="fa fa-asterisk fa-asterisk-invalid z-required" title="Required"></i>';
