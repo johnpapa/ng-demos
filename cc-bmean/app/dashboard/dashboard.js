@@ -4,9 +4,9 @@
     var controllerId = 'dashboard';
 
     angular.module('app.dashboard')
-        .controller(controllerId, ['common', 'datacontext', dashboard]);
+        .controller(controllerId, ['controllerActivator', 'datacontext', dashboard]);
 
-    function dashboard(common, datacontext) {
+    function dashboard(controllerActivator, datacontext) {
         var vm = this;
         vm.map = {
             title: 'Location'
@@ -36,9 +36,14 @@
         activate();
 
         function activate() {
-            var promises = [getAttendeeCount(), getSessionCount(), getTrackCounts()];
-            getSpeakers();
-            common.activateController(promises, controllerId);
+            var promises = [
+                getAttendeeCount(),
+                getSessionCount(),
+                getSpeakers(),
+                getTrackCounts()
+            ];
+            controllerActivator.activate(promises, controllerId)
+                .then(getSpeakerMetrics);
         }
 
         function getTrackCounts() {
@@ -47,12 +52,16 @@
             });
         }
 
-        function getSpeakers() {
+        function getSpeakerMetrics() {
             // Get all speakers from cache (they are local already)
             var speakers = datacontext.speaker.getAllLocal();
             vm.speakerCount = speakers.length;
             // Get top speakers (from local cache)
             vm.speakers.list = datacontext.speaker.getTopLocal();
+        }
+
+        function getSpeakers() {
+            return datacontext.speaker.getPartials();
         }
 
         function getAttendeeCount() {

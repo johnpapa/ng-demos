@@ -1,10 +1,8 @@
 (function () {
     'use strict';
 
-    var app = angular.module('app.routemediator');
-
     var serviceId = 'routeMediator';
-    app.factory(serviceId,
+    angular.module('app.core').factory(serviceId,
         ['$location', '$rootScope', 'config', 'logger', routeMediator]);
 
     function routeMediator($location, $rootScope, config, logger) {

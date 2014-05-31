@@ -63,10 +63,6 @@
         }
     }]);
 
-    core.config(['commonConfigProvider', function (cfg) {
-        cfg.config.controllerActivateSuccessEvent = config.events.controllerActivateSuccess;
-    }]);
-
     // Configure the common exception handler
     core.config(['exceptionConfigProvider', function (cfg) {
         cfg.config.appErrorPrefix = config.appErrorPrefix;

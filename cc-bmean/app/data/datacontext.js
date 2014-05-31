@@ -11,6 +11,7 @@
         var events = config.events;
         var logger = common.logger;
         var manager = emFactory.newManager();
+        var isPrimed = false;
         var primePromise;
         var repoNames = ['attendee', 'lookup', 'session', 'speaker'];
         var $q = common.$q;
@@ -19,7 +20,7 @@
             // functions
             cancel: cancel,
             markDeleted: markDeleted,
-            prime: prime,
+            ready: ready,
             save: save,
             // sub-services
             zStorage: zStorage,
@@ -129,8 +130,13 @@
             }
 
             function success() {
+                isPrimed = true;
                 logger.info('Primed data', service.lookup.cachedData);
             }
+        }
+
+        function ready() {
+            return primePromise || prime();
         }
 
         function save() {

@@ -3,9 +3,9 @@
 
     var controllerId = 'attendees';
     angular.module('app.attendees').controller(controllerId,
-        ['common', 'config', 'datacontext', attendees]);
+        ['controllerActivator', 'config', 'datacontext', attendees]);
 
-    function attendees(common, config, datacontext) {
+    function attendees(controllerActivator, config, datacontext) {
         var vm = this;
         var keyCodes = config.keyCodes;
 
@@ -33,7 +33,7 @@
         activate();
 
         function activate() {
-            common.activateController([getAttendees()], controllerId);
+            controllerActivator.activate([getAttendees()], controllerId);
         }
 
         function getAttendeeCount() {

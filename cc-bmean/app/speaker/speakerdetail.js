@@ -4,10 +4,10 @@
     var controllerId = 'speakerdetail';
     angular.module('app').controller(controllerId,
         ['$location', '$scope', '$routeParams', '$window',
-            'common', 'config', 'datacontext', 'model', speakerdetail]);
+            'common', 'config', 'controllerActivator', 'datacontext', 'model', speakerdetail]);
 
     function speakerdetail($location, $scope, $routeParams, $window,
-                           common, config, datacontext, model) {
+                           common, config, controllerActivator, datacontext, model) {
         var vm = this;
         var entityName = model.entityNames.speaker;
         var logger = common.logger;
@@ -29,7 +29,7 @@
         function activate() {
             onDestroy();
             onHasChanges();
-            common.activateController([getRequestedSpeaker()], controllerId)
+            controllerActivator.activate([getRequestedSpeaker()], controllerId)
                 .then(onEveryChange);
         }
 

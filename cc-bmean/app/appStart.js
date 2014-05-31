@@ -2,9 +2,9 @@
     'use strict';
 
     var app = angular.module('app')
-        .factory('appStart', ['datacontext', 'routeMediator', appStart]);
+        .factory('appStart', ['routeMediator', appStart]);
 
-    function appStart(datacontext, routeMediator) {
+    function appStart(routeMediator) {
         var service = {
             start: start
         };
@@ -12,7 +12,6 @@
         return service;
 
         function start(){
-            datacontext.prime();
             routeMediator.init();
         }
     }

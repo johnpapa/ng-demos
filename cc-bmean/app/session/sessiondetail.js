@@ -4,10 +4,10 @@
     var controllerId = 'sessiondetail';
     angular.module('app').controller(controllerId,
         ['$location', '$scope', '$routeParams', '$window',
-            'bootstrap.dialog', 'common', 'config', 'datacontext', 'model', sessiondetail]);
+            'bootstrap.dialog', 'common', 'config', 'controllerActivator', 'datacontext', 'model', sessiondetail]);
 
     function sessiondetail($location, $scope, $routeParams, $window,
-                           bsDialog, common, config, datacontext, model) {
+                           bsDialog, common, config, controllerActivator, datacontext, model) {
         var vm = this;
         var entityName = model.entityNames.session;
         var logger = common.logger;
@@ -35,7 +35,7 @@
             onDestroy();
             onHasChanges();
             // Whether we succeed or fail, we still want to call onEveryChange
-            common.activateController([getRequestedSession()], controllerId)
+            controllerActivator.activate([getRequestedSession()], controllerId)
                 .then(onEveryChange);
         }
 

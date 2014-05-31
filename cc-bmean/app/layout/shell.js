@@ -3,9 +3,9 @@
 
     var controllerId = 'shell';
     angular.module('app.layout').controller(controllerId,
-        ['common', shell]);
+        ['common', 'controllerActivator', shell]);
 
-    function shell(common) {
+    function shell(common, controllerActivator) {
         var vm = this;
         var logger = common.logger;
 
@@ -17,7 +17,7 @@
 
         function activate() {
             logger.success('CodeCamper loaded!', null);
-            common.activateController([], controllerId).then(function () {
+            controllerActivator.activate([], controllerId).then(function () {
                 hideSplash();
             });
         }

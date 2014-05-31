@@ -4,9 +4,9 @@
     var controllerId = 'wip';
     angular.module('app').controller(controllerId,
         ['$scope', '$location',
-            'bootstrap.dialog', 'common', 'config', 'datacontext', wip]);
+            'bootstrap.dialog', 'config', 'controllerActivator', 'datacontext', wip]);
 
-    function wip($scope, $location, bsDialog, common, config, datacontext) {
+    function wip($scope, $location, bsDialog, config, controllerActivator, datacontext) {
         var vm = this;
 
         vm.cancelAllWip = cancelAllWip;
@@ -20,7 +20,7 @@
         activate();
 
         function activate() {
-            common.activateController([getWipSummary()], controllerId);
+            controllerActivator.activate([getWipSummary()], controllerId);
 
             $scope.$on(config.events.storage.wipChanged, function (event, data) {
                 vm.wip = data;

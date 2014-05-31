@@ -5,11 +5,10 @@
     var commonModule = angular.module('common')
         .factory(serviceId, ['$http', common]);
 
-
     commonModule.factory('common',
-        ['$location', '$q', '$rootScope', '$timeout', 'commonConfig', 'logger', common]);
+        ['$location', '$q', '$rootScope', '$timeout', 'logger', common]);
 
-    function common($location, $q, $rootScope, $timeout, commonConfig, logger) {
+    function common($location, $q, $rootScope, $timeout, logger) {
         var throttles = {};
 
         var service = {
@@ -18,7 +17,6 @@
             $q: $q,
             $timeout: $timeout,
             // generic
-            activateController: activateController,
             createSearchThrottle: createSearchThrottle,
             debouncedThrottle: debouncedThrottle,
             isNumber: isNumber,
@@ -28,13 +26,7 @@
         };
 
         return service;
-
-        function activateController(promises, controllerId) {
-            return $q.all(promises).then(function (eventArgs) {
-                var data = { controllerId: controllerId };
-                $broadcast(commonConfig.config.controllerActivateSuccessEvent, data);
-            });
-        }
+        //////////////////////
 
         function $broadcast() {
             return $rootScope.$broadcast.apply($rootScope, arguments);

@@ -4,9 +4,9 @@
     var controllerId = 'sessions';
     angular.module('app').controller(controllerId,
         ['$location', '$routeParams',
-            'common', 'config', 'datacontext', sessions]);
+            'common', 'config', 'controllerActivator', 'datacontext', sessions]);
 
-    function sessions($location, $routeParams, common, config, datacontext) {
+    function sessions($location, $routeParams, common, config, controllerActivator, datacontext) {
         var vm = this;
         var keyCodes = config.keyCodes;
         var applyFilter = function () {};
@@ -23,7 +23,7 @@
         activate();
 
         function activate() {
-            common.activateController([getSessions()], controllerId).then(function () {
+            controllerActivator.activate([getSessions()], controllerId).then(function () {
                 applyFilter = common.createSearchThrottle(vm, 'sessions');
                 if (vm.sessionsSearch) {
                     applyFilter(true /*now*/);

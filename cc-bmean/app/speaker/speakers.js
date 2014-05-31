@@ -3,9 +3,9 @@
 
     var controllerId = 'speakers';
     angular.module('app').controller(controllerId,
-        ['$location', 'common', 'config', 'datacontext', speakers]);
+        ['$location', 'common', 'config', 'controllerActivator', 'datacontext', speakers]);
 
-    function speakers($location, common, config, datacontext) {
+    function speakers($location, common, config, controllerActivator, datacontext) {
         // Always define vm first
         var vm = this;
         var keyCodes = config.keyCodes;
@@ -23,7 +23,7 @@
         activate();
 
         function activate() {
-            common.activateController([getSpeakers()], controllerId);
+            controllerActivator.activate([getSpeakers()], controllerId);
         }
 
         function applyFilter() {
