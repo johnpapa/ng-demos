@@ -1,13 +1,8 @@
 (function () {
     'use strict';
 
-    var serviceId = 'common';
-    var commonModule = angular.module('common')
-        .factory(serviceId, ['$http', common]);
-
-
-    commonModule.factory('common',
-        ['$q', '$rootScope', '$timeout', 'logger', common]);
+    angular.module('common').factory('common',
+            ['$q', '$rootScope', '$timeout', 'logger', common]);
 
     function common($q, $rootScope, $timeout, logger) {
         var throttles = {};
