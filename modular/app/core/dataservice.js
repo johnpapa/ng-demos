@@ -1,17 +1,21 @@
 (function () {
     'use strict';
 
-    var serviceId = 'avengers.dataservice';
+    var serviceId = 'dataservice';
     angular.module('app.core')
         .factory(serviceId, ['$http', 'common', dataservice]);
 
     function dataservice($http, common) {
+        var isPrimed = false;
+        var logger = common.logger;
+        var primePromise;
         var $q = common.$q;
 
         var service = {
             getAvengersCast: getAvengersCast,
             getAvengerCount: getAvengerCount,
-            getMAA: getMAA
+            getMAA: getMAA,
+            ready: ready
         };
 
         return service;
@@ -50,5 +54,24 @@
             ];
             return $q.when(cast);
         }
+
+        function prime() {
+            // This function can only be called once.
+            if (primePromise) {
+                return primePromise;
+            }
+
+            return primePromise = $q.when(true).then(success);
+
+            function success() {
+                isPrimed = true;
+                logger.info('Primed data');
+            }
+        }
+
+        function ready() {
+            return primePromise || prime();
+        }
+
     }
 })();

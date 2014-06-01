@@ -13,8 +13,6 @@
             $q: $q,
             $timeout: $timeout,
             // generic
-            activateController: activateController,
-            controllerActivateSuccessEvent: 'controller.activateSuccess',
             createSearchThrottle: createSearchThrottle,
             debouncedThrottle: debouncedThrottle,
             isNumber: isNumber,
@@ -23,13 +21,6 @@
         };
 
         return service;
-
-        function activateController(promises, controllerId) {
-            return $q.all(promises).then(function (eventArgs) {
-                var data = { controllerId: controllerId };
-                $broadcast(service.controllerActivateSuccessEvent, data);
-            });
-        }
 
         function $broadcast() {
             return $rootScope.$broadcast.apply($rootScope, arguments);

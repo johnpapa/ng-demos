@@ -2,9 +2,9 @@
     'use strict';
     var controllerId = 'dashboard';
     angular.module('app.dashboard')
-        .controller(controllerId, ['common', 'avengers.dataservice', dashboard]);
+        .controller(controllerId, ['common', 'controllerActivator', 'dataservice', dashboard]);
 
-    function dashboard(common, avengersData) {
+    function dashboard(common, controllerActivator, dataservice) {
         var log = common.logger.info;
 
         var vm = this;
@@ -20,19 +20,19 @@
 
         function activate() {
             var promises = [getAvengerCount(), getAvengersCast()];
-            common.activateController(promises, controllerId)
+            controllerActivator.activate(promises, controllerId)
                 .then(function () { log('Activated Dashboard View'); });
         }
 
         function getAvengerCount() {
-            return avengersData.getAvengerCount().then(function (data) {
+            return dataservice.getAvengerCount().then(function (data) {
                 vm.avengerCount = data;
                 return vm.avengerCount;
             });
         }
 
         function getAvengersCast() {
-            return avengersData.getAvengersCast().then(function (data) {
+            return dataservice.getAvengersCast().then(function (data) {
                 vm.avengers = data;
                 return vm.avengers;
             });

@@ -3,9 +3,9 @@
     var controllerId = 'avengers';
     angular.module('app.avengers')
         .controller(controllerId,
-            ['common', 'avengers.dataservice', avengers]);
+            ['common', 'controllerActivator', 'dataservice', avengers]);
 
-    function avengers(common, avengersData) {
+    function avengers(common, controllerActivator, dataservice) {
         var log = common.logger.info;
 
         var vm = this;
@@ -17,14 +17,14 @@
 
         function activate() {
             var promises = [getAvengersCast(), getMAA()];
-            common.activateController(promises, controllerId)
+            controllerActivator.activate(promises, controllerId)
                 .then(function () {
                     log('Activated Avengers View');
                 });
         }
 
         function getMAA() {
-            avengersData.getMAA()
+            dataservice.getMAA()
                 .then(function (data) {
                     vm.maa = data;
                     return vm.maa;
@@ -32,7 +32,7 @@
         }
 
         function getAvengersCast() {
-            return avengersData.getAvengersCast().then(function (data) {
+            return dataservice.getAvengersCast().then(function (data) {
                 vm.avengers = data;
                 return vm.avengers;
             });

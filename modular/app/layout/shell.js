@@ -3,9 +3,9 @@
 
     var controllerId = 'shell';
     angular.module('app.layout').controller(controllerId,
-        ['common', 'config', shell]);
+        ['common', 'config', 'controllerActivator', shell]);
 
-    function shell(common, config) {
+    function shell(common, config, controllerActivator) {
         var vm = this;
         var logSuccess = common.logger.success;
 
@@ -18,7 +18,7 @@
 
         function activate() {
             logSuccess(config.appTitle + ' loaded!', null);
-            common.activateController([], controllerId).then(function(){
+            controllerActivator.activate([], controllerId).then(function(){
                 hideSplash();
             });
         }
