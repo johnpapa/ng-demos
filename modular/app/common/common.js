@@ -7,9 +7,9 @@
 
 
     commonModule.factory('common',
-        ['$q', '$rootScope', '$timeout', 'commonConfig', 'logger', common]);
+        ['$q', '$rootScope', '$timeout', 'logger', common]);
 
-    function common($q, $rootScope, $timeout, commonConfig, logger) {
+    function common($q, $rootScope, $timeout, logger) {
         var throttles = {};
 
         var service = {
@@ -19,6 +19,7 @@
             $timeout: $timeout,
             // generic
             activateController: activateController,
+            controllerActivateSuccessEvent: 'controller.activateSuccess',
             createSearchThrottle: createSearchThrottle,
             debouncedThrottle: debouncedThrottle,
             isNumber: isNumber,
@@ -31,7 +32,7 @@
         function activateController(promises, controllerId) {
             return $q.all(promises).then(function (eventArgs) {
                 var data = { controllerId: controllerId };
-                $broadcast(commonConfig.config.controllerActivateSuccessEvent, data);
+                $broadcast(service.controllerActivateSuccessEvent, data);
             });
         }
 
