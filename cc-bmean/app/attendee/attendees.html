@@ -21,7 +21,23 @@
                     <div data-cc-widget-header title="{{vm.title}}"
                          subtitle="{{vm.attendeeFilteredCount}} / {{vm.attendeeCount}}"
                          right-text="Page {{vm.paging.currentPage}} of {{vm.paging.pageCount}}"></div>
+
                     <div class="widget-content user">
+                        <div>
+                            <pagination boundary-links="true"
+                                        on-select-page="vm.pageChanged(page)"
+                                        total-items="vm.attendeeFilteredCount"
+                                        items-per-page="vm.paging.pageSize"
+                                        page="vm.paging.currentPage"
+                                        max-size="vm.paging.maxPagesToShow"
+                                        class="pagination-small"
+                                        previous-text="Prev"
+                                        next-text="Next"
+                                        first-text="First"
+                                        last-text="Last"></pagination>
+                            <div class="clearfix"></div>
+                        </div>
+
                         <div class="padd list-flow fader-animation" data-ng-repeat="a in vm.attendees track by a.id">
                             <div class="user">
                                 <img data-cc-img-person="{{a.imageSource}}" class="img-thumbnail stacked"/>
@@ -33,22 +49,10 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="widget-foot">
                         <div class="clearfix"></div>
-                        <pagination boundary-links="true"
-                                    on-select-page="vm.pageChanged(page)"
-                                    total-items="vm.attendeeFilteredCount"
-                                    items-per-page="vm.paging.pageSize"
-                                    page="vm.paging.currentPage"
-                                    max-size="vm.paging.maxPagesToShow"
-                                    class="pagination-small"
-                                    previous-text="Prev"
-                                    next-text="Next"
-                                    first-text="First"
-                                    last-text="Last"></pagination>
-                        <div class="clearfix"></div>
                     </div>
-                </div>
             </div>
         </div>
     </section>
