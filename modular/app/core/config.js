@@ -9,7 +9,6 @@
 
     var config = {
         appErrorPrefix: '[NG-Modular Error] ', //Configure the exceptionHandler decorator
-        docTitle: 'NG-Modular: ',
         appTitle: 'Angular Modular Demo',
         version: '1.0.0'
     };
@@ -29,6 +28,7 @@
     core.config(['$routeProvider', 'routehelperConfigProvider',
         function ($routeProvider, cfg) {
             cfg.config.$routeProvider = $routeProvider;
+            cfg.config.docTitle = 'NG-Modular: ';
         }]);
 
     // Configure the common exception handler

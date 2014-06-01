@@ -5,7 +5,7 @@
         'ngAnimate', 'ngRoute', 'ngSanitize',
         'ngplus',
         'common',
-        'blocks.exception', 'blocks.logger'
+        'blocks.exception', 'blocks.logger', 'blocks.router'
     ]);
 
 })();
