@@ -42,7 +42,6 @@
 
     var config = {
         appErrorPrefix: '[CC Error] ', //Configure the exceptionHandler decorator
-        docTitle: 'CC: ',
         events: events,
         imageSettings: imageSettings,
         keyCodes: keyCodes,
@@ -72,6 +71,7 @@
     core.config(['$routeProvider', 'routehelperConfigProvider',
         function ($routeProvider, cfg) {
             cfg.config.$routeProvider = $routeProvider;
+            cfg.config.docTitle = 'CC: ';
         }]);
 
 })();

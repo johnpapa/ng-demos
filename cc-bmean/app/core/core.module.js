@@ -4,7 +4,7 @@
     angular.module('app.core', [
         'ngAnimate', 'ngRoute', 'ngSanitize',
         'common', 'common.bootstrap',
-        'blocks.exception', 'blocks.logger',
+        'blocks.exception', 'blocks.logger', 'blocks.router',
 
         // 3rd Party Modules
         'ui.bootstrap',     // ui-bootstrap (ex: carousel, pagination, dialog)

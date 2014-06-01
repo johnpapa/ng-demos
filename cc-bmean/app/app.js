@@ -13,10 +13,4 @@
         'app.speaker',
         'app.wip'
     ]);
-
-    // Handle routing errors and success events
-    // trigger breeze configuration
-    app.run(['appStart', function (appStart) {
-            appStart.start();
-        }]);
 })();

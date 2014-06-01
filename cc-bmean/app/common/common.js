@@ -1,11 +1,7 @@
 (function () {
     'use strict';
 
-    var serviceId = 'common';
-    var commonModule = angular.module('common')
-        .factory(serviceId, ['$http', common]);
-
-    commonModule.factory('common',
+    angular.module('common').factory('common',
         ['$location', '$q', '$rootScope', '$timeout', 'logger', common]);
 
     function common($location, $q, $rootScope, $timeout, logger) {
