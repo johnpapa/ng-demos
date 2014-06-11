@@ -24,7 +24,9 @@
                                 <!--<td><span class="avenger-name">{{c.name}}</span></td>-->
                                 <td><input class="avenger-name" ng-model="c.name"
                                            />
-                                {{c.name}}</td>
+                                    <br/>
+                                {{c.name}}<br/>
+                                {{::c.name}}</td>
                                 <td>{{c.description | limitTo: 2000 }} ...</td>
                             </tr>
                             </tbody>
