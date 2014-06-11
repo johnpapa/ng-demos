@@ -12,7 +12,7 @@ var express      = require('express'),
     port         = process.env["PORT"] || 7070,
     routes       = require('./routes');
 
-//npm install express body-parser compression method-override morgan --save-dev
+//npm install express body-parser compression cors static-favicon serve-static method-override morgan --save-dev
 
 // all environments
 app.use(compress()); // Compress response data with gzip
