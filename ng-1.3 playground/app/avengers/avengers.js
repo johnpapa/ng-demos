@@ -10,8 +10,11 @@
         var log = getLogFn(controllerId);
 
         var vm = this;
-        vm.avengers = [];
-        vm.maa = [];
+        var newId = 0;
+
+        vm.addAvenger = addAvenger;
+        vm.avengers;
+        vm.maa;
         vm.title = 'Avengers';
 
         activate();
@@ -22,6 +25,14 @@
                 .then(function () {
                     log('Activated Avengers View');
                 });
+        }
+
+        function addAvenger(){
+            newId++;
+            vm.maa.push({
+                "id": newId,
+                "name": "Ant Man"
+            });
         }
 
         function getMAA() {

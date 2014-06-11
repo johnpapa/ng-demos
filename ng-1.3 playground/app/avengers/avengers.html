@@ -32,6 +32,10 @@
                             </tbody>
                         </table>
                     </div>
+                    <ul>
+                        <li ng-repeat="item in ::vm.maa track by item.id">{{item.name}}</li>
+                    </ul>
+                    <button ng-click="vm.addAvenger()">Add Avenger</button>
                     <div class="widget-foot">
                         <div class="clearfix"></div>
                     </div>
