@@ -3,9 +3,9 @@
 
     angular
         .module('app.attendees')
-        .controller('attendees', ['config', 'datacontext', attendees]);
+        .controller('Attendees', ['config', 'datacontext', Attendees]);
 
-    function attendees(config, datacontext) {
+    function Attendees(config, datacontext) {
         /*jshint validthis: true */
         var vm = this;
 

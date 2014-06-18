@@ -3,11 +3,11 @@
 
     angular
         .module('app')
-        .controller('speakerdetail',
+        .controller('SpeakerDetail',
             ['$location', '$scope', '$routeParams', '$window',
-            'common', 'config', 'datacontext', 'model', speakerdetail]);
+            'common', 'config', 'datacontext', 'model', SpeakerDetail]);
 
-    function speakerdetail($location, $scope, $routeParams, $window,
+    function SpeakerDetail($location, $scope, $routeParams, $window,
                            common, config, datacontext, model) {
         /*jshint validthis: true */
         var vm = this;

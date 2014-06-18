@@ -3,11 +3,11 @@
 
     angular
         .module('app')
-        .controller('sessions',
+        .controller('Sessions',
             ['$location', '$routeParams',
-            'common', 'config', 'datacontext', sessions]);
+            'common', 'config', 'datacontext', Sessions]);
 
-    function sessions($location, $routeParams, common, config, datacontext) {
+    function Sessions($location, $routeParams, common, config, datacontext) {
         /*jshint validthis: true */
         var vm = this;
 

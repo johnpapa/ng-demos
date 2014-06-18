@@ -1,4 +1,4 @@
-<section id="dashboard-view" class="mainbar" data-ng-controller="dashboard as vm">
+<section id="dashboard-view" class="mainbar" data-ng-controller="Dashboard as vm">
     <section class="matter">
         <div class="container">
             <div class="row">
@@ -104,7 +104,7 @@
                     </div>
                 </div>
                 <div class="col-md-8">
-                    <div class="widget worange" data-ng-controller="wip as vm">
+                    <div class="widget worange" data-ng-controller="WIP as vm">
                         <div data-cc-widget-header title="{{vm.title}}" subtitle="{{vm.wip.length}}"
                              allow-collapse="true"></div>
                         <div class="widget-content" data-ng-include="'/app/wip/wipwidget.html'">

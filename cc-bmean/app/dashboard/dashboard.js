@@ -3,9 +3,9 @@
 
     angular
         .module('app.dashboard')
-        .controller('dashboard', ['datacontext', dashboard]);
+        .controller('Dashboard', ['datacontext', Dashboard]);
 
-    function dashboard(datacontext) {
+    function Dashboard(datacontext) {
         /*jshint validthis: true */
         var vm = this;
 

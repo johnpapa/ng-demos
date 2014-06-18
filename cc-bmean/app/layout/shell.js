@@ -3,9 +3,9 @@
 
     angular
         .module('app.layout')
-        .controller('shell', ['common', 'datacontext', shell]);
+        .controller('Shell', ['common', 'datacontext', Shell]);
 
-    function shell(common, datacontext) {
+    function Shell(common, datacontext) {
         /*jshint validthis: true */
         var vm = this;
 

@@ -13,9 +13,9 @@
 
     angular
         .module('app')
-        .controller('sessions', ['$location', '$q', '$routeParams', sessions]);
+        .controller('Sessions', ['$location', '$q', '$routeParams', Sessions]);
 
-    function sessions($location, $q, $routeParams) {
+    function Sessions($location, $q, $routeParams) {
         /*jshint validthis: true */
         var vm = this;
         var applyFilter = function () {};

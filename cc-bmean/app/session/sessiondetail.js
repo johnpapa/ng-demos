@@ -3,11 +3,11 @@
 
     angular
         .module('app')
-        .controller('sessiondetail',
+        .controller('SessionDetail',
             ['$location', '$scope', '$routeParams', '$window',
-            'bootstrap.dialog', 'common', 'config', 'datacontext', 'model', sessiondetail]);
+            'bootstrap.dialog', 'common', 'config', 'datacontext', 'model', SessionDetail]);
 
-    function sessiondetail($location, $scope, $routeParams, $window,
+    function SessionDetail ($location, $scope, $routeParams, $window,
                            bsDialog, common, config, datacontext, model) {
         /*jshint validthis: true */
         var vm = this;

@@ -2,11 +2,12 @@
     'use strict';
 
     angular
-        .module('app').controller('wip',
+        .module('app')
+        .controller('WIP',
             ['$scope', '$location',
-            'bootstrap.dialog', 'config', 'datacontext', wip]);
+            'bootstrap.dialog', 'config', 'datacontext', WIP]);
 
-    function wip($scope, $location, bsDialog, config, datacontext) {
+    function WIP($scope, $location, bsDialog, config, datacontext) {
         /*jshint validthis: true */
         var vm = this;
 

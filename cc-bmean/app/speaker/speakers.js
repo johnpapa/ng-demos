@@ -3,9 +3,9 @@
 
     angular
         .module('app')
-        .controller('speakers', ['$location', 'common', 'config', 'datacontext', speakers]);
+        .controller('Speakers', ['$location', 'common', 'config', 'datacontext', Speakers]);
 
-    function speakers($location, common, config, datacontext) {
+    function Speakers($location, common, config, datacontext) {
         /*jshint validthis: true */
         var vm = this;
 

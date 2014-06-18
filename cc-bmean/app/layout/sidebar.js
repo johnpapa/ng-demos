@@ -3,11 +3,11 @@
 
     angular
         .module('app.layout')
-        .controller('sidebar',
+        .controller('Sidebar',
             ['$location', '$route', 'bootstrap.dialog', 'config',
-                'datacontext', 'routehelper', sidebar]);
+                'datacontext', 'routehelper', Sidebar]);
 
-    function sidebar($location, $route, bsDialog, config, datacontext, routehelper) {
+    function Sidebar($location, $route, bsDialog, config, datacontext, routehelper) {
         /*jshint validthis: true */
         var vm = this;
 
