@@ -11,12 +11,15 @@
 
 (function () {
     'use strict';
-    var controllerId = 'avengers';
-    angular.module('app.avengers')
-        .controller(controllerId, ['$http', '$log', '$q', '$rootScope', avengers]);
+
+    angular
+        .module('app.avengers')
+        .controller('avengers', ['$http', '$log', '$q', '$rootScope', avengers]);
 
     function avengers($http, $log, $q, $rootScope) {
+        /*jshint validthis: true */
         var vm = this;
+
         vm.avengers = [];
         vm.maa = [];
         vm.title = 'Avengers';

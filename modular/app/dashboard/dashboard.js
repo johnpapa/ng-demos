@@ -1,6 +1,7 @@
 (function () {
     'use strict';
-    angular.module('app.dashboard')
+    angular
+        .module('app.dashboard')
         .controller('dashboard', ['common', 'dataservice', dashboard]);
 
     function dashboard(common, dataservice) {

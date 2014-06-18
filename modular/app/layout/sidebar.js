@@ -7,6 +7,7 @@
             ['$route', 'routehelper', sidebar]);
 
     function sidebar($route, routehelper) {
+        /*jshint validthis: true */
         var vm = this;
         var routes = routehelper.getRoutes();
 

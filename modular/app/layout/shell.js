@@ -6,6 +6,7 @@
         ['common', 'config', 'dataservice', shell]);
 
     function shell(common, config, dataservice) {
+        /*jshint validthis: true */
         var vm = this;
         var logSuccess = common.logger.success;
 
