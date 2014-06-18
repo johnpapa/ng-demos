@@ -1,10 +1,9 @@
 (function () {
     'use strict';
-    var controllerId = 'dashboard';
     angular.module('app.dashboard')
-        .controller(controllerId, ['common', 'controllerActivator', 'dataservice', dashboard]);
+        .controller('dashboard', ['common', 'dataservice', dashboard]);
 
-    function dashboard(common, controllerActivator, dataservice) {
+    function dashboard(common, dataservice) {
         var log = common.logger.info;
 
         /*jshint validthis: true */
@@ -22,7 +21,7 @@
 
         function activate() {
             var promises = [getAvengerCount(), getAvengersCast()];
-            controllerActivator.activate(promises, controllerId).then(function () {
+            return dataservice.ready(promises).then(function(){
                 log('Activated Dashboard View');
             });
         }

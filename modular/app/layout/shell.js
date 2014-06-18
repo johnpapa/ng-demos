@@ -3,9 +3,9 @@
 
     var controllerId = 'shell';
     angular.module('app.layout').controller(controllerId,
-        ['common', 'config', 'controllerActivator', shell]);
+        ['common', 'config', 'dataservice', shell]);
 
-    function shell(common, config, controllerActivator) {
+    function shell(common, config, dataservice) {
         var vm = this;
         var logSuccess = common.logger.success;
 
@@ -18,7 +18,7 @@
 
         function activate() {
             logSuccess(config.appTitle + ' loaded!', null);
-            controllerActivator.activate([], controllerId).then(function(){
+            dataservice.ready().then(function(){
                 hideSplash();
             });
         }

@@ -1,16 +1,18 @@
 (function () {
     'use strict';
-    var controllerId = 'avengers';
-    angular.module('app.avengers')
-        .controller(controllerId,
-            ['common', 'controllerActivator', 'dataservice', avengers]);
 
-    function avengers(common, controllerActivator, dataservice) {
+    angular
+        .module('app.avengers')
+        .controller('avengers', avengers);
+
+    avengers.$inject = ['common', 'dataservice'];
+
+    function avengers(common, dataservice) {
         var log = common.logger.info;
 
         /*jshint validthis: true */
         var vm = this;
-        
+
         vm.avengers = [];
         vm.title = 'Avengers';
 
@@ -18,7 +20,7 @@
 
         function activate() {
             var promises = [getAvengers()];
-            controllerActivator.activate(promises, controllerId).then(function () {
+            return dataservice.ready(promises).then(function(){
                 log('Activated Avengers View');
             });
         }

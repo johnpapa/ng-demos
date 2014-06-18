@@ -1,9 +1,8 @@
 (function () {
     'use strict';
 
-    var serviceId = 'dataservice';
     angular.module('app.core')
-        .factory(serviceId, ['$http', 'common', dataservice]);
+        .factory('dataservice', ['$http', 'common', dataservice]);
 
     function dataservice($http, common) {
         var isPrimed = false;
@@ -70,8 +69,12 @@
             }
         }
 
-        function ready() {
-            return primePromise || prime();
+        function ready(nextPromises) {
+            var readyPromise = primePromise || prime();
+
+            return readyPromise.then(function(){
+                return $q.all(nextPromises);
+            });
         }
 
     }
