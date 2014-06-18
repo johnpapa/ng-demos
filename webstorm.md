@@ -291,7 +291,7 @@ This creates a menu option under Tools called `Start MongoDB`
 - Under Options, only check the `Open console`
 - Show in `main menu` only
 - Under `Tools settings` 
-	- set the `Program` to `/Users/johnpapa/mongodb/bin/mongod`
+	- set the `Program` to `/Users/johnpapa/mongodb/bin/mongod` or `/usr/local/bin/mongod` (where it is located)
 	- set `Parameters` to `--config mongodb.config`
 	- set  `working directory` to `/Users/johnpapa/mongodb/bin`
  
