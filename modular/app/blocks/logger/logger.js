@@ -1,7 +1,8 @@
 (function(angular) {
     'use strict';
 
-    angular.module('blocks.logger')
+    angular
+        .module('blocks.logger')
         .factory('logger', ['$log', factory ] );
 
     function factory( $log ) {

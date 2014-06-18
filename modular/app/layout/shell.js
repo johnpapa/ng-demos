@@ -1,11 +1,11 @@
 (function () {
     'use strict';
 
-    var controllerId = 'shell';
-    angular.module('app.layout').controller(controllerId,
-        ['common', 'config', 'dataservice', shell]);
+    angular
+        .module('app.layout')
+        .controller('Shell', ['common', 'config', 'dataservice', Shell]);
 
-    function shell(common, config, dataservice) {
+    function Shell(common, config, dataservice) {
         /*jshint validthis: true */
         var vm = this;
         var logSuccess = common.logger.success;

@@ -1,11 +1,11 @@
 (function () {
     'use strict';
 
-    var app = angular.module('app.avengers');
-
-    app.run(['routehelper', function(routehelper){
-        routehelper.configureRoutes(getRoutes());
-    }]);
+    angular
+        .module('app.avengers')
+        .run(['routehelper', function(routehelper){
+            routehelper.configureRoutes(getRoutes());
+        }]);
 
     function getRoutes() {
         return [

@@ -1,7 +1,9 @@
 (function () {
     'use strict';
 
-    angular.module('common').factory('common',
+    angular
+        .module('common')
+        .factory('common',
             ['$q', '$rootScope', '$timeout', 'logger', common]);
 
     function common($q, $rootScope, $timeout, logger) {

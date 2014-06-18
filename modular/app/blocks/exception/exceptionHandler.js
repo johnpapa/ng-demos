@@ -3,11 +3,14 @@
 (function (angular) {
     'use strict';
 
-    var exceptionModule = angular.module('blocks.exception');
+    angular
+        .module('blocks.exception')
+        .provider('exceptionConfig', exceptionConfigProvider)
+        .config(['$provide', exceptionConfig]);
 
     // Must configure the service and set its
     // events via the exceptionConfigProvider
-    exceptionModule.provider('exceptionConfig', function () {
+    function exceptionConfigProvider () {
         this.config = {
             // These are the properties we need to set
             //appErrorPrefix: ''
@@ -18,15 +21,15 @@
                 config: this.config
             };
         };
-    });
+    }
 
     // Configure by setting an optional string value for appErrorPrefix.
     // Accessible via config.appErrorPrefix (via config value).
-    exceptionModule.config(['$provide', function ($provide) {
+    function exceptionConfig ($provide) {
         $provide.decorator('$exceptionHandler',
             ['$delegate', 'exceptionConfig', 'logger',
                 extendExceptionHandler]);
-    }]);
+    }
 
     // Extend the $exceptionHandler service to also display a toast.
     function extendExceptionHandler($delegate, exceptionConfig, logger) {

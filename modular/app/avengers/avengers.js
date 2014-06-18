@@ -3,11 +3,9 @@
 
     angular
         .module('app.avengers')
-        .controller('avengers', avengers);
+        .controller('Avengers', ['common', 'dataservice', Avengers]);
 
-    avengers.$inject = ['common', 'dataservice'];
-
-    function avengers(common, dataservice) {
+    function Avengers(common, dataservice) {
         var log = common.logger.info;
 
         /*jshint validthis: true */

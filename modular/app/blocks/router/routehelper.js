@@ -1,10 +1,14 @@
 (function () {
     'use strict';
 
-    var router = angular.module('blocks.router');
+    angular
+        .module('blocks.router')
+        .provider('routehelperConfig', routehelperConfig)
+        .factory('routehelper',
+        ['$location', '$rootScope', '$route', 'logger', 'routehelperConfig', routehelper]);
 
     // Must configure via the routehelperConfigProvider
-    router.provider('routehelperConfig', function () {
+    function routehelperConfig () {
         this.config = {
             // These are the properties we need to set
             // $routeProvider: undefined
@@ -16,11 +20,7 @@
                 config: this.config
             };
         };
-    });
-
-    var serviceId = 'routehelper';
-    router.factory(serviceId,
-        ['$location', '$rootScope', '$route', 'logger', 'routehelperConfig', routehelper]);
+    }
 
     function routehelper($location, $rootScope, $route, logger, routehelperConfig) {
         var handlingRouteChangeError = false;

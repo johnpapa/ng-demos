@@ -1,7 +1,8 @@
 (function () {
     'use strict';
 
-    angular.module('app.core')
+    angular
+        .module('app.core')
         .factory('dataservice', ['$http', 'common', dataservice]);
 
     function dataservice($http, common) {

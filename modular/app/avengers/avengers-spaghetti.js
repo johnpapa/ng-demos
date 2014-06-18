@@ -14,9 +14,9 @@
 
     angular
         .module('app.avengers')
-        .controller('avengers', ['$http', '$log', '$q', '$rootScope', avengers]);
+        .controller('Avengers', ['$http', '$log', '$q', '$rootScope', Avengers]);
 
-    function avengers($http, $log, $q, $rootScope) {
+    function Avengers($http, $log, $q, $rootScope) {
         /*jshint validthis: true */
         var vm = this;
 

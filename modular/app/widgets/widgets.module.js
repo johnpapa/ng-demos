@@ -3,5 +3,4 @@
 
     angular.module('app.widgets', ['app.core']);
 
-
 })();

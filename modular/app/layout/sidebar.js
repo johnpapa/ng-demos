@@ -1,12 +1,11 @@
 (function () {
     'use strict';
 
-    var controllerId = 'sidebar';
-    angular.module('app.layout')
-        .controller(controllerId,
-            ['$route', 'routehelper', sidebar]);
+    angular
+        .module('app.layout')
+        .controller('Sidebar', ['$route', 'routehelper', Sidebar]);
 
-    function sidebar($route, routehelper) {
+    function Sidebar($route, routehelper) {
         /*jshint validthis: true */
         var vm = this;
         var routes = routehelper.getRoutes();

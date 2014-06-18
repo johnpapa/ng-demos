@@ -2,9 +2,9 @@
     'use strict';
     angular
         .module('app.dashboard')
-        .controller('dashboard', ['common', 'dataservice', dashboard]);
+        .controller('Dashboard', ['common', 'dataservice', Dashboard]);
 
-    function dashboard(common, dataservice) {
+    function Dashboard(common, dataservice) {
         var log = common.logger.info;
 
         /*jshint validthis: true */
