@@ -14,13 +14,13 @@
         var service = {
             getAvengersCast: getAvengersCast,
             getAvengerCount: getAvengerCount,
-            getMAA: getMAA,
+            getAvengers: getAvengers,
             ready: ready
         };
 
         return service;
 
-        function getMAA() {
+        function getAvengers() {
             return $http.get('/api/maa')
                 .then(function(data, status, headers, config) {
                     return data.data[0].data.results;
@@ -61,7 +61,8 @@
                 return primePromise;
             }
 
-            return primePromise = $q.when(true).then(success);
+            primePromise = $q.when(true).then(success);
+            return primePromise;
 
             function success() {
                 isPrimed = true;

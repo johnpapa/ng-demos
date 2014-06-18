@@ -10,32 +10,24 @@
 
         var vm = this;
         vm.avengers = [];
-        vm.maa = [];
         vm.title = 'Avengers';
 
         activate();
 
         function activate() {
-            var promises = [getAvengersCast(), getMAA()];
+            var promises = [getAvengers()];
             controllerActivator.activate(promises, controllerId)
                 .then(function () {
                     log('Activated Avengers View');
                 });
         }
 
-        function getMAA() {
-            dataservice.getMAA()
+        function getAvengers() {
+            dataservice.getAvengers()
                 .then(function (data) {
-                    vm.maa = data;
-                    return vm.maa;
+                    vm.avengers = data;
+                    return vm.avengers;
                 });
-        }
-
-        function getAvengersCast() {
-            return dataservice.getAvengersCast().then(function (data) {
-                vm.avengers = data;
-                return vm.avengers;
-            });
         }
     }
 })();

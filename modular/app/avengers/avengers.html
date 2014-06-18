@@ -5,7 +5,7 @@
                 <div class="widget wblue">
                     <div data-cc-widget-header title="{{vm.title}}"></div>
                     <div class="widget-content user">
-                        <!--<pre>{{vm.maa.data | json}}</pre>-->
+                        <!--<pre>{{vm.avengers.data | json}}</pre>-->
                         <input data-ng-model="vm.filter.name" placeholder="Find Avengers by name"/>
                         <table class="table table-condensed table-striped">
                             <thead>
@@ -16,7 +16,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr data-ng-repeat="c in vm.maa | filter:vm.filter track by c.id">
+                            <tr data-ng-repeat="c in vm.avengers | filter:vm.filter track by c.id">
                                 <td><img
                                         ng-src="{{c.thumbnail.path}}.{{c.thumbnail.extension}}"
                                         class="avenger-thumb img-rounded"/></td>
