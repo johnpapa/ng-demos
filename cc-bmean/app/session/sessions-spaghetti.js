@@ -16,6 +16,7 @@
         .controller('sessions', ['$location', '$q', '$routeParams', sessions]);
 
     function sessions($location, $q, $routeParams) {
+        /*jshint validthis: true */
         var vm = this;
         var applyFilter = function () {};
 

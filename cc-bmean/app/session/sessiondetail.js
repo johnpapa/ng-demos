@@ -9,6 +9,7 @@
 
     function sessiondetail($location, $scope, $routeParams, $window,
                            bsDialog, common, config, datacontext, model) {
+        /*jshint validthis: true */
         var vm = this;
         var entityName = model.entityNames.session;
         var logger = common.logger;

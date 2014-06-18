@@ -9,6 +9,7 @@
 
     function speakerdetail($location, $scope, $routeParams, $window,
                            common, config, datacontext, model) {
+        /*jshint validthis: true */
         var vm = this;
         var entityName = model.entityNames.speaker;
         var logger = common.logger;
