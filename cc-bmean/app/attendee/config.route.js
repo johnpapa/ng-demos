@@ -1,7 +1,8 @@
 (function () {
     'use strict';
 
-    angular.module('app.attendees')
+    angular
+        .module('app.attendees')
         .run(['routehelper', function(routehelper){
             routehelper.configureRoutes(getRoutes());
         }]);

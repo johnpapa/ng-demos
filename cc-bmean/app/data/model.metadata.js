@@ -5,8 +5,9 @@
 (function () {
     'use strict';
 
-    var serviceId = 'model.metadata';
-    angular.module('app.data').factory(serviceId, ['breeze', metadata]);
+    angular
+        .module('app.data')
+        .factory('model.metadata', ['breeze', metadata]);
 
     function metadata(breeze) {
 

@@ -1,12 +1,14 @@
 (function () {
     'use strict';
 
-    var controllerId = 'attendees';
-    angular.module('app.attendees').controller(controllerId,
-        ['controllerActivator', 'config', 'datacontext', attendees]);
+    angular
+        .module('app.attendees')
+        .controller('attendees', ['config', 'datacontext', attendees]);
 
-    function attendees(controllerActivator, config, datacontext) {
+    function attendees(config, datacontext) {
+        /*jshint validthis: true */
         var vm = this;
+
         var keyCodes = config.keyCodes;
 
         vm.attendeeCount = 0;
@@ -33,7 +35,7 @@
         activate();
 
         function activate() {
-            controllerActivator.activate([getAttendees()], controllerId);
+            datacontext.ready([getAttendees()]);
         }
 
         function getAttendeeCount() {

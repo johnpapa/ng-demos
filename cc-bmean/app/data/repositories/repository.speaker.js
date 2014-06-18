@@ -1,9 +1,10 @@
 (function () {
     'use strict';
 
-    var serviceId = 'repository.speaker';
-    angular.module('app.data').factory(serviceId,
-        ['breeze', 'model', 'repository.abstract', RepositorySpeaker]);
+    angular
+        .module('app.data')
+        .factory('repository.speaker',
+            ['breeze', 'model', 'repository.abstract', RepositorySpeaker]);
 
     function RepositorySpeaker(breeze, model, AbstractRepository) {
         var entityName = model.entityNames.speaker;

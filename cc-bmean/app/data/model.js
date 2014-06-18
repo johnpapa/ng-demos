@@ -3,9 +3,10 @@
 
     var useManualMetadata = true; // true: use model.metadata; false: use generated metadata
 
-    var serviceId = 'model';
-    angular.module('app.data').factory(serviceId,
-        ['breeze', 'model.metadata', 'model.validation', model]);
+    angular
+        .module('app.data')
+        .factory('model',
+            ['breeze', 'model.metadata', 'model.validation', model]);
 
     function model(breeze, manualMetadata, modelValidation) {
         var nulloDate = new Date(1900, 0, 1);

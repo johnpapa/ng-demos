@@ -1,9 +1,10 @@
 (function () {
     'use strict';
 
-    var serviceId = 'repository.lookup';
-    angular.module('app.data').factory(serviceId,
-        ['breeze', 'model', 'repository.abstract', RepositoryLookup]);
+    angular
+        .module('app.data')
+        .factory('repository.lookup',
+            ['breeze', 'model', 'repository.abstract', RepositoryLookup]);
 
     function RepositoryLookup(breeze, model, AbstractRepository) {
         var entityName = 'lookups';

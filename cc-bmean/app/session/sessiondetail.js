@@ -1,13 +1,14 @@
 (function () {
     'use strict';
 
-    var controllerId = 'sessiondetail';
-    angular.module('app').controller(controllerId,
-        ['$location', '$scope', '$routeParams', '$window',
-            'bootstrap.dialog', 'common', 'config', 'controllerActivator', 'datacontext', 'model', sessiondetail]);
+    angular
+        .module('app')
+        .controller('sessiondetail',
+            ['$location', '$scope', '$routeParams', '$window',
+            'bootstrap.dialog', 'common', 'config', 'datacontext', 'model', sessiondetail]);
 
     function sessiondetail($location, $scope, $routeParams, $window,
-                           bsDialog, common, config, controllerActivator, datacontext, model) {
+                           bsDialog, common, config, datacontext, model) {
         var vm = this;
         var entityName = model.entityNames.session;
         var logger = common.logger;
@@ -35,8 +36,7 @@
             onDestroy();
             onHasChanges();
             // Whether we succeed or fail, we still want to call onEveryChange
-            controllerActivator.activate([getRequestedSession()], controllerId)
-                .then(onEveryChange);
+            datacontext.ready([getRequestedSession()]).then(onEveryChange);
         }
 
         function autoStoreWip(immediate) {

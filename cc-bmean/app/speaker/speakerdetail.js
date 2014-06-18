@@ -1,13 +1,14 @@
 (function () {
     'use strict';
 
-    var controllerId = 'speakerdetail';
-    angular.module('app').controller(controllerId,
-        ['$location', '$scope', '$routeParams', '$window',
-            'common', 'config', 'controllerActivator', 'datacontext', 'model', speakerdetail]);
+    angular
+        .module('app')
+        .controller('speakerdetail',
+            ['$location', '$scope', '$routeParams', '$window',
+            'common', 'config', 'datacontext', 'model', speakerdetail]);
 
     function speakerdetail($location, $scope, $routeParams, $window,
-                           common, config, controllerActivator, datacontext, model) {
+                           common, config, datacontext, model) {
         var vm = this;
         var entityName = model.entityNames.speaker;
         var logger = common.logger;
@@ -29,8 +30,7 @@
         function activate() {
             onDestroy();
             onHasChanges();
-            controllerActivator.activate([getRequestedSpeaker()], controllerId)
-                .then(onEveryChange);
+            datacontext.ready([getRequestedSpeaker()]).then(onEveryChange);
         }
 
         function autoStoreWip(immediate) {

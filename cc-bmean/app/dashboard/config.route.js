@@ -1,7 +1,8 @@
 (function () {
     'use strict';
 
-    angular.module('app.dashboard')
+    angular
+        .module('app.dashboard')
         .run(['routehelper', function(routehelper){
             routehelper.configureRoutes(getRoutes());
         }]);

@@ -1,13 +1,14 @@
 (function () {
     'use strict';
 
-    var controllerId = 'speakers';
-    angular.module('app').controller(controllerId,
-        ['$location', 'common', 'config', 'controllerActivator', 'datacontext', speakers]);
+    angular
+        .module('app')
+        .controller('speakers', ['$location', 'common', 'config', 'datacontext', speakers]);
 
-    function speakers($location, common, config, controllerActivator, datacontext) {
-        // Always define vm first
+    function speakers($location, common, config, datacontext) {
+        /*jshint validthis: true */
         var vm = this;
+
         var keyCodes = config.keyCodes;
 
         // Define viewmodel variables
@@ -23,7 +24,7 @@
         activate();
 
         function activate() {
-            controllerActivator.activate([getSpeakers()], controllerId);
+            datacontext.ready([getSpeakers()]);
         }
 
         function applyFilter() {

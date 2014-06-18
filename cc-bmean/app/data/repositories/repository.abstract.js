@@ -1,9 +1,10 @@
 (function () {
     'use strict';
 
-    var serviceId = 'repository.abstract';
-    angular.module('app.data').factory(serviceId,
-        ['breeze', 'common', 'config', 'zStorage', 'zStorageWip', AbstractRepository]);
+    angular
+        .module('app.data')
+        .factory('repository.abstract',
+            ['breeze', 'common', 'config', 'zStorage', 'zStorageWip', AbstractRepository]);
 
     function AbstractRepository(breeze, common, config, zStorage, zStorageWip) {
         var predicates = {
@@ -120,7 +121,7 @@
         }
 
         function queryFailed(error) {
-            var msg = config.appErrorPrefix + 'Error retrieving data. ' + (error.message || '');
+            var msg = 'Error retrieving data. ' + (error.message || '');
             this.logger.error(msg, error);
             return $q.reject(new Error(msg));
         }

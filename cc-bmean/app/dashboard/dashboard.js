@@ -1,13 +1,14 @@
 (function () {
     'use strict';
 
-    var controllerId = 'dashboard';
+    angular
+        .module('app.dashboard')
+        .controller('dashboard', ['datacontext', dashboard]);
 
-    angular.module('app.dashboard')
-        .controller(controllerId, ['controllerActivator', 'datacontext', dashboard]);
-
-    function dashboard(controllerActivator, datacontext) {
+    function dashboard(datacontext) {
+        /*jshint validthis: true */
         var vm = this;
+
         vm.map = {
             title: 'Location'
         };
@@ -42,8 +43,7 @@
                 getSpeakers(),
                 getTrackCounts()
             ];
-            controllerActivator.activate(promises, controllerId)
-                .then(getSpeakerMetrics);
+            datacontext.ready(promises).then(getSpeakerMetrics);
         }
 
         function getTrackCounts() {

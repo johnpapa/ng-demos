@@ -1,7 +1,8 @@
 (function () {
     'use strict';
 
-    angular.module('app.widgets')
+    angular
+        .module('app.widgets')
         .directive('ccWip', ['$route', ccWip]);
 
     function ccWip($route) {

@@ -1,9 +1,10 @@
 (function () {
     'use strict';
 
-    var serviceId = 'repository.session';
-    angular.module('app.data').factory(serviceId,
-        ['breeze.config', 'model', 'repository.abstract', RepositorySession]);
+    angular
+        .module('app.data')
+        .factory('repository.session',
+            ['breeze.config', 'model', 'repository.abstract', RepositorySession]);
 
     function RepositorySession(breezeConfig, model, AbstractRepository) {
         var breeze = breezeConfig.breeze;

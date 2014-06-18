@@ -11,9 +11,9 @@
 (function () {
     'use strict';
 
-    var controllerId = 'sessions';
-    angular.module('app').controller(controllerId,
-        ['$location', '$q', '$routeParams', sessions]);
+    angular
+        .module('app')
+        .controller('sessions', ['$location', '$q', '$routeParams', sessions]);
 
     function sessions($location, $q, $routeParams) {
         var vm = this;

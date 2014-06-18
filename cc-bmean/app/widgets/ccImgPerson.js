@@ -1,7 +1,8 @@
 (function () {
     'use strict';
 
-    angular.module('app.widgets')
+    angular
+        .module('app.widgets')
         .directive('ccImgPerson', ['config', ccImgPerson]);
 
     function ccImgPerson (config) {

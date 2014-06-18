@@ -1,9 +1,10 @@
 (function () {
     'use strict';
 
-    var serviceId = 'repository.attendee';
-    angular.module('app.data').factory(serviceId,
-        ['breeze', 'model', 'repository.abstract', RepositoryAttendee]);
+    angular
+        .module('app.data')
+        .factory('repository.attendee',
+            ['breeze', 'model', 'repository.abstract', RepositoryAttendee]);
 
     function RepositoryAttendee(breeze, model, AbstractRepository) {
         var attendeesQuery = breeze.EntityQuery.from('Persons');

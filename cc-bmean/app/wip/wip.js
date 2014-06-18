@@ -1,12 +1,13 @@
 (function () {
     'use strict';
 
-    var controllerId = 'wip';
-    angular.module('app').controller(controllerId,
-        ['$scope', '$location',
-            'bootstrap.dialog', 'config', 'controllerActivator', 'datacontext', wip]);
+    angular
+        .module('app').controller('wip',
+            ['$scope', '$location',
+            'bootstrap.dialog', 'config', 'datacontext', wip]);
 
-    function wip($scope, $location, bsDialog, config, controllerActivator, datacontext) {
+    function wip($scope, $location, bsDialog, config, datacontext) {
+        /*jshint validthis: true */
         var vm = this;
 
         vm.cancelAllWip = cancelAllWip;
@@ -20,7 +21,7 @@
         activate();
 
         function activate() {
-            controllerActivator.activate([getWipSummary()], controllerId);
+            datacontext.ready([getWipSummary()]);
 
             $scope.$on(config.events.storage.wipChanged, function (event, data) {
                 vm.wip = data;

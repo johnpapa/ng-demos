@@ -1,12 +1,16 @@
 (function () {
     'use strict';
 
-    var controllerId = 'sidebar';
-    angular.module('app.layout').controller(controllerId,
-        ['$location', '$route', 'bootstrap.dialog', 'config', 'datacontext', 'routehelper', sidebar]);
+    angular
+        .module('app.layout')
+        .controller('sidebar',
+            ['$location', '$route', 'bootstrap.dialog', 'config',
+                'datacontext', 'routehelper', sidebar]);
 
     function sidebar($location, $route, bsDialog, config, datacontext, routehelper) {
+        /*jshint validthis: true */
         var vm = this;
+
         var keyCodes = config.keyCodes;
 
         vm.clearStorage = clearStorage;

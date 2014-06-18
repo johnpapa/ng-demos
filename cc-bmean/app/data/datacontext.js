@@ -1,9 +1,10 @@
 (function () {
     'use strict';
 
-    var serviceId = 'datacontext';
-    angular.module('app.data').factory(serviceId,
-        ['$injector', '$rootScope', 'breeze',
+    angular
+        .module('app.data')
+        .factory('datacontext',
+            ['$injector', '$rootScope', 'breeze',
             'common', 'config', 'entityManagerFactory',
             'model', 'zStorage', 'zStorageWip', datacontext]);
 
@@ -135,8 +136,12 @@
             }
         }
 
-        function ready() {
-            return primePromise || prime();
+        function ready(nextPromises) {
+            var readyPromise = primePromise || prime();
+
+            return readyPromise.then(function(){
+                return $q.all(nextPromises);
+            });
         }
 
         function save() {
@@ -151,7 +156,7 @@
             }
 
             function saveFailed(error) {
-                var msg = config.appErrorPrefix + 'Save failed: ' +
+                var msg = 'Save failed: ' +
                     breeze.saveErrorMessageService.getErrorMessage(error);
                 error.message = msg;
                 logger.error(msg, error);

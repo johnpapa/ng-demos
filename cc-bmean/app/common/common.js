@@ -1,8 +1,10 @@
 (function () {
     'use strict';
 
-    angular.module('common').factory('common',
-        ['$location', '$q', '$rootScope', '$timeout', 'logger', common]);
+    angular
+        .module('common')
+        .factory('common',
+            ['$location', '$q', '$rootScope', '$timeout', 'logger', common]);
 
     function common($location, $q, $rootScope, $timeout, logger) {
         var throttles = {};

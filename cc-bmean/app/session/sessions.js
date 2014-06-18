@@ -1,13 +1,16 @@
 (function () {
     'use strict';
 
-    var controllerId = 'sessions';
-    angular.module('app').controller(controllerId,
-        ['$location', '$routeParams',
-            'common', 'config', 'controllerActivator', 'datacontext', sessions]);
+    angular
+        .module('app')
+        .controller('sessions',
+            ['$location', '$routeParams',
+            'common', 'config', 'datacontext', sessions]);
 
-    function sessions($location, $routeParams, common, config, controllerActivator, datacontext) {
+    function sessions($location, $routeParams, common, config, datacontext) {
+        /*jshint validthis: true */
         var vm = this;
+
         var keyCodes = config.keyCodes;
         var applyFilter = function () {};
 
@@ -23,7 +26,7 @@
         activate();
 
         function activate() {
-            controllerActivator.activate([getSessions()], controllerId).then(function () {
+            datacontext.ready([getSessions()]).then(function () {
                 applyFilter = common.createSearchThrottle(vm, 'sessions');
                 if (vm.sessionsSearch) {
                     applyFilter(true /*now*/);

@@ -1,12 +1,14 @@
 (function () {
     'use strict';
 
-    var controllerId = 'shell';
-    angular.module('app.layout').controller(controllerId,
-        ['common', 'controllerActivator', shell]);
+    angular
+        .module('app.layout')
+        .controller('shell', ['common', 'datacontext', shell]);
 
-    function shell(common, controllerActivator) {
+    function shell(common, datacontext) {
+        /*jshint validthis: true */
         var vm = this;
+
         var logger = common.logger;
 
         vm.busyMessage = 'Please wait ...';
@@ -17,9 +19,7 @@
 
         function activate() {
             logger.success('CodeCamper loaded!', null);
-            controllerActivator.activate([], controllerId).then(function () {
-                hideSplash();
-            });
+            datacontext.ready([]).then(hideSplash());
         }
 
         function hideSplash() {

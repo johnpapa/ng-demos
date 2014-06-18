@@ -1,8 +1,10 @@
 (function () {
     'use strict';
 
-    var app = angular.module('app.core')
-        .factory('breeze.config', ['breeze', breezeConfig]);
+    angular
+        .module('app.core')
+        .factory('breeze.config', ['breeze', breezeConfig])
+        .config(['config', 'zDirectivesConfigProvider', 'zStorageConfigProvider', configure]);
 
     function breezeConfig(breeze) {
         var service = {
@@ -74,7 +76,6 @@
     }
 
     // Common Breeze configuration during Ng's "config" phase
-    app.config(['config', 'zDirectivesConfigProvider', 'zStorageConfigProvider', configure]);
 
     function configure(config, zDir, zStore) {
 

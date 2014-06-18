@@ -1,7 +1,8 @@
 (function () {
     'use strict';
 
-    angular.module('app.widgets')
+    angular
+        .module('app.widgets')
         .directive('ccWidgetClose', [ccWidgetClose]);
 
     function ccWidgetClose () {
