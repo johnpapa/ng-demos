@@ -7,7 +7,9 @@
     function dashboard(common, controllerActivator, dataservice) {
         var log = common.logger.info;
 
+        /*jshint validthis: true */
         var vm = this;
+
         vm.news = {
             title: 'Marvel Avengers',
             description: 'Marvel Avengers 2 is now in production!'
@@ -20,21 +22,22 @@
 
         function activate() {
             var promises = [getAvengerCount(), getAvengersCast()];
-            controllerActivator.activate(promises, controllerId)
-                .then(function () { log('Activated Dashboard View'); });
+            controllerActivator.activate(promises, controllerId).then(function () {
+                log('Activated Dashboard View');
+            });
         }
 
         function getAvengerCount() {
             return dataservice.getAvengerCount().then(function (data) {
                 vm.avengerCount = data;
-                return vm.avengerCount;
+//                return vm.avengerCount;
             });
         }
 
         function getAvengersCast() {
             return dataservice.getAvengersCast().then(function (data) {
                 vm.avengers = data;
-                return vm.avengers;
+//                return vm.avengers;
             });
         }
     }

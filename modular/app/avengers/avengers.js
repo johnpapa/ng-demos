@@ -8,7 +8,9 @@
     function avengers(common, controllerActivator, dataservice) {
         var log = common.logger.info;
 
+        /*jshint validthis: true */
         var vm = this;
+        
         vm.avengers = [];
         vm.title = 'Avengers';
 
@@ -16,18 +18,16 @@
 
         function activate() {
             var promises = [getAvengers()];
-            controllerActivator.activate(promises, controllerId)
-                .then(function () {
-                    log('Activated Avengers View');
-                });
+            controllerActivator.activate(promises, controllerId).then(function () {
+                log('Activated Avengers View');
+            });
         }
 
         function getAvengers() {
-            dataservice.getAvengers()
-                .then(function (data) {
-                    vm.avengers = data;
-                    return vm.avengers;
-                });
+            dataservice.getAvengers().then(function (data) {
+                vm.avengers = data;
+//              return vm.avengers;
+            });
         }
     }
 })();
