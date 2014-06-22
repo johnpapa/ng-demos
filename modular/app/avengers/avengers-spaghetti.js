@@ -19,51 +19,28 @@
     function Avengers($http, $log, $q, $rootScope) {
         /*jshint validthis: true */
         var vm = this;
-
         vm.avengers = [];
-        vm.maa = [];
         vm.title = 'Avengers';
 
         activate();
 
         function activate() {
-            var promises = [getAvengersCast(), getMAA()];
-
+            var promises = [getAvengers()];
             return $q.all(promises).then(function (eventArgs) {
-                var data = { controllerId: controllerId };
-                $rootScope.$broadcast('controller.activateSuccess', data);
                 toastr.info('Activated Avengers View');
                 $log.info('Activated Avengers View');
             });
         }
 
-        function getMAA() {
+        function getAvengers() {
             return $http.get('/api/maa')
                 .then(function(data, status, headers, config) {
-                    vm.maa = data.data[0].data.results;
-                    return vm.maa;
+                    vm.avengers = data.data[0].data.results;
+                    return vm.avengers;
                 }, function(error){
                     toastr.error(error, title);
                     $log.error('Error: ' + error);
                 });
-        }
-
-        function getAvengersCast() {
-            var cast = [
-                {name: 'Robert Downey Jr.', character: 'Tony Stark / Iron Man'},
-                {name: 'Chris Hemsworth', character: 'Thor'},
-                {name: 'Chris Evans', character: 'Steve Rogers / Captain America'},
-                {name: 'Mark Ruffalo', character: 'Bruce Banner / The Hulk'},
-                {name: 'Scarlett Johansson', character: 'Natasha Romanoff / Black Widow'},
-                {name: 'Jeremy Renner', character: 'Clint Barton / Hawkeye'},
-                {name: 'Gwyneth Paltrow', character: 'Pepper Potts'},
-                {name: 'Samuel L. Jackson', character: 'Nick Fury'},
-                {name: 'Paul Bettany', character: 'Jarvis'},
-                {name: 'Tom Hiddleston', character: 'Loki'},
-                {name: 'Clark Gregg', character: 'Agent Phil Coulson'}
-            ];
-            vm.avengers = cast;
-            return $q.when(cast);
         }
     }
 })();

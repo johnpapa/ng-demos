@@ -10,7 +10,6 @@
 
         /*jshint validthis: true */
         var vm = this;
-
         vm.avengers = [];
         vm.title = 'Avengers';
 
@@ -26,7 +25,7 @@
         function getAvengers() {
             dataservice.getAvengers().then(function (data) {
                 vm.avengers = data;
-//              return vm.avengers;
+                return vm.avengers;
             });
         }
     }
