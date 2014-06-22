@@ -13,9 +13,9 @@
 
     angular
         .module('app')
-        .controller('Sessions', ['$location', '$q', '$routeParams', Sessions]);
+        .controller('Sessions', ['$location', '$log', '$q', '$routeParams', 'zStorage', Sessions]);
 
-    function Sessions($location, $q, $routeParams) {
+    function Sessions($location, $log, $q, $routeParams, zStorage) {
         /*jshint validthis: true */
         var vm = this;
         var applyFilter = function () {};
@@ -59,23 +59,69 @@
         activate();
 
         function activate() {
-            var promises = [getSessions()];
-
             /***************************************************************************
              * Most controllers will need something like this logic.
-             * Good candidate for a controllerActivation factory in a common module
+             * Notice the getReady function? That would load bootstrap data and
+             * certainly should not be copied and pasted for every controller.
+             * Good candidates for a factory.
              ***************************************************************************/
-            return $q.all(promises).then(function(eventArgs) {
-                var data = { controllerId: controllerId };
-                $rootScope.$broadcast('controller.activateSuccess', data);
+            return $q.all([getReady(), getSessions()]).then(function(eventArgs) {
                 applyFilter = createSearchThrottle('sessions');
                 if (vm.sessionsSearch) {
                     applyFilter(true /*now*/);
                 }
                 var msg = 'Activated Sessions View';
-                toastr.info(msg);
-                $log.info(msg);
+                logIt.info(msg);
             });
+        }
+
+        function logIt(msg){
+            toastr.info(msg);
+            $log.info(msg);
+        }
+
+        function getReady(){
+            /***************************************************************************
+             * Bow we have Breeze.js and entity manager concerns mixed here. Yuck!
+             * This really should be deferred to a reusable factory.
+             ***************************************************************************/
+            var manager = new breeze.EntityManager({serviceName: '/breeze/api'});
+            var storageEnabledAndHasData = zStorage.load(manager);
+            var promise = storageEnabledAndHasData ?
+                $q.when(logIt('Loading entities and metadata from local storage')) :
+                loadLookupsFromRemote();
+
+            return promise;
+
+            function loadLookupsFromRemote() {
+                /***************************************************************************
+                 * Ugh, now we have a bunch of XHR calls to make.
+                 * This really should be deferred to a data service/factory.
+                 ***************************************************************************/
+                // get lookups and speakers from remote data source, in parallel
+                return $q.all([getAllLookups()]).then(function () {
+                    zStorage.save();
+                });
+            }
+
+            function getAllLookups() {
+                return breeze.EntityQuery.from('Lookups')
+                    .using(manager).execute()
+                    .then(processLookups).catch(queryFailed);
+
+                function processLookups(data) {
+                    logIt('Retrieved lookups', data);
+                    zStorage.save();
+                    return true;
+                }
+
+                function queryFailed(error) {
+                    var msg = 'Error retrieving data. ' + (error.message || '');
+                    this.logger.error(msg, error);
+                    return $q.reject(new Error(msg));
+                }
+            }
+
         }
 
         /***************************************************************************
