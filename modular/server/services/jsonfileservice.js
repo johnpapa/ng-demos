@@ -12,7 +12,7 @@ module.exports = (function(){
         return json;
 
         function readJsonFileSync(filepath, encoding){
-            if (typeof (encoding) == 'undefined'){
+            if (typeof (encoding) === 'undefined'){
                 encoding = 'utf8';
             }
             var file = fs.readFileSync(filepath, encoding);

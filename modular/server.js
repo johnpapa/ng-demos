@@ -3,16 +3,16 @@ var express      = require('express'),
     bodyParser   = require('body-parser'),
     compress     = require('compression'),
     cors         = require('cors'),
-    errorHandler = require('./services/errorHandler'),
+    errorHandler = require('./server/services/errorHandler'),
     favicon      = require('static-favicon'),
     fileServer   = require('serve-static'),
     http         = require('http'),
     isDev        = app.get('env') === 'development',
     logger       = require('morgan'),
     port         = process.env['PORT'] || 7200,
-    routes       = require('./services/routes');
+    routes       = require('./server/services/routes');
 
-var appDir =  __dirname + '/../'; // Our NG code
+var appDir =  __dirname + '/'; // Our NG code
 
 app.use(bodyParser()); // body parser, json, and url encoding
 app.use(compress()); // Compress response data with gzip
