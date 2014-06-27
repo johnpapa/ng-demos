@@ -7,10 +7,11 @@ bin
 obj
 /packages
 
-# Ignore Node modules
+# Ignore Node & Bower
 ###################
 node_modules
 bower_components
+components
 **/test/coverage
 
 # mongo db
