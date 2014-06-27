@@ -5,7 +5,7 @@
               '<%= pkg.webapp %>/**/*.js'
         ],
         options: {
-            jshintrc: 'jshintrc.json'
+            jshintrc: '.jshintrc'
         }
     }
 };
