@@ -1,9 +1,6 @@
 (function () {
     'use strict';
 
-    angular.module('app.attendees', [
-        'app.core',
-        'app.data'
-    ]);
+    angular.module('app.attendees', []);
 
 })();

@@ -82,7 +82,7 @@
 
         function getReady(){
             /***************************************************************************
-             * Bow we have Breeze.js and entity manager concerns mixed here. Yuck!
+             * Now we have Breeze.js and entity manager concerns mixed here. Yuck!
              * This really should be deferred to a reusable factory.
              ***************************************************************************/
             var manager = new breeze.EntityManager({serviceName: '/breeze/api'});

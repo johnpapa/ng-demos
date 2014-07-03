@@ -2,13 +2,19 @@
     'use strict';
 
     angular.module('app', [
+        /*
+         * Everybody has access to these 3.
+         */
         'app.core',
-        'app.data',
+        'app.data', // needs core
+        'app.widgets', // needs data and core
 
-        'app.layout',
-        'app.widgets',
-        'app.dashboard',
+        /*
+         * Feature areas
+         */
         'app.attendees',
+        'app.dashboard',
+        'app.layout',
         'app.session',
         'app.speaker',
         'app.wip'
