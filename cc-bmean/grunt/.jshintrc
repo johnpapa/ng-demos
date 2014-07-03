@@ -22,6 +22,7 @@
 	"undef": false,
 	"unused": false,
 	"strict": false,
+    "sub": true,
 	"maxparams": 10,
 	"maxdepth": 4,
 	"trailing": true,

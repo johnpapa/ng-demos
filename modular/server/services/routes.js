@@ -22,7 +22,7 @@
             var pos = character.name.indexOf("(MAA)");
             //  console.log(character.name.substr(0, pos-1));
             character.name = character.name.substr(0, pos-1);
-        })
+        });
         res.send(json);
     }
 })(module.exports);

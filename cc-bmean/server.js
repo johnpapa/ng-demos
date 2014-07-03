@@ -9,16 +9,16 @@ var express      = require('express'),
     bodyParser   = require('body-parser'),
     compress     = require('compression'),
     cors         = require('cors'),
-    errorHandler = require('./services/errorHandler'),
+    errorHandler = require('./server/services/errorHandler'),
     favicon      = require('static-favicon'),
     fileServer   = require('serve-static'),
     http         = require('http'),
     isDev        = app.get('env') === 'development',
     logger       = require('morgan'),
-    port         = process.env["PORT"] || 3000,
-    routes       = require('./services/routes');
+    port         = process.env['PORT'] || 3000,
+    routes       = require('./server/services/routes');
 
-var appDir =  __dirname + '/../'; // Our CC code
+var appDir =  __dirname + '/app/'; // Our CC code
 var oneDay = 86400000;
 
 // all environments
@@ -36,22 +36,21 @@ routes.init(app);
 if(isDev){
     app.get('/ping', function(req, res, next) {
         console.log(req.body);
-        res.send('ping');
+        res.send('pong');
     });
 }
 
 var server = http.createServer(app);
 
 server.listen(port, function(){
-    console.log("************************");
-    console.log("Code Camper MEAN Server");
-    console.log("Listening on port " + port);
-    console.log("\nRemember to first start MongoDb server");
-    console.log("************************\n");
+    console.log('************************');
+    console.log('Code Camper MEAN Server');
+    console.log('Listening on port ' + port);
+    console.log('\nRemember to first start MongoDb server');
+    console.log('************************\n');
     console.log('env = '+ app.get('env') +
         '\nport = ' + port  +
         '\n__dirname = ' + __dirname  +
         '\nprocess.cwd() = '+ process.cwd() +
         '\nappDir = ' + appDir);
 });
-

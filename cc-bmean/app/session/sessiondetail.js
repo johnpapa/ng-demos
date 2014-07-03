@@ -41,7 +41,7 @@
         }
 
         function autoStoreWip(immediate) {
-            common.debouncedThrottle(controllerId, storeWipEntity, 1000, immediate);
+            common.debouncedThrottle('sessiondetail', storeWipEntity, 1000, immediate);
         }
 
         function cancel() {

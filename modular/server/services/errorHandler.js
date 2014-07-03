@@ -1,4 +1,4 @@
-exports.init = init;
+module.exports.init = init;
 
 function init(err, req, res, next) {
     var status = err.statusCode || 500;
@@ -9,14 +9,10 @@ function init(err, req, res, next) {
     }
 }
 
-
-
 /* Our fall through error logger and errorHandler  */
-
 function logErrors(err, req, res, next) {
     var status = err.statusCode || 500;
     console.error(status + ' ' + (err.message ? err.message : err));
     if(err.stack) { console.error(err.stack); }
     next(err);
 }
-
