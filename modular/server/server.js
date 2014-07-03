@@ -3,22 +3,22 @@ var express      = require('express'),
     bodyParser   = require('body-parser'),
     compress     = require('compression'),
     cors         = require('cors'),
-    errorHandler = require('./server/services/errorHandler'),
+    errorHandler = require('./services/errorHandler'),
     favicon      = require('static-favicon'),
     fileServer   = require('serve-static'),
     http         = require('http'),
     isDev        = app.get('env') === 'development',
     logger       = require('morgan'),
     port         = process.env['PORT'] || 7200,
-    routes       = require('./server/services/routes');
+    routes       = require('./services/routes');
 
-var appDir =  __dirname + '/'; // Our NG code
+var appDir =  __dirname + '/../client'; // Our NG code
 
-app.use(bodyParser()); // body parser, json, and url encoding
-app.use(compress()); // Compress response data with gzip
-app.use(logger('dev')); // logger
-app.use(fileServer(process.cwd())); // Support static file content
-app.use(cors());          // enable ALL CORS requests
+app.use(bodyParser());          // body parser, json, and url encoding
+app.use(compress());            // Compress response data with gzip
+app.use(logger('dev'));         // logger
+app.use(fileServer(appDir));    // Support static file content
+app.use(cors());                // enable ALL CORS requests
 app.use(errorHandler.init);
 app.use('/', express.static(appDir));
 

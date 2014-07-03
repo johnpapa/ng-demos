@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html>
+<html data-ng-app="app">
+<head>
+    <style>
+        /* This helps the ng-show/ng-hide animations start at the right place. */
+        /* Since Angular has this but needs to load, this gives us the class early. */
+        .ng-hide { display: none!important; }
+    </style>
+
+    <title data-ng-bind="title">CC-Angular-Breeze</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+
+    <link rel="shortcut icon" href="/server/ccfavicon.ico" />
+
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="bower_components/toastr/toastr.css" rel="stylesheet" />
+    <link href="bower_components/breezejs/labs/breeze.directives.css" rel="stylesheet" />
+
+    <link href="content/customtheme.css" rel="stylesheet">
+    <link href="content/styles.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div>
+        <div data-ng-include="'/app/layout/shell.html'"></div>
+    </div>
+
+    <span data-cc-scroll-to-top></span>
+
+    <!-- Bower Vendor Scripts -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/toastr/toastr.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/breezejs/breeze.debug.js"></script>
+    <script src="bower_components/breezejs/adapters/breeze.dataService.mongo.js"></script>
+    <script src="bower_components/breezejs/labs/breeze.angular.js"></script>
+    <script src="bower_components/breezejs/labs/breeze.directives.js"></script>
+    <script src="bower_components/breezejs/labs/breeze.metadata-helper.js"></script>
+    <script src="bower_components/breezejs/labs/breeze.saveErrorExtensions.js"></script>
+    <script src="bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls.min.js"></script>
+    <script src="bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls.min.js"></script>
+    <script src="bower_components/angular.breeze.storagewip/angular.breeze.storagewip.js"></script>
+    <script src="bower_components/extras.angular.plus/ngplus-overlay.js"></script>
+
+    <!-- Bootstrapping -->
+    <script src="app/app.js"></script>
+
+    <!--blocks-->
+    <script src="app/blocks/logger/logger.module.js"></script>
+    <script src="app/blocks/logger/logger.js"></script>
+    <script src="app/blocks/exception/exception.module.js"></script><!-- here but never in testRunner.html -->
+    <script src="app/blocks/exception/exceptionHandler.js"></script><!-- here but never in testRunner.html -->
+    <script src="app/blocks/router/router.module.js"></script>
+    <script src="app/blocks/router/routehelper.js"></script>
+
+    <!-- common -->
+    <script src="app/common/common.module.js"></script>
+    <script src="app/common/common.js"></script>
+
+    <!-- common.bootstrap Modules -->
+    <script src="app/common/bootstrap/bootstrap.dialog.js"></script>
+
+    <!--core-->
+    <script src="app/core/core.module.js"></script>
+    <script src="app/core/config.js"></script>
+    <script src="app/core/config.breeze.js"></script>
+
+    <!-- App data services -->
+    <script src="app/data/data.module.js"></script>
+    <script src="app/data/datacontext.js"></script>
+    <script src="app/data/entityManagerFactory.js"></script>
+    <script src="app/data/model.js"></script>
+    <script src="app/data/model.metadata.js"></script>
+    <script src="app/data/model.validation.js"></script>
+    <script src="app/data/repositories/repository.abstract.js"></script>
+    <script src="app/data/repositories/repository.attendee.js"></script>
+    <script src="app/data/repositories/repository.lookup.js"></script>
+    <script src="app/data/repositories/repository.session.js"></script>
+    <script src="app/data/repositories/repository.speaker.js"></script>
+
+
+    <!--widgets-->
+    <script src="app/widgets/widgets.module.js"></script>
+    <script src="app/widgets/ccImgPerson.js"></script>
+    <script src="app/widgets/ccWidgetClose.js"></script>
+    <script src="app/widgets/ccWidgetMinimize.js"></script>
+    <script src="app/widgets/ccWidgetHeader.js"></script>
+    <script src="app/widgets/ccScrollToTop.js"></script>
+    <script src="app/widgets/ccSidebar.js"></script>
+    <script src="app/widgets/ccWip.js"></script>
+
+    <!-- App - Layout -->
+    <script src="app/layout/layout.module.js"></script>
+    <script src="app/layout/shell.js"></script>
+    <script src="app/layout/sidebar.js"></script>
+
+    <!-- App - Attendee -->
+    <script src="app/attendee/attendees.module.js"></script>
+    <script src="app/attendee/config.route.js"></script>
+    <script src="app/attendee/attendees.js"></script>
+
+    <!-- App - Dashboard -->
+    <script src="app/dashboard/dashboard.module.js"></script>
+    <script src="app/dashboard/config.route.js"></script>
+    <script src="app/dashboard/dashboard.js"></script>
+
+    <!-- App - Session -->
+    <script src="app/session/session.module.js"></script>
+    <script src="app/session/config.route.js"></script>
+    <script src="app/session/sessiondetail.js"></script>
+    <script src="app/session/sessions.js"></script>
+
+    <!-- App - Speaker -->
+    <script src="app/speaker/speaker.module.js"></script>
+    <script src="app/speaker/config.route.js"></script>
+    <script src="app/speaker/speakerdetail.js"></script>
+    <script src="app/speaker/speakers.js"></script>
+
+    <!-- App - WIP -->
+    <script src="app/wip/wip.module.js"></script>
+    <script src="app/wip/config.route.js"></script>
+    <script src="app/wip/wip.js"></script>
+</body>
+</html>

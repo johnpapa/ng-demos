@@ -2,17 +2,6 @@
     "name": "NG-Modular",
     "description": "AngularJS Modular Demo",
     "version": "0.0.1",
-    "dependencies": {
-        "express": "^4.1.0",
-        "morgan": "^1.0.0",
-        "method-override": "^1.0.0",
-        "compression": "^1.0.1",
-        "body-parser": "^1.0.2",
-        "cors": "^2.2.0",
-        "debug": "^0.8.0",
-        "serve-static": "^1.1.0",
-        "static-favicon": "^1.0.2"
-    },
     "devDependencies": {
         "grunt": "~0.4.1",
         "matchdep": "~0.1.2",

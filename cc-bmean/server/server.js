@@ -1,7 +1,7 @@
 /* Mongo + Express + Angular + Node (MEAN)
  *
  *  Assumes the MongoDb server is running.
- *  Browse to app on PORT 3000.
+ *  Browse to app on PORT 3001.
  */
 
 var express      = require('express'),
@@ -9,24 +9,23 @@ var express      = require('express'),
     bodyParser   = require('body-parser'),
     compress     = require('compression'),
     cors         = require('cors'),
-    errorHandler = require('./server/services/errorHandler'),
+    errorHandler = require('./services/errorHandler'),
     favicon      = require('static-favicon'),
     fileServer   = require('serve-static'),
     http         = require('http'),
     isDev        = app.get('env') === 'development',
     logger       = require('morgan'),
-    port         = process.env['PORT'] || 3000,
-    routes       = require('./server/services/routes');
+    port         = process.env['PORT'] || 3001,
+    routes       = require('./services/routes');
 
-var appDir =  __dirname + '/app/'; // Our CC code
+var appDir =  __dirname + '/../client'; // Our CC code
 var oneDay = 86400000;
 
-// all environments
-app.use(bodyParser()); // body parser, json, and url encoding
-app.use(compress()); // Compress response data with gzip
-app.use(logger('dev')); // logger
-app.use(fileServer(process.cwd())); // Support static file content
-app.use(cors());          // enable ALL CORS requests
+app.use(bodyParser());          // body parser, json, and url encoding
+app.use(compress());            // Compress response data with gzip
+app.use(logger('dev'));         // logger
+app.use(fileServer(appDir));    // Support static file content
+app.use(cors());                // enable ALL CORS requests
 app.use(errorHandler.init);
 app.use('/', express.static(appDir, { maxAge: oneDay }));
 
