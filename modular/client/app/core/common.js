@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('common')
+        .module('app.core')
         .factory('common',
             ['$q', '$rootScope', '$timeout', 'logger', common]);
 
