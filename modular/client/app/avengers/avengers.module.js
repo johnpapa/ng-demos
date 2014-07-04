@@ -1,6 +1,6 @@
 (function () {
     'use strict';
 
-    angular.module('app.avengers', ['app.core']);
+    angular.module('app.avengers', []);
 
 })();
