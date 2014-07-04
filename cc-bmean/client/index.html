@@ -1,16 +1,17 @@
 ﻿<!DOCTYPE html>
 <html data-ng-app="app">
 <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+    <title data-ng-bind="title">CC-Angular-Breeze</title>
+
+
     <style>
         /* This helps the ng-show/ng-hide animations start at the right place. */
         /* Since Angular has this but needs to load, this gives us the class early. */
         .ng-hide { display: none!important; }
     </style>
-
-    <title data-ng-bind="title">CC-Angular-Breeze</title>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
 
     <link rel="shortcut icon" href="/server/ccfavicon.ico" />
 
@@ -61,15 +62,10 @@
     <script src="app/blocks/router/router.module.js"></script>
     <script src="app/blocks/router/routehelper.js"></script>
 
-    <!-- common -->
-    <script src="app/common/common.module.js"></script>
-    <script src="app/common/common.js"></script>
-
-    <!-- common.bootstrap Modules -->
-    <script src="app/common/bootstrap/bootstrap.dialog.js"></script>
-
     <!--core-->
     <script src="app/core/core.module.js"></script>
+    <script src="app/core/common.js"></script>
+    <script src="app/core/bootstrap.dialog.js"></script>
     <script src="app/core/config.js"></script>
     <script src="app/core/config.breeze.js"></script>
 
