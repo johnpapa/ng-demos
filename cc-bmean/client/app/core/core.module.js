@@ -10,7 +10,6 @@
         /*
          * Our reusable cross app code modules
          */
-        'common', 'common.bootstrap',
         'blocks.exception', 'blocks.logger', 'blocks.router',
 
         /*

@@ -1,9 +1,9 @@
 (function () {
     'use strict';
 
-    var bootstrapModule = angular.module('common.bootstrap', ['ui.bootstrap']);
-
-    bootstrapModule.factory('bootstrap.dialog', ['$modal', '$templateCache', modalDialog]);
+angular
+    .module('app.core')
+    .factory('bootstrap.dialog', ['$modal', '$templateCache', modalDialog]);
 
     function modalDialog($modal, $templateCache) {
         var service = {
