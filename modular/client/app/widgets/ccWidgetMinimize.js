@@ -1,10 +1,6 @@
 (function () {
     'use strict';
 
-    angular
-        .module('app.widgets')
-        .directive('ccWidgetMinimize', [ccWidgetMinimize]);
-
     function ccWidgetMinimize () {
         // Usage:
         // <a data-cc-widget-minimize></a>
@@ -39,6 +35,7 @@
         }
     }
 
-
-
+    angular
+        .module('app.widgets')
+        .directive('ccWidgetMinimize', [ccWidgetMinimize]);
 })();

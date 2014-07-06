@@ -1,10 +1,6 @@
 (function () {
     'use strict';
 
-    angular
-        .module('app.avengers')
-        .controller('Avengers', ['common', 'dataservice', Avengers]);
-
     function Avengers(common, dataservice) {
         var log = common.logger.info;
 
@@ -29,4 +25,10 @@
             });
         }
     }
+
+    Avengers.$inject = ['common', 'dataservice'];
+
+    angular
+        .module('app.avengers')
+        .controller('Avengers', Avengers);
 })();

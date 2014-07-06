@@ -1,10 +1,6 @@
 (function () {
     'use strict';
 
-    angular
-        .module('app.widgets')
-        .directive('ccWidgetHeader', ['$window', ccWidgetHeader]);
-
     function ccWidgetHeader () {
         //Usage:
         //<div data-cc-widget-header title="vm.map.title"></div>
@@ -26,4 +22,7 @@
         }
     }
 
+    angular
+        .module('app.widgets')
+        .directive('ccWidgetHeader', ['$window', ccWidgetHeader]);
 })();

@@ -1,12 +1,8 @@
 (function(angular) {
     'use strict';
 
-    angular
-        .module('blocks.logger')
-        .factory('logger', ['$log', factory ] );
-
-    function factory( $log ) {
-        var logger = {
+    function logger( $log ) {
+        var service = {
             showToasts: true,
 
             error   : error,
@@ -18,7 +14,7 @@
             log     : $log.log
         };
 
-        return logger;
+        return service;
         /////////////////////
 
         function error(message, data, title) {
@@ -41,4 +37,11 @@
             $log.warn('Warning: ' + message, data);
         }
     }
+
+    logger.$inject = ['$log'];
+
+    angular
+        .module('blocks.logger')
+        .factory('logger', logger);
+
 }( this.angular ));

@@ -1,8 +1,5 @@
 (function () {
     'use strict';
-    angular
-        .module('app.dashboard')
-        .controller('Dashboard', ['common', 'dataservice', Dashboard]);
 
     function Dashboard(common, dataservice) {
         var log = common.logger.info;
@@ -30,15 +27,21 @@
         function getAvengerCount() {
             return dataservice.getAvengerCount().then(function (data) {
                 vm.avengerCount = data;
-//                return vm.avengerCount;
+                return vm.avengerCount;
             });
         }
 
         function getAvengersCast() {
             return dataservice.getAvengersCast().then(function (data) {
                 vm.avengers = data;
-//                return vm.avengers;
+                return vm.avengers;
             });
         }
     }
+
+    Dashboard.$inject = ['common', 'dataservice'];
+
+    angular
+        .module('app.dashboard')
+        .controller('Dashboard', Dashboard);
 })();

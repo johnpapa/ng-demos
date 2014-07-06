@@ -1,10 +1,6 @@
 (function () {
     'use strict';
 
-    angular
-        .module('app.layout')
-        .controller('Shell', ['common', 'config', 'dataservice', Shell]);
-
     function Shell(common, config, dataservice) {
         /*jshint validthis: true */
         var vm = this;
@@ -31,4 +27,10 @@
             }, 1000);
         }
     }
+
+    Shell.$inject = ['common', 'config', 'dataservice'];
+
+    angular
+        .module('app.layout')
+        .controller('Shell', Shell);
 })();
