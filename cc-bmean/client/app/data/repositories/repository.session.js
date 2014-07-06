@@ -1,11 +1,6 @@
 (function () {
     'use strict';
 
-    angular
-        .module('app.data')
-        .factory('repository.session',
-            ['breeze.config', 'model', 'repository.abstract', RepositorySession]);
-
     function RepositorySession(breezeConfig, model, AbstractRepository) {
         var breeze = breezeConfig.breeze;
         var entityName = model.entityNames.session;
@@ -115,4 +110,10 @@
             }
         }
     }
+
+    RepositorySession.$inject = ['breeze.config', 'model', 'repository.abstract'];
+
+    angular
+        .module('app.data')
+        .factory('repository.session', RepositorySession);
 })();

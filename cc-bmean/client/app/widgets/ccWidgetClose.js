@@ -1,10 +1,6 @@
 (function () {
     'use strict';
 
-    angular
-        .module('app.widgets')
-        .directive('ccWidgetClose', [ccWidgetClose]);
-
     function ccWidgetClose () {
         // Usage:
         // <a data-cc-widget-close></a>
@@ -31,4 +27,7 @@
         }
     }
 
+    angular
+        .module('app.widgets')
+        .directive('ccWidgetClose', [ccWidgetClose]);
 })();

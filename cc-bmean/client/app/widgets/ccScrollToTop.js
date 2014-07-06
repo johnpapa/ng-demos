@@ -1,10 +1,6 @@
 (function () {
     'use strict';
 
-    angular
-        .module('app.widgets')
-        .directive('ccScrollToTop', ['$window', ccScrollToTop]);
-
     function ccScrollToTop($window) {
         // Usage:
         // <span data-cc-scroll-to-top></span>
@@ -40,4 +36,10 @@
             }
         }
     }
+
+    ccScrollToTop.$inject = ['$window'];
+
+    angular
+        .module('app.widgets')
+        .directive('ccScrollToTop', ccScrollToTop);
 })();

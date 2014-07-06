@@ -1,14 +1,8 @@
 (function () {
     'use strict';
 
-    angular
-        .module('app')
-        .controller('SessionDetail',
-            ['$location', '$scope', '$routeParams', '$window',
-            'bootstrap.dialog', 'common', 'config', 'datacontext', 'model', SessionDetail]);
-
     function SessionDetail ($location, $scope, $routeParams, $window,
-                           bsDialog, common, config, datacontext, model) {
+                            bsDialog, common, config, datacontext, model) {
         /*jshint validthis: true */
         var vm = this;
         var entityName = model.entityNames.session;
@@ -155,8 +149,8 @@
                 common.replaceLocationUrlGuidWithId(vm.session.id);
                 datacontext.speaker.calcIsSpeaker();
             }).catch(function (error) {
-                    vm.isSaving = false;
-                });
+                vm.isSaving = false;
+            });
         }
 
         function storeWipEntity() {
@@ -167,4 +161,12 @@
             wipEntityKey = datacontext.zStorageWip.storeWipEntity(vm.session, wipEntityKey, entityName, description);
         }
     }
+
+    SessionDetail.$inject = ['$location', '$scope', '$routeParams', '$window',
+        'bootstrap.dialog', 'common', 'config', 'datacontext', 'model'];
+
+    angular
+        .module('app')
+        .controller('SessionDetail', SessionDetail);
 })();
+

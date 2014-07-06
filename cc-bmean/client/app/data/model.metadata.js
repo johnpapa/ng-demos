@@ -5,10 +5,6 @@
 (function () {
     'use strict';
 
-    angular
-        .module('app.data')
-        .factory('model.metadata', ['breeze', metadata]);
-
     function metadata(breeze) {
 
         // 'Identity' is the default key generation strategy for this app
@@ -141,4 +137,10 @@
         }
 
     }
+
+    metadata.$inject = ['breeze'];
+
+    angular
+        .module('app.data')
+        .factory('model.metadata', metadata);
 })();

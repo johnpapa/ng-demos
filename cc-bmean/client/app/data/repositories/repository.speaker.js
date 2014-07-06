@@ -1,11 +1,6 @@
 (function () {
     'use strict';
 
-    angular
-        .module('app.data')
-        .factory('repository.speaker',
-            ['breeze', 'model', 'repository.abstract', RepositorySpeaker]);
-
     function RepositorySpeaker(breeze, model, AbstractRepository) {
         var entityName = model.entityNames.speaker;
         var orderBy = 'firstName, lastName';
@@ -115,4 +110,10 @@
             }
         }
     }
+
+    RepositorySpeaker.$inject = ['breeze', 'model', 'repository.abstract'];
+
+    angular
+        .module('app.data')
+        .factory('repository.speaker', RepositorySpeaker);
 })();

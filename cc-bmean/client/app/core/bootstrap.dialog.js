@@ -1,10 +1,6 @@
 (function () {
     'use strict';
 
-angular
-    .module('app.core')
-    .factory('bootstrap.dialog', ['$modal', '$templateCache', modalDialog]);
-
     function modalDialog($modal, $templateCache) {
         var service = {
             deleteDialog: deleteDialog,
@@ -12,7 +8,7 @@ angular
         };
 
         $templateCache.put('modalDialog.tpl.html',
-            '<div>' +
+                '<div>' +
                 '    <div class="modal-header">' +
                 '        <button type="button" class="close" data-dismiss="modal" ' +
                 '            aria-hidden="true" data-ng-click="cancel()">&times;</button>' +
@@ -72,4 +68,10 @@ angular
                 $modalInstance.dismiss('cancel');
             };
         }];
+
+    modalDialog.$inject = ['$modal', '$templateCache'];
+
+    angular
+        .module('app.core')
+        .factory('bootstrap.dialog', modalDialog);
 })();

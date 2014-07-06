@@ -1,11 +1,6 @@
 (function () {
     'use strict';
 
-    angular
-        .module('app.data')
-        .factory('repository.lookup',
-            ['breeze', 'model', 'repository.abstract', RepositoryLookup]);
-
     function RepositoryLookup(breeze, model, AbstractRepository) {
         var entityName = 'lookups';
         var entityNames = model.entityNames;
@@ -52,4 +47,10 @@
             }
         }
     }
+
+    RepositoryLookup.$inject = ['breeze', 'model', 'repository.abstract'];
+
+    angular
+        .module('app.data')
+        .factory('repository.lookup', RepositoryLookup);
 })();

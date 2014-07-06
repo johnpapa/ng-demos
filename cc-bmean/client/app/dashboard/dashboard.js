@@ -1,10 +1,6 @@
 (function () {
     'use strict';
 
-    angular
-        .module('app.dashboard')
-        .controller('Dashboard', ['datacontext', Dashboard]);
-
     function Dashboard(datacontext) {
         /*jshint validthis: true */
         var vm = this;
@@ -83,4 +79,10 @@
             vm.content.reverse = !vm.content.reverse;
         }
     }
+
+    Dashboard.$inject = ['datacontext'];
+
+    angular
+        .module('app.dashboard')
+        .controller('Dashboard', Dashboard);
 })();

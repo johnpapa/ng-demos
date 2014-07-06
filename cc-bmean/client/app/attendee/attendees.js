@@ -1,10 +1,6 @@
 (function () {
     'use strict';
 
-    angular
-        .module('app.attendees')
-        .controller('Attendees', ['config', 'datacontext', Attendees]);
-
     function Attendees(config, datacontext) {
         /*jshint validthis: true */
         var vm = this;
@@ -85,4 +81,10 @@
             getAttendees();
         }
     }
+
+    Attendees.$inject = ['config', 'datacontext'];
+
+    angular
+        .module('app.attendees')
+        .controller('Attendees', Attendees);
 })();

@@ -3,11 +3,6 @@
 
     var useManualMetadata = true; // true: use model.metadata; false: use generated metadata
 
-    angular
-        .module('app.data')
-        .factory('model',
-            ['breeze', 'model.metadata', 'model.validation', model]);
-
     function model(breeze, manualMetadata, modelValidation) {
         var nulloDate = new Date(1900, 0, 1);
         var nullosExist = false;
@@ -147,4 +142,10 @@
 
         //#endregion
     }
+
+    model.$inject = ['breeze', 'model.metadata', 'model.validation'];
+
+    angular
+        .module('app.data')
+        .factory('model', model);
 })();

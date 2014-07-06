@@ -1,10 +1,6 @@
 (function () {
     'use strict';
 
-    angular
-        .module('app.widgets')
-        .directive('ccWip', ['$route', ccWip]);
-
     function ccWip($route) {
         //Usage:
         //<li data-cc-wip
@@ -72,4 +68,10 @@
                 'Work in Progress ({{wip.length}})</a>';
         }
     }
+
+    ccWip.$inject = ['$route'];
+
+    angular
+        .module('app.widgets')
+        .directive('ccWip', ccWip);
 })();

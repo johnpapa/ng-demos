@@ -1,10 +1,6 @@
 (function () {
     'use strict';
 
-    angular
-        .module('app.data')
-        .factory('entityManagerFactory', ['breeze.config', 'model', emFactory]);
-
     function emFactory(breezeConfig, model) {
         var breeze = breezeConfig.breeze;
 
@@ -35,4 +31,10 @@
             return mgr;
         }
     }
+
+    emFactory.$inject = ['breeze.config', 'model'];
+
+    angular
+        .module('app.data')
+        .factory('entityManagerFactory', emFactory);
 })();
