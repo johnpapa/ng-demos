@@ -9,6 +9,7 @@ Demonstrating Angular Modularity
 
 ## Installing Bower Packages
 - Open terminal
+- Enter `cd client`
 - Type `bower install`
 
 ## Running

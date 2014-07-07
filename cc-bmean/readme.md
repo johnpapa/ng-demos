@@ -9,8 +9,9 @@ Code Camper with Breeze, Mongo, Express, Angular, and Node
 
 ## Setup
 1. Unzip `\server\data\ngCodeCamper.zip` to expand the Mongo database
-2. Enter `bower install` to install the bower packages
-3. Go to the `server` folder and enter `npm install` to install the node modules
+2. Enter `cd client`
+3. Enter `bower install` to install the bower packages
+4. Go to the `server` folder and enter `npm install` to install the node modules
 
 ### MongoDB
 After installing MongoDB, create put your path to your MongoDB location in the file `\server\data\mongodb.config`. It may look something like this:
@@ -21,7 +22,7 @@ dbpath=/Users/johnpapa/_git/ng-demos/cc-bmean/server/data/ngCodeCamper
 
 ## Running CC-BMEAN
 1. Run the MongoDB `mongod --config server/data/mongodb.config`
-2. Run the node server by going to `/server` folder 
+2. Run the node server by going to `/server` folder
 3. Enter `node server.js`
 4. Browse to http://localhost:3000
 
@@ -54,11 +55,11 @@ This creates a menu option under Tools called `Start MongoDB`
 - Name it `Start MongoDB` and give it a description
 - Under Options, only check the `Open console`
 - Show in `main menu` only
-- Under `Tools settings` 
+- Under `Tools settings`
 	- set the `Program` to `/Users/johnpapa/mongodb/bin/mongod` or `/usr/local/bin/mongod` (where it is located)
 	- set `Parameters` to `--config mongodb.config`
 	- set  `working directory` to `/Users/johnpapa/mongodb/bin`
- 
+
 ### Config
 	#logpath=c:\mongodb\log\mongo.log
 	dbpath=/Users/johnpapa/mongodb/data
@@ -93,7 +94,7 @@ app --> [
                             ]
 ```
 
-### app 
+### app
 The `app` module is the root of the entire application. This would be named more appropriately to reflect the application. Little or no functionality is here other than aggregating all of the app features which are in other module dependencies.
 
 The `app` module depends on feature modules, which use the naming convention `app.*`
@@ -103,7 +104,7 @@ The `app.*` modules are feature areas for the main app. These all depend on `app
 
 One example may be `app.orders` which may be a feature area for order information int he app. There may also be `app.layout` which contains all the layout logic for the app, such as login, navbars and menus. There may also be app specific widgets in `app.widgets`.
 
-### app.core 
+### app.core
 The `app.core` module contains all application specific services and shared code that all (or most) features may require. Thus the `app.*` modules depend on `app.core`.
 
 The `app.core` module also serves as an agregator of all generic, common, 3rd party, and angular modules that are shared across the application. These may include common function helpers, reusable blocks such as a logger, ui-bootstrap or kendo integration, and ngRoute (ng* modules).
