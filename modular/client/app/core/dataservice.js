@@ -1,6 +1,12 @@
 (function () {
     'use strict';
 
+    angular
+        .module('app.core')
+        .factory('dataservice', dataservice);
+
+    dataservice.$inject = ['$http', 'common'];
+
     function dataservice($http, common) {
         var isPrimed = false;
         var logger = common.logger;
@@ -75,10 +81,4 @@
         }
 
     }
-
-    dataservice.$inject = ['$http', 'common'];
-
-    angular
-        .module('app.core')
-        .factory('dataservice', dataservice);
 })();

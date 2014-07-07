@@ -1,6 +1,12 @@
 (function () {
     'use strict';
 
+    angular
+        .module('app.dashboard')
+        .controller('Dashboard', Dashboard);
+
+    Dashboard.$inject = ['common', 'dataservice'];
+
     function Dashboard(common, dataservice) {
         var log = common.logger.info;
 
@@ -38,10 +44,4 @@
             });
         }
     }
-
-    Dashboard.$inject = ['common', 'dataservice'];
-
-    angular
-        .module('app.dashboard')
-        .controller('Dashboard', Dashboard);
 })();

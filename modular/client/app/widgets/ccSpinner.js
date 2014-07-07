@@ -1,6 +1,12 @@
 (function () {
     'use strict';
 
+    angular
+        .module('app.widgets')
+        .directive('ccSpinner', ccSpinner);
+
+    ccSpinner.$inject = ['$window'];
+
     function ccSpinner ($window) {
         // Description:
         //  Creates a new Spinner and sets its options
@@ -23,9 +29,4 @@
             }, true);
         }
     }
-
-    angular
-        .module('app.widgets')
-        .directive('ccSpinner', ['$window', ccSpinner]);
-
 })();

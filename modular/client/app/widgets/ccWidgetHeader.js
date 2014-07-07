@@ -1,6 +1,12 @@
 (function () {
     'use strict';
 
+    angular
+        .module('app.widgets')
+        .directive('ccWidgetHeader', ccWidgetHeader);
+
+    ccWidgetHeader.$inject = ['$window'];
+
     function ccWidgetHeader () {
         //Usage:
         //<div data-cc-widget-header title="vm.map.title"></div>
@@ -21,8 +27,4 @@
             attrs.$set('class', 'widget-head');
         }
     }
-
-    angular
-        .module('app.widgets')
-        .directive('ccWidgetHeader', ['$window', ccWidgetHeader]);
 })();

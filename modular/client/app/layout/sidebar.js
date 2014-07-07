@@ -1,6 +1,12 @@
 (function () {
     'use strict';
 
+    angular
+        .module('app.layout')
+        .controller('Sidebar', Sidebar);
+
+    Sidebar.$inject = ['$route', 'routehelper'];
+
     function Sidebar($route, routehelper) {
         /*jshint validthis: true */
         var vm = this;
@@ -28,11 +34,4 @@
             return $route.current.title.substr(0, menuName.length) === menuName ? 'current' : '';
         }
     }
-
-    Sidebar.$inject = ['$route', 'routehelper'];
-
-    angular
-        .module('app.layout')
-        .controller('Sidebar', Sidebar);
-
 })();

@@ -1,6 +1,10 @@
 (function () {
     'use strict';
 
+    angular
+        .module('app.widgets')
+        .directive('ccSidebar', [ccSidebar]);
+
     function ccSidebar () {
         // Opens and closes the sidebar menu.
         // Usage:
@@ -38,8 +42,4 @@
             }
         }
     }
-
-    angular
-        .module('app.widgets')
-        .directive('ccSidebar', [ccSidebar]);
 })();

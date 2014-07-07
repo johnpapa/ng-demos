@@ -1,6 +1,13 @@
 (function () {
     'use strict';
 
+    angular
+        .module('blocks.router')
+        .provider('routehelperConfig', routehelperConfig)
+        .factory('routehelper', routehelper);
+
+    routehelper.$inject = ['$location', '$rootScope', '$route', 'logger', 'routehelperConfig'];
+
     // Must configure via the routehelperConfigProvider
     function routehelperConfig () {
         this.config = {
@@ -92,11 +99,4 @@
             );
         }
     }
-
-    routehelper.$inject = ['$location', '$rootScope', '$route', 'logger', 'routehelperConfig'];
-
-    angular
-        .module('blocks.router')
-        .provider('routehelperConfig', routehelperConfig)
-        .factory('routehelper', routehelper);
 })();
