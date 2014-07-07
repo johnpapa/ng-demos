@@ -1,6 +1,12 @@
 (function () {
     'use strict';
 
+    angular
+        .module('app.core')
+        .factory('bootstrap.dialog', modalDialog);
+
+    modalDialog.$inject = ['$modal', '$templateCache'];
+
     function modalDialog($modal, $templateCache) {
         var service = {
             deleteDialog: deleteDialog,
@@ -68,10 +74,4 @@
                 $modalInstance.dismiss('cancel');
             };
         }];
-
-    modalDialog.$inject = ['$modal', '$templateCache'];
-
-    angular
-        .module('app.core')
-        .factory('bootstrap.dialog', modalDialog);
 })();

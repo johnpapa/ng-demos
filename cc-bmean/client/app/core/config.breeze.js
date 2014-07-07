@@ -1,6 +1,13 @@
 (function () {
     'use strict';
 
+    angular
+        .module('app.core')
+        .factory('breeze.config', breezeConfig)
+        .config(configure);
+
+    breezeConfig.$inject = ['breeze'];
+
     // Common Breeze configuration during Ng's "config" phase
     function breezeConfig(breeze) {
         var service = {
@@ -71,7 +78,7 @@
         }
     }
 
-    breezeConfig.$inject = ['breeze'];
+    configure.$inject = ['config', 'zDirectivesConfigProvider', 'zStorageConfigProvider'];
 
     function configure(config, zDir, zStore) {
 
@@ -117,11 +124,4 @@
             //#endregion
         }
     }
-
-    configure.$inject = ['config', 'zDirectivesConfigProvider', 'zStorageConfigProvider'];
-
-    angular
-        .module('app.core')
-        .factory('breeze.config', breezeConfig)
-        .config(configure);
 })();

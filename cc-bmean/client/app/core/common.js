@@ -1,6 +1,12 @@
 (function () {
     'use strict';
 
+    angular
+        .module('app.core')
+        .factory('common', common);
+
+    common.$inject = ['$location', '$q', '$rootScope', '$timeout', 'logger'];
+
     function common($location, $q, $rootScope, $timeout, logger) {
         var throttles = {};
 
@@ -111,10 +117,4 @@
             return text && -1 !== text.toLowerCase().indexOf(searchText.toLowerCase());
         }
     }
-
-    common.$inject = ['$location', '$q', '$rootScope', '$timeout', 'logger'];
-
-    angular
-        .module('app.core')
-        .factory('common', common);
 })();

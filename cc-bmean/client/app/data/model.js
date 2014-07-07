@@ -1,6 +1,12 @@
 (function () {
     'use strict';
 
+    angular
+        .module('app.data')
+        .factory('model', model);
+
+    model.$inject = ['breeze', 'model.metadata', 'model.validation'];
+
     var useManualMetadata = true; // true: use model.metadata; false: use generated metadata
 
     function model(breeze, manualMetadata, modelValidation) {
@@ -142,10 +148,4 @@
 
         //#endregion
     }
-
-    model.$inject = ['breeze', 'model.metadata', 'model.validation'];
-
-    angular
-        .module('app.data')
-        .factory('model', model);
 })();

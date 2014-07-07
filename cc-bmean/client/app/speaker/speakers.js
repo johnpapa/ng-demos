@@ -1,6 +1,12 @@
 (function () {
     'use strict';
 
+    angular
+        .module('app')
+        .controller('Speakers', Speakers);
+
+    Speakers.$inject = ['$location', 'common', 'config', 'datacontext'];
+
     function Speakers($location, common, config, datacontext) {
         /*jshint validthis: true */
         var vm = this;
@@ -59,10 +65,4 @@
             return isMatch;
         }
     }
-
-    Speakers.$inject = ['$location', 'common', 'config', 'datacontext'];
-
-    angular
-        .module('app')
-        .controller('Speakers', Speakers);
 })();

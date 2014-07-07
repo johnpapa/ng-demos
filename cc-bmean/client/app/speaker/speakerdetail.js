@@ -1,6 +1,13 @@
 (function () {
     'use strict';
 
+    angular
+        .module('app')
+        .controller('SpeakerDetail', SpeakerDetail);
+
+    SpeakerDetail.$inject = ['$location', '$scope', '$routeParams', '$window',
+        'common', 'config', 'datacontext', 'model'];
+
     function SpeakerDetail($location, $scope, $routeParams, $window,
                            common, config, datacontext, model) {
         /*jshint validthis: true */
@@ -126,11 +133,4 @@
                 vm.speaker, wipEntityKey, entityName, description, routeState);
         }
     }
-
-    SpeakerDetail.$inject = ['$location', '$scope', '$routeParams', '$window',
-        'common', 'config', 'datacontext', 'model'];
-
-    angular
-        .module('app')
-        .controller('SpeakerDetail', SpeakerDetail);
 })();

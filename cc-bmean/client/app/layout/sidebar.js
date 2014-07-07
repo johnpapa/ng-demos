@@ -1,6 +1,12 @@
 (function () {
     'use strict';
 
+    angular
+        .module('app.layout')
+        .controller('Sidebar', Sidebar);
+
+    Sidebar.$inject = ['$location', '$route',
+        'bootstrap.dialog', 'config', 'datacontext', 'routehelper'];
 
     function Sidebar($location, $route, bsDialog, config, datacontext, routehelper) {
         /*jshint validthis: true */
@@ -62,11 +68,4 @@
             }
         }
     }
-
-    Sidebar.$inject = ['$location', '$route',
-        'bootstrap.dialog', 'config', 'datacontext', 'routehelper'];
-
-    angular
-        .module('app.layout')
-        .controller('Sidebar', Sidebar);
 })();

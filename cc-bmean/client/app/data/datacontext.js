@@ -1,6 +1,15 @@
 (function () {
     'use strict';
 
+    angular
+        .module('app.data')
+        .factory('datacontext', datacontext);
+
+    datacontext.$inject =
+        ['$injector', '$rootScope', 'breeze',
+            'common', 'config', 'entityManagerFactory',
+            'model', 'zStorage', 'zStorageWip'];
+
     function datacontext($injector, $rootScope, breeze, common, config, emFactory, model, zStorage, zStorageWip) {
         var events = config.events;
         var logger = common.logger;
@@ -196,13 +205,4 @@
 
         //#endregion
     }
-
-    datacontext.$inject =
-        ['$injector', '$rootScope', 'breeze',
-        'common', 'config', 'entityManagerFactory',
-        'model', 'zStorage', 'zStorageWip'];
-
-    angular
-        .module('app.data')
-        .factory('datacontext', datacontext);
 })();

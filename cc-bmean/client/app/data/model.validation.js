@@ -1,6 +1,12 @@
 (function () {
     'use strict';
 
+    angular
+        .module('app.data')
+        .factory('model.validation', modelValidation);
+
+    modelValidation.$inject = ['breeze', 'common'];
+
     function modelValidation(breeze, common) {
         var entityNames;
         var logger = common.logger;
@@ -81,10 +87,4 @@
             }
         }
     }
-
-    modelValidation.$inject = ['breeze', 'common'];
-
-    angular
-        .module('app.data')
-        .factory('model.validation', modelValidation);
 })();

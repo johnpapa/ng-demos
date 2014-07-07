@@ -1,6 +1,12 @@
 (function () {
     'use strict';
 
+    angular
+        .module('app')
+        .controller('WIP', WIP);
+
+    WIP.$inject = ['$scope', '$location', 'bootstrap.dialog', 'config', 'datacontext'];
+
     function WIP($scope, $location, bsDialog, config, datacontext) {
         /*jshint validthis: true */
         var vm = this;
@@ -52,10 +58,4 @@
             vm.reverse = !vm.reverse;
         }
     }
-
-    WIP.$inject = ['$scope', '$location', 'bootstrap.dialog', 'config', 'datacontext'];
-
-    angular
-        .module('app')
-        .controller('WIP', WIP);
 })();

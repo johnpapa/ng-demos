@@ -1,6 +1,12 @@
 (function () {
     'use strict';
 
+    angular
+        .module('app.widgets')
+        .directive('ccImgPerson', ccImgPerson);
+
+    ccImgPerson.$inject = ['config'];
+
     function ccImgPerson (config) {
         //Usage:
         //<img data-cc-img-person="{{s.speaker.imageSource}}"/>
@@ -19,10 +25,4 @@
             });
         }
     }
-
-    ccImgPerson.$inject = ['config'];
-
-    angular
-        .module('app.widgets')
-        .directive('ccImgPerson', ccImgPerson);
 })();

@@ -1,6 +1,12 @@
 (function () {
     'use strict';
 
+    angular
+        .module('app.data')
+        .factory('repository.attendee', RepositoryAttendee);
+
+    RepositoryAttendee.$inject = ['breeze', 'model', 'repository.abstract'];
+
     function RepositoryAttendee(breeze, model, AbstractRepository) {
         var attendeesQuery = breeze.EntityQuery.from('Persons');
         var entityName = model.entityNames.attendee;
@@ -104,10 +110,4 @@
             }
         }
     }
-
-    RepositoryAttendee.$inject = ['breeze', 'model', 'repository.abstract'];
-
-    angular
-        .module('app.data')
-        .factory('repository.attendee', RepositoryAttendee);
 })();

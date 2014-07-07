@@ -1,6 +1,12 @@
 (function () {
     'use strict';
 
+    angular
+        .module('app')
+        .controller('Sessions', Sessions);
+
+    Sessions.$inject = ['$location', '$routeParams', 'common', 'config', 'datacontext'];
+
     function Sessions($location, $routeParams, common, config, datacontext) {
         /*jshint validthis: true */
         var vm = this;
@@ -65,10 +71,4 @@
             return isMatch;
         }
     }
-
-    Sessions.$inject = ['$location', '$routeParams', 'common', 'config', 'datacontext'];
-
-    angular
-        .module('app')
-        .controller('Sessions', Sessions);
 })();

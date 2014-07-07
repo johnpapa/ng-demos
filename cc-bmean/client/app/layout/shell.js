@@ -1,6 +1,12 @@
 (function () {
     'use strict';
 
+    angular
+        .module('app.layout')
+        .controller('Shell', Shell);
+
+    Shell.$inject = ['common', 'datacontext'];
+
     function Shell(common, datacontext) {
         /*jshint validthis: true */
         var vm = this;
@@ -25,10 +31,4 @@
             }, 1000);
         }
     }
-
-    Shell.$inject = ['common', 'datacontext'];
-
-    angular
-        .module('app.layout')
-        .controller('Shell', Shell);
 })();

@@ -1,6 +1,12 @@
 (function () {
     'use strict';
 
+    angular
+        .module('app.data')
+        .factory('repository.abstract', AbstractRepository);
+
+    AbstractRepository.$inject = ['breeze', 'common', 'config', 'zStorage', 'zStorageWip'];
+
     function AbstractRepository(breeze, common, config, zStorage, zStorageWip) {
         var predicates = {
             isNotNullo: breeze.Predicate.create('id', '!=', 0),
@@ -129,10 +135,4 @@
             return entities;
         }
     }
-
-    AbstractRepository.$inject = ['breeze', 'common', 'config', 'zStorage', 'zStorageWip'];
-
-    angular
-        .module('app.data')
-        .factory('repository.abstract', AbstractRepository);
 })();

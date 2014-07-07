@@ -3,6 +3,11 @@
 (function (angular) {
     'use strict';
 
+    angular
+        .module('blocks.exception')
+        .provider('exceptionConfig', exceptionConfigProvider)
+        .config(['$provide', exceptionConfig]);
+
     // Must configure the service and set its
     // events via the exceptionConfigProvider
     function exceptionConfigProvider () {
@@ -36,9 +41,4 @@
             logger.error(msg, errorData);
         };
     }
-
-    angular
-        .module('blocks.exception')
-        .provider('exceptionConfig', exceptionConfigProvider)
-        .config(['$provide', exceptionConfig]);
 })(this.angular);

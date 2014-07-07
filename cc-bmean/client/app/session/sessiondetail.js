@@ -1,6 +1,13 @@
 (function () {
     'use strict';
 
+    angular
+        .module('app')
+        .controller('SessionDetail', SessionDetail);
+
+    SessionDetail.$inject = ['$location', '$scope', '$routeParams', '$window',
+        'bootstrap.dialog', 'common', 'config', 'datacontext', 'model'];
+
     function SessionDetail ($location, $scope, $routeParams, $window,
                             bsDialog, common, config, datacontext, model) {
         /*jshint validthis: true */
@@ -161,12 +168,5 @@
             wipEntityKey = datacontext.zStorageWip.storeWipEntity(vm.session, wipEntityKey, entityName, description);
         }
     }
-
-    SessionDetail.$inject = ['$location', '$scope', '$routeParams', '$window',
-        'bootstrap.dialog', 'common', 'config', 'datacontext', 'model'];
-
-    angular
-        .module('app')
-        .controller('SessionDetail', SessionDetail);
 })();
 
