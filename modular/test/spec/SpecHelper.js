@@ -35,29 +35,11 @@ testctx.getMockAvengers = function () {
             }
         },
         {
-            "id": 1017110,
-            "name": "Falcon/Sam Wilson (MAA)",
-            "description": "Recruited from S.H.I.E.L.D. by his hero and mentor Tony Stark, Falcon is the Avengers' newest and youngest recruit. Like Tony, Sam is a genius with machines and technology. What he lacks in experience, Sam makes up in enthusiasm and determination. Falcon's suit of armor comes fully stocked with holographic wings, explosive flechettes, and retractable talons.",
-            "thumbnail": {
-                "path": "http://i.annihil.us/u/prod/marvel/i/mg/3/10/523219c347dd1",
-                "extension": "jpg"
-            }
-        },
-        {
             "id": 1017108,
             "name": "Hawkeye/Clint Barton (MAA)",
             "description": "Hawkeye is an expert archer with an attitude just as on-target as his aim. His stealth combat experience and his ability to hit any target with any projectile make him a valuable member of the Avengers. However, he refuses to let things get too serious, as he has as many jokes as he does arrows!",
             "thumbnail": {
                 "path": "http://i.annihil.us/u/prod/marvel/i/mg/4/03/5232198a81c17",
-                "extension": "jpg"
-            }
-        },
-        {
-            "id": 1017107,
-            "name": "Hulk/Bruce Banner (MAA)",
-            "description": "Scientist Bruce Banner was transformed into the Hulk as a result to gamma radiation exposure. Over 8 feet tall and weighing 1,040 pounds, it's Hulk's strength that makes him the strongest hero in the Marvel Universe! Hulk smashes all threats that dare disturb the peace and friendship he has found in the Avengers. ",
-            "thumbnail": {
-                "path": "http://i.annihil.us/u/prod/marvel/i/mg/0/03/523219b086a17",
                 "extension": "jpg"
             }
         },
