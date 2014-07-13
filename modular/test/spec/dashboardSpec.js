@@ -1,4 +1,4 @@
-describe('Avengers', function () {
+describe('Dashboard', function () {
 
     var scope,
         controller,
@@ -25,9 +25,9 @@ describe('Avengers', function () {
             $httpBackend.expectGET(/\w+.html/).respond(200, '');
             $httpBackend.flush();
 
-            spyOn(dataservice, 'getAvengers').and.callFake(function(){
+            spyOn(dataservice, 'getAvengerCount').and.callFake(function(){
                 var deferred = $q.defer();
-                deferred.resolve(testctx.getMockAvengers());
+                deferred.resolve(testctx.getMockAvengers().length);
                 return deferred.promise;
             });
 
@@ -42,20 +42,20 @@ describe('Avengers', function () {
 
     beforeEach(inject(function ($rootScope, $controller) {
         scope = $rootScope.$new();
-        controller = $controller('Avengers as vm', {
+        controller = $controller('Dashboard as vm', {
             '$scope': scope,
             'dataservice': dataservice
         });
     }));
 
-    it('should have title of Avengers', function () {
+    it('should have title of Dashboard', function () {
         $rootScope.$apply();
-        expect(scope.vm.title).toEqual('Avengers');
+        expect(scope.vm.title).toEqual('Dashboard');
     });
 
-    it('should have 7 Avengers', function () {
+    it('should have Avenger Count of 7', function () {
         $rootScope.$apply();
-        expect(scope.vm.avengers.length).toEqual(7);
+        expect(scope.vm.avengerCount).toEqual(7);
     });
 
     afterEach (function () {
