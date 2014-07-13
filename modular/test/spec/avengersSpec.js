@@ -13,10 +13,6 @@ describe('Avengers', function () {
 
         mockDataService = {};
 
-//        module(function ($provide) {
-//            $provide.value('dataservice', mockDataService);
-//        });
-
         inject(function (_$httpBackend_, _$q_, _$rootScope_, _dataservice_, _toastr_) {
             $httpBackend = _$httpBackend_;
             $q = _$q_;
@@ -29,16 +25,6 @@ describe('Avengers', function () {
             $httpBackend.expectGET(/\w+.html/).respond(200, '');
             $httpBackend.flush();
 
-            // stub toastr to just go to console
-            spyOn(toastr, 'info').and.callFake(fakeToast);
-            spyOn(toastr, 'error').and.callFake(fakeToast);
-            spyOn(toastr, 'warning').and.callFake(fakeToast);
-            spyOn(toastr, 'success').and.callFake(fakeToast);
-
-            function fakeToast(msg){
-                console.log(msg);
-            }
-
             spyOn(dataservice, 'getAvengers').and.callFake(function(){
                 var deferred = $q.defer();
                 deferred.resolve(getMockAvengers());
@@ -50,34 +36,9 @@ describe('Avengers', function () {
                 deferred.resolve({test: 123});
                 return deferred.promise;
             });
-
-            //spyOn(dataservice, 'ready').and.returnValue(deferred2.promise);
         });
-
-//        mockDataService.ready = function () {
-//            return $q.when(function(){
-//                return {title: 'red sox'};
-//            });
-//        };
-//        mockDataService.getAvengers = function () {
-//            var p = $q.when(getMockAvengers());
-////              $rootScope.$apply();
-//            return p;
-//        };
     });
 
-
-//        $provide.value('dataservice', {
-//            ready: function () {
-//                return {title: 'red sox'};
-//            },
-//            getAvengers: function () {
-//                return $q.when(getMockAvengers());
-//            }
-//        });
-//        $provide.value('common', {
-//            getData: function() { return {title: 'red sox'}; }
-//        });
 
     beforeEach(inject(function ($rootScope, $controller) {
         scope = $rootScope.$new();
@@ -102,7 +63,6 @@ describe('Avengers', function () {
         $httpBackend.verifyNoOutstandingRequest();
     });
 });
-
 
 function getMockAvengers() {
     return [
@@ -154,7 +114,7 @@ function getMockAvengers() {
         {
             "id": 1017104,
             "name": "Iron Man/Tony Stark (MAA)",
-            "description": "Tony Stark is the genius inventor/billionaire/philanthropist owner of Stark Industries. With his super high-tech Iron Man suit, he is practically indestructible, able to fly, and has a large selection of weapons to choose from - but it's Tony's quick thinking and ability to adapt and improvise that make him an effective leader of the Avengers.        ",
+            "description": "Tony Stark is the genius inventor/billionaire/philanthropist owner of Stark Industries. With his super high-tech Iron Man suit, he is practically indestructible, able to fly, and has a large selection of weapons to choose from - but it's Tony's quick thinking and ability to adapt and improvise that make him an effective leader of the Avengers.",
             "thumbnail": {
                 "path": "http://i.annihil.us/u/prod/marvel/i/mg/2/d0/5232190d42df2",
                 "extension": "jpg"

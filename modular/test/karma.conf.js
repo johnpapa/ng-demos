@@ -30,8 +30,11 @@ module.exports = function (config) {
             'client/app/**/*.module.js',
             'client/app/**/*.js',
 
+            'test/spec/**/matchers.js',
+            'test/spec/**/specHelper.js',
             'test/spec/**/*[Ss]pec.js'
         ],
+
 
         // list of files to exclude
         exclude: [

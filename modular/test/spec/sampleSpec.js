@@ -65,6 +65,7 @@ describe('Team', function () {
 
     it('should have title of yankees', function () {
         $rootScope.$apply(); // Only needed if we go async and need digest cycle
+        expect(scope.team).isYankees();
         expect(scope.team.title).toEqual('yankees');
         expect(controller.title).toEqual('yankees');
     });

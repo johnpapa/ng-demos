@@ -1,15 +1,15 @@
 beforeEach(function () {
-    jasmine.addMatchers({
-        toBePlaying: function () {
-            return {
-                compare: function (actual, expected) {
-                    var player = actual;
+    stubToastr();
 
-                    return {
-                        pass: player.currentlyPlayingSong === expected && player.isPlaying
-                    };
-                }
-            };
+    function stubToastr(){
+        // stub toastr to just go to console
+        spyOn(toastr, 'info').and.callFake(fakeToast);
+        spyOn(toastr, 'error').and.callFake(fakeToast);
+        spyOn(toastr, 'warning').and.callFake(fakeToast);
+        spyOn(toastr, 'success').and.callFake(fakeToast);
+
+        function fakeToast(msg){
+            console.log(msg);
         }
-    });
+    }
 });
