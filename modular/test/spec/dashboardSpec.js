@@ -20,8 +20,8 @@ describe('Dashboard', function () {
     });
 
     beforeEach(function () {
-//            $httpBackend.expectGET('/app/dashboard/dashboard.html').respond(200, {});
-        $httpBackend.expectGET(/\w+.html/).respond(200, '');
+        $httpBackend.when('GET', '/app/dashboard/dashboard.html').respond(200);
+//        $httpBackend.expectGET(/\w+.html/).respond(200, '');
         $httpBackend.flush();
 
         spyOn(dataservice, 'getAvengerCount').and.callFake(function () {
