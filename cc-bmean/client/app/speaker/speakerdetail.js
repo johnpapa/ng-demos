@@ -32,7 +32,9 @@
         function activate() {
             onDestroy();
             onHasChanges();
-            datacontext.ready([getRequestedSpeaker()]).then(onEveryChange);
+//            TODO: Using a resolver on all routes or datacontext.ready in every controller
+//            return datacontext.ready([getRequestedSpeaker()]).then(onEveryChange);
+            return getRequestedSpeaker().then(onEveryChange);
         }
 
         function autoStoreWip(immediate) {

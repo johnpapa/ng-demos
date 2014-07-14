@@ -26,7 +26,9 @@
         activate();
 
         function activate() {
-            datacontext.ready([getSpeakers()]);
+//            TODO: Using a resolver on all routes or datacontext.ready in every controller
+//            return datacontext.ready([getSpeakers()]);
+            return getSpeakers();
         }
 
         function applyFilter() {

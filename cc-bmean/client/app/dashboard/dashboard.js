@@ -5,11 +5,12 @@
         .module('app.dashboard')
         .controller('Dashboard', Dashboard);
 
-    Dashboard.$inject = ['datacontext'];
+    Dashboard.$inject = ['common', 'datacontext'];
 
-    function Dashboard(datacontext) {
+    function Dashboard(common, datacontext) {
         /*jshint validthis: true */
         var vm = this;
+        var $q = common.$q;
 
         vm.map = {};
         vm.news = {};
@@ -27,7 +28,9 @@
                 getSpeakers(),
                 getTrackCounts()
             ];
-            datacontext.ready(promises).then(getSpeakerMetrics);
+//            TODO: Using a resolver on all routes or datacontext.ready in every controller
+//            return datacontext.ready(promises).then(getSpeakerMetrics);
+            return $q.all(promises).then(getSpeakerMetrics);
         }
 
         function getTrackCounts() {

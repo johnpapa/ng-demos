@@ -72,6 +72,11 @@
         function ($routeProvider, cfg) {
             cfg.config.$routeProvider = $routeProvider;
             cfg.config.docTitle = 'CC: ';
+            cfg.config.resolveAlways = {
+                ready: function (datacontext) {
+                    return datacontext.ready();
+                }
+            };
         }]);
 
 })();

@@ -21,7 +21,9 @@
 
         function activate() {
             logger.success('CodeCamper loaded!', null);
-            datacontext.ready([]).then(hideSplash());
+//            TODO: Using a resolver on all routes or datacontext.ready in every controller
+//            return datacontext.ready([]).then(hideSplash);
+            hideSplash();
         }
 
         function hideSplash() {
