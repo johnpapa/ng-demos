@@ -25,7 +25,7 @@
         }
 
         function getAvengers() {
-            dataservice.getAvengers().then(function (data) {
+            return dataservice.getAvengers().then(function (data) {
                 vm.avengers = data;
                 return vm.avengers;
             });
