@@ -4,7 +4,7 @@ var express      = require('express'),
     compress     = require('compression'),
     cors         = require('cors'),
     errorHandler = require('./services/errorHandler'),
-    favicon      = require('static-favicon'),
+    favicon      = require('serve-favicon'),
     fileServer   = require('serve-static'),
     http         = require('http'),
     isDev        = app.get('env') === 'development',
@@ -17,6 +17,7 @@ var appDir =  __dirname + '/../client'; // Our NG code
 app.use(bodyParser());          // body parser, json, and url encoding
 app.use(compress());            // Compress response data with gzip
 app.use(logger('dev'));         // logger
+app.use(favicon(__dirname + '/favicon.ico'));
 app.use(fileServer(appDir));    // Support static file content
 app.use(cors());                // enable ALL CORS requests
 app.use(errorHandler.init);
