@@ -15,14 +15,14 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "~1.2.16",
+    "angular": "~1.2.20",
     "toastr": "~2.0.1",
     "bootstrap": "~3.1.1",
     "moment": "~2.6.0",
     "jquery": "~2.1.0",
-    "angular-route": "~1.2.16",
-    "angular-animate": "~1.2.16",
-    "angular-sanitize": "~1.2.16",
+    "angular-route": "~1.2.20",
+    "angular-animate": "~1.2.20",
+    "angular-sanitize": "~1.2.20",
     "font-awesome": "~4.0.3",
     "angular-ui-bootstrap-bower": "~0.10.0",
     "breezejs": "~1.4.12",
