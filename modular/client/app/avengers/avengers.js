@@ -18,8 +18,10 @@
         activate();
 
         function activate() {
-            var promises = [getAvengers()];
-            return dataservice.ready(promises).then(function(){
+//            Using a resolver on all routes or dataservice.ready in every controller
+//            var promises = [getAvengers()];
+//            return dataservice.ready(promises).then(function(){
+            return getAvengers().then(function() {
                 log('Activated Avengers View');
             });
         }

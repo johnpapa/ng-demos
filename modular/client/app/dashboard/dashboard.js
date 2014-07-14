@@ -9,6 +9,7 @@
 
     function Dashboard(common, dataservice) {
         var log = common.logger.info;
+        var $q = common.$q;
 
         /*jshint validthis: true */
         var vm = this;
@@ -25,7 +26,9 @@
 
         function activate() {
             var promises = [getAvengerCount(), getAvengersCast()];
-            return dataservice.ready(promises).then(function(){
+//            Using a resolver on all routes or dataservice.ready in every controller
+//            return dataservice.ready(promises).then(function(){
+            return $q.all(promises).then(function(){
                 log('Activated Dashboard View');
             });
         }

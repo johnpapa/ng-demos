@@ -14,6 +14,7 @@
             // These are the properties we need to set
             // $routeProvider: undefined
             // docTitle: ''
+            // resolveAlways: {ready: function(){ } }
         };
 
         this.$get = function () {
@@ -45,6 +46,8 @@
 
         function configureRoutes(routes){
             routes.forEach(function (route) {
+                route.config.resolve =
+                    angular.extend(route.config.resolve || {}, routehelperConfig.config.resolveAlways);
                 $routeProvider.when(route.url, route.config);
             });
             $routeProvider.otherwise({ redirectTo: '/' });

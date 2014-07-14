@@ -32,6 +32,11 @@
         function ($routeProvider, cfg) {
             cfg.config.$routeProvider = $routeProvider;
             cfg.config.docTitle = 'NG-Modular: ';
+            cfg.config.resolveAlways = {
+                ready: function (dataservice) {
+                    return dataservice.ready();
+                }
+            };
         }]);
 
     // Configure the common exception handler
