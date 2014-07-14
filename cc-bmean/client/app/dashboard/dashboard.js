@@ -11,34 +11,16 @@
         /*jshint validthis: true */
         var vm = this;
 
-        vm.map = {
-            title: 'Location'
-        };
-        vm.news = {
-            title: 'Code Camp',
-            description: 'Code Camp is a community event where developers ' +
-                'learn from fellow developers. All are welcome to attend and ' +
-                'speak. Code Camp is free, by and for the developer community, ' +
-                ' and occurs on the weekends.'
-        };
-        vm.speakers = {
-            interval: 5000,
-            list: [],
-            title: 'Top Speakers'
-        };
-        vm.content = {
-            predicate: '',
-            reverse: false,
-            setSort: setContentSort,
-            title: 'Content',
-            tracks: []
-        };
-
+        vm.map = {};
+        vm.news = {};
+        vm.speakers = {};
+        vm.content = {};
         vm.title = 'Dashboard';
 
         activate();
 
         function activate() {
+            setBasicData();
             var promises = [
                 getAttendeeCount(),
                 getSessionCount(),
@@ -78,6 +60,31 @@
                 vm.sessionCount = data;
                 return vm.sessionCount;
             });
+        }
+
+        function setBasicData(){
+            vm.map = {
+                title: 'Location'
+            };
+            vm.news = {
+                title: 'Code Camp',
+                description: 'Code Camp is a community event where developers ' +
+                    'learn from fellow developers. All are welcome to attend and ' +
+                    'speak. Code Camp is free, by and for the developer community, ' +
+                    ' and occurs on the weekends.'
+            };
+            vm.speakers = {
+                interval: 5000,
+                list: [],
+                title: 'Top Speakers'
+            };
+            vm.content = {
+                predicate: '',
+                reverse: false,
+                setSort: setContentSort,
+                title: 'Content',
+                tracks: []
+            };
         }
 
         function setContentSort(prop) {
