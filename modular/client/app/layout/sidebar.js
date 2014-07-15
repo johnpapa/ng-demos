@@ -30,7 +30,7 @@
             if (!route.title || !$route.current || !$route.current.title) {
                 return '';
             }
-            var menuName = route    .title;
+            var menuName = route.title;
             return $route.current.title.substr(0, menuName.length) === menuName ? 'current' : '';
         }
     }
