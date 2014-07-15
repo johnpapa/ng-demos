@@ -5,11 +5,9 @@
         .module('app.dashboard')
         .controller('Dashboard', Dashboard);
 
-    Dashboard.$inject = ['common', 'dataservice'];
+    Dashboard.$inject = ['$q', 'dataservice', 'logger'];
 
-    function Dashboard(common, dataservice) {
-        var log = common.logger.info;
-        var $q = common.$q;
+    function Dashboard($q, dataservice, logger) {
 
         /*jshint validthis: true */
         var vm = this;
@@ -29,7 +27,7 @@
 //            Using a resolver on all routes or dataservice.ready in every controller
 //            return dataservice.ready(promises).then(function(){
             return $q.all(promises).then(function(){
-                log('Activated Dashboard View');
+                logger.info('Activated Dashboard View');
             });
         }
 

@@ -5,12 +5,11 @@
         .module('app.layout')
         .controller('Shell', Shell);
 
-    Shell.$inject = ['common', 'config'];
+    Shell.$inject = ['$timeout', 'config', 'logger'];
 
-    function Shell(common, config) {
+    function Shell($timeout, config, logger) {
         /*jshint validthis: true */
         var vm = this;
-        var logSuccess = common.logger.success;
 
         vm.title = config.appTitle;
         vm.busyMessage = 'Please wait ...';
@@ -20,7 +19,7 @@
         activate();
 
         function activate() {
-            logSuccess(config.appTitle + ' loaded!', null);
+            logger.success(config.appTitle + ' loaded!', null);
 //            Using a resolver on all routes or dataservice.ready in every controller
 //            dataservice.ready().then(function(){
 //                hideSplash();
@@ -30,7 +29,7 @@
 
         function hideSplash() {
             //Force a 1 second delay so we can see the splash.
-            common.$timeout(function () {
+            $timeout(function () {
                 vm.showSplash = false;
             }, 1000);
         }

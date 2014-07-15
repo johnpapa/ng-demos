@@ -5,11 +5,9 @@
         .module('app.avengers')
         .controller('Avengers', Avengers);
 
-    Avengers.$inject = ['common', 'dataservice'];
+    Avengers.$inject = ['dataservice', 'logger'];
 
-    function Avengers(common, dataservice) {
-        var log = common.logger.info;
-
+    function Avengers(dataservice, logger) {
         /*jshint validthis: true */
         var vm = this;
         vm.avengers = [];
@@ -22,7 +20,7 @@
 //            var promises = [getAvengers()];
 //            return dataservice.ready(promises).then(function(){
             return getAvengers().then(function() {
-                log('Activated Avengers View');
+                logger.info('Activated Avengers View');
             });
         }
 

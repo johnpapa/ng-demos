@@ -5,13 +5,11 @@
         .module('app.core')
         .factory('dataservice', dataservice);
 
-    dataservice.$inject = ['$http', 'common'];
+    dataservice.$inject = ['$http', '$q', 'logger'];
 
-    function dataservice($http, common) {
+    function dataservice($http, $q, logger) {
         var isPrimed = false;
-        var logger = common.logger;
         var primePromise;
-        var $q = common.$q;
 
         var service = {
             getAvengersCast: getAvengersCast,
