@@ -36,9 +36,9 @@ modularApp --> [
                                     ngAnimate,
                                     ngRoute,
                                     ngSanitize,
-                                    common,
                                     blocks.exception,
-                                    blocks.logger
+                                    blocks.logger,
+                                    blocks.router
                                 ]
 ```
 
