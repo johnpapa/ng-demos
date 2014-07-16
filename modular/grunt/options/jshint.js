@@ -1,8 +1,8 @@
 module.exports = {
     dev: {
         src: [
-            'Gruntfile.js',
-            '<%= pkg.webapp %>/**/*.js'
+            'gruntfile.js',
+            '<%= pkg.paths.webapp %>/**/*.js'
         ],
         options: {
             jshintrc: '.jshintrc'

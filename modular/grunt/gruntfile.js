@@ -1,4 +1,6 @@
 module.exports = function (grunt) {
+    'use strict';
+
     var config = {
         pkg: require('./package.json'),
         env: process.env
@@ -11,7 +13,7 @@ module.exports = function (grunt) {
 
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-ng-annotate');
+//    grunt.loadNpmTasks('grunt-ng-annotate');
 
-    grunt.registerTask('default', ['ngAnnotate']);
+    grunt.registerTask('default', ['watch']);
 };
