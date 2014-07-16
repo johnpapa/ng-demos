@@ -7,12 +7,11 @@ describe('avengers', function () {
             $q,
             $rootScope,
             $route,
-            scope,
-            toastr;
+            scope;
 
         beforeEach(function () {
             module('app');
-            inject(function (_$controller_, _$httpBackend_, _$location_, _$q_, _$rootScope_, _$route_, _dataservice_, _toastr_) {
+            inject(function (_$controller_, _$httpBackend_, _$location_, _$q_, _$rootScope_, _$route_, _dataservice_) {
                 $controller = _$controller_;
                 $httpBackend = _$httpBackend_;
                 $location = _$location_;
@@ -20,7 +19,6 @@ describe('avengers', function () {
                 $rootScope = _$rootScope_;
                 $route = _$route_;
                 dataservice = _dataservice_;
-                toastr = _toastr_;
             });
         });
 

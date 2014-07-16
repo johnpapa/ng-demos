@@ -10,8 +10,8 @@ module.exports = function (config) {
 
         // frameworks to use
         // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-//        frameworks: ['mocha', 'chai', 'sinon'],
-        frameworks: ['jasmine'],
+        frameworks: ['mocha', 'chai', 'sinon'],
+//        frameworks: ['jasmine'],
 
 
         // list of files / patterns to load in the browser
@@ -32,16 +32,16 @@ module.exports = function (config) {
             'client/app/**/*.js',
 
             /* JASMINE */
-            'test/spec.jasmine/**/matchers.js',
-            'test/spec.jasmine/**/specHelper.js',
-            'test/spec.jasmine/**/*[Ss]pec.js',
-            'test/spec.jasmine/**/sampleSpec.js'
+//            'test/spec.jasmine/**/matchers.js',
+//            'test/spec.jasmine/**/specHelper.js',
+//            'test/spec.jasmine/**/*[Ss]pec.js',
+//            'test/spec.jasmine/**/sampleSpec.js'
 
             /* MOCHA */
-//            'spec.mocha/**/specHelper.js',
-//            'spec.mocha/**/*[Ss]pec.js',
-//            'spec.mocha/**/sampleSpec.js',
-//            'spec.mocha/**/simpleSpec.js'
+            'test/spec.mocha/**/specHelper.js',
+            'test/spec.mocha/**/*[Ss]pec.js',
+            'test/spec.mocha/**/sampleSpec.js',
+            'test/spec.mocha/**/simpleSpec.js'
         ],
 
 
