@@ -3,10 +3,10 @@ AngularJS Modular Demo
 Demonstrating Angular Modularity
 
 ## Structure
- client
- grunt
- server
- test
+- client
+- grunt
+- server
+- test
 
 ## Installing Node.js Packages
 - Open terminal
