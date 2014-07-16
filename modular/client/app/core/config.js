@@ -7,12 +7,9 @@
     toastr.options.timeOut = 4000;
     toastr.options.positionClass = 'toast-bottom-right';
 
-    //var events = { };
-
     var config = {
         appErrorPrefix: '[NG-Modular Error] ', //Configure the exceptionHandler decorator
         appTitle: 'Angular Modular Demo',
-//        events: events,
         version: '1.0.0'
     };
 
