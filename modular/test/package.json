@@ -15,6 +15,12 @@
     "karma-safari-launcher": "^0.1.1",
     "karma-phantomjs-launcher": "^0.1.4",
     "phantomjs": "^1.9.7-14",
-    "karma-coverage": "^0.2.4"
+    "karma-coverage": "^0.2.4",
+    "mocha": "^1.20.1",
+    "karma-mocha": "^0.1.4",
+    "karma-chai": "^0.1.0",
+    "chai": "^1.9.1",
+    "sinon": "^1.10.3",
+    "karma-sinon": "^1.0.3"
   }
 }
