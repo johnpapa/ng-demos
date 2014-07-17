@@ -28,17 +28,17 @@ The app is quite simple and has 2 main routes:
 - avengers list
 
 ### The Modules
-The app has 9 custom modules and depends on 3 external modules
+The app has 4 feature modules and depends on a series of external modules and custom but cross-app modules
 
 ```
-modularApp --> [
-        modularApp.avengers,
-        modularApp.dashboard,
-        modularApp.layout,
-        modularApp.widgets
+app --> [
+        app.avengers,
+        app.dashboard,
+        app.layout,
+        app.widgets
     ]
                             -->
-                                modularApp.core --> [
+                                app.core --> [
                                     ngAnimate,
                                     ngRoute,
                                     ngSanitize,
@@ -66,6 +66,5 @@ The `blocks.exception` module handles exceptions across the Angular app.
 
 It depends on the `blocks.logger` module, because the implementation logs the exceptions.
 
-## common Module
-The `common` module contains any app specific services and helpers.
-
+### blocks.router Module
+The `blocks.router` module contains a routing helper module that assists in adding routes to the $routeProvider.
