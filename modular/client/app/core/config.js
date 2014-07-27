@@ -29,11 +29,15 @@
         function ($routeProvider, cfg) {
             cfg.config.$routeProvider = $routeProvider;
             cfg.config.docTitle = 'NG-Modular: ';
-            cfg.config.resolveAlways = {
+            var resolveAlways = /* @ngInject */ {
                 ready: function (dataservice) {
                     return dataservice.ready();
                 }
+//                ready: ['dataservice', function (dataservice) {
+//                    return dataservice.ready();
+//                }]
             };
+            cfg.config.resolveAlways = resolveAlways;
         }]);
 
     // Configure the common exception handler
