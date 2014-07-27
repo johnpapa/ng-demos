@@ -13,11 +13,16 @@
         }
     </style>
 
+    <!-- inject:vendor:css -->
     <link href="/components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="/components/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
     <link href="/components/toastr/toastr.css" rel="stylesheet" />
+    <!-- endinject -->
+
+    <!-- inject:css -->
     <link href="/content/customtheme.css" rel="stylesheet">
     <link href="/content/styles.css" rel="stylesheet" />
+    <!-- endinject -->
 </head>
 <body>
     <div>
@@ -34,7 +39,7 @@
         </div>
     </div>
 
-    <!-- Vendor Scripts -->
+    <!-- inject:vendor:js -->
     <script src="/components/jquery/dist/jquery.js"></script>
     <script src="/components/angular/angular.js"></script>
     <script src="/components/angular-animate/angular-animate.js"></script>
@@ -44,7 +49,10 @@
     <script src="/components/toastr/toastr.js"></script>
     <script src="/components/moment/moment.js"></script>
     <script src="/components/extras.angular.plus/ngplus-overlay.js"></script>
+    <!-- endinject -->
 
+
+    <!-- inject:js -->
     <!-- Bootstrapping -->
     <script src="/app/app.module.js"></script>
 
@@ -83,6 +91,7 @@
     <script src="/app/avengers/avengers.module.js"></script>
     <script src="/app/avengers/config.route.js"></script>
     <script src="/app/avengers/avengers.js"></script>
+    <!-- endinject -->
 
 </body>
 </html>

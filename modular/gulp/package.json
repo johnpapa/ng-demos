@@ -73,6 +73,9 @@
             "../client/app/**/*.js",
             "!../client/app/**/{,/*-spaghetti.js}"
         ],
+        "fonts": [
+            "../client/components/font-awesome/fonts/**/*.*"
+        ],
         "images": [
             "../client/content/images/**/*"
         ],

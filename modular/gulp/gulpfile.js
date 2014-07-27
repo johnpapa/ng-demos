@@ -41,6 +41,21 @@ gulp.task('jshint', function () {
         .pipe(plug.jshint.reporter('jshint-stylish'));
 });
 
+
+/*
+ * Create $templateCache from the html templates
+ */
+gulp.task('templatecache', function () {
+    gulp.src(pkg.paths.htmltemplates)
+        .pipe(plug.angularTemplatecache('templates.js', {
+            module: 'app.core',
+            standalone: false,
+            root: 'app/'
+        }))
+        .pipe(gulp.dest(pkg.paths.dev));
+});
+
+
 /*
  * Minify and bundle the JavaScript
  */
@@ -96,7 +111,7 @@ gulp.task('css', function () {
         .pipe(plug.header(commentHeader))
         .pipe(plug.bytediff.stop(common.bytediffFormatter))
 //        .pipe(plug.concat('all.min.css')) // Before bytediff or after
-        .pipe(gulp.dest(pkg.paths.dev));
+        .pipe(gulp.dest(pkg.paths.dev + 'content'));
 //        .pipe(plug.size({showFiles: true}));
 });
 
@@ -110,7 +125,16 @@ gulp.task('vendorcss', function () {
         .pipe(plug.bytediff.start())
         .pipe(plug.minifyCss({}))
         .pipe(plug.bytediff.stop(common.bytediffFormatter))
-        .pipe(gulp.dest(pkg.paths.dev));
+        .pipe(gulp.dest(pkg.paths.dev + 'content'));
+});
+
+
+/*
+ * Copy fonts
+ */
+gulp.task('fonts', function () {
+    return gulp.src(pkg.paths.fonts)
+        .pipe(gulp.dest(pkg.paths.dev + 'fonts'));
 });
 
 
@@ -120,6 +144,33 @@ gulp.task('vendorcss', function () {
 gulp.task('images', function () {
     return gulp.src(pkg.paths.images)
         .pipe(plug.cache(plug.imagemin({optimizationLevel: 3})))
+        .pipe(gulp.dest(pkg.paths.dev + 'content/images'));
+});
+
+
+/*
+ * Inject all the files into the new index.html
+ */
+gulp.task('htmlinject', ['js', 'vendorjs', 'css', 'vendorcss', 'images', 'fonts'], function () {
+    var target = gulp.src('../client/index.html');
+    var v = pkg.paths.vendorjssequence.map(function (file) {
+        return pkg.paths.dev + 'vendor/' + file;
+    });
+    var sources = {
+        css: gulp.src([pkg.paths.dev + 'content/all.min.css'], {read: false}),
+        vendorcss: gulp.src([pkg.paths.dev + 'content/vendor.min.css'], {read: false}),
+        js: gulp.src([pkg.paths.dev + 'all.min.js']),
+        vendorjs: gulp.src(v)
+    };
+    var ignorePath = '/../client';
+
+    target
+//        .pipe(plug.rename('index.html'))
+        .pipe(plug.inject(sources.vendorcss, {starttag: '<!-- inject:vendor:{{ext}} -->', ignorePath: ignorePath}))
+        .pipe(plug.inject(sources.css, {ignorePath: ignorePath}))
+        .pipe(plug.inject(sources.js, {ignorePath: ignorePath}))
+        .pipe(plug.inject(sources.vendorjs, {starttag: '<!-- inject:vendor:{{ext}} -->', ignorePath: ignorePath}))
+//        .pipe(gulp.dest('../client/'));
         .pipe(gulp.dest(pkg.paths.dev));
 });
 
@@ -128,7 +179,7 @@ gulp.task('images', function () {
  * Bundle the JS, CSS, and compress images.
  * Then copy files to dev and show a toast.
  */
-gulp.task('default', ['js', 'vendorjs', 'css', 'vendorcss', 'images'], function () {
+gulp.task('default', ['htmlinject'], function () {
     // Prepare files for dev
     return gulp.src(pkg.paths.dev)
         .pipe(plug.notify({
@@ -164,40 +215,6 @@ gulp.task('cleanOutput', function () {
         .pipe(plug.clean({force: true}));
 });
 
-
-gulp.task('templatecache', function () {
-    gulp.src(pkg.paths.htmltemplates)
-        .pipe(plug.angularTemplatecache('templates.js', {
-            module: 'app.core',
-            standalone: false,
-            root: 'app/'
-        }))
-        .pipe(gulp.dest(pkg.paths.dev));
-});
-
-
-gulp.task('htmlinject', function () {
-    var target = gulp.src('../client/index2.html');
-    var v = pkg.paths.vendorjssequence.map(function (file) {
-        return pkg.paths.dev + 'vendor/' + file;
-    });
-    var sources = {
-        css: gulp.src([pkg.paths.dev + 'all.min.css'], {read: false}),
-        vendorcss: gulp.src([pkg.paths.dev + 'vendor.min.css'], {read: false}),
-        js: gulp.src([pkg.paths.dev + 'all.min.js']),
-        vendorjs: gulp.src(v)
-    };
-    var ignorePath = '/../client';
-
-    target
-        .pipe(plug.rename('index_dev.html'))
-        .pipe(plug.inject(sources.vendorcss, {starttag: '<!-- inject:vendor:{{ext}} -->', ignorePath: ignorePath}))
-        .pipe(plug.inject(sources.css, {ignorePath: ignorePath}))
-        .pipe(plug.inject(sources.js, {ignorePath: ignorePath}))
-        .pipe(plug.inject(sources.vendorjs, {starttag: '<!-- inject:vendor:{{ext}} -->', ignorePath: ignorePath}))
-        .pipe(gulp.dest('../client/'));
-//        .pipe(gulp.dest(pkg.paths.dev));
-});
 
 
 /*
