@@ -22,11 +22,11 @@ var gutil = plug.loadUtils(['colors', 'env', 'log', 'date']);
 var commentHeader = common.createComments(gutil);
 
 /*
- * Could use a product/development switch.
- * Run `gulp --production`
+ * Could use a staging/development switch.
+ * Run `gulp --staging`
  */
-var type = gutil.env.production ? 'production' : 'development';
-gutil.log( 'Building for', gutil.colors.magenta(type) );
+var type = gutil.env.staging ? 'staging' : 'development';
+gutil.log('Building for', gutil.colors.magenta(type));
 gutil.beep();
 
 /*
