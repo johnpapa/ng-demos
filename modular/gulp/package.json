@@ -24,7 +24,8 @@
     "gulp": "^3.8.6",
     "gulp-usemin": "^0.3.6",
     "gulp-ng-annotate": "^0.2.0",
-    "gulp-notify": "^1.4.0"
+    "gulp-notify": "^1.4.0",
+    "gulp-sourcemaps": "^1.1.0"
   },
   "author": "John Papa",
   "paths": {
