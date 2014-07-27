@@ -43,14 +43,23 @@ gulp.task('jshint', function () {
  * Minify and bundle the JavaScript
  */
 gulp.task('bundlejs', ['jshint'], function () {
-    var bundlefile = 'all.min.js';
-    var opt = {newLine: ';'};
-
     return gulp.src(pkg.paths.js)
         .pipe(plug.size({showFiles: true}))
-        .pipe(plug.ngAnnotate())
-        .pipe(plug.uglify())
-        .pipe(plug.concat(bundlefile, opt))
+        .pipe(plug.sourcemaps.init())
+
+        // Annotate before uglify so the code get's min'd properly.
+        .pipe(plug.ngAnnotate({
+            // true helps add where @ngInject is not used. It infers.
+            // Doesn't work with resolve.
+            add: true
+        }))
+        .pipe(plug.uglify({
+//            sourceMap: true,
+//            banner: '/*! <%= pkg.name %> <%= gutil.date("mmm d, yyyy h:MM:ss TT Z") %> */\n',
+            mangle: true
+        }))
+        .pipe(plug.concat('all.min.js', {newLine: ';'}))
+        .pipe(plug.sourcemaps.write('./'))
         .pipe(plug.header(commentHeader))
         .pipe(gulp.dest(pkg.paths.dev))
         .pipe(plug.size({showFiles: true}));
@@ -80,18 +89,16 @@ gulp.task('images', function () {
 });
 
 
-
 /*
  * One of the cool things about ng-annotate is that if
  * it can’t figure out the injections, you can help with
  * a simple annotation before the function definition:
  *
  */
- // angular.module('app')
- //  .config( /\*@ngInject\*/ function($routeProvider, $locationProvider){
- //       // a-ok
- // });
-
+// angular.module('app')
+//  .config( /\*@ngInject\*/ function($routeProvider, $locationProvider){
+//       // a-ok
+// });
 
 
 /*
@@ -121,16 +128,16 @@ gulp.task('stage', ['default'], function () {
 /*
  * Remove all files from the output folder
  */
-gulp.task('cleanOutput', function(){
+gulp.task('cleanOutput', function () {
     return gulp.src([
-            pkg.paths.dest.base,
-            pkg.paths.production])
+        pkg.paths.dest.base,
+        pkg.paths.production])
         .pipe(plug.clean({force: true}))
 });
 /*
  * Watch file and re-run the linter
  */
-gulp.task('build-watcher', function() {
+gulp.task('build-watcher', function () {
     var jsWatcher = gulp.watch(pkg.paths.js, ['jshint']);
 
     /*
@@ -140,7 +147,7 @@ gulp.task('build-watcher', function() {
 //        pkg.paths.source.js,
 //        pkg.paths.source.images], ['default']);
 
-    jsWatcher.on('change', function(event) {
+    jsWatcher.on('change', function (event) {
         console.log('*** File ' + event.path + ' was ' + event.type + ', running tasks...');
     });
 });
