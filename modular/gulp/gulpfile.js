@@ -70,15 +70,32 @@ gulp.task('js', ['jshint'], function () {
 /*
  * Minify and bundle the CSS
  */
-gulp.task('css', function () {
+gulp.task('vendorcss', function () {
     return gulp.src(pkg.paths.css)
-        .pipe(plug.size({showFiles: true}))
+//        .pipe(plug.size({showFiles: true}))
+        .pipe(plug.concat('all.min.css')) // Before bytediff or after
+        .pipe(plug.bytediff.start())
         .pipe(plug.minifyCss({}))
-        .pipe(plug.concat('all.min.css'))
         .pipe(plug.header(commentHeader))
-        .pipe(gulp.dest(pkg.paths.dev))
-        .pipe(plug.size({showFiles: true}));
+        .pipe(plug.bytediff.stop(common.bytediffFormatter))
+//        .pipe(plug.concat('all.min.css')) // Before bytediff or after
+        .pipe(gulp.dest(pkg.paths.dev));
+//        .pipe(plug.size({showFiles: true}));
 });
+
+
+/*
+ * Minify and bundle the Vendor CSS
+ */
+gulp.task('css', ['vendorcss'], function () {
+    return gulp.src(pkg.paths.vendorcss)
+        .pipe(plug.concat('vendor.min.css'))
+        .pipe(plug.bytediff.start())
+        .pipe(plug.minifyCss({}))
+        .pipe(plug.bytediff.stop(common.bytediffFormatter))
+        .pipe(gulp.dest(pkg.paths.dev));
+});
+
 
 /*
  * Compress images
@@ -92,7 +109,7 @@ gulp.task('images', function () {
 
 /*
  * Bundle the JS, CSS, and compress images.
- * Then copy files to production and show a toast.
+ * Then copy files to dev and show a toast.
  */
 gulp.task('default', ['js', 'css', 'images'], function () {
     // Prepare files for dev
@@ -103,6 +120,11 @@ gulp.task('default', ['js', 'css', 'images'], function () {
         }));
 });
 
+
+/*
+ * Bundle the JS, CSS, and compress images.
+ * Then copy files to staging and show a toast.
+ */
 gulp.task('stage', ['default'], function () {
     // Copy the files to staging
     return gulp.src(pkg.paths.dev)
@@ -130,9 +152,33 @@ gulp.task('cleanOutput', function () {
  */
 gulp.task('watchjs', function () {
     var js = [].concat(pkg.paths.js);
-    var jsWatcher = gulp.watch(js, ['js']);
+    var watcher = gulp.watch(js, ['js']);
 
-    jsWatcher.on('change', function (event) {
+    watcher.on('change', function (event) {
+        console.log('*** File ' + event.path + ' was ' + event.type + ', running tasks...');
+    });
+});
+
+/*
+ * Watch css files
+ */
+gulp.task('watchcss', function () {
+    var css = [].concat(pkg.paths.css, pkg.paths.vendorcss);
+    var watcher = gulp.watch(css, ['css']);
+
+    watcher.on('change', function (event) {
+        console.log('*** File ' + event.path + ' was ' + event.type + ', running tasks...');
+    });
+});
+
+/*
+ * Watch all files
+ */
+gulp.task('watch', ['watchcss', 'watchjs'], function () {
+    var css = [].concat(pkg.paths.css, pkg.paths.vendorcss);
+    var watcher = gulp.watch(css, ['css']);
+
+    watcher.on('change', function (event) {
         console.log('*** File ' + event.path + ' was ' + event.type + ', running tasks...');
     });
 });
