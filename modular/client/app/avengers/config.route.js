@@ -12,7 +12,7 @@
             {
                 url: '/avengers',
                 config: {
-                    templateUrl: '/app/avengers/avengers.html',
+                    templateUrl: 'app/avengers/avengers.html',
                     title: 'avengers',
                     settings: {
                         nav: 2,

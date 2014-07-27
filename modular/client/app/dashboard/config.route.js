@@ -12,7 +12,7 @@
             {
                 url: '/',
                 config: {
-                    templateUrl: '/app/dashboard/dashboard.html',
+                    templateUrl: 'app/dashboard/dashboard.html',
                     title: 'dashboard',
                     settings: {
                         nav: 1,
