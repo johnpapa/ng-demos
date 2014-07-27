@@ -42,7 +42,7 @@ gulp.task('jshint', function () {
 /*
  * Minify and bundle the JavaScript
  */
-gulp.task('bundlejs', ['jshint'], function () {
+gulp.task('js', ['jshint'], function () {
     return gulp.src(pkg.paths.js)
         .pipe(plug.size({showFiles: true}))
         .pipe(plug.sourcemaps.init())
@@ -50,7 +50,7 @@ gulp.task('bundlejs', ['jshint'], function () {
         // Annotate before uglify so the code get's min'd properly.
         .pipe(plug.ngAnnotate({
             // true helps add where @ngInject is not used. It infers.
-            // Doesn't work with resolve.
+            // Doesn't work with resolve, must be explicit there
             add: true
         }))
         .pipe(plug.uglify({
@@ -69,7 +69,7 @@ gulp.task('bundlejs', ['jshint'], function () {
 /*
  * Minify and bundle the CSS
  */
-gulp.task('bundlecss', function () {
+gulp.task('css', function () {
     return gulp.src(pkg.paths.css)
         .pipe(plug.size({showFiles: true}))
         .pipe(plug.minifyCss({}))
@@ -90,22 +90,10 @@ gulp.task('images', function () {
 
 
 /*
- * One of the cool things about ng-annotate is that if
- * it can’t figure out the injections, you can help with
- * a simple annotation before the function definition:
- *
- */
-// angular.module('app')
-//  .config( /\*@ngInject\*/ function($routeProvider, $locationProvider){
-//       // a-ok
-// });
-
-
-/*
  * Bundle the JS, CSS, and compress images.
  * Then copy files to production and show a toast.
  */
-gulp.task('default', ['bundlejs', 'bundlecss', 'images'], function () {
+gulp.task('default', ['js', 'css', 'images'], function () {
     // Prepare files for dev
     return gulp.src(pkg.paths.dev)
         .pipe(plug.notify({
@@ -121,7 +109,7 @@ gulp.task('stage', ['default'], function () {
         // Notify we are done
         .pipe(plug.notify({
             onLast: true,
-            message: "linted, bundled, and images compressed!"
+            message: "staged!"
         }));
 });
 
@@ -130,25 +118,20 @@ gulp.task('stage', ['default'], function () {
  */
 gulp.task('cleanOutput', function () {
     return gulp.src([
-        pkg.paths.dest.base,
-        pkg.paths.production])
-        .pipe(plug.clean({force: true}))
+        pkg.paths.dev,
+        pkg.paths.stage
+    ])
+        .pipe(plug.clean({force: true}));
 });
-/*
- * Watch file and re-run the linter
- */
-gulp.task('build-watcher', function () {
-    var jsWatcher = gulp.watch(pkg.paths.js, ['jshint']);
 
-    /*
-     * Rebuild when any files changes
-     */
-//    gulp.watch([pkg.paths.source.css,
-//        pkg.paths.source.js,
-//        pkg.paths.source.images], ['default']);
+/*
+ * Watch js files
+ */
+gulp.task('watchjs', function () {
+    var js = [].concat(pkg.paths.js);
+    var jsWatcher = gulp.watch(js, ['js']);
 
     jsWatcher.on('change', function (event) {
         console.log('*** File ' + event.path + ' was ' + event.type + ', running tasks...');
     });
 });
-
