@@ -1,6 +1,7 @@
 /*
  * Create references
  */
+var es = require('event-stream');
 var gulp = require('gulp');
 var glob = require('glob');
 var pkg = require('./package.json');
@@ -43,8 +44,9 @@ gulp.task('jshint', function () {
 /*
  * Minify and bundle the JavaScript
  */
-gulp.task('js', ['jshint'], function () {
-    return gulp.src(pkg.paths.js)
+gulp.task('js', ['jshint', 'templatecache'], function () {
+    var source = [].concat(pkg.paths.js, pkg.paths.dev + 'templates.js');
+    return gulp.src(source)
         .pipe(plug.size({showFiles: true}))
         .pipe(plug.sourcemaps.init())
 
@@ -64,6 +66,21 @@ gulp.task('js', ['jshint'], function () {
         .pipe(plug.header(commentHeader))
         .pipe(gulp.dest(pkg.paths.dev))
         .pipe(plug.size({showFiles: true}));
+});
+
+
+/*
+ * Copy the Vendor JavaScript
+ */
+gulp.task('vendorjs', function () {
+    var source = [].concat(pkg.paths.vendorjs,
+        pkg.paths.vendorjs.map(function (path) {
+            return path + '.map';
+        }));
+    source.push('../client/components/jquery/dist/jquery.min.map');
+    console.log(source);
+    return gulp.src(source)
+        .pipe(gulp.dest(pkg.paths.dev + 'vendor'));
 });
 
 
@@ -111,7 +128,7 @@ gulp.task('images', function () {
  * Bundle the JS, CSS, and compress images.
  * Then copy files to dev and show a toast.
  */
-gulp.task('default', ['js', 'css', 'vendorcss', 'images'], function () {
+gulp.task('default', ['js', 'vendorjs', 'css', 'vendorcss', 'images'], function () {
     // Prepare files for dev
     return gulp.src(pkg.paths.dev)
         .pipe(plug.notify({
@@ -147,12 +164,48 @@ gulp.task('cleanOutput', function () {
         .pipe(plug.clean({force: true}));
 });
 
+
+gulp.task('templatecache', function () {
+    gulp.src(pkg.paths.htmltemplates)
+        .pipe(plug.angularTemplatecache('templates.js', {
+            module: 'app.core',
+            standalone: false,
+            root: 'app/'
+        }))
+        .pipe(gulp.dest(pkg.paths.dev));
+});
+
+
+gulp.task('htmlinject', function () {
+    var target = gulp.src('../client/index2.html');
+    var v = pkg.paths.vendorjssequence.map(function (file) {
+        return pkg.paths.dev + 'vendor/' + file;
+    });
+    var sources = {
+        css: gulp.src([pkg.paths.dev + 'all.min.css'], {read: false}),
+        vendorcss: gulp.src([pkg.paths.dev + 'vendor.min.css'], {read: false}),
+        js: gulp.src([pkg.paths.dev + 'all.min.js']),
+        vendorjs: gulp.src(v)
+    };
+    var ignorePath = '/../client';
+
+    target
+        .pipe(plug.rename('index_dev.html'))
+        .pipe(plug.inject(sources.vendorcss, {starttag: '<!-- inject:vendor:{{ext}} -->', ignorePath: ignorePath}))
+        .pipe(plug.inject(sources.css, {ignorePath: ignorePath}))
+        .pipe(plug.inject(sources.js, {ignorePath: ignorePath}))
+        .pipe(plug.inject(sources.vendorjs, {starttag: '<!-- inject:vendor:{{ext}} -->', ignorePath: ignorePath}))
+        .pipe(gulp.dest('../client/'));
+//        .pipe(gulp.dest(pkg.paths.dev));
+});
+
+
 /*
  * Watch js files
  */
 gulp.task('watchjs', function () {
-    var js = [].concat(pkg.paths.js);
-    var watcher = gulp.watch(js, ['js']);
+    var js = ['gulpfile.js'].concat(pkg.paths.js);
+    var watcher = gulp.watch(js, ['js', 'vendorjs']);
 
     watcher.on('change', function (event) {
         console.log('*** File ' + event.path + ' was ' + event.type + ', running tasks...');
