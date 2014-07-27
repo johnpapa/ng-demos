@@ -70,7 +70,7 @@ gulp.task('js', ['jshint'], function () {
 /*
  * Minify and bundle the CSS
  */
-gulp.task('vendorcss', function () {
+gulp.task('css', function () {
     return gulp.src(pkg.paths.css)
 //        .pipe(plug.size({showFiles: true}))
         .pipe(plug.concat('all.min.css')) // Before bytediff or after
@@ -87,7 +87,7 @@ gulp.task('vendorcss', function () {
 /*
  * Minify and bundle the Vendor CSS
  */
-gulp.task('css', ['vendorcss'], function () {
+gulp.task('vendorcss', function () {
     return gulp.src(pkg.paths.vendorcss)
         .pipe(plug.concat('vendor.min.css'))
         .pipe(plug.bytediff.start())
@@ -111,7 +111,7 @@ gulp.task('images', function () {
  * Bundle the JS, CSS, and compress images.
  * Then copy files to dev and show a toast.
  */
-gulp.task('default', ['js', 'css', 'images'], function () {
+gulp.task('default', ['js', 'css', 'vendorcss', 'images'], function () {
     // Prepare files for dev
     return gulp.src(pkg.paths.dev)
         .pipe(plug.notify({
@@ -159,26 +159,22 @@ gulp.task('watchjs', function () {
     });
 });
 
+
 /*
  * Watch css files
  */
 gulp.task('watchcss', function () {
-    var css = [].concat(pkg.paths.css, pkg.paths.vendorcss);
-    var watcher = gulp.watch(css, ['css']);
+    var css = ['gulpfile.js'].concat(pkg.paths.css, pkg.paths.vendorcss);
+    var watcher = gulp.watch(css, ['css', 'vendorcss']);
 
     watcher.on('change', function (event) {
         console.log('*** File ' + event.path + ' was ' + event.type + ', running tasks...');
     });
 });
 
+
 /*
  * Watch all files
  */
 gulp.task('watch', ['watchcss', 'watchjs'], function () {
-    var css = [].concat(pkg.paths.css, pkg.paths.vendorcss);
-    var watcher = gulp.watch(css, ['css']);
-
-    watcher.on('change', function (event) {
-        console.log('*** File ' + event.path + ' was ' + event.type + ', running tasks...');
-    });
 });
