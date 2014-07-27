@@ -2,6 +2,7 @@
  * Create references
  */
 var gulp = require('gulp');
+var glob = require('glob');
 var pkg = require('./package.json');
 var common = require('./common.js');
 
@@ -34,7 +35,7 @@ gutil.beep();
  */
 gulp.task('jshint', function () {
     return gulp.src(pkg.paths.js)
-        .pipe(plug.jshint('jshintrc.json'))
+        .pipe(plug.jshint('.jshintrc'))
 //        .pipe(plug.jshint.reporter('default'));
         .pipe(plug.jshint.reporter('jshint-stylish'));
 });
