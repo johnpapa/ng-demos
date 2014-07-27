@@ -22,7 +22,7 @@
                 'rightText': '@',
                 'allowCollapse': '@'
             },
-            templateUrl: 'app/layout/widgetheader.html',
+            templateUrl: 'app/widgets/widgetheader.html',
             restrict: 'A'
         };
         return directive;
