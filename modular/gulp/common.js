@@ -1,8 +1,10 @@
-var commentWrapper = require('./commentWrapper.js');
+(function (common) {
+    var commentWrapper = require('./commentWrapper.js');
 
-module.exports = {
-// Create standard comments header for minified files
-    createComments: function (gutil) {
+    common.createComments = createComments;
+
+    // Create standard comments header for minified files
+    function createComments(gutil) {
         var comments = [
             'John Papa',
             'Copyright 2014',
@@ -11,4 +13,5 @@ module.exports = {
         ];
         return commentWrapper.wrap(comments);
     }
-};
+
+})(module.exports)
