@@ -1,3 +1,2 @@
 [config]
 project = modular/server
-command = bash modular/deploy.sh  
