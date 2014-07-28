@@ -1,7 +1,6 @@
 /*
  * Create references
  */
-var es = require('event-stream');
 var gulp = require('gulp');
 var glob = require('glob');
 var pkg = require('./package.json');
