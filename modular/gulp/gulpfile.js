@@ -56,25 +56,21 @@ gulp.task('templatecache', function () {
 gulp.task('js', ['jshint', 'templatecache'], function () {
     var source = [].concat(pkg.paths.js, pkg.paths.dev + 'templates.js');
     return gulp.src(source)
-        .pipe(plug.size({showFiles: true}))
+//        .pipe(plug.size({showFiles: true}))
         .pipe(plug.sourcemaps.init())
-
+        .pipe(plug.concat('all.min.js', {newLine: ';'}))
         // Annotate before uglify so the code get's min'd properly.
         .pipe(plug.ngAnnotate({
             // true helps add where @ngInject is not used. It infers.
-            // Doesn't work with resolve, must be explicit there
+            // Doesn't work with resolve, so we must be explicit there
             add: true
         }))
-        .pipe(plug.uglify({
-//            sourceMap: true,
-//            banner: '/*! <%= pkg.name %> <%= gutil.date("mmm d, yyyy h:MM:ss TT Z") %> */\n',
-            mangle: true
-        }))
-        .pipe(plug.concat('all.min.js', {newLine: ';'}))
+        .pipe(plug.bytediff.start())
+        .pipe(plug.uglify({mangle: true}))
+        .pipe(plug.bytediff.stop(common.bytediffFormatter))
         .pipe(plug.sourcemaps.write('./'))
-        .pipe(plug.header(commentHeader))
-        .pipe(gulp.dest(pkg.paths.dev))
-        .pipe(plug.size({showFiles: true}));
+        .pipe(gulp.dest(pkg.paths.dev));
+//        .pipe(plug.size({showFiles: true}));
 });
 
 
