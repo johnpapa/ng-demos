@@ -18,11 +18,6 @@ var plug = gulpLoadPlugins();
 var gutil = plug.loadUtils(['colors', 'env', 'log', 'date']);
 
 /************************
- * Create comments for minified files
- ************************/
-var commentHeader = common.createComments(gutil);
-
-/************************
  * Could use a staging/development switch.
  * Run `gulp --staging`
  ************************/
@@ -92,7 +87,7 @@ gulp.task('vendorjs', function () {
             return path + '.map';
         }));
     source.push('../client/components/jquery/dist/jquery.min.map');
-    console.log(source);
+//    console.log(source);
     return gulp.src(source)
         .pipe(gulp.dest(pkg.paths.dev + 'vendor'));
 });
@@ -107,7 +102,6 @@ gulp.task('css', function () {
         .pipe(plug.concat('all.min.css')) // Before bytediff or after
         .pipe(plug.bytediff.start())
         .pipe(plug.minifyCss({}))
-        .pipe(plug.header(commentHeader))
         .pipe(plug.bytediff.stop(common.bytediffFormatter))
 //        .pipe(plug.concat('all.min.css')) // Before bytediff or after
         .pipe(gulp.dest(pkg.paths.dev + 'content'));

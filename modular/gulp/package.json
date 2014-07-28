@@ -1,85 +1,81 @@
 {
-    "name": "NG-Modular",
-    "description": "AngularJS Modular Demo",
-    "version": "0.0.1",
-    "main": "app.module.js",
-    "devDependencies": {
-        "glob": "^4.0.4",
-        "gulp-concat": "^2.3.3",
-        "gulp-uglify": "^0.3.1",
-        "gulp-jshint": "^1.7.1",
-        "gulp-imagemin": "^0.6.1",
-        "gulp-minify-css": "^0.3.7",
-        "gulp-clean": "^0.3.1",
-        "gulp-size": "^0.4.0",
-        "jshint-stylish": "^0.1.5",
-        "gulp-cache": "^0.2.0",
-        "gulp-header": "^1.0.5",
-        "gulp-load-plugins": "^0.5.3",
-        "gulp-load-utils": "0.0.4",
-        "chalk": "^0.4.0",
-        "dateformat": "^1.0.7-1.2.3",
-        "minimist": "0.0.8",
-        "gulp": "^3.8.6",
-        "gulp-usemin": "^0.3.6",
-        "gulp-ng-annotate": "^0.2.0",
-        "gulp-notify": "^1.4.0",
-        "gulp-sourcemaps": "^1.1.0",
-        "gulp-bytediff": "^0.2.0",
-        "gulp-minify-html": "^0.1.4",
-        "gulp-inject": "^1.0.0",
-        "event-stream": "^3.1.7",
-        "gulp-angular-filesort": "^0.1.1",
-        "gulp-rename": "^1.2.0",
-        "gulp-angular-templatecache": "^1.2.1"
-    },
-    "author": "John Papa",
-    "paths": {
-        "html": "../client/**/*.html",
-        "htmltemplates": "../client/app/**/*.html",
-        "vendorjs": [
-            "../client/components/jquery/dist/jquery.min.js",
-            "../client/components/angular/angular.min.js",
-            "../client/components/angular-animate/angular-animate.min.js",
-            "../client/components/angular-route/angular-route.min.js",
-            "../client/components/angular-sanitize/angular-sanitize.min.js",
-            "../client/components/bootstrap/dist/js/bootstrap.min.js",
-            "../client/components/toastr/toastr.min.js",
-            "../client/components/moment/min/moment.min.js",
-            "../client/components/extras.angular.plus/ngplus-overlay.js"
-        ],
-        "vendorjssequence": [
-            "jquery.min.js",
-            "angular.min.js",
-            "angular-animate.min.js",
-            "angular-route.min.js",
-            "angular-sanitize.min.js",
-            "bootstrap.min.js",
-            "toastr.min.js",
-            "moment.min.js",
-            "ngplus-overlay.js"
-        ],
-        "vendorcss": [
-            "../client/components/bootstrap/dist/css/bootstrap.min.css",
-            "../client/components/font-awesome/css/font-awesome.min.css",
-            "../client/components/toastr/toastr.css"
-        ],
-        "css": [
-            "../client/content/customtheme.css",
-            "../client/content/styles.css"
-        ],
-        "js": [
-            "../client/app/**/*module*.js",
-            "../client/app/**/*.js",
-            "!../client/app/**/{,/*-spaghetti.js}"
-        ],
-        "fonts": [
-            "../client/components/font-awesome/fonts/**/*.*"
-        ],
-        "images": [
-            "../client/content/images/**/*"
-        ],
-        "dev": "../client/build/dev/",
-        "stage": "../client/build/stage/"
-    }
+  "name": "NG-Modular",
+  "description": "AngularJS Modular Demo",
+  "version": "0.0.1",
+  "main": "app.module.js",
+  "devDependencies": {
+    "glob": "^4.0.4",
+    "gulp-concat": "^2.3.3",
+    "gulp-uglify": "^0.3.1",
+    "gulp-jshint": "^1.7.1",
+    "gulp-imagemin": "^0.6.1",
+    "gulp-minify-css": "^0.3.7",
+    "gulp-clean": "^0.3.1",
+    "gulp-size": "^0.4.0",
+    "jshint-stylish": "^0.1.5",
+    "gulp-cache": "^0.2.0",
+    "gulp-load-plugins": "^0.5.3",
+    "gulp-load-utils": "0.0.4",
+    "chalk": "^0.4.0",
+    "dateformat": "^1.0.7-1.2.3",
+    "minimist": "0.0.8",
+    "gulp": "^3.8.6",
+    "gulp-ng-annotate": "^0.2.0",
+    "gulp-notify": "^1.4.0",
+    "gulp-sourcemaps": "^1.1.0",
+    "gulp-bytediff": "^0.2.0",
+    "gulp-minify-html": "^0.1.4",
+    "gulp-inject": "^1.0.0",
+    "gulp-rename": "^1.2.0",
+    "gulp-angular-templatecache": "^1.2.1"
+  },
+  "author": "John Papa",
+  "paths": {
+    "html": "../client/**/*.html",
+    "htmltemplates": "../client/app/**/*.html",
+    "vendorjs": [
+      "../client/components/jquery/dist/jquery.min.js",
+      "../client/components/angular/angular.min.js",
+      "../client/components/angular-animate/angular-animate.min.js",
+      "../client/components/angular-route/angular-route.min.js",
+      "../client/components/angular-sanitize/angular-sanitize.min.js",
+      "../client/components/bootstrap/dist/js/bootstrap.min.js",
+      "../client/components/toastr/toastr.min.js",
+      "../client/components/moment/min/moment.min.js",
+      "../client/components/extras.angular.plus/ngplus-overlay.js"
+    ],
+    "vendorjssequence": [
+      "jquery.min.js",
+      "angular.min.js",
+      "angular-animate.min.js",
+      "angular-route.min.js",
+      "angular-sanitize.min.js",
+      "bootstrap.min.js",
+      "toastr.min.js",
+      "moment.min.js",
+      "ngplus-overlay.js"
+    ],
+    "vendorcss": [
+      "../client/components/bootstrap/dist/css/bootstrap.min.css",
+      "../client/components/font-awesome/css/font-awesome.min.css",
+      "../client/components/toastr/toastr.css"
+    ],
+    "css": [
+      "../client/content/customtheme.css",
+      "../client/content/styles.css"
+    ],
+    "js": [
+      "../client/app/**/*module*.js",
+      "../client/app/**/*.js",
+      "!../client/app/**/{,/*-spaghetti.js}"
+    ],
+    "fonts": [
+      "../client/components/font-awesome/fonts/**/*.*"
+    ],
+    "images": [
+      "../client/content/images/**/*"
+    ],
+    "dev": "../client/build/dev/",
+    "stage": "../client/build/stage/"
+  }
 }
