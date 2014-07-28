@@ -13,7 +13,7 @@ node_modules
 bower_components
 components
 **/test/coverage
-**/client/build
+
 
 # mongo db
 ###################
