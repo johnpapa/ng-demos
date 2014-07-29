@@ -25,7 +25,7 @@
     "gulp-sourcemaps": "^1.1.0",
     "gulp-bytediff": "^0.2.0",
     "gulp-minify-html": "^0.1.4",
-    "gulp-inject": "^1.0.0",
+    "gulp-inject": "^1.0.1",
     "gulp-rename": "^1.2.0",
     "gulp-angular-templatecache": "^1.2.1"
   },

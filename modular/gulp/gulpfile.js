@@ -154,12 +154,18 @@ gulp.task('htmlinject', ['js', 'vendorjs', 'css', 'vendorcss', 'images', 'fonts'
     var ignorePath = '/../client';
 
     target
-//        .pipe(plug.rename('index.html'))
+        /* Can also use the starttag instead of name */
+        /*
         .pipe(plug.inject(sources.vendorcss, {starttag: '<!-- inject:vendor:{{ext}} -->', ignorePath: ignorePath}))
         .pipe(plug.inject(sources.css, {ignorePath: ignorePath}))
         .pipe(plug.inject(sources.js, {ignorePath: ignorePath}))
         .pipe(plug.inject(sources.vendorjs, {starttag: '<!-- inject:vendor:{{ext}} -->', ignorePath: ignorePath}))
-//        .pipe(gulp.dest('../client/'));
+        */
+        .pipe(plug.inject(sources.vendorcss, {name: 'inject-vendor', ignorePath: ignorePath}))
+        .pipe(plug.inject(sources.css, {ignorePath: ignorePath}))
+        .pipe(plug.inject(sources.js, {ignorePath: ignorePath}))
+        .pipe(plug.inject(sources.vendorjs, {name: 'inject-vendor', ignorePath: ignorePath}))
+
         .pipe(gulp.dest(pkg.paths.dev));
 });
 
