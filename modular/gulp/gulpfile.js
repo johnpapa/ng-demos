@@ -83,7 +83,6 @@ gulp.task('vendorjs', function () {
             return path + '.map';
         }));
     source.push('../client/components/jquery/dist/jquery.min.map');
-//    console.log(source);
     return gulp.src(source)
         .pipe(gulp.dest(pkg.paths.dev + 'vendor'));
 });
@@ -142,14 +141,15 @@ gulp.task('images', function () {
  ************************/
 gulp.task('htmlinject', ['js', 'vendorjs', 'css', 'vendorcss', 'images', 'fonts'], function () {
     var target = gulp.src('../client/index.html');
-    var v = pkg.paths.vendorjssequence.map(function (file) {
+    var vjs = pkg.paths.vendorjs.map(function (path) {
+        var file = path.split('/').pop();
         return pkg.paths.dev + 'vendor/' + file;
     });
     var sources = {
         css: gulp.src([pkg.paths.dev + 'content/all.min.css'], {read: false}),
         vendorcss: gulp.src([pkg.paths.dev + 'content/vendor.min.css'], {read: false}),
         js: gulp.src([pkg.paths.dev + 'all.min.js']),
-        vendorjs: gulp.src(v)
+        vendorjs: gulp.src(vjs)
     };
     var ignorePath = '/../client';
 

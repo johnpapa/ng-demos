@@ -44,17 +44,6 @@
       "../client/components/moment/min/moment.min.js",
       "../client/components/extras.angular.plus/ngplus-overlay.js"
     ],
-    "vendorjssequence": [
-      "jquery.min.js",
-      "angular.min.js",
-      "angular-animate.min.js",
-      "angular-route.min.js",
-      "angular-sanitize.min.js",
-      "bootstrap.min.js",
-      "toastr.min.js",
-      "moment.min.js",
-      "ngplus-overlay.js"
-    ],
     "vendorcss": [
       "../client/components/bootstrap/dist/css/bootstrap.min.css",
       "../client/components/font-awesome/css/font-awesome.min.css",
