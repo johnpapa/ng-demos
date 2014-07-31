@@ -30,7 +30,7 @@ gutil.beep();
  ************************/
 gulp.task('jshint', function () {
     return gulp.src(pkg.paths.js)
-        .pipe(plug.jshint('.jshintrc'))
+        .pipe(plug.jshint('../.jshintrc'))
 //        .pipe(plug.jshint.reporter('default'));
         .pipe(plug.jshint.reporter('jshint-stylish'));
 });
