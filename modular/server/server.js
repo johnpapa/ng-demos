@@ -1,3 +1,6 @@
+/*jshint node:true*/
+'use strict';
+
 var express      = require('express'),
     app          = express(),
     bodyParser   = require('body-parser'),
@@ -7,30 +10,40 @@ var express      = require('express'),
     favicon      = require('serve-favicon'),
     fileServer   = require('serve-static'),
     http         = require('http'),
-    isDev        = app.get('env') === 'development',
+    isDev        = process.env['NODE_ENV'] === 'development',
     logger       = require('morgan'),
     port         = process.env['PORT'] || 7200,
     routes       = require('./services/routes');
 
-var appDir =  __dirname + '/../client'; // Our NG code
+var appDir =  __dirname + '../'; // ./../client'; // Our NG code
 
-app.use(bodyParser());          // body parser, json, and url encoding
+app.use(bodyParser.urlencoded({
+    extended: true
+}))
+app.use(bodyParser.json())
 app.use(compress());            // Compress response data with gzip
-app.use(logger('dev'));         // logger
+app.use(logger('dev'));
 app.use(favicon(__dirname + '/favicon.ico'));
 app.use(fileServer(appDir));    // Support static file content
 app.use(cors());                // enable ALL CORS requests
 app.use(errorHandler.init);
-app.use('/', express.static(appDir));
-
-routes.init(app);
 
 if(isDev){
+    console.log('** DEV **');
+//    app.use('/', express.static(appDir));
+    app.use('/', express.static('client'));
+    app.use('/', express.static('./'));
+
     app.get('/test', function(req, res, next) {
         console.log(req.body);
         res.send('ping');
     });
+} else {
+    console.log('** BUILD **');
+    app.use('/', express.static('./build/dev/'));
 }
+
+routes.init(app);
 
 var server = http.createServer(app);
 

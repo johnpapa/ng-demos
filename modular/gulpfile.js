@@ -1,44 +1,44 @@
-/*
+/**
  * Create references
  */
 var gulp = require('gulp');
 var glob = require('glob');
 var pkg = require('./package.json');
-var common = require('./common.js');
+var common = require('./gulp/common.js');
 
-/************************
+/**
  * Auto load all gulp plugins
- ************************/
-var gulpLoadPlugins = require("gulp-load-plugins");
+ */
+var gulpLoadPlugins = require('gulp-load-plugins');
 var plug = gulpLoadPlugins();
 
-/************************
+/**
  * Load common utilities for gulp
- ************************/
+ */
 var gutil = plug.loadUtils(['colors', 'env', 'log', 'date']);
 
-/************************
+/**
  * Could use a staging/development switch.
  * Run `gulp --staging`
- ************************/
+ */
 var type = gutil.env.staging ? 'staging' : 'development';
 gutil.log('Building for', gutil.colors.magenta(type));
 gutil.beep();
 
-/************************
+/**
  * Lint the code
- ************************/
+ */
 gulp.task('jshint', function () {
     return gulp.src(pkg.paths.js)
-        .pipe(plug.jshint('../.jshintrc'))
+        .pipe(plug.jshint('./.jshintrc'))
 //        .pipe(plug.jshint.reporter('default'));
         .pipe(plug.jshint.reporter('jshint-stylish'));
 });
 
 
-/************************
+/**
  * Create $templateCache from the html templates
- ************************/
+ */
 gulp.task('templatecache', function () {
     gulp.src(pkg.paths.htmltemplates)
         .pipe(plug.angularTemplatecache('templates.js', {
@@ -50,9 +50,9 @@ gulp.task('templatecache', function () {
 });
 
 
-/************************
+/**
  * Minify and bundle the JavaScript
- ************************/
+ */
 gulp.task('js', ['jshint', 'templatecache'], function () {
     var source = [].concat(pkg.paths.js, pkg.paths.dev + 'templates.js');
     return gulp.src(source)
@@ -74,23 +74,23 @@ gulp.task('js', ['jshint', 'templatecache'], function () {
 });
 
 
-/************************
+/**
  * Copy the Vendor JavaScript
- ************************/
+ */
 gulp.task('vendorjs', function () {
     var source = [].concat(pkg.paths.vendorjs,
         pkg.paths.vendorjs.map(function (path) {
             return path + '.map';
         }));
-    source.push('../client/components/jquery/dist/jquery.min.map');
+    source.push('./bower_components/jquery/dist/jquery.min.map');
     return gulp.src(source)
         .pipe(gulp.dest(pkg.paths.dev + 'vendor'));
 });
 
 
-/************************
+/**
  * Minify and bundle the CSS
- ************************/
+ */
 gulp.task('css', function () {
     return gulp.src(pkg.paths.css)
 //        .pipe(plug.size({showFiles: true}))
@@ -104,9 +104,9 @@ gulp.task('css', function () {
 });
 
 
-/************************
+/**
  * Minify and bundle the Vendor CSS
- ************************/
+ */
 gulp.task('vendorcss', function () {
     return gulp.src(pkg.paths.vendorcss)
         .pipe(plug.concat('vendor.min.css'))
@@ -117,18 +117,18 @@ gulp.task('vendorcss', function () {
 });
 
 
-/************************
+/**
  * Copy fonts
- ************************/
+ */
 gulp.task('fonts', function () {
     return gulp.src(pkg.paths.fonts)
         .pipe(gulp.dest(pkg.paths.dev + 'fonts'));
 });
 
 
-/************************
+/**
  * Compress images
- ************************/
+ */
 gulp.task('images', function () {
     return gulp.src(pkg.paths.images)
         .pipe(plug.cache(plug.imagemin({optimizationLevel: 3})))
@@ -136,26 +136,27 @@ gulp.task('images', function () {
 });
 
 
-/************************
+/**
  * Inject all the files into the new index.html
- ************************/
+ */
 gulp.task('htmlinject', ['js', 'vendorjs', 'css', 'vendorcss', 'images', 'fonts'], function () {
-    var target = gulp.src('../client/index.html');
+    var target = gulp.src('./client/index.html');
     var vjs = pkg.paths.vendorjs.map(function (path) {
         var file = path.split('/').pop();
         return pkg.paths.dev + 'vendor/' + file;
     });
+    console.log(vjs);
     var sources = {
         css: gulp.src([pkg.paths.dev + 'content/all.min.css'], {read: false}),
         vendorcss: gulp.src([pkg.paths.dev + 'content/vendor.min.css'], {read: false}),
         js: gulp.src([pkg.paths.dev + 'all.min.js']),
         vendorjs: gulp.src(vjs)
     };
-    var ignorePath = '/../client';
+    var ignorePath = pkg.paths.dev.substring(1);
 
     target
-        /* Can also use the starttag instead of name */
-        /*
+        /** Can also use the starttag instead of name */
+        /**
         .pipe(plug.inject(sources.vendorcss, {starttag: '<!-- inject:vendor:{{ext}} -->', ignorePath: ignorePath}))
         .pipe(plug.inject(sources.css, {ignorePath: ignorePath}))
         .pipe(plug.inject(sources.js, {ignorePath: ignorePath}))
@@ -170,50 +171,32 @@ gulp.task('htmlinject', ['js', 'vendorjs', 'css', 'vendorcss', 'images', 'fonts'
 });
 
 
-/************************
+/**
  * Bundle the JS, CSS, and compress images.
  * Then copy files to dev and show a toast.
- ************************/
-gulp.task('default', ['htmlinject'], function () {
+ */
+gulp.task('build', ['htmlinject'], function () {
     // Prepare files for dev
     return gulp.src(pkg.paths.dev)
         .pipe(plug.notify({
             onLast: true,
-            message: "linted, bundled, and images compressed!"
+            message: 'linted, bundled, and images compressed!'
         }));
 });
 
-
-/************************
- * Bundle the JS, CSS, and compress images.
- * Then copy files to staging and show a toast.
- ************************/
-gulp.task('stage', ['default'], function () {
-    // Copy the files to staging
-    return gulp.src(pkg.paths.dev)
-        .pipe(gulp.dest(pkg.paths.stage))
-        // Notify we are done
-        .pipe(plug.notify({
-            onLast: true,
-            message: "staged!"
-        }));
-});
-
-/************************
+/**
  * Remove all files from the output folder
- ************************/
-gulp.task('cleanOutput', function () {
+ */
+gulp.task('clean', function () {
     return gulp.src([
-        pkg.paths.dev,
-        pkg.paths.stage
-    ])
-        .pipe(plug.clean({force: true}));
+            pkg.paths.dev
+        ]).pipe(plug.clean({force: true}));
 });
 
 
-/************************
+/**
  * Watch js files
- ************************/
+ */
 gulp.task('watchjs', function () {
     var js = ['gulpfile.js'].concat(pkg.paths.js);
     var watcher = gulp.watch(js, ['js', 'vendorjs']);
@@ -224,9 +207,9 @@ gulp.task('watchjs', function () {
 });
 
 
-/************************
+/**
  * Watch css files
- ************************/
+ */
 gulp.task('watchcss', function () {
     var css = ['gulpfile.js'].concat(pkg.paths.css, pkg.paths.vendorcss);
     var watcher = gulp.watch(css, ['css', 'vendorcss']);
@@ -237,8 +220,45 @@ gulp.task('watchcss', function () {
 });
 
 
-/************************
+/**
  * Watch all files
- ************************/
+ */
 gulp.task('watch', ['watchcss', 'watchjs'], function () {
 });
+
+
+/**
+ * Run all tests
+ */
+gulp.task('test', function() {
+    var testFiles = [
+        'client/test/**.[Ss]pec.js'
+    ];
+    return gulp.src(testFiles)
+        .pipe(plug.karma({
+            configFile: pkg.paths.test + '/karma.conf.js',
+            action: 'run'
+        }))
+        .on('error', function(err) {
+            // Make sure failed tests cause gulp to exit non-zero
+            throw err;
+        });
+});
+
+
+/**
+ * serve the dev environment
+ */
+gulp.task('serve', function () {
+    plug.nodemon({
+        script: 'server/server.js',
+        ext: 'html js',
+        env: { 'NODE_ENV': 'development' },
+        ignore: ['ignored.js'],
+        nodeArgs: ['--debug=9999']
+    })
+        .on('change', ['jshint', 'test'])
+        .on('restart', function () {
+            console.log('restarted!')
+        })
+})

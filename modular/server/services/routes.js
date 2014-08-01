@@ -1,7 +1,7 @@
 (function(routes){
     var app;
     var jsonfileservice = require('./jsonfileservice.js'),
-        pkg             = require('./../package.json');
+        pkg             = require('./../../package.json');
     var apiPath = pkg.paths.api;
     var dataPath = pkg.paths.data;
 

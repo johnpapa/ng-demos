@@ -14,14 +14,14 @@
     </style>
 
     <!-- inject-vendor:css -->
-    <link href="/components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="/components/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
-    <link href="/components/toastr/toastr.css" rel="stylesheet" />
+    <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="/bower_components/toastr/toastr.css" rel="stylesheet" />
     <!-- endinject -->
 
     <!-- inject:css -->
-    <link href="/content/customtheme.css" rel="stylesheet">
-    <link href="/content/styles.css" rel="stylesheet" />
+    <link href="/client/content/customtheme.css" rel="stylesheet">
+    <link href="/client/content/styles.css" rel="stylesheet" />
     <!-- endinject -->
 </head>
 <body>
@@ -40,58 +40,57 @@
     </div>
 
     <!-- inject-vendor:js -->
-    <script src="/components/jquery/dist/jquery.js"></script>
-    <script src="/components/angular/angular.js"></script>
-    <script src="/components/angular-animate/angular-animate.js"></script>
-    <script src="/components/angular-route/angular-route.js"></script>
-    <script src="/components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="/components/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="/components/toastr/toastr.js"></script>
-    <script src="/components/moment/moment.js"></script>
-    <script src="/components/extras.angular.plus/ngplus-overlay.js"></script>
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-animate/angular-animate.js"></script>
+    <script src="/bower_components/angular-route/angular-route.js"></script>
+    <script src="/bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="/bower_components/toastr/toastr.js"></script>
+    <script src="/bower_components/moment/moment.js"></script>
+    <script src="/bower_components/extras.angular.plus/ngplus-overlay.js"></script>
     <!-- endinject -->
 
 
     <!-- inject:js -->
     <!-- Bootstrapping -->
-    <script src="/app/app.module.js"></script>
+    <script src="/client/app/app.module.js"></script>
 
     <!-- Reusable Blocks/Modules -->
-    <script src="/app/blocks/exception/exception.module.js"></script>
-    <script src="/app/blocks/exception/exceptionHandler.js"></script>
-    <script src="/app/blocks/logger/logger.module.js"></script>
-    <script src="/app/blocks/logger/logger.js"></script>
-    <script src="/app/blocks/router/router.module.js"></script>
-    <script src="/app/blocks/router/routehelper.js"></script>
+    <script src="/client/app/blocks/exception/exception.module.js"></script>
+    <script src="/client/app/blocks/exception/exceptionHandler.js"></script>
+    <script src="/client/app/blocks/logger/logger.module.js"></script>
+    <script src="/client/app/blocks/logger/logger.js"></script>
+    <script src="/client/app/blocks/router/router.module.js"></script>
+    <script src="/client/app/blocks/router/routehelper.js"></script>
 
     <!-- core module -->
-    <script src="/app/core/core.module.js"></script>
-    <script src="/app/core/config.js"></script>
-    <script src="/app/core/dataservice.js"></script>
+    <script src="/client/app/core/core.module.js"></script>
+    <script src="/client/app/core/config.js"></script>
+    <script src="/client/app/core/dataservice.js"></script>
 
     <!-- layout -->
-    <script src="/app/layout/layout.module.js"></script>
-    <script src="/app/layout/shell.js"></script>
-    <script src="/app/layout/sidebar.js"></script>
+    <script src="/client/app/layout/layout.module.js"></script>
+    <script src="/client/app/layout/shell.js"></script>
+    <script src="/client/app/layout/sidebar.js"></script>
 
     <!--widgets-->
-    <script src="/app/widgets/widgets.module.js"></script>
-    <script src="/app/widgets/ccSidebar.js"></script>
-    <script src="/app/widgets/ccSpinner.js"></script>
-    <script src="/app/widgets/ccWidgetClose.js"></script>
-    <script src="/app/widgets/ccWidgetHeader.js"></script>
-    <script src="/app/widgets/ccWidgetMinimize.js"></script>
+    <script src="/client/app/widgets/widgets.module.js"></script>
+    <script src="/client/app/widgets/ccSidebar.js"></script>
+    <script src="/client/app/widgets/ccSpinner.js"></script>
+    <script src="/client/app/widgets/ccWidgetClose.js"></script>
+    <script src="/client/app/widgets/ccWidgetHeader.js"></script>
+    <script src="/client/app/widgets/ccWidgetMinimize.js"></script>
 
     <!-- dashboard -->
-    <script src="/app/dashboard/dashboard.module.js"></script>
-    <script src="/app/dashboard/config.route.js"></script>
-    <script src="/app/dashboard/dashboard.js"></script>
+    <script src="/client/app/dashboard/dashboard.module.js"></script>
+    <script src="/client/app/dashboard/config.route.js"></script>
+    <script src="/client/app/dashboard/dashboard.js"></script>
 
     <!--avengers module-->
-    <script src="/app/avengers/avengers.module.js"></script>
-    <script src="/app/avengers/config.route.js"></script>
-    <script src="/app/avengers/avengers.js"></script>
+    <script src="/client/app/avengers/avengers.module.js"></script>
+    <script src="/client/app/avengers/config.route.js"></script>
+    <script src="/client/app/avengers/avengers.js"></script>
     <!-- endinject -->
-
 </body>
 </html>

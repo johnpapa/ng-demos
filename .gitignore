@@ -10,8 +10,9 @@ obj
 # Ignore Node & Bower
 ###################
 node_modules
+/modular/client/build
+/modular/build
 bower_components
-components
 **/test/coverage
 
 
@@ -66,5 +67,4 @@ ehthumbs.db
 Icon?
 Thumbs.db
 packages
-final/build/node_modules/
 

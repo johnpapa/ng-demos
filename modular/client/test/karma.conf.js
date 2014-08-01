@@ -5,7 +5,7 @@ module.exports = function (config) {
     config.set({
 
         // base path that will be used to resolve all patterns (eg. files, exclude)
-        basePath: '../',
+        basePath: '../../',
 
 
         // frameworks to use
@@ -16,20 +16,20 @@ module.exports = function (config) {
 
         // list of files / patterns to load in the browser
         files: [
-            'client/components/jquery/dist/jquery.js',
-            'client/components/angular/angular.js',
-            'test/bower_components/angular-mocks/angular-mocks.js',
-            'client/components/angular-animate/angular-animate.js',
-            'client/components/angular-route/angular-route.js',
-            'client/components/angular-sanitize/angular-sanitize.js',
-            'client/components/bootstrap/dist/js/bootstrap.js',
-            'client/components/toastr/toastr.js',
-            'client/components/moment/moment.js',
-            'client/components/extras.angular.plus/ngplus-overlay.js',
+            './bower_components/jquery/dist/jquery.js',
+            './bower_components/angular/angular.js',
+            './bower_components/angular-mocks/angular-mocks.js',
+            './bower_components/angular-animate/angular-animate.js',
+            './bower_components/angular-route/angular-route.js',
+            './bower_components/angular-sanitize/angular-sanitize.js',
+            './bower_components/bootstrap/dist/js/bootstrap.js',
+            './bower_components/toastr/toastr.js',
+            './bower_components/moment/moment.js',
+            './bower_components/extras.angular.plus/ngplus-overlay.js',
 
-            'client/app/app.module.js',
-            'client/app/**/*.module.js',
-            'client/app/**/*.js',
+            './client/app/app.module.js',
+            './client/app/**/*.module.js',
+            './client/app/**/*.js',
 
             /* JASMINE */
 //            'test/spec.jasmine/**/matchers.js',
@@ -38,16 +38,16 @@ module.exports = function (config) {
 //            'test/spec.jasmine/**/sampleSpec.js'
 
             /* MOCHA */
-            'test/spec.mocha/**/specHelper.js',
-            'test/spec.mocha/**/*[Ss]pec.js',
-            'test/spec.mocha/**/sampleSpec.js',
-            'test/spec.mocha/**/simpleSpec.js'
+            './client/test/spec.mocha/**/specHelper.js',
+            './client/test/spec.mocha/**/*[Ss]pec.js',
+            './client/test/spec.mocha/**/sampleSpec.js',
+            './client/test/spec.mocha/**/simpleSpec.js'
         ],
 
 
         // list of files to exclude
         exclude: [
-            'client/app/**/*spaghetti.js'
+            './client/app/**/*spaghetti.js'
         ],
 
 
@@ -91,7 +91,7 @@ module.exports = function (config) {
         // start these browsers
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
 //        browsers: ['Chrome', 'ChromeCanary', 'FirefoxAurora', 'Safari', 'PhantomJS'],
-        browsers: ['Chrome', 'PhantomJS'],
+        browsers: ['PhantomJS'],
 
 
         // Continuous Integration mode
