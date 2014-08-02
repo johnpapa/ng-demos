@@ -8,25 +8,14 @@ var common = require('./gulp/common.js');
 
 /**
  * Auto load all gulp plugins
+ * Load common utilities for gulp
  */
 var gulpLoadPlugins = require('gulp-load-plugins');
 var plug = gulpLoadPlugins();
-
-/**
- * Load common utilities for gulp
- */
 var gutil = plug.loadUtils(['colors', 'env', 'log', 'date']);
 
 /**
- * Could use a staging/development switch.
- * Run `gulp --staging`
- */
-var type = gutil.env.staging ? 'staging' : 'development';
-gutil.log('Building for', gutil.colors.magenta(type));
-gutil.beep();
-
-/**
- * Lint the code
+ * @desc Lint the code
  */
 gulp.task('jshint', function () {
     var sources = [].concat(pkg.paths.js, pkg.paths.nodejs);
@@ -38,7 +27,7 @@ gulp.task('jshint', function () {
 
 
 /**
- * Create $templateCache from the html templates
+ * @desc Create $templateCache from the html templates
  */
 gulp.task('templatecache', function () {
     gulp.src(pkg.paths.htmltemplates)
@@ -51,8 +40,22 @@ gulp.task('templatecache', function () {
 });
 
 
+
 /**
- * Minify and bundle the JavaScript
+ * @desc Add injection code for @ngInject annotations
+ */
+gulp.task('ngAnnotate', function () {
+    gulp.src(pkg.paths.htmltemplates)
+        .pipe(plug.ngAnnotate({
+            // true helps add where @ngInject is not used. It infers.
+            // Doesn't work with resolve, so we must be explicit there
+            add: true
+        }))
+        .pipe(gulp.dest(pkg.paths.dev));
+});
+
+/**
+ * @desc Minify and bundle the JavaScript
  */
 gulp.task('js', ['jshint', 'templatecache'], function () {
     var source = [].concat(pkg.paths.js, pkg.paths.dev + 'templates.js');
@@ -76,7 +79,7 @@ gulp.task('js', ['jshint', 'templatecache'], function () {
 
 
 /**
- * Copy the Vendor JavaScript
+ * @desc Copy the Vendor JavaScript
  */
 gulp.task('vendorjs', function () {
     var source = [].concat(pkg.paths.vendorjs,
@@ -90,7 +93,7 @@ gulp.task('vendorjs', function () {
 
 
 /**
- * Minify and bundle the CSS
+ * @desc Minify and bundle the CSS
  */
 gulp.task('css', function () {
     return gulp.src(pkg.paths.css)
@@ -106,7 +109,7 @@ gulp.task('css', function () {
 
 
 /**
- * Minify and bundle the Vendor CSS
+ * @desc Minify and bundle the Vendor CSS
  */
 gulp.task('vendorcss', function () {
     return gulp.src(pkg.paths.vendorcss)
@@ -119,7 +122,7 @@ gulp.task('vendorcss', function () {
 
 
 /**
- * Copy fonts
+ * @desc Copy fonts
  */
 gulp.task('fonts', function () {
     return gulp.src(pkg.paths.fonts)
@@ -128,7 +131,7 @@ gulp.task('fonts', function () {
 
 
 /**
- * Compress images
+ * @desc Compress images
  */
 gulp.task('images', function () {
     return gulp.src(pkg.paths.images)
@@ -138,15 +141,15 @@ gulp.task('images', function () {
 
 
 /**
- * Inject all the files into the new index.html
+ * @desc Inject all the files into the new index.html
  */
-gulp.task('htmlinject', ['js', 'vendorjs', 'css', 'vendorcss', 'images', 'fonts'], function () {
+gulp.task('build-stage', ['js', 'vendorjs', 'css', 'vendorcss', 'images', 'fonts'], function () {
     var target = gulp.src('./client/index.html');
     var vjs = pkg.paths.vendorjs.map(function (path) {
         var file = path.split('/').pop();
         return pkg.paths.dev + 'vendor/' + file;
     });
-    console.log(vjs);
+//    console.log(vjs);
     var sources = {
         css: gulp.src([pkg.paths.dev + 'content/all.min.css'], {read: false}),
         vendorcss: gulp.src([pkg.paths.dev + 'content/vendor.min.css'], {read: false}),
@@ -156,29 +159,12 @@ gulp.task('htmlinject', ['js', 'vendorjs', 'css', 'vendorcss', 'images', 'fonts'
     var ignorePath = pkg.paths.dev.substring(1);
 
     target
-        /** Can also use the starttag instead of name */
-        /**
-        .pipe(plug.inject(sources.vendorcss, {starttag: '<!-- inject:vendor:{{ext}} -->', ignorePath: ignorePath}))
-        .pipe(plug.inject(sources.css, {ignorePath: ignorePath}))
-        .pipe(plug.inject(sources.js, {ignorePath: ignorePath}))
-        .pipe(plug.inject(sources.vendorjs, {starttag: '<!-- inject:vendor:{{ext}} -->', ignorePath: ignorePath}))
-        */
         .pipe(plug.inject(sources.vendorcss, {name: 'inject-vendor', ignorePath: ignorePath}))
         .pipe(plug.inject(sources.css, {ignorePath: ignorePath}))
-        .pipe(plug.inject(sources.js, {ignorePath: ignorePath}))
         .pipe(plug.inject(sources.vendorjs, {name: 'inject-vendor', ignorePath: ignorePath}))
+        .pipe(plug.inject(sources.js, {ignorePath: ignorePath}))
 
-        .pipe(gulp.dest(pkg.paths.dev));
-});
-
-
-/**
- * Bundle the JS, CSS, and compress images.
- * Then copy files to dev and show a toast.
- */
-gulp.task('build', ['htmlinject'], function () {
-    // Prepare files for dev
-    return gulp.src(pkg.paths.dev)
+        .pipe(gulp.dest(pkg.paths.dev))
         .pipe(plug.notify({
             onLast: true,
             message: 'linted, bundled, and images compressed!'
@@ -186,7 +172,7 @@ gulp.task('build', ['htmlinject'], function () {
 });
 
 /**
- * Remove all files from the output folder
+ * @desc Remove all files from the output folder
  */
 gulp.task('clean', function () {
     return gulp.src([
@@ -196,40 +182,27 @@ gulp.task('clean', function () {
 
 
 /**
- * Watch js files
+ * @desc Watch files and build
  */
 gulp.task('watchjs', function () {
     var js = ['gulpfile.js'].concat(pkg.paths.js);
-    var watcher = gulp.watch(js, ['js', 'vendorjs']);
+    var jswatcher = gulp.watch(js, ['js', 'vendorjs']);
 
-    watcher.on('change', function (event) {
+    jswatcher.on('change', function (event) {
         console.log('*** File ' + event.path + ' was ' + event.type + ', running tasks...');
     });
-});
 
-
-/**
- * Watch css files
- */
-gulp.task('watchcss', function () {
     var css = ['gulpfile.js'].concat(pkg.paths.css, pkg.paths.vendorcss);
-    var watcher = gulp.watch(css, ['css', 'vendorcss']);
+    var csswatcher = gulp.watch(css, ['css', 'vendorcss']);
 
-    watcher.on('change', function (event) {
+    csswatcher.on('change', function (event) {
         console.log('*** File ' + event.path + ' was ' + event.type + ', running tasks...');
     });
 });
 
 
 /**
- * Watch all files
- */
-gulp.task('watch', ['watchcss', 'watchjs'], function () {
-});
-
-
-/**
- * Run all tests
+ * @desc Run all tests
  */
 gulp.task('test', function() {
     var testFiles = [
@@ -253,9 +226,10 @@ gulp.task('test', function() {
 gulp.task('dev', function () {
     plug.nodemon({
         script: 'server/server.js',
+        delayTime: 1,
         ext: 'html js',
         env: { 'NODE_ENV': 'dev' },
-        ignore: ['ignored.js'],
+        ignore: ['build/'],
         nodeArgs: ['--debug=9999']
     })
         .on('change', ['jshint', 'test'])
@@ -271,9 +245,10 @@ gulp.task('dev', function () {
 gulp.task('stage', function () {
     plug.nodemon({
         script: 'server/server.js',
+        delayTime: 1,
         ext: 'html js',
         env: { 'NODE_ENV': 'stage' },
-        ignore: ['ignored.js'],
+        ignore: ['build/'],
         nodeArgs: ['--debug=9999']
     })
         .on('change', ['jshint', 'test'])
