@@ -62,7 +62,7 @@ gulp.task('js', ['jshint', 'templatecache'], function () {
     return gulp.src(source)
 //        .pipe(plug.size({showFiles: true}))
         .pipe(plug.sourcemaps.init())
-        .pipe(plug.concat('all.min.js', {newLine: ';'}))
+        .pipe(plug.concat('all.min.js'))
         // Annotate before uglify so the code get's min'd properly.
         .pipe(plug.ngAnnotate({
             // true helps add where @ngInject is not used. It infers.
@@ -82,12 +82,26 @@ gulp.task('js', ['jshint', 'templatecache'], function () {
  * @desc Copy the Vendor JavaScript
  */
 gulp.task('vendorjs', function () {
-    var source = [].concat(pkg.paths.vendorjs,
+    return gulp.src(pkg.paths.vendorjs)
+        .pipe(plug.concat('vendor.min.js'))
+        .pipe(plug.bytediff.start())
+        .pipe(plug.uglify())
+        .pipe(plug.bytediff.stop(common.bytediffFormatter))
+        .pipe(gulp.dest(pkg.paths.dev + 'vendor'))
+});
+
+
+/**
+ * @desc Copy the Vendor JavaScript SourceMaps
+ */
+gulp.task('vendorjsmaps', function () {
+    var sourcemaps = [].concat( // pkg.paths.vendorjs, 
         pkg.paths.vendorjs.map(function (path) {
             return path + '.map';
         }));
-    source.push('./bower_components/jquery/dist/jquery.min.map');
-    return gulp.src(source)
+    sourcemaps.push('./bower_components/jquery/dist/jquery.min.map');
+    // console.log(sourcemaps);    
+    return gulp.src(sourcemaps)
         .pipe(gulp.dest(pkg.paths.dev + 'vendor'));
 });
 
@@ -143,12 +157,14 @@ gulp.task('images', function () {
 /**
  * @desc Inject all the files into the new index.html
  */
-gulp.task('build-stage', ['js', 'vendorjs', 'css', 'vendorcss', 'images', 'fonts'], function () {
+gulp.task('build-stage', 
+    ['js', 'vendorjs', 'css', 'vendorcss', 'images', 'fonts'], function () {
     var target = gulp.src('./client/index.html');
-    var vjs = pkg.paths.vendorjs.map(function (path) {
-        var file = path.split('/').pop();
-        return pkg.paths.dev + 'vendor/' + file;
-    });
+    // var vjs = pkg.paths.vendorjs.map(function (path) {
+    //     var file = path.split('/').pop();
+    //     return pkg.paths.dev + 'vendor/' + file;
+    // });
+    var vjs = pkg.paths.dev + 'vendor/vendor.min.js';
 //    console.log(vjs);
     var sources = {
         css: gulp.src([pkg.paths.dev + 'content/all.min.css'], {read: false}),
@@ -251,7 +267,7 @@ gulp.task('stage', function () {
         ignore: ['build/'],
         nodeArgs: ['--debug=9999']
     })
-        .on('change', ['jshint', 'test'])
+        .on('change', ['jshint', 'test', 'build-stage'])
         .on('restart', function () {
             console.log('restarted!');
         });
