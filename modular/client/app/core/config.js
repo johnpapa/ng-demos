@@ -3,9 +3,10 @@
 
     var core = angular.module('app.core');
 
-    // Configure Toastr
-    toastr.options.timeOut = 4000;
-    toastr.options.positionClass = 'toast-bottom-right';
+    core.config(['toastr', function(toastr){
+        toastr.options.timeOut = 4000;
+        toastr.options.positionClass = 'toast-bottom-right';
+    }]);
 
     var config = {
         appErrorPrefix: '[NG-Modular Error] ', //Configure the exceptionHandler decorator
@@ -14,8 +15,6 @@
     };
 
     core.value('config', config);
-
-    core.constant('toastr', toastr);
 
     core.config(['$logProvider', function ($logProvider) {
         // turn debugging off/on (no info or warn)
