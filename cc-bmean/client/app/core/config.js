@@ -51,11 +51,11 @@
 
 
     configuration.$inject = ['$logProvider', '$routeProvider',
-        'exceptionConfigProvider', 'routehelperConfigProvider'];
+        'exceptionConfigProvider', 'routehelperConfigProvider', 'toastr'];
 
     function configuration (
         $logProvider, $routeProvider,
-        exceptionConfigProvider, routehelperConfigProvider){
+        exceptionConfigProvider, routehelperConfigProvider, toastr){
 
         configureToastr();
         configureLogging();

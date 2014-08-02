@@ -27,7 +27,7 @@
             getWipSummary();
             $scope.$on(config.events.storage.wipChanged, function (event, data) {
                 vm.wip = data;
-            });;
+            });
         }
 
         function cancelAllWip() {
