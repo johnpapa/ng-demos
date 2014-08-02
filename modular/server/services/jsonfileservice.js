@@ -5,7 +5,7 @@ module.exports = (function(){
     return service;
 
     function getJsonFromFile(file){
-        var fs = require("fs");
+        var fs = require('fs');
         var json;
 
         json = getConfig(file);

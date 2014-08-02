@@ -20,4 +20,4 @@
         }
         next(err);
     }
-})(module.exports)
+})(module.exports);

@@ -26,10 +26,10 @@
     // Configure by setting an optional string value for appErrorPrefix.
     // Accessible via config.appErrorPrefix (via config value).
     function exceptionConfig ($provide) {
-        $provide.decorator('$exceptionHandler',
-            ['$delegate', 'exceptionConfig', 'logger',
-                extendExceptionHandler]);
+        $provide.decorator('$exceptionHandler', extendExceptionHandler);
     }
+
+    extendExceptionHandler.$inject = ['$delegate', 'exceptionConfig', 'logger'];
 
     // Extend the $exceptionHandler service to also display a toast.
     function extendExceptionHandler($delegate, exConfig, logger) {
