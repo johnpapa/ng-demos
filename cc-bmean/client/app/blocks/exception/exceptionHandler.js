@@ -11,6 +11,7 @@
     // Must configure the service and set its
     // events via the exceptionConfigProvider
     function exceptionConfigProvider () {
+        /* jshint validthis:true */
         this.config = {
             // These are the properties we need to set
             //appErrorPrefix: ''

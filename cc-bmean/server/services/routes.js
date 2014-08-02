@@ -5,6 +5,7 @@
 var dataconfig = require('./../data/dataconfig');
 
 var app,    // express app
+    appDir = '',
     breezeMongo = require('breeze-mongodb'),
     collections = dataconfig.collections,
     db = dataconfig.db,
@@ -32,7 +33,7 @@ function breezeMongoQuery(req, res, next) {
         // could add filters here
         moQuery.execute(db, collectionName, processResults(res, next));
     } catch (ex){
-        var err = { statusCode: 404, message: "Unable to execute query ' " + req.url + "'", error: ex };
+        var err = { statusCode: 404, message: 'Unable to execute query " ' + req.url + '"', error: ex };
         reportError(err, next);
     }
 }
@@ -55,7 +56,7 @@ function getCollectionNameFrom(slug){
 }
 
 function getLookups(req, res, next) {
-    // getLookups is different than a normal "get" because it
+    // getLookups is different than a normal 'get' because it
     // gets a bundle of 3 sets of data: rooms, tracks, timeslots.
     var namespace = ':#CC.Model';
     var lookups = {};
@@ -77,7 +78,7 @@ function getLookups(req, res, next) {
                 return;
             }
             //Todo: explain why we add $type
-            results.forEach(function(r) { r.$type = typeName + namespace });
+            results.forEach(function(r) { r.$type = typeName + namespace; });
             lookups[lookupName] = results;
 
             if (queryCountDown === 0) {
@@ -90,24 +91,24 @@ function getLookups(req, res, next) {
 function getMetadata(req, res, next) {
     // getMetadata gets the metadata from a file (we could do by hand).
     if (!metadata){ getMetadataFromScriptFile(); }
-    res.setHeader("Content-Type:", "application/json");
+    res.setHeader('Content-Type:', 'application/json');
     res.send(metadata);
 
     function getMetadataFromScriptFile(){
         // We have a metadata file already that we generated from the ASP.NET Web API.
         // So let's take advantage of it.
         // We could create by hand, if we were so inclined. Which we are not.
-        var filename = appDir + "/test/support/data.metadata.js";
+        var filename = appDir + '/test/support/data.metadata.js';
         if (!fs.existsSync(filename)) {
-            next(new Error("Unable to locate metadata file: " + filename));
+            next(new Error('Unable to locate metadata file: ' + filename));
         }
         var metadataSrc = fs.readFileSync(filename, 'utf8');
 
         // Depend upon metadata.js in expected form:
-        //   begins intro stuff followed by "metadataVersion"
-        //   and ends with "});"
-        metadataSrc = "{" + metadataSrc.substring(
-            metadataSrc.indexOf('"metadataVersion"'),
+        //   begins intro stuff followed by 'metadataVersion'
+        //   and ends with '});'
+        metadataSrc = '{' + metadataSrc.substring(
+            metadataSrc.indexOf('\'metadataVersion\''),
             metadataSrc.lastIndexOf('}')+1); // end with last '}'
 
         // Cleanup the metadata that we got from the Web API client
@@ -126,7 +127,7 @@ function getMetadata(req, res, next) {
 }
 
 function getSpeakers(req, res, next){
-    // getSpeakers is different than a normal "get" because it
+    // getSpeakers is different than a normal 'get' because it
     // has to find the speakers for all sessions, then get
     // the Person documents for them
     //
@@ -135,7 +136,7 @@ function getSpeakers(req, res, next){
     // Collect these and return them.
     collections.Sessions.distinct('speakerId', function(err, speakerIds){
         if (err) {
-            err = { statusCode: 404, message: "Can't get speakerIds from 'Sessions'", error: err };
+            err = { statusCode: 404, message: 'Can\'t get speakerIds from \'Sessions\'', error: err };
             reportError(err, next);
         } else {
             var query = new breezeMongo.MongoQuery(req.query);
@@ -146,8 +147,7 @@ function getSpeakers(req, res, next){
             var isSpeaker = { _id: { $in: speakerIds } };
 
             // AND with filter if defined else filter = isSpeaker
-            query.filter = req.query.$filter
-                ? { $and: [isSpeaker, query.filter] } : isSpeaker;
+            query.filter = req.query.$filter ? { $and: [isSpeaker, query.filter] } : isSpeaker;
 
             query.execute(db, 'Persons', processResults(res, next));
         }
@@ -161,7 +161,7 @@ function processResults(res, next, description) {
         } else {
             sendResults(res, results);
         }
-    }
+    };
 }
 
 function reportError(err, next, description){
@@ -169,7 +169,7 @@ function reportError(err, next, description){
     description = description || 'Request';
     var error = typeof err === 'string' ? {} : err;
     error.statusCode = err.statusCode || 500;
-    error.message = err.message || description + " failed with "+ err;
+    error.message = err.message || description + ' failed with '+ err;
     error.error = error.error || err;
 
     next(error);
@@ -196,8 +196,9 @@ function beforeSaveEntities(callback) {
 function sendResults(res, results){
     // Prevent browser from caching results of API data requests
     // Todo: Is this always the right policy? Never right? Or only for certain resources?
-    res.setHeader('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
-    res.setHeader("Content-Type:", "application/json");
+    res.setHeader('Cache-Control',
+        'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+    res.setHeader('Content-Type:', 'application/json');
     res.send(results);
 }
 

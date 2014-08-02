@@ -12,10 +12,10 @@ var collections = {},
     };
 
 // properties with getter functions for export
-Object.defineProperty(this, "db", {
+Object.defineProperty(this, 'db', {
     get: function() { return db; }
 });
-Object.defineProperty(this, "collections", {
+Object.defineProperty(this, 'collections', {
     get: function() { return collections; }
 });
 
@@ -25,6 +25,7 @@ exports.collections = this.collections;
 openMongoDb();
 
 function openMongoDb() {
+    /* jshint camelcase:false */
     var dbServer = new mongodb.Server(
         mongoDbConfig.host,
         mongoDbConfig.port,
@@ -48,8 +49,8 @@ function openMongoDb() {
         collectionNames.forEach(function(name){
             db.collection(name, {strict: true} , function (err, collection) {
                 if (err) {
-                    console.log("\n!!! Failed while getting MongoDb collections; is the MongoDb server running?");
-                    throw new Error( "Unable to locate collection '" + name+"': "+ err);
+                    console.log('\n!!! Failed while getting MongoDb collections; is the MongoDb server running?');
+                    throw new Error( 'Unable to locate collection ' + name + ': ' + err);
                 }
                 collections[name] = collection;
                 countDown -= 1;

@@ -8,6 +8,7 @@
     AbstractRepository.$inject = ['breeze', 'common', 'config', 'zStorage', 'zStorageWip'];
 
     function AbstractRepository(breeze, common, config, zStorage, zStorageWip) {
+        /* jshint validthis:true */
         var predicates = {
             isNotNullo: breeze.Predicate.create('id', '!=', 0),
             isNullo: breeze.Predicate.create('id', '==', 0)
