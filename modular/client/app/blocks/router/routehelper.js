@@ -10,6 +10,7 @@
 
     // Must configure via the routehelperConfigProvider
     function routehelperConfig () {
+        /* jshint validthis:true */
         this.config = {
             // These are the properties we need to set
             // $routeProvider: undefined
