@@ -1,10 +1,6 @@
 (function () {
     'use strict';
 
-    // Configure Toastr
-    toastr.options.timeOut = 4000;
-    toastr.options.positionClass = 'toast-bottom-right';
-
     var keyCodes = {
         backspace: 8,
         tab: 9,
@@ -48,35 +44,50 @@
         version: '1.1.0'
     };
 
-    var core = angular.module('app.core');
-    core.constant('config', config); // a constant is available at config time
+    angular
+        .module('app.core')
+        .constant('config', config)
+        .config(configuration);
 
-    /*********************************************************************
-     * Other provider configuration based on these config constant values
-     *********************************************************************/
 
-    core.config(['$logProvider', function ($logProvider) {
-        // turn debugging off/on (no info or warn)
-        if ($logProvider.debugEnabled) {
-            $logProvider.debugEnabled(true);
+    configuration.$inject = ['$logProvider', '$routeProvider',
+        'exceptionConfigProvider', 'routehelperConfigProvider'];
+
+    function configuration (
+        $logProvider, $routeProvider,
+        exceptionConfigProvider, routehelperConfigProvider){
+
+        configureToastr();
+        configureLogging();
+        configureExceptions();
+        configureRouting();
+
+
+        function configureToastr(){
+            toastr.options.timeOut = 4000;
+            toastr.options.positionClass = 'toast-bottom-right';
         }
-    }]);
 
-    // Configure the common exception handler
-    core.config(['exceptionConfigProvider', function (cfg) {
-        cfg.config.appErrorPrefix = config.appErrorPrefix;
-    }]);
+        function configureLogging(){
+            // turn debugging off/on (no info or warn)
+            if ($logProvider.debugEnabled) {
+                $logProvider.debugEnabled(true);
+            }
+        }
 
-    // Configure the common route provider
-    core.config(['$routeProvider', 'routehelperConfigProvider',
-        function ($routeProvider, cfg) {
-            cfg.config.$routeProvider = $routeProvider;
-            cfg.config.docTitle = 'CC: ';
-            cfg.config.resolveAlways = {
+        function configureExceptions(){
+            exceptionConfigProvider.config.appErrorPrefix = config.appErrorPrefix;
+        }
+
+        function configureRouting(){
+            var routeCfg = routehelperConfigProvider;
+            routeCfg.config.$routeProvider = $routeProvider;
+            routeCfg.config.docTitle = 'CC: ';
+            routeCfg.config.resolveAlways = {
                 ready: function (datacontext) {
                     return datacontext.ready();
                 }
             };
-        }]);
-
+        }
+    }
 })();

@@ -10,9 +10,7 @@
             'common', 'config', 'entityManagerFactory',
             'model', 'zStorage', 'zStorageWip'];
 
-    function datacontext($injector, $rootScope, breeze, common, config, emFactory, model, zStorage, zStorageWip) {
-        var events = config.events;
-        var logger = common.logger;
+    function datacontext ($injector, $rootScope, breeze, common, config, emFactory, model, zStorage, zStorageWip) {
         var manager = emFactory.newManager();
         var isPrimed = false;
         var primePromise;
@@ -51,7 +49,7 @@
         function cancel() {
             if (manager.hasChanges()) {
                 manager.rejectChanges();
-                logger.success('Canceled changes');
+                common.logger.success('Canceled changes');
             }
         }
 
@@ -86,13 +84,13 @@
 
         function listenForStorageEvents() {
             $rootScope.$on(config.events.storage.storeChanged, function (event, data) {
-                logger.info('Updated local storage', data);
+                common.logger.info('Updated local storage', data);
             });
             $rootScope.$on(config.events.storage.wipChanged, function (event, data) {
-                logger.info('Updated WIP', data);
+                common.logger.info('Updated WIP', data);
             });
             $rootScope.$on(config.events.storage.error, function (event, data) {
-                logger.error('Error with local storage. ' + data.activity, data);
+                common.logger.error('Error with local storage. ' + data.activity, data);
             });
         }
 
@@ -112,7 +110,7 @@
             // grab it. otherwise get from 'resources'
             var storageEnabledAndHasData = zStorage.load(manager);
             var promise = storageEnabledAndHasData ?
-                $q.when(logger.info('Loading entities and metadata from local storage')) :
+                $q.when(common.logger.info('Loading entities and metadata from local storage')) :
                 loadLookupsFromRemote();
 
             primePromise = promise.then(success);
@@ -134,7 +132,7 @@
 
             function success() {
                 isPrimed = true;
-                logger.info('Primed data', service.lookup.cachedData);
+                common.logger.info('Primed data', service.lookup.cachedData);
             }
         }
 
@@ -153,7 +151,7 @@
             return manager.saveChanges().then(saveSucceeded).catch(saveFailed);
 
             function saveSucceeded(result) {
-                logger.success('Saved data', result);
+                common.logger.success('Saved data', result);
                 zStorage.save();
             }
 
@@ -161,7 +159,7 @@
                 var msg = 'Save failed: ' +
                     breeze.saveErrorMessageService.getErrorMessage(error);
                 error.message = msg;
-                logger.error(msg, error);
+                common.logger.error(msg, error);
                 throw error;
             }
         }
@@ -173,7 +171,7 @@
             manager.entityChanged.subscribe(function (changeArgs) {
                 if (changeArgs.entityAction === breeze.EntityAction.PropertyChange) {
                     interceptPropertyChange(changeArgs);
-                    common.$broadcast(events.entitiesChanged, changeArgs);
+                    common.$broadcast(config.events.entitiesChanged, changeArgs);
                 }
             });
         }
@@ -181,7 +179,7 @@
         function setupEventForHasChangesChanged() {
             manager.hasChangesChanged.subscribe(function (eventArgs) {
                 var data = { hasChanges: eventArgs.hasChanges };
-                common.$broadcast(events.hasChangesChanged, data);
+                common.$broadcast(config.events.hasChangesChanged, data);
             });
         }
 

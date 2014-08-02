@@ -5,9 +5,9 @@
         .module('blocks.logger')
         .factory('logger', logger);
 
-    logger.$inject = ['$log'];
+    logger.$inject = ['$log', 'toastr'];
 
-    function logger( $log ) {
+    function logger($log, toastr) {
         var service = {
             showToasts: true,
 

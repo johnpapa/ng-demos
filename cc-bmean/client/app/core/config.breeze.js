@@ -1,3 +1,4 @@
+/* global breeze:false */
 (function () {
     'use strict';
 

@@ -5,11 +5,11 @@
         .module('app.data')
         .factory('model', model);
 
-    model.$inject = ['breeze', 'model.metadata', 'model.validation'];
+    model.$inject = ['breeze', 'model.metadata', 'model.validation', 'moment'];
 
     var useManualMetadata = true; // true: use model.metadata; false: use generated metadata
 
-    function model(breeze, manualMetadata, modelValidation) {
+    function model(breeze, manualMetadata, modelValidation, moment) {
         var nulloDate = new Date(1900, 0, 1);
         var nullosExist = false;
 
