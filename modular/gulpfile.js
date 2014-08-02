@@ -29,7 +29,8 @@ gutil.beep();
  * Lint the code
  */
 gulp.task('jshint', function () {
-    return gulp.src(pkg.paths.js)
+    var sources = [].concat(pkg.paths.js, pkg.paths.nodejs);
+    return gulp.src(sources)
         .pipe(plug.jshint('./.jshintrc'))
 //        .pipe(plug.jshint.reporter('default'));
         .pipe(plug.jshint.reporter('jshint-stylish'));
@@ -249,16 +250,34 @@ gulp.task('test', function() {
 /**
  * serve the dev environment
  */
-gulp.task('serve', function () {
+gulp.task('dev', function () {
     plug.nodemon({
         script: 'server/server.js',
         ext: 'html js',
-        env: { 'NODE_ENV': 'development' },
+        env: { 'NODE_ENV': 'dev' },
         ignore: ['ignored.js'],
         nodeArgs: ['--debug=9999']
     })
         .on('change', ['jshint', 'test'])
         .on('restart', function () {
-            console.log('restarted!')
-        })
-})
+            console.log('restarted!');
+        });
+});
+
+
+/**
+ * serve the staging environment
+ */
+gulp.task('stage', function () {
+    plug.nodemon({
+        script: 'server/server.js',
+        ext: 'html js',
+        env: { 'NODE_ENV': 'stage' },
+        ignore: ['ignored.js'],
+        nodeArgs: ['--debug=9999']
+    })
+        .on('change', ['jshint', 'test'])
+        .on('restart', function () {
+            console.log('restarted!');
+        });
+});

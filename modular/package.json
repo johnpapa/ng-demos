@@ -103,6 +103,9 @@
       "./client/app/**/*.js",
       "!./client/app/**/{,/*-spaghetti.js}"
     ],
+    "nodejs": [
+      "./server/**/**/*.js"
+    ],
     "fonts": [
       "./bower_components/font-awesome/fonts/**/*.*"
     ],
