@@ -90,22 +90,6 @@ gulp.task('vendorjs', function () {
         .pipe(gulp.dest(pkg.paths.dev + 'vendor'))
 });
 
-
-/**
- * @desc Copy the Vendor JavaScript SourceMaps
- */
-gulp.task('vendorjsmaps', function () {
-    var sourcemaps = [].concat( // pkg.paths.vendorjs, 
-        pkg.paths.vendorjs.map(function (path) {
-            return path + '.map';
-        }));
-    sourcemaps.push('./bower_components/jquery/dist/jquery.min.map');
-    // console.log(sourcemaps);    
-    return gulp.src(sourcemaps)
-        .pipe(gulp.dest(pkg.paths.dev + 'vendor'));
-});
-
-
 /**
  * @desc Minify and bundle the CSS
  */
@@ -239,7 +223,7 @@ gulp.task('test', function() {
 /**
  * serve the dev environment
  */
-gulp.task('dev', function () {
+gulp.task('dev', ['jshint', 'test'], function () {
     plug.nodemon({
         script: 'server/server.js',
         delayTime: 1,
@@ -258,7 +242,7 @@ gulp.task('dev', function () {
 /**
  * serve the staging environment
  */
-gulp.task('stage', function () {
+gulp.task('stage', ['jshint', 'test', 'build-stage'], function () {
     plug.nodemon({
         script: 'server/server.js',
         delayTime: 1,
