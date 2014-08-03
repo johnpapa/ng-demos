@@ -103,14 +103,13 @@ gulp.task('vendorjs', function () {
 gulp.task('css', function () {
     log('Bundling, minifying, and copying the app\'s CSS');
     return gulp.src(pkg.paths.css)
-//        .pipe(plug.size({showFiles: true}))
         .pipe(plug.concat('all.min.css')) // Before bytediff or after
+       .pipe(plug.autoprefixer('last 2 version', '> 5%'))
         .pipe(plug.bytediff.start())
         .pipe(plug.minifyCss({}))
         .pipe(plug.bytediff.stop(common.bytediffFormatter))
 //        .pipe(plug.concat('all.min.css')) // Before bytediff or after
         .pipe(gulp.dest(pkg.paths.stage + 'content'));
-//        .pipe(plug.size({showFiles: true}));
 });
 
 
