@@ -158,7 +158,7 @@ gulp.task('images', function () {
  */
 gulp.task('stage',
     ['js', 'vendorjs', 'css', 'vendorcss', 'images', 'fonts', 'test'], function () {
-        log('Building index.html to staging');
+        log('Building index.html to stage');
 
         return gulp
             .src('./client/index.html')
@@ -169,7 +169,7 @@ gulp.task('stage',
             .pipe(gulp.dest(pkg.paths.stage))
             .pipe(plug.notify({
                 onLast: true,
-                message: 'Deployed code to staging!'
+                message: 'Deployed code to stage!'
             }));
 
         function inject(glob, name) {
@@ -183,12 +183,12 @@ gulp.task('stage',
     });
 
 /**
- * @desc Remove all files from the output folder
+ * @desc Remove all files from the build folder
  */
 gulp.task('clean', function () {
     log('Cleaning: ' + plug.util.colors.blue(pkg.paths.stage));
     return gulp
-        .src(pkg.paths.stage)
+        .src(pkg.paths.build, {read: false})
         .pipe(plug.clean({force: true}));
 });
 
@@ -197,22 +197,27 @@ gulp.task('clean', function () {
  * @desc Watch files and build
  */
 gulp.task('watch', function () {
-    log('Watching CSS and JavaScript files');
+    log('Watching all files');
 
     var css = ['gulpfile.js'].concat(pkg.paths.css, pkg.paths.vendorcss);
+    var images = ['gulpfile.js'].concat(pkg.paths.images);
     var js = ['gulpfile.js'].concat(pkg.paths.js);
 
     gulp
         .watch(js, ['js', 'vendorjs'])
-        .on('change', function (event) {
-            log('*** File ' + event.path + ' was ' + event.type + ', running tasks...');
-        });
+        .on('change', logWatch);
 
     gulp
         .watch(css, ['css', 'vendorcss'])
-        .on('change', function (event) {
-            log('*** File ' + event.path + ' was ' + event.type + ', running tasks...');
-        });
+        .on('change', logWatch);
+
+    gulp
+        .watch(images, ['images'])
+        .on('change', logWatch);
+
+    function logWatch(event){
+        log('*** File ' + event.path + ' was ' + event.type + ', running tasks...');
+    }
 });
 
 
@@ -221,17 +226,16 @@ gulp.task('watch', function () {
  */
 gulp.task('test', function () {
     log('Running tests');
-
-    var testFiles = ['client/test/**.[Ss]pec.js'];
+    var testFiles = [pkg.paths.test + 'spec.mocha/**.[Ss]pec.js'];
 
     return gulp
         .src(testFiles)
         .pipe(plug.karma({
             configFile: pkg.paths.test + '/karma.conf.js',
-            action: 'run'
+            action: 'run' // or watch
         }))
         .on('error', function (err) {
-            // Make sure failed tests cause gulp to exit non-zero
+            // failed tests cause gulp to exit
             throw err;
         });
 });
@@ -242,37 +246,39 @@ gulp.task('test', function () {
  */
 var serveDevTasks = ['jshint', 'test'];
 gulp.task('serve-dev', serveDevTasks, function () {
-    serve(serveDevTasks);
-    livereload('development');
+    serve('dev', serveDevTasks);
+    startLivereload('development');
 });
+
 
 /**
  * serve the staging environment
  */
 var serveStageTasks = ['jshint', 'test', 'stage'];
 gulp.task('serve-stage', serveStageTasks, function () {
-    serve(serveStageTasks);
-    livereload('stage');
+    serve('stage', serveStageTasks);
+    startLivereload('stage');
 });
 
-function livereload(env) {
-    var path = env === 'stage' ? 'build/**' : 'client/**';
+function startLivereload(env) {
+    var path = (env === 'stage' ? pkg.paths.stage : 'client/') + '**';
     var options = {auto: true};
-    //TODO: how to set options?
-    plug.livereload.listen();
+    plug.livereload.listen(options);
     gulp
         .watch(path)
-        .on('change', plug.livereload.changed);
+        .on('change', function (file) {
+            plug.livereload.changed(file.path);
+        });
 
     log('Serving from ' + env);
 }
 
-function serve(tasks) {
+function serve(env, tasks) {
     plug.nodemon({
         script: 'server/server.js',
         delayTime: 1,
         ext: 'html js',
-        env: { 'NODE_ENV': 'dev' },
+        env: { 'NODE_ENV': env },
         watch: ['server/'],
 //        ignore: ['build/'],
         nodeArgs: ['--debug=9999']
