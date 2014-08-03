@@ -78,7 +78,7 @@
   "paths": {
     "api": "/api",
     "data": "/../data/",
-    "test": "./client/test",
+    "test": "./client/test/",
     "html": "./client/**/*.html",
     "htmltemplates": "./client/app/**/*.html",
     "vendorjs": [
@@ -115,6 +115,7 @@
     "images": [
       "./client/content/images/**/*"
     ],
-    "stage": "./build/"
+    "stage": "./build/stage/",
+    "build": "./build/"
   }
 }

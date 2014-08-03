@@ -41,7 +41,7 @@ if(isDev){
     });
 } else {
     console.log('** STAGE **');
-    app.use('/', express.static('./build/dev/'));
+    app.use('/', express.static('./build/stage/'));
 }
 
 routes.init(app);
