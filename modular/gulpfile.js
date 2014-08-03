@@ -67,7 +67,6 @@ gulp.task('js', ['jshint', 'templatecache'], function () {
     log('Bundling, minifying, and copying the app\'s  JavaScript');
 
     var source = [].concat(pkg.paths.js, pkg.paths.stage + 'templates.js');
-
     return gulp
         .src(source)
         .pipe(plug.sourcemaps.init())
@@ -260,7 +259,7 @@ gulp.task('serve-stage', serveStageTasks, function () {
 });
 
 function startLivereload(env) {
-    var path = (env === 'stage' ? pkg.paths.stage : 'client/') + '**';
+    var path = (env === 'stage' ? [pkg.paths.stage, 'client/**'] : ['client/**']) ;
     var options = {auto: true};
     plug.livereload.listen(options);
     gulp
@@ -278,7 +277,7 @@ function serve(env, tasks) {
         delayTime: 1,
         ext: 'html js',
         env: { 'NODE_ENV': env },
-        watch: ['server/'],
+        watch: ['server/', 'client/'],
 //        ignore: ['build/'],
         nodeArgs: ['--debug=9999']
     })
