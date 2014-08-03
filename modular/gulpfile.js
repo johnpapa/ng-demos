@@ -5,6 +5,13 @@ var common = require('./gulp/common.js');
 var plug = require('gulp-load-plugins')();
 
 var log = plug.util.log;
+var taskListing = require('gulp-task-listing');
+
+/**
+ * @desc  Add a task to render the output
+ */
+gulp.task('help', taskListing);
+
 
 /**
  * @desc Lint the code

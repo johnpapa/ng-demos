@@ -71,7 +71,8 @@
     "gulp-angular-templatecache": "^1.2.1",
     "gulp-karma": "0.0.4",
     "gulp-nodemon": "^1.0.4",
-    "gulp-util": "^3.0.0"
+    "gulp-util": "^3.0.0",
+    "gulp-task-listing": "^0.3.0"
   },
   "paths": {
     "api": "/api",
