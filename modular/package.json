@@ -59,7 +59,7 @@
     "gulp-load-utils": "0.0.4",
     "chalk": "^0.4.0",
     "dateformat": "^1.0.7-1.2.3",
-    "minimist": "0.0.8",
+    "minimist": "^0.2.0",
     "gulp": "^3.8.6",
     "gulp-ng-annotate": "^0.2.0",
     "gulp-notify": "^1.4.0",

@@ -1,22 +1,20 @@
 var gulp = require('gulp');
-var glob = require('glob');
 var pkg = require('./package.json');
 var common = require('./gulp/common.js');
 var plug = require('gulp-load-plugins')();
-
+var env = plug.util.env;
 var log = plug.util.log;
-var taskListing = require('gulp-task-listing');
 
 /**
  * @desc  Add a task to render the output
  */
-gulp.task('help', taskListing);
+gulp.task('help', plug.taskListing);
 
 
 /**
  * @desc Lint the code
  */
- gulp.task('jshint', function () {
+gulp.task('jshint', function () {
     log('Linting the JavaScript');
 
     var sources = [].concat(pkg.paths.js, pkg.paths.nodejs);
@@ -31,7 +29,7 @@ gulp.task('help', taskListing);
 /**
  * @desc Create $templateCache from the html templates
  */
- gulp.task('templatecache', function () {
+gulp.task('templatecache', function () {
     log('Creating an AngularJS $templateCache');
 
     return gulp
@@ -45,27 +43,26 @@ gulp.task('help', taskListing);
 });
 
 
-
 /**
  * @desc Add injection code for @ngInject annotations
  */
- gulp.task('ngAnnotate', function () {
+gulp.task('ngAnnotate', function () {
     log('Annotating AngularJS dependencies');
 
     return gulp
         .src(pkg.paths.htmltemplates)
         .pipe(plug.ngAnnotate({
-                // true helps add where @ngInject is not used. It infers.
-                // Doesn't work with resolve, so we must be explicit there
-                add: true
-            }))
+            // true helps add where @ngInject is not used. It infers.
+            // Doesn't work with resolve, so we must be explicit there
+            add: true
+        }))
         .pipe(gulp.dest(pkg.paths.dev));
 });
 
 /**
  * @desc Minify and bundle the app's JavaScript
  */
- gulp.task('js', ['jshint', 'templatecache'], function () {
+gulp.task('js', ['jshint', 'templatecache'], function () {
     log('Bundling, minifying, and copying the app\'s  JavaScript');
 
     var source = [].concat(pkg.paths.js, pkg.paths.dev + 'templates.js');
@@ -93,20 +90,20 @@ gulp.task('help', taskListing);
 /**
  * @desc Copy the Vendor JavaScript
  */
- gulp.task('vendorjs', function () {
+gulp.task('vendorjs', function () {
     log('Bundling, minifying, and copying the Vendor JavaScript');
     return gulp.src(pkg.paths.vendorjs)
         .pipe(plug.concat('vendor.min.js'))
         .pipe(plug.bytediff.start())
         .pipe(plug.uglify())
         .pipe(plug.bytediff.stop(common.bytediffFormatter))
-        .pipe(gulp.dest(pkg.paths.dev + 'vendor'))
+        .pipe(gulp.dest(pkg.paths.dev + 'vendor'));
 });
 
 /**
  * @desc Minify and bundle the CSS
  */
- gulp.task('css', function () {
+gulp.task('css', function () {
     log('Bundling, minifying, and copying the app\'s CSS');
     return gulp.src(pkg.paths.css)
 //        .pipe(plug.size({showFiles: true}))
@@ -153,60 +150,46 @@ gulp.task('images', function () {
     var dest = pkg.paths.dev + 'content/images';
     log('Compressing, caching, and copying images');
     return gulp
-            .src(pkg.paths.images)
-            .pipe(plug.cache(plug.imagemin({optimizationLevel: 3})))
-            .pipe(gulp.dest(dest));
+        .src(pkg.paths.images)
+        .pipe(plug.cache(plug.imagemin({optimizationLevel: 3})))
+        .pipe(gulp.dest(dest));
 });
 
 
 /**
  * @desc Inject all the files into the new index.html
  */
- function buildIndexHtml (){
-    log('Building index.html to staging');
+gulp.task('stage',
+    ['js', 'vendorjs', 'css', 'vendorcss', 'images', 'fonts', 'test'], function () {
+        log('Building index.html to staging');
 
-    return gulp
-        .src('./client/index.html')
-        .pipe(inject([pkg.paths.dev + 'content/vendor.min.css'], 'inject-vendor'))
-        .pipe(inject([pkg.paths.dev + 'content/all.min.css']))
-        .pipe(inject(pkg.paths.dev + 'vendor/vendor.min.js', 'inject-vendor'))
-        .pipe(inject([pkg.paths.dev + 'all.min.js']))
-        .pipe(gulp.dest(pkg.paths.dev))
-        .pipe(plug.notify({
-            onLast: true,
-            message: 'Deployed code to staging!'
-        }));
+        return gulp
+            .src('./client/index.html')
+            .pipe(inject([pkg.paths.dev + 'content/vendor.min.css'], 'inject-vendor'))
+            .pipe(inject([pkg.paths.dev + 'content/all.min.css']))
+            .pipe(inject(pkg.paths.dev + 'vendor/vendor.min.js', 'inject-vendor'))
+            .pipe(inject([pkg.paths.dev + 'all.min.js']))
+            .pipe(gulp.dest(pkg.paths.dev))
+            .pipe(plug.notify({
+                onLast: true,
+                message: 'Deployed code to staging!'
+            }));
 
-    function inject(glob, name) {
-        var ignorePath = pkg.paths.dev.substring(1);
-        var options = {ignorePath: ignorePath};
-        if(name) { options.name = name };
-        return plug.inject(gulp.src(glob), options)
-    }
-}
-
-gulp.task('build-stage', 
-    ['js', 'vendorjs', 'css', 'vendorcss', 'images', 'fonts'], function () {
-        return buildIndexHtml();
+        function inject(glob, name) {
+            var ignorePath = pkg.paths.dev.substring(1);
+            var options = {ignorePath: ignorePath};
+            if (name) {
+                options.name = name;
+            }
+            return plug.inject(gulp.src(glob), options);
+        }
     });
 
 /**
  * @desc Remove all files from the output folder
  */
- function clean(path) {
-    log('Cleaning: ' + plug.util.colors.blue(path));
-    path = path || pkg.paths.dev;
-    return cleanPath();
-
-    function cleanPath() {
-        return gulp
-            .src(path)
-            .pipe(plug.clean({force: true}));
-    }
-}
-
-gulp.task('clean', function () {    
-    log('Cleaning: ' + plug.util.colors.blue(path));
+gulp.task('clean', function () {
+    log('Cleaning: ' + plug.util.colors.blue(pkg.paths.dev));
     return gulp
         .src(pkg.paths.dev)
         .pipe(plug.clean({force: true}));
@@ -216,7 +199,7 @@ gulp.task('clean', function () {
 /**
  * @desc Watch files and build
  */
- gulp.task('watch', function () {
+gulp.task('watch', function () {
     log('Watching CSS and JavaScript files');
 
     var css = ['gulpfile.js'].concat(pkg.paths.css, pkg.paths.vendorcss);
@@ -225,12 +208,12 @@ gulp.task('clean', function () {
     var jswatcher = gulp.watch(js, ['js', 'vendorjs']);
 
     jswatcher.on('change', function (event) {
-        console.log('*** File ' + event.path + ' was ' + event.type + ', running tasks...');
+        log('*** File ' + event.path + ' was ' + event.type + ', running tasks...');
     });
 
 
     csswatcher.on('change', function (event) {
-        console.log('*** File ' + event.path + ' was ' + event.type + ', running tasks...');
+        log('*** File ' + event.path + ' was ' + event.type + ', running tasks...');
     });
 });
 
@@ -238,7 +221,7 @@ gulp.task('clean', function () {
 /**
  * @desc Run all tests
  */
- gulp.task('test', function() {
+gulp.task('test', function () {
     log('Running tests');
 
     var testFiles = ['client/test/**.[Ss]pec.js'];
@@ -249,19 +232,32 @@ gulp.task('clean', function () {
             configFile: pkg.paths.test + '/karma.conf.js',
             action: 'run'
         }))
-        .on('error', function(err) {
-                // Make sure failed tests cause gulp to exit non-zero
-                throw err;
-            });
+        .on('error', function (err) {
+            // Make sure failed tests cause gulp to exit non-zero
+            throw err;
+        });
 });
 
 
 /**
  * serve the dev environment
  */
- gulp.task('dev', ['jshint', 'test'], function () {
+var serveDevTasks = ['jshint', 'test'];
+gulp.task('serve-dev', serveDevTasks, function () {
+    serve(serveDevTasks);
     log('Serving from development');
+});
 
+/**
+ * serve the staging environment
+ */
+var serveStageTasks = ['jshint', 'test', 'stage'];
+gulp.task('serve-stage', serveStageTasks, function () {
+    serve(serveStageTasks);
+    log('Serving from staging');
+});
+
+function serve(tasks) {
     plug.nodemon({
         script: 'server/server.js',
         delayTime: 1,
@@ -270,29 +266,8 @@ gulp.task('clean', function () {
         ignore: ['build/'],
         nodeArgs: ['--debug=9999']
     })
-    .on('change', ['jshint', 'test'])
-    .on('restart', function () {
-        console.log('restarted!');
-    });
-});
-
-
-/**
- * serve the staging environment
- */
- gulp.task('stage', ['jshint', 'test', 'build-stage'], function () {
-    log('Serving from staging');
-
-    plug.nodemon({
-        script: 'server/server.js',
-        delayTime: 1,
-        ext: 'html js',
-        env: { 'NODE_ENV': 'stage' },
-        ignore: ['build/'],
-        nodeArgs: ['--debug=9999']
-    })
-    .on('change', ['jshint', 'test', 'build-stage'])
-    .on('restart', function () {
-        console.log('restarted!');
-    });
-});
+        .on('change', tasks)
+        .on('restart', function () {
+            log('restarted!');
+        });
+}
