@@ -39,7 +39,7 @@ gulp.task('templatecache', function () {
             standalone: false,
             root: 'app/'
         }))
-        .pipe(gulp.dest(pkg.paths.dev));
+        .pipe(gulp.dest(pkg.paths.stage));
 });
 
 
@@ -57,7 +57,7 @@ gulp.task('ngAnnotate', function () {
             add: true,
             single_quotes: true
         }))
-        .pipe(gulp.dest(pkg.paths.dev));
+        .pipe(gulp.dest(pkg.paths.stage));
 });
 
 /**
@@ -66,7 +66,7 @@ gulp.task('ngAnnotate', function () {
 gulp.task('js', ['jshint', 'templatecache'], function () {
     log('Bundling, minifying, and copying the app\'s  JavaScript');
 
-    var source = [].concat(pkg.paths.js, pkg.paths.dev + 'templates.js');
+    var source = [].concat(pkg.paths.js, pkg.paths.stage + 'templates.js');
 
     return gulp
         .src(source)
@@ -80,7 +80,7 @@ gulp.task('js', ['jshint', 'templatecache'], function () {
         .pipe(plug.uglify({mangle: true}))
         .pipe(plug.bytediff.stop(common.bytediffFormatter))
         .pipe(plug.sourcemaps.write('./'))
-        .pipe(gulp.dest(pkg.paths.dev));
+        .pipe(gulp.dest(pkg.paths.stage));
 });
 
 
@@ -94,7 +94,7 @@ gulp.task('vendorjs', function () {
         .pipe(plug.bytediff.start())
         .pipe(plug.uglify())
         .pipe(plug.bytediff.stop(common.bytediffFormatter))
-        .pipe(gulp.dest(pkg.paths.dev + 'vendor'));
+        .pipe(gulp.dest(pkg.paths.stage + 'vendor'));
 });
 
 /**
@@ -109,7 +109,7 @@ gulp.task('css', function () {
         .pipe(plug.minifyCss({}))
         .pipe(plug.bytediff.stop(common.bytediffFormatter))
 //        .pipe(plug.concat('all.min.css')) // Before bytediff or after
-        .pipe(gulp.dest(pkg.paths.dev + 'content'));
+        .pipe(gulp.dest(pkg.paths.stage + 'content'));
 //        .pipe(plug.size({showFiles: true}));
 });
 
@@ -124,7 +124,7 @@ gulp.task('vendorcss', function () {
         .pipe(plug.bytediff.start())
         .pipe(plug.minifyCss({}))
         .pipe(plug.bytediff.stop(common.bytediffFormatter))
-        .pipe(gulp.dest(pkg.paths.dev + 'content'));
+        .pipe(gulp.dest(pkg.paths.stage + 'content'));
 });
 
 
@@ -132,7 +132,7 @@ gulp.task('vendorcss', function () {
  * @desc Copy fonts
  */
 gulp.task('fonts', function () {
-    var dest = pkg.paths.dev + 'fonts';
+    var dest = pkg.paths.stage + 'fonts';
     log('Copying fonts');
     return gulp
         .src(pkg.paths.fonts)
@@ -144,7 +144,7 @@ gulp.task('fonts', function () {
  * @desc Compress images
  */
 gulp.task('images', function () {
-    var dest = pkg.paths.dev + 'content/images';
+    var dest = pkg.paths.stage + 'content/images';
     log('Compressing, caching, and copying images');
     return gulp
         .src(pkg.paths.images)
@@ -162,18 +162,18 @@ gulp.task('stage',
 
         return gulp
             .src('./client/index.html')
-            .pipe(inject([pkg.paths.dev + 'content/vendor.min.css'], 'inject-vendor'))
-            .pipe(inject([pkg.paths.dev + 'content/all.min.css']))
-            .pipe(inject(pkg.paths.dev + 'vendor/vendor.min.js', 'inject-vendor'))
-            .pipe(inject([pkg.paths.dev + 'all.min.js']))
-            .pipe(gulp.dest(pkg.paths.dev))
+            .pipe(inject([pkg.paths.stage + 'content/vendor.min.css'], 'inject-vendor'))
+            .pipe(inject([pkg.paths.stage + 'content/all.min.css']))
+            .pipe(inject(pkg.paths.stage + 'vendor/vendor.min.js', 'inject-vendor'))
+            .pipe(inject([pkg.paths.stage + 'all.min.js']))
+            .pipe(gulp.dest(pkg.paths.stage))
             .pipe(plug.notify({
                 onLast: true,
                 message: 'Deployed code to staging!'
             }));
 
         function inject(glob, name) {
-            var ignorePath = pkg.paths.dev.substring(1);
+            var ignorePath = pkg.paths.stage.substring(1);
             var options = {ignorePath: ignorePath};
             if (name) {
                 options.name = name;
@@ -186,9 +186,9 @@ gulp.task('stage',
  * @desc Remove all files from the output folder
  */
 gulp.task('clean', function () {
-    log('Cleaning: ' + plug.util.colors.blue(pkg.paths.dev));
+    log('Cleaning: ' + plug.util.colors.blue(pkg.paths.stage));
     return gulp
-        .src(pkg.paths.dev)
+        .src(pkg.paths.stage)
         .pipe(plug.clean({force: true}));
 });
 
@@ -243,7 +243,7 @@ gulp.task('test', function () {
 var serveDevTasks = ['jshint', 'test'];
 gulp.task('serve-dev', serveDevTasks, function () {
     serve(serveDevTasks);
-    log('Serving from development');
+    livereload('development');
 });
 
 /**
@@ -252,8 +252,20 @@ gulp.task('serve-dev', serveDevTasks, function () {
 var serveStageTasks = ['jshint', 'test', 'stage'];
 gulp.task('serve-stage', serveStageTasks, function () {
     serve(serveStageTasks);
-    log('Serving from staging');
+    livereload('stage');
 });
+
+function livereload(env) {
+    var path = env === 'stage' ? 'build/**' : 'client/**';
+    var options = {auto: true};
+    //TODO: how to set options?
+    plug.livereload.listen();
+    gulp
+        .watch(path)
+        .on('change', plug.livereload.changed);
+
+    log('Serving from ' + env);
+}
 
 function serve(tasks) {
     plug.nodemon({
@@ -261,7 +273,8 @@ function serve(tasks) {
         delayTime: 1,
         ext: 'html js',
         env: { 'NODE_ENV': 'dev' },
-        ignore: ['build/'],
+        watch: ['server/'],
+//        ignore: ['build/'],
         nodeArgs: ['--debug=9999']
     })
         .on('change', tasks)
