@@ -50,11 +50,12 @@ gulp.task('ngAnnotate', function () {
     log('Annotating AngularJS dependencies');
 
     return gulp
-        .src(pkg.paths.htmltemplates)
+        .src(pkg.paths.js)
         .pipe(plug.ngAnnotate({
             // true helps add where @ngInject is not used. It infers.
             // Doesn't work with resolve, so we must be explicit there
-            add: true
+            add: true,
+            single_quotes: true
         }))
         .pipe(gulp.dest(pkg.paths.dev));
 });
@@ -69,21 +70,17 @@ gulp.task('js', ['jshint', 'templatecache'], function () {
 
     return gulp
         .src(source)
-//        .pipe(plug.size({showFiles: true}))
         .pipe(plug.sourcemaps.init())
         .pipe(plug.concat('all.min.js'))
-        // Annotate before uglify so the code get's min'd properly.
         .pipe(plug.ngAnnotate({
-            // true helps add where @ngInject is not used. It infers.
-            // Doesn't work with resolve, so we must be explicit there
-            add: true
+            add: true,
+            single_quotes: true
         }))
         .pipe(plug.bytediff.start())
         .pipe(plug.uglify({mangle: true}))
         .pipe(plug.bytediff.stop(common.bytediffFormatter))
         .pipe(plug.sourcemaps.write('./'))
         .pipe(gulp.dest(pkg.paths.dev));
-//        .pipe(plug.size({showFiles: true}));
 });
 
 
@@ -203,18 +200,19 @@ gulp.task('watch', function () {
     log('Watching CSS and JavaScript files');
 
     var css = ['gulpfile.js'].concat(pkg.paths.css, pkg.paths.vendorcss);
-    var csswatcher = gulp.watch(css, ['css', 'vendorcss']);
     var js = ['gulpfile.js'].concat(pkg.paths.js);
-    var jswatcher = gulp.watch(js, ['js', 'vendorjs']);
 
-    jswatcher.on('change', function (event) {
-        log('*** File ' + event.path + ' was ' + event.type + ', running tasks...');
-    });
+    gulp
+        .watch(js, ['js', 'vendorjs'])
+        .on('change', function (event) {
+            log('*** File ' + event.path + ' was ' + event.type + ', running tasks...');
+        });
 
-
-    csswatcher.on('change', function (event) {
-        log('*** File ' + event.path + ' was ' + event.type + ', running tasks...');
-    });
+    gulp
+        .watch(css, ['css', 'vendorcss'])
+        .on('change', function (event) {
+            log('*** File ' + event.path + ' was ' + event.type + ', running tasks...');
+        });
 });
 
 
