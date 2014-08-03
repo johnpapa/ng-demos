@@ -70,7 +70,8 @@
     "gulp-rename": "^1.2.0",
     "gulp-angular-templatecache": "^1.2.1",
     "gulp-karma": "0.0.4",
-    "gulp-nodemon": "^1.0.4"
+    "gulp-nodemon": "^1.0.4",
+    "gulp-util": "^3.0.0"
   },
   "paths": {
     "api": "/api",
