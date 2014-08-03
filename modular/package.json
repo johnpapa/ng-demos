@@ -59,11 +59,9 @@
     "gulp-load-utils": "0.0.4",
     "chalk": "^0.4.0",
     "dateformat": "^1.0.7-1.2.3",
-    "minimist": "^0.2.0",
     "gulp": "^3.8.6",
-    "gulp-ng-annotate": "^0.2.0",
+    "gulp-ng-annotate": "^0.3.0",
     "gulp-notify": "^1.4.0",
-    "gulp-sourcemaps": "^1.1.0",
     "gulp-bytediff": "^0.2.0",
     "gulp-minify-html": "^0.1.4",
     "gulp-inject": "^1.0.1",
@@ -74,7 +72,10 @@
     "gulp-util": "^3.0.0",
     "gulp-task-listing": "^0.3.0",
     "gulp-livereload": "^2.1.0",
-    "gulp-autoprefixer": "0.0.8"
+    "gulp-autoprefixer": "0.0.8",
+    "gulp-header": "^1.0.5",
+    "gulp-sourcemaps": "^1.1.0",
+    "minimist": "^0.2.0"
   },
   "paths": {
     "api": "/api",

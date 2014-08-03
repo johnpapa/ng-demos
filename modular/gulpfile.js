@@ -10,7 +10,6 @@ var log = plug.util.log;
  */
 gulp.task('help', plug.taskListing);
 
-
 /**
  * @desc Lint the code
  */
@@ -24,7 +23,6 @@ gulp.task('jshint', function () {
         //.pipe(plug.jshint.reporter('default'));
         .pipe(plug.jshint.reporter('jshint-stylish'));
 });
-
 
 /**
  * @desc Create $templateCache from the html templates
@@ -41,7 +39,6 @@ gulp.task('templatecache', function () {
         }))
         .pipe(gulp.dest(pkg.paths.stage));
 });
-
 
 /**
  * @desc Add injection code for @ngInject annotations
@@ -82,7 +79,6 @@ gulp.task('js', ['jshint', 'templatecache'], function () {
         .pipe(gulp.dest(pkg.paths.stage));
 });
 
-
 /**
  * @desc Copy the Vendor JavaScript
  */
@@ -111,7 +107,6 @@ gulp.task('css', function () {
         .pipe(gulp.dest(pkg.paths.stage + 'content'));
 });
 
-
 /**
  * @desc Minify and bundle the Vendor CSS
  */
@@ -125,7 +120,6 @@ gulp.task('vendorcss', function () {
         .pipe(gulp.dest(pkg.paths.stage + 'content'));
 });
 
-
 /**
  * @desc Copy fonts
  */
@@ -136,7 +130,6 @@ gulp.task('fonts', function () {
         .src(pkg.paths.fonts)
         .pipe(gulp.dest(dest));
 });
-
 
 /**
  * @desc Compress images
@@ -149,7 +142,6 @@ gulp.task('images', function () {
         .pipe(plug.cache(plug.imagemin({optimizationLevel: 3})))
         .pipe(gulp.dest(dest));
 });
-
 
 /**
  * @desc Inject all the files into the new index.html
@@ -190,7 +182,6 @@ gulp.task('clean', function () {
         .pipe(plug.clean({force: true}));
 });
 
-
 /**
  * @desc Watch files and build
  */
@@ -218,7 +209,6 @@ gulp.task('watch', function () {
     }
 });
 
-
 /**
  * @desc Run all tests
  */
@@ -238,7 +228,6 @@ gulp.task('test', function () {
         });
 });
 
-
 /**
  * serve the dev environment
  */
@@ -247,7 +236,6 @@ gulp.task('serve-dev', serveDevTasks, function () {
     serve('dev', serveDevTasks);
     startLivereload('development');
 });
-
 
 /**
  * serve the staging environment

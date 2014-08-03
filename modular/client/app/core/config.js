@@ -32,9 +32,9 @@
                 ready: function (dataservice) {
                     return dataservice.ready();
                 }
-//                ready: ['dataservice', function (dataservice) {
-//                    return dataservice.ready();
-//                }]
+                // ready: ['dataservice', function (dataservice) {
+                //    return dataservice.ready();
+                // }]
             };
             cfg.config.resolveAlways = resolveAlways;
         }]);
