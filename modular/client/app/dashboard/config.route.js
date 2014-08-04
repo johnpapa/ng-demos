@@ -3,9 +3,14 @@
 
     angular
         .module('app.dashboard')
-        .run(['routehelper', function(routehelper){
-            routehelper.configureRoutes(getRoutes());
-        }]);
+        .run(appRun);
+
+    // appRun.$inject = ['routehelper']; 
+
+    /* @ngInject */
+    function appRun(routehelper) {
+        routehelper.configureRoutes(getRoutes());
+    }
 
     function getRoutes() {
         return [
