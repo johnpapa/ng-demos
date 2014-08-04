@@ -5,9 +5,6 @@ var plug = require('gulp-load-plugins')();
 var env = plug.util.env;
 var log = plug.util.log;
 
-/**
- * @desc  Add a task to render the output
- */
 gulp.task('help', plug.taskListing);
 
 /**
@@ -20,7 +17,6 @@ gulp.task('jshint', function () {
     return gulp
         .src(sources)
         .pipe(plug.jshint('./.jshintrc'))
-        //.pipe(plug.jshint.reporter('default'));
         .pipe(plug.jshint.reporter('jshint-stylish'));
 });
 
