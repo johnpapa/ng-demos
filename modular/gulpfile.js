@@ -9,6 +9,34 @@ var log = plug.util.log;
 gulp.task('help', plug.taskListing);
 
 /**
+ * @desc Annotate only
+ *  Mostly for show.
+ *  See the output?
+ *      Uncomment rename, comment concat and uglify
+ *  Run it?
+ *      Comment rename, uncomment concat and uglify,
+ *      add to index.html, then run it with `gulp serve-dev`.
+ */
+gulp.task('ngAnnotateTest', function () {
+    log('Annotating AngularJS dependencies');
+    var source = [].concat(pkg.paths.js);
+    return gulp
+        .src(source)
+        .pipe(plug.ngAnnotate({
+            // true helps add where @ngInject is not used. It infers.
+            // Doesn't work with resolve, so we must be explicit there
+            add: true,
+            single_quotes: true
+        }))
+//        .pipe(plug.rename(function (path) {
+//            path.extname = ".annotated.js";
+//        }))
+        .pipe(plug.concat('all.min.js'))
+        .pipe(plug.uglify({mangle: true}))
+        .pipe(gulp.dest('./client/app'));
+});
+
+/**
  * @desc Lint the code
  */
 gulp.task('jshint', function () {
@@ -35,34 +63,6 @@ gulp.task('templatecache', function () {
             root: 'app/'
         }))
         .pipe(gulp.dest(pkg.paths.stage));
-});
-
-/**
- * @desc Annotate only
- *  Mostly for show.
- *  See the output?
- *      Uncomment rename, comment concat and uglify
- *  Run it?
- *      Comment rename, uncomment concat and uglify,
- *      add to index.html, then run it with `gulp serve-dev`.
- */
-gulp.task('ngAnnotateTest', function () {
-    log('Annotating AngularJS dependencies');
-    var source = [].concat(pkg.paths.js);
-    return gulp
-        .src(source)
-        .pipe(plug.ngAnnotate({
-            // true helps add where @ngInject is not used. It infers.
-            // Doesn't work with resolve, so we must be explicit there
-            add: true,
-            single_quotes: true
-        }))
-//        .pipe(plug.rename(function (path) {
-//            path.extname = ".annotated.js";
-//        }))
-        .pipe(plug.concat('all.min.js'))
-        .pipe(plug.uglify({mangle: true}))
-        .pipe(gulp.dest('./client/app'));
 });
 
 /**
