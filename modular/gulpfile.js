@@ -43,7 +43,8 @@ gulp.task('templatecache', function () {
  *  See the output?
  *      Uncomment rename, comment concat and uglify
  *  Run it?
- *      Comment rename, uncomment concat and uglify and add to index.html
+ *      Comment rename, uncomment concat and uglify,
+ *      add to index.html, then run it with `gulp serve-dev`.
  */
 gulp.task('ngAnnotateTest', function () {
     log('Annotating AngularJS dependencies');
