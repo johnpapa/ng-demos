@@ -1,3 +1,4 @@
+/* jshint camelcase:false */
 var gulp = require('gulp');
 var pkg = require('./package.json');
 var common = require('./gulp/common.js');
@@ -37,20 +38,30 @@ gulp.task('templatecache', function () {
 });
 
 /**
- * @desc Add injection code for @ngInject annotations
+ * @desc Annotate only
+ *  Mostly for show.
+ *  See the output?
+ *      Uncomment rename, comment concat and uglify
+ *  Run it?
+ *      Comment rename, uncomment concat and uglify and add to index.html
  */
-gulp.task('ngAnnotate', function () {
+gulp.task('ngAnnotateTest', function () {
     log('Annotating AngularJS dependencies');
-
+    var source = [].concat(pkg.paths.js);
     return gulp
-        .src(pkg.paths.js)
+        .src(source)
         .pipe(plug.ngAnnotate({
             // true helps add where @ngInject is not used. It infers.
             // Doesn't work with resolve, so we must be explicit there
             add: true,
             single_quotes: true
         }))
-        .pipe(gulp.dest(pkg.paths.stage));
+//        .pipe(plug.rename(function (path) {
+//            path.extname = ".annotated.js";
+//        }))
+        .pipe(plug.concat('all.min.js'))
+        .pipe(plug.uglify({mangle: true}))
+        .pipe(gulp.dest('./client/app'));
 });
 
 /**
@@ -95,7 +106,7 @@ gulp.task('css', function () {
     log('Bundling, minifying, and copying the app\'s CSS');
     return gulp.src(pkg.paths.css)
         .pipe(plug.concat('all.min.css')) // Before bytediff or after
-       .pipe(plug.autoprefixer('last 2 version', '> 5%'))
+        .pipe(plug.autoprefixer('last 2 version', '> 5%'))
         .pipe(plug.bytediff.start())
         .pipe(plug.minifyCss({}))
         .pipe(plug.bytediff.stop(common.bytediffFormatter))
@@ -200,7 +211,7 @@ gulp.task('watch', function () {
         .watch(images, ['images'])
         .on('change', logWatch);
 
-    function logWatch(event){
+    function logWatch(event) {
         log('*** File ' + event.path + ' was ' + event.type + ', running tasks...');
     }
 });
@@ -243,7 +254,7 @@ gulp.task('serve-stage', serveStageTasks, function () {
 });
 
 function startLivereload(env) {
-    var path = (env === 'stage' ? [pkg.paths.stage, 'client/**'] : ['client/**']) ;
+    var path = (env === 'stage' ? [pkg.paths.stage, 'client/**'] : ['client/**']);
     var options = {auto: true};
     plug.livereload.listen(options);
     gulp
