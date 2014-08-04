@@ -3,8 +3,9 @@
 
     angular
         .module('app.widgets')
-        .directive('ccSidebar', [ccSidebar]);
+        .directive('ccSidebar', ccSidebar);
 
+    /* @ngInject */
     function ccSidebar () {
         // Opens and closes the sidebar menu.
         // Usage:
