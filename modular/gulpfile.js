@@ -25,8 +25,8 @@ gulp.task('ngAnnotateTest', function () {
         .src('./client/app/avengers/avengers.js')
         .pipe(plug.ngAnnotate({add: true, single_quotes: true}))
         .pipe(plug.rename(function (path) {
-           path.extname = ".annotated.js";
-       }))
+            path.extname = '.annotated.js';
+        }))
         // .pipe(plug.concat('all.min.js'))
         // .pipe(plug.uglify({mangle: true}))
         // .pipe(gulp.dest('./client/app'));
