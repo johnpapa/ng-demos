@@ -1,6 +1,6 @@
 // Include in index.html so that app level exceptions are handled.
 // Exclude from testRunner.html which should run exactly what it wants to run
-(function (angular) {
+(function () {
     'use strict';
 
     angular
@@ -27,10 +27,10 @@
     // Configure by setting an optional string value for appErrorPrefix.
     // Accessible via config.appErrorPrefix (via config value).
     function exceptionConfig ($provide) {
-        $provide.decorator('$exceptionHandler',
-            ['$delegate', 'exceptionConfig', 'logger',
-                extendExceptionHandler]);
+        $provide.decorator('$exceptionHandler', extendExceptionHandler);
     }
+
+    extendExceptionHandler.$inject = ['$delegate', 'exceptionConfig', 'logger'];
 
     // Extend the $exceptionHandler service to also display a toast.
     function extendExceptionHandler($delegate, exceptionConfig, logger) {
@@ -42,4 +42,5 @@
             logger.error(msg, errorData);
         };
     }
-})(this.angular);
+
+})();
