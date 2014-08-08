@@ -33,8 +33,8 @@
     extendExceptionHandler.$inject = ['$delegate', 'exceptionConfig', 'logger'];
 
     // Extend the $exceptionHandler service to also display a toast.
-    function extendExceptionHandler($delegate, exConfig, logger) {
-        var appErrorPrefix = exConfig.config.appErrorPrefix || '';
+    function extendExceptionHandler($delegate, exceptionConfig, logger) {
+        var appErrorPrefix = exceptionConfig.config.appErrorPrefix || '';
         return function (exception, cause) {
             $delegate(exception, cause);
             var errorData = { exception: exception, cause: cause };
