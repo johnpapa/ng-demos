@@ -93,6 +93,22 @@ describe('dataservice', function () {
             $rootScope.$apply();
         });
     });
+
+    describe('ready function', function () {
+        it('should return a resolved promise', function (done) {
+            dataservice.ready()
+            .then(function(data) {
+                expect(true).to.be.true;
+                done();
+            }, function(data){
+                expect('promise rejected').to.be.true;
+                done();
+            });
+            $rootScope.$apply();
+        });
+    });
+
+
     afterEach(function () {
         $httpBackend.verifyNoOutstandingExpectation();
         $httpBackend.verifyNoOutstandingRequest();
