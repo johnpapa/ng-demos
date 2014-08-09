@@ -222,7 +222,7 @@ gulp.task('test', function () {
         .src('./useKarmaConfAndNotThis')
         .pipe(plug.karma({
             configFile: pkg.paths.test + '/karma.conf.js',
-            action: 'watch' // or watch
+            action: 'run' // run or watch
         }))
         .on('error', function (err) {
             // failed tests cause gulp to exit
