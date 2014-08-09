@@ -216,16 +216,17 @@ gulp.task('watch', function () {
  */
 gulp.task('test', function () {
     log('Running tests');
-    var testFiles = [pkg.paths.test + 'spec.mocha/**.[Ss]pec.js'];
+    var testFiles = [pkg.paths.test + 'spec.mocha/*[Ss]pec.js'];
 
     return gulp
-        .src(testFiles)
+        .src('./useKarmaConfAndNotThis')
         .pipe(plug.karma({
             configFile: pkg.paths.test + '/karma.conf.js',
             action: 'run' // or watch
         }))
         .on('error', function (err) {
             // failed tests cause gulp to exit
+            log(err);
             throw err;
         });
 });
