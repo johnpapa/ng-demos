@@ -234,9 +234,9 @@ gulp.task('test', function () {
 /**
  * serve the dev environment
  */
-var serveDevTasks = ['jshint', 'test'];
+// var serveDevTasks = ['jshint', 'test'];
 gulp.task('serve-dev', function () {
-    serve('dev'); 
+    serve('dev');
     startLivereload('development');
 });
 
