@@ -61,8 +61,38 @@ describe('dataservice', function () {
             $rootScope.$apply();
             $httpBackend.flush();
         });
-   });
+    });
 
+    describe('getAvengerCount function', function () {
+        it('should return 11 Avengers', function (done) {
+            dataservice.getAvengerCount().then(function(count) {
+                expect(count).to.equal(11);
+                done();
+            })
+            $rootScope.$apply();
+        });
+    });
+
+    describe('getAvengersCast function', function () {
+        it('should return 11 Avengers', function (done) {
+            dataservice.getAvengersCast().then(function(data) {
+                expect(data.length).to.equal(11);
+                done();
+            })
+            $rootScope.$apply();
+        });
+
+        it('should contain Natasha', function (done) {
+            dataservice.getAvengersCast().then(function(data) {
+                var hasBlackWidow = data.some(function isPrime(element, index, array) {
+                    return element.character.indexOf('Natasha') >= 0;
+                });
+                expect(hasBlackWidow).to.be.true;
+                done();
+            })
+            $rootScope.$apply();
+        });
+    });
     afterEach(function () {
         $httpBackend.verifyNoOutstandingExpectation();
         $httpBackend.verifyNoOutstandingRequest();

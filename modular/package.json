@@ -13,8 +13,9 @@
     "url": "https://github.com/johnpapa/ng-demos.git"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "install": "bower install; gulp clean"
+    "init": "npm install" ,
+    "install": "bower install; gulp clean",
+    "test": "gulp test"
   },
   "dependencies": {
     "method-override": "^1.0.0",
