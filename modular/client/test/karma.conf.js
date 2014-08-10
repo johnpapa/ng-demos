@@ -14,6 +14,8 @@ module.exports = function (config) {
 
         // list of files / patterns to load in the browser
         files: [
+            './node_modules/ng-midway-tester/src/ngMidwayTester.js',
+
             './bower_components/jquery/dist/jquery.js',
             './bower_components/angular/angular.js',
             './bower_components/angular-mocks/angular-mocks.js',
@@ -38,6 +40,10 @@ module.exports = function (config) {
             './client/test/spec.mocha/**/specHelper.js',
             './client/test/spec.mocha/**/*.spec.js'
         ],
+        
+        proxies: {
+            '/': 'http://localhost:7200/'
+        },
 
         // list of files to exclude
         exclude: [

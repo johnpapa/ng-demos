@@ -13,7 +13,7 @@
     "url": "https://github.com/johnpapa/ng-demos.git"
   },
   "scripts": {
-    "init": "npm install" ,
+    "init": "npm install",
     "install": "bower install; gulp clean",
     "start": "gulp clean; gulp serve-dev",
     "test": "gulp test"
@@ -77,7 +77,8 @@
     "gulp-sourcemaps": "^1.1.0",
     "minimist": "^0.2.0",
     "debug": "^0.8.1",
-    "method-override": "^1.0.2"
+    "method-override": "^1.0.2",
+    "ng-midway-tester": "^2.0.5"
   },
   "paths": {
     "api": "/api",
