@@ -68,3 +68,9 @@ It depends on the `blocks.logger` module, because the implementation logs the ex
 
 ### blocks.router Module
 The `blocks.router` module contains a routing helper module that assists in adding routes to the $routeProvider.
+
+## Testing
+
+[Mocha](http://visionmedia.github.io/mocha/)
+[Chai](http://chaijs.com/api/)
+
