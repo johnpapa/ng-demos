@@ -1,13 +1,11 @@
 
-function loggerFake($provide) {
-    var fakeLogger = sinon.stub(
-        {
+function fakeLogger($provide) {
+    $provide.value('logger', sinon.stub({
             info: function(){},
             error: function(){},
             warning: function(){},
             success: function(){}
-        });
-    $provide.value('logger', fakeLogger);
+        }));
 }
 
 var testctx = testctx || {};

@@ -10,7 +10,7 @@ describe("Midway: testing routes", function() {
     });
 
     beforeEach(function () {
-        module('app', loggerFake);
+        module('app', fakeLogger);
     });
 
     it('should load the Avengers controller properly when /avengers route is accessed', function(done) {
