@@ -38,6 +38,10 @@ describe('dataservice', function () {
         // });
     });
 
+    it("should be registered", function() {
+      expect(dataservice).not.to.equal(null);
+    });
+
     describe('getAvengers function', function () {
         it('should return 5 Avengers', function (done) {
             $httpBackend.when('GET', '/api/maa').respond(200, mocks.maaData);
