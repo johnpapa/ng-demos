@@ -18,6 +18,8 @@
                 url: '/avengers',
                 config: {
                     templateUrl: 'app/avengers/avengers.html',
+                    controller: 'Avengers',
+                    controllerAs: 'vm',
                     title: 'avengers',
                     settings: {
                         nav: 2,
