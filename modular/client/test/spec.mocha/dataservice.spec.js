@@ -38,11 +38,15 @@ describe('dataservice', function () {
         // });
     });
 
-    it("should be registered", function() {
+    it('should be registered', function() {
       expect(dataservice).not.to.equal(null);
     });
 
     describe('getAvengers function', function () {
+        it('should exist', function () {
+            expect(dataservice.getAvengers).not.to.equal(null);
+        });
+        
         it('should return 5 Avengers', function (done) {
             $httpBackend.when('GET', '/api/maa').respond(200, mocks.maaData);
             dataservice.getAvengers().then(function(data) {
@@ -68,6 +72,10 @@ describe('dataservice', function () {
     });
 
     describe('getAvengerCount function', function () {
+        it('should exist', function () {
+            expect(dataservice.getAvengerCount).not.to.equal(null);
+        });
+
         it('should return 11 Avengers', function (done) {
             dataservice.getAvengerCount().then(function(count) {
                 expect(count).to.equal(11);
@@ -78,6 +86,10 @@ describe('dataservice', function () {
     });
 
     describe('getAvengersCast function', function () {
+        it('should exist', function () {
+            expect(dataservice.getAvengersCast).not.to.equal(null);
+        });
+
         it('should return 11 Avengers', function (done) {
             dataservice.getAvengersCast().then(function(data) {
                 expect(data.length).to.equal(11);
@@ -87,31 +99,35 @@ describe('dataservice', function () {
         });
 
         it('should contain Natasha', function (done) {
-            dataservice.getAvengersCast().then(function(data) {
-                var hasBlackWidow = data.some(function isPrime(element, index, array) {
-                    return element.character.indexOf('Natasha') >= 0;
-                });
-                expect(hasBlackWidow).to.be.true;
-                done();
-            })
+            dataservice.getAvengersCast()
+                .then(function(data) {
+                    var hasBlackWidow = data.some(function isPrime(element, index, array) {
+                        return element.character.indexOf('Natasha') >= 0;
+                    });
+                    expect(hasBlackWidow).to.be.true;
+                    done();
+                })
             $rootScope.$apply();
         });
     });
 
     describe('ready function', function () {
+        it('should exist', function () {
+            expect(dataservice.ready).not.to.equal(null);
+        });
+
         it('should return a resolved promise', function (done) {
             dataservice.ready()
-            .then(function(data) {
-                expect(true).to.be.true;
-                done();
-            }, function(data){
-                expect('promise rejected').to.be.true;
-                done();
-            });
+                .then(function(data) {
+                    expect(true).to.be.true;
+                    done();
+                }, function(data){
+                    expect('promise rejected').to.be.true;
+                    done();
+                });
             $rootScope.$apply();
         });
     });
-
 
     afterEach(function () {
         $httpBackend.verifyNoOutstandingExpectation();
