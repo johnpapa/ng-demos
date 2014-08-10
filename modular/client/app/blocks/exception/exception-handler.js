@@ -6,7 +6,7 @@
     angular
         .module('blocks.exception')
         .provider('exceptionConfig', exceptionConfigProvider)
-        .config(['$provide', exceptionConfig]);
+        .config(exceptionConfig);
 
     // Must configure the service and set its
     // events via the exceptionConfigProvider
@@ -24,6 +24,8 @@
         };
     }
 
+    exceptionConfig.$inject = ['$provide'];
+     
     // Configure by setting an optional string value for appErrorPrefix.
     // Accessible via config.appErrorPrefix (via config value).
     function exceptionConfig ($provide) {
