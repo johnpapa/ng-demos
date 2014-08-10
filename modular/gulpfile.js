@@ -149,7 +149,7 @@ gulp.task('images', function () {
  * @desc Inject all the files into the new index.html
  */
 gulp.task('stage',
-    ['js', 'vendorjs', 'css', 'vendorcss', 'images', 'fonts', 'test'], function () {
+    ['js', 'vendorjs', 'css', 'vendorcss', 'images', 'fonts'], function () {
         log('Building index.html to stage');
 
         return gulp
@@ -217,6 +217,11 @@ gulp.task('watch', function () {
 gulp.task('test', function () {
     log('Running tests');
     var testFiles = [pkg.paths.test + 'spec.mocha/*[Ss]pec.js'];
+    var options = {
+        script: 'server/server.js',
+        env: {'NODE_ENV': 'dev', 'PORT': 8888}
+    };
+    plug.nodemon(options);
 
     return gulp
         .src('./useKarmaConfAndNotThis')
@@ -234,18 +239,16 @@ gulp.task('test', function () {
 /**
  * serve the dev environment
  */
-var serveDevTasks = ['jshint']; //, 'test'];
 gulp.task('serve-dev', function () {
-    serve('dev', serveDevTasks);
+    serve('dev');
     startLivereload('development');
 });
 
 /**
  * serve the staging environment
  */
-var serveStageTasks = ['jshint', 'test', 'stage'];
-gulp.task('serve-stage', serveStageTasks, function () {
-    serve('stage', serveStageTasks);
+gulp.task('serve-stage', function () {
+    serve('stage');
     startLivereload('stage');
 });
 
@@ -262,17 +265,19 @@ function startLivereload(env) {
     log('Serving from ' + env);
 }
 
-function serve(env, tasks) {
-    plug.nodemon({
+function serve(env) {
+    var options = {
         script: 'server/server.js',
         delayTime: 1,
         ext: 'html js',
-        env: { 'NODE_ENV': env },
+        env: {'NODE_ENV': env},
         watch: ['server/', 'client/'],
 //        ignore: ['build/'],
         nodeArgs: ['--debug=9999']
-    })
-        .on('change', tasks)
+    };
+
+    return plug.nodemon(options)
+        //.on('change', tasks)
         .on('restart', function () {
             log('restarted!');
         });

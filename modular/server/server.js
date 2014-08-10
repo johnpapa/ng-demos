@@ -10,11 +10,11 @@ var express      = require('express'),
     favicon      = require('serve-favicon'),
     fileServer   = require('serve-static'),
     http         = require('http'),
-    isDev        = process.env['NODE_ENV'] !== 'stage',
     logger       = require('morgan'),
     port         = process.env['PORT'] || 7200,
     routes       = require('./services/routes');
 
+var environment = process.env.NODE_ENV;
 var appDir =  __dirname + '../'; // ./../client'; // Our NG code
 
 app.use(bodyParser.urlencoded({
@@ -28,20 +28,22 @@ app.use(fileServer(appDir));    // Support static file content
 app.use(cors());                // enable ALL CORS requests
 app.use(errorHandler.init);
 
-console.log(process.env['NODE_ENV']);
-if(isDev){
+console.log('PORT=' + port);
+console.log('NODE_ENV=' + environment);
+
+if(environment === 'stage') {
+    console.log('** STAGE **');
+    app.use('/', express.static('./build/stage/'));
+} else {
     console.log('** DEV **');
 //    app.use('/', express.static(appDir));
     app.use('/', express.static('client'));
     app.use('/', express.static('./'));
 
-    app.get('/test', function(req, res, next) {
+    app.get('/ping', function(req, res, next) {
         console.log(req.body);
-        res.send('ping');
+        res.send('pong');
     });
-} else {
-    console.log('** STAGE **');
-    app.use('/', express.static('./build/stage/'));
 }
 
 routes.init(app);

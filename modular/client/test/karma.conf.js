@@ -42,7 +42,7 @@ module.exports = function (config) {
         ],
         
         proxies: {
-            '/': 'http://localhost:7200/'
+            '/': 'http://localhost:8888/'
         },
 
         // list of files to exclude
