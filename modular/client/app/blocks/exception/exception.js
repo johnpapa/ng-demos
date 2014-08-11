@@ -14,10 +14,6 @@
 
         function catcher(message) {
             return function (reason) {
-                /**
-                 * @example
-                 *     throw { message: 'error message we added' };
-                 */
                 logger.error(message, reason);
             };
         }
