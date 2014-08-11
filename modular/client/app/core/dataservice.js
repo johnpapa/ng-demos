@@ -5,9 +5,8 @@
         .module('app.core')
         .factory('dataservice', dataservice);
 
-    dataservice.$inject = ['$http', '$q', 'logger'];
-
-    function dataservice($http, $q, logger) {
+    /* @ngInject */
+    function dataservice($http, $location, $q, exception, logger) {
         var isPrimed = false;
         var primePromise;
 
@@ -22,20 +21,27 @@
 
         function getAvengers() {
             return $http.get('/api/maa')
-                .then(function(data, status, headers, config) {
-                    return data.data[0].data.results;
-                }, function(error){
-                    console.log(error);
-                    return error;
+                .then(getAvengersComplete)
+                .catch(function(message) {
+                    exception.catcher('XHR Failed for getAvengers')(message);
+                    $location.url('/');
                 });
+
+            function getAvengersComplete(data, status, headers, config) {
+                return data.data[0].data.results;
+            }
         }
 
         function getAvengerCount() {
             var count = 0;
-            return getAvengersCast().then(function (data) {
+            return getAvengersCast()
+                .then(getAvengersCastComplete)
+                .catch(exception.catcher('XHR Failed for getAvengerCount'));
+
+            function getAvengersCastComplete (data) {
                 count = data.length;
                 return $q.when(count);
-            });
+            }
         }
 
         function getAvengersCast() {
@@ -73,9 +79,9 @@
         function ready(nextPromises) {
             var readyPromise = primePromise || prime();
 
-            return readyPromise.then(function(){
-                return $q.all(nextPromises);
-            });
+            return readyPromise
+                .then(function(){ return $q.all(nextPromises); })
+                .catch(exception.catcher('"ready" function failed'));
         }
 
     }
