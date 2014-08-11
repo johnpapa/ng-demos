@@ -214,21 +214,35 @@ gulp.task('watch', function () {
 /**
  * @desc Run all tests
  */
-gulp.task('test', function () {
-    log('Running tests');
+gulp.task('test-serve-midway', function () {
+    log('Pre test serve');
     var testFiles = [pkg.paths.test + 'spec.mocha/*[Ss]pec.js'];
     var options = {
         script: 'server/server.js',
         env: {'NODE_ENV': 'dev', 'PORT': 8888}
     };
     plug.nodemon(options);
+});
+
+gulp.task('test', ['test-serve-midway'], function () {
+    log('Running tests');
+    var testFiles = [pkg.paths.test + 'spec.mocha/*[Ss]pec.js'];
+    // var options = {
+    //     script: 'server/server.js',
+    //     env: {'NODE_ENV': 'dev', 'PORT': 8888}
+    // };
+    // plug.nodemon(options);
 
     return gulp
         .src('./useKarmaConfAndNotThis')
+        .pipe(plug.plumber())
         .pipe(plug.karma({
             configFile: pkg.paths.test + '/karma.conf.js',
-            action: 'run' // run or watch
+//            singleRun: true,
+            delay: 5,
+            action: 'watch'  // run or watch
         }))
+        .pipe(plug.plumber.stop())
         .on('error', function (err) {
             // failed tests cause gulp to exit
             log(err);

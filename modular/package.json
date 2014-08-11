@@ -78,7 +78,8 @@
     "minimist": "^0.2.0",
     "debug": "^0.8.1",
     "method-override": "^1.0.2",
-    "ng-midway-tester": "^2.0.5"
+    "ng-midway-tester": "^2.0.5",
+    "gulp-plumber": "^0.6.4"
   },
   "paths": {
     "api": "/api",
