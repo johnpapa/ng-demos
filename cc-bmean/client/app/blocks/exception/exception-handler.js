@@ -10,7 +10,7 @@
 
     // Must configure the service and set its
     // events via the exceptionConfigProvider
-    function exceptionConfigProvider () {
+    function exceptionConfigProvider() {
         /* jshint validthis:true */
         this.config = {
             // These are the properties we need to set
@@ -25,10 +25,10 @@
     }
 
     exceptionConfig.$inject = ['$provide'];
-     
+
     // Configure by setting an optional string value for appErrorPrefix.
     // Accessible via config.appErrorPrefix (via config value).
-    function exceptionConfig ($provide) {
+    function exceptionConfig($provide) {
         $provide.decorator('$exceptionHandler', extendExceptionHandler);
     }
 
@@ -41,6 +41,12 @@
             $delegate(exception, cause);
             var errorData = { exception: exception, cause: cause };
             var msg = appErrorPrefix + exception.message;
+            /**
+             * Could add the error to a service's collection,
+             * add errors to $rootScope, log errors to remote web server,
+             * or log locally. Or throw hard. It is entirely up to you.
+             * throw exception;
+             */
             logger.error(msg, errorData);
         };
     }
