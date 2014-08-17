@@ -1,7 +1,11 @@
 ng-demos
 ========
+Variety of angular demos are contained herein.
 
-variety of angular demos
+>*Opinionated AngularJS style guide for teams by [@john_papa](//twitter.com/john_papa)*
+
+>More details about the styles and patterns used in these apps can be found in my [AngularJS Style Guide](https://github.com/johnpapa/angularjs-styleguide) and my **AngularJS Patterns: Clean Code**(coming soon) course at [Pluralsight](http://pluralsight.com/training/Authors/Details/john-papa) and working in teams. 
+
 
 ## grunt-gulp
 Demonstrates use of grunt and gulp with an angular app.
@@ -13,10 +17,10 @@ Demonstrates use of grunt and gulp with an angular app.
 Starter template for Angular apps. All client side javascript using Angular for routing, animation, and basic CSS theming.
 
 ## modular
-Demonstrates how to distribute an app across several modules, including handling the routing. Compelling reason to use this is when you have a multi featured app.
+Demonstrates how to distribute an app across several modules, including handling the routing, testing, gulp automation and more.
 
-- Routing across modules
-- Each module is a feature area
+## cc-bmean
+Larger app running a fictitious event named "CodeCamper".
 
 ##ng-1.3 playground
 Simple demos for ng 1.3 features.
