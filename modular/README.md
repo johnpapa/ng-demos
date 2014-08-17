@@ -1,7 +1,7 @@
 #AngularJS Modular Demo
 Demonstrates Angular modularity, testing, Gulp task automation, and more.
 
-*Opinionated AngularJS style guide for teams by [@john_papa](//twitter.com/john_papa)* >>
+*Opinionated AngularJS style guide for teams by [@john_papa](//twitter.com/john_papa)*
 
 >More details about the styles and patterns used in this app can be found in my [AngularJS Style Guide](https://github.com/johnpapa/angularjs-styleguide) and my **AngularJS Patterns: Clean Code**(coming soon) course at [Pluralsight](http://pluralsight.com/training/Authors/Details/john-papa) and working in teams. 
 
