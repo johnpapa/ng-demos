@@ -251,10 +251,30 @@ gulp.task('test', ['test-serve-midway'], function () {
 });
 
 /**
+ * serve the dev environment, with debug, 
+ * and with node inspector
+ */
+gulp.task('serve-dev-debug', function () {
+    serve({env: 'dev', debug: '--debug'});
+    startLivereload('development');
+});
+
+
+/**
+ * serve the dev environment, with debug-brk,
+ * and with node inspector
+ */
+gulp.task('serve-dev-debug-brk', function () {
+    serve({env: 'dev', debug: '--debug-brk'});
+    startLivereload('development');
+});
+
+
+/**
  * serve the dev environment
  */
 gulp.task('serve-dev', function () {
-    serve('dev');
+    serve({env: 'dev'});
     startLivereload('development');
 });
 
@@ -262,7 +282,7 @@ gulp.task('serve-dev', function () {
  * serve the staging environment
  */
 gulp.task('serve-stage', function () {
-    serve('stage');
+    serve({env: 'stage'});
     startLivereload('stage');
 });
 
@@ -279,16 +299,20 @@ function startLivereload(env) {
     log('Serving from ' + env);
 }
 
-function serve(env) {
+function serve(args) {
     var options = {
         script: 'server/server.js',
         delayTime: 1,
         ext: 'html js',
-        env: {'NODE_ENV': env},
+        env: {'NODE_ENV': args.env},
         watch: ['server/', 'client/'],
-//        ignore: ['build/'],
-        nodeArgs: ['--debug=9999']
     };
+
+    if(args.debug){
+        gulp.src('', {read: false})
+            .pipe(plug.shell(['node-inspector']));
+        options.nodeArgs = [args.debug + '=5858'];
+    }
 
     return plug.nodemon(options)
         //.on('change', tasks)
