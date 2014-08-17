@@ -22,15 +22,15 @@ gulp.task('ngAnnotateTest', function () {
     var source = [].concat(pkg.paths.js);
     return gulp
         // .src(source)
-        .src('./client/app/avengers/avengers.js')
+        .src(pkg.paths.client + '/app/avengers/avengers.js')
         .pipe(plug.ngAnnotate({add: true, single_quotes: true}))
         .pipe(plug.rename(function (path) {
             path.extname = '.annotated.js';
         }))
         // .pipe(plug.concat('all.min.js'))
         // .pipe(plug.uglify({mangle: true}))
-        // .pipe(gulp.dest('./client/app'));
-        .pipe(gulp.dest('./client/app/avengers'));
+        // .pipe(gulp.dest(pkg.paths.client + '/app'));
+        .pipe(gulp.dest(pkg.paths.client + '/app/avengers'));
 });
 
 /**
@@ -153,7 +153,7 @@ gulp.task('stage',
         log('Building index.html to stage');
 
         return gulp
-            .src('./client/index.html')
+            .src(pkg.paths.client + '/index.html')
             .pipe(inject([pkg.paths.stage + 'content/vendor.min.css'], 'inject-vendor'))
             .pipe(inject([pkg.paths.stage + 'content/all.min.css']))
             .pipe(inject(pkg.paths.stage + 'vendor/vendor.min.js', 'inject-vendor'))
@@ -218,7 +218,7 @@ gulp.task('test-serve-midway', function () {
     log('Pre test serve');
     var testFiles = [pkg.paths.test + 'spec.mocha/*[Ss]pec.js'];
     var options = {
-        script: 'server/server.js',
+        script: pkg.paths.server + 'app.js',
         env: {'NODE_ENV': 'dev', 'PORT': 8888}
     };
     plug.nodemon(options);
@@ -228,7 +228,7 @@ gulp.task('test', ['test-serve-midway'], function () {
     log('Running tests');
     var testFiles = [pkg.paths.test + 'spec.mocha/*[Ss]pec.js'];
     // var options = {
-    //     script: 'server/server.js',
+    //     script: pkg.paths.server + 'app.js',
     //     env: {'NODE_ENV': 'dev', 'PORT': 8888}
     // };
     // plug.nodemon(options);
@@ -287,7 +287,7 @@ gulp.task('serve-stage', function () {
 });
 
 function startLivereload(env) {
-    var path = (env === 'stage' ? [pkg.paths.stage, 'client/**'] : ['client/**']);
+    var path = (env === 'stage' ? [pkg.paths.stage, pkg.paths.client + '/**'] : [pkg.paths.client + '/**']);
     var options = {auto: true};
     plug.livereload.listen(options);
     gulp
@@ -301,11 +301,14 @@ function startLivereload(env) {
 
 function serve(args) {
     var options = {
-        script: 'server/server.js',
+        script: pkg.paths.server + 'app.js',
         delayTime: 1,
         ext: 'html js',
         env: {'NODE_ENV': args.env},
-        watch: ['server/', 'client/'],
+        watch: ['gulpfile.js', 
+                'package.json', 
+                pkg.paths.server, 
+                pkg.paths.client]
     };
 
     if(args.debug){

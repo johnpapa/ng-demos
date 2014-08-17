@@ -1,21 +1,22 @@
 /*jshint node:true*/
 'use strict';
 
-var express      = require('express'),
-    app          = express(),
-    bodyParser   = require('body-parser'),
-    compress     = require('compression'),
-    cors         = require('cors'),
-    errorHandler = require('./services/errorHandler'),
-    favicon      = require('serve-favicon'),
-    fileServer   = require('serve-static'),
-    http         = require('http'),
-    logger       = require('morgan'),
-    port         = process.env['PORT'] || 7200,
-    routes       = require('./services/routes');
+var express      = require('express');
+var app          = express();
+var bodyParser   = require('body-parser');
+var compress     = require('compression');
+var cors         = require('cors');
+var errorHandler = require('./routes/utils/errorHandler')();
+var favicon      = require('serve-favicon');
+var fileServer   = require('serve-static');
+var http         = require('http');
+var logger       = require('morgan');
+var port         = process.env['PORT'] || 7200;
+var routes       = require('./routes/index')(app);
 
 var environment = process.env.NODE_ENV;
-var appDir =  __dirname + '../'; // ./../client'; // Our NG code
+var appDir =  __dirname + '../../'; // Our NG code is served from root
+var pkg = require('./../../package.json');
 
 app.use(bodyParser.urlencoded({
     extended: true
@@ -37,7 +38,7 @@ if(environment === 'stage') {
 } else {
     console.log('** DEV **');
 //    app.use('/', express.static(appDir));
-    app.use('/', express.static('client'));
+    app.use('/', express.static(pkg.paths.client));
     app.use('/', express.static('./'));
 
     app.get('/ping', function(req, res, next) {
@@ -45,8 +46,6 @@ if(environment === 'stage') {
         res.send('pong');
     });
 }
-
-routes.init(app);
 
 var server = http.createServer(app);
 

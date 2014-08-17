@@ -1,6 +1,9 @@
-(function (errorHandler) {
-    errorHandler.init = init;
-    errorHandler.logErrors = logErrors;
+module.exports = function() {
+    var service = {
+        init: init,
+        logErrors: logErrors
+    };
+    return service;    
 
     function init(err, req, res, next) {
         var status = err.statusCode || 500;
@@ -9,6 +12,7 @@
         } else {
             res.send(status, err);
         }
+        next();
     }
 
     /* Our fall through error logger and errorHandler  */
@@ -20,4 +24,4 @@
         }
         next(err);
     }
-})(module.exports);
+};

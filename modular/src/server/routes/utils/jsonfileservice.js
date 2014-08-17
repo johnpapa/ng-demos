@@ -1,18 +1,18 @@
-module.exports = (function(){
+module.exports = function() {
     var service = {
         getJsonFromFile: getJsonFromFile
     };
     return service;
 
-    function getJsonFromFile(file){
+    function getJsonFromFile(file) {
         var fs = require('fs');
         var json;
 
         json = getConfig(file);
         return json;
 
-        function readJsonFileSync(filepath, encoding){
-            if (typeof (encoding) === 'undefined'){
+        function readJsonFileSync(filepath, encoding) {
+            if (typeof (encoding) === 'undefined') {
                 encoding = 'utf8';
             }
             var file = fs.readFileSync(filepath, encoding);
@@ -24,4 +24,4 @@ module.exports = (function(){
             return readJsonFileSync(filepath);
         }
     }
-})();
+};
