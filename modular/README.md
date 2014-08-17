@@ -69,8 +69,45 @@ It depends on the `blocks.logger` module, because the implementation logs the ex
 ### blocks.router Module
 The `blocks.router` module contains a routing helper module that assists in adding routes to the $routeProvider.
 
-## Testing
+## node-inspector
 
-[Mocha](http://visionmedia.github.io/mocha/)
-[Chai](http://chaijs.com/api/)
+### Quick Start
+1. Install globally
+    `npm install -g node-inspector`
+    
+2. Run server, load it in the browser
+    `node-debug server/server.js`
+    
+    This loads http://localhost:8080/debug?port-5858 with the node code in the Chrome debugger
+
+### Manually Run in One Terminal Tab
+Run the server with options, and debug
+    
+    `node --debug=5858 server/server.js & node-inspector`    
+Or
+    `node-inspector & node --debug server/server.js`
+
+Note: Debug defaults to 5858
+
+### Manual Run and Break on First Line
+Run the server and have it break on the first line of code 
+    `node-inspector & node --debug-brk server/server.js`
+
+### Run in its own Tab
+Or run node-inspector in a separate Terminal tab. You can keep it running and just serve and shutdown your site as needed
+
+### node-inspector with Gulp
+Alternative to running node-inspector in its own tab is to use `gulp-shell`
+
+        gulp.src('', {read: false})
+            .pipe(plug.shell(['node-inspector']));
+
+Run `gulp serve-dev-debug` or `gulp serve-dev-debug-brk` to debug node via the Gulp tasks in this project.
+
+### Issues 
+If a process stays connected find it and kill with these commands
+    ```
+    lsof -i TCP|fgrep LISTEN
+    kill -9 34608
+    ```    
 
