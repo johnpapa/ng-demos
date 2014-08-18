@@ -25,10 +25,10 @@
                     <div class="widget-content user">
                         <div>
                             <pagination boundary-links="true"
-                                        on-select-page="vm.pageChanged(page)"
+                                        ng-change="vm.pageChanged()"
                                         total-items="vm.attendeeFilteredCount"
                                         items-per-page="vm.paging.pageSize"
-                                        page="vm.paging.currentPage"
+                                        ng-model="vm.paging.currentPage"
                                         max-size="vm.paging.maxPagesToShow"
                                         class="pagination-small"
                                         previous-text="Prev"

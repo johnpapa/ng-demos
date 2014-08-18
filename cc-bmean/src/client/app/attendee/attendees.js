@@ -70,11 +70,7 @@
             vm.attendeeFilteredCount = datacontext.attendee.getFilteredCount(vm.attendeeSearch);
         }
 
-        function pageChanged(page) {
-            if (!page) {
-                return;
-            }
-            vm.paging.currentPage = page;
+        function pageChanged() {
             getAttendees();
         }
 
