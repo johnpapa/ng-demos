@@ -15,18 +15,18 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "~1.2.20",
-    "toastr": "~2.0.1",
-    "bootstrap": "~3.1.1",
-    "moment": "~2.6.0",
-    "jquery": "~2.1.0",
-    "angular-route": "~1.2.20",
-    "angular-animate": "~1.2.20",
-    "angular-sanitize": "~1.2.20",
-    "font-awesome": "~4.0.3",
-    "angular-ui-bootstrap-bower": "~0.10.0",
-    "breezejs": "~1.4.12",
+    "angular": "~1.2.22",
+    "toastr": "~2.0.3",
+    "bootstrap": "~3.2.0",
+    "moment": "~2.8.1",
+    "jquery": "~2.1.1",
+    "angular-route": "~1.2.22",
+    "angular-animate": "~1.2.22",
+    "angular-sanitize": "~1.2.22",
+    "font-awesome": "~4.1.0",
+    "angular-ui-bootstrap-bower": "~0.11.0",
+    "breezejs": "~1.4.16",
     "angular.breeze.storagewip": "~1.0.3",
-    "extras.angular.plus": "~0.9.0"
+    "extras.angular.plus": "^0.9.0"
   }
 }

@@ -1,4 +1,4 @@
-(function(angular) {
+(function() {
     'use strict';
 
     angular
@@ -43,4 +43,4 @@
             $log.warn('Warning: ' + message, data);
         }
     }
-}(this.angular));
+}());

@@ -54,4 +54,5 @@
             logger.error(msg, errorData);
         };
     }
+
 })();
