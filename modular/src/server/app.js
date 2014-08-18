@@ -12,10 +12,11 @@ var fileServer   = require('serve-static');
 var http         = require('http');
 var logger       = require('morgan');
 var port         = process.env['PORT'] || 7200;
-var routes       = require('./routes/index')(app);
+var routes;
+var server;
 
-var environment = process.env.NODE_ENV;
 var appDir =  __dirname + '../../'; // Our NG code is served from root
+var environment = process.env.NODE_ENV;
 var pkg = require('./../../package.json');
 
 app.use(bodyParser.urlencoded({
@@ -28,6 +29,8 @@ app.use(favicon(__dirname + '/favicon.ico'));
 app.use(fileServer(appDir));    // Support static file content
 app.use(cors());                // enable ALL CORS requests
 app.use(errorHandler.init);
+
+routes = require('./routes/index')(app);
 
 console.log('PORT=' + port);
 console.log('NODE_ENV=' + environment);
@@ -47,7 +50,7 @@ if(environment === 'stage') {
     });
 }
 
-var server = http.createServer(app);
+server = http.createServer(app);
 
 server.listen(port, function(){
     console.log('Express server listening on port ' + port);
