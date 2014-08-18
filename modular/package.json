@@ -7,7 +7,6 @@
   ],
   "license": "MIT",
   "homepage": "https://github.com/johnpapa/ng-demos",
-  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/johnpapa/ng-demos.git"
@@ -28,8 +27,7 @@
     "serve-favicon": "^2.0.1",
     "express": "^4.6.1",
     "http-proxy": "^1.1.6",
-    "morgan": "^1.1.1",
-    "restify": "^2.8.1"
+    "morgan": "^1.1.1"
   },
   "devDependencies": {
     "karma-jasmine": "^0.2.2",
