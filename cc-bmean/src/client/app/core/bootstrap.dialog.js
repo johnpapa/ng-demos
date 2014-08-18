@@ -7,6 +7,7 @@
 
     modalDialog.$inject = ['$modal', '$templateCache'];
 
+    /* @ngInject */
     function modalDialog($modal, $templateCache) {
         var service = {
             deleteDialog: deleteDialog,
@@ -61,17 +62,21 @@
         }
     }
 
-    var ModalInstance = ['$scope', '$modalInstance', 'options',
-        function ($scope, $modalInstance, options) {
-            $scope.title = options.title || 'Title';
-            $scope.message = options.message || '';
-            $scope.okText = options.okText || 'OK';
-            $scope.cancelText = options.cancelText || 'Cancel';
-            $scope.ok = function () {
-                $modalInstance.close('ok');
-            };
-            $scope.cancel = function () {
-                $modalInstance.dismiss('cancel');
-            };
-        }];
+    ModalInstance.$inject = ['$scope', '$modalInstance', 'options'];
+
+    /* @ngInject */
+    function ModalInstance($scope, $modalInstance, options) {
+        $scope.title = options.title || 'Title';
+        $scope.message = options.message || '';
+        $scope.okText = options.okText || 'OK';
+        $scope.cancelText = options.cancelText || 'Cancel';
+        $scope.ok = function () {
+            $modalInstance.close('ok');
+        };
+        $scope.cancel = function () {
+            $modalInstance.dismiss('cancel');
+        };
+    }
+
+    //];
 })();

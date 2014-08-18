@@ -46,6 +46,7 @@
             }
         }
 
+        wipController.$inject = ['$scope'];
         function wipController($scope) {
             $scope.wipExists = function () {
                 return !!$scope.wip.length;

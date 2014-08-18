@@ -2,9 +2,13 @@
     'use strict';
 
     angular.module('app.wip')
-        .run(['routehelper', function(routehelper){
-            routehelper.configureRoutes(getRoutes());
-        }]);
+        .run(routeConfig);
+
+    routeConfig.$inject = ['routehelper'];
+    /* @ngInject */
+    function routeConfig(routehelper) {
+        routehelper.configureRoutes(getRoutes());
+    }
 
     function getRoutes() {
         return [

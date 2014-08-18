@@ -7,7 +7,7 @@
 
     angular
         .module('app.data')
-        .factory('model.metadata', metadata);
+        .factory('model-metadata', metadata);
 
     metadata.$inject = ['breeze'];
 

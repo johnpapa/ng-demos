@@ -3,8 +3,9 @@
 
     angular
         .module('app.data')
-        .factory('model.validation', modelValidation);
+        .factory('model-validation', modelValidation);
 
+    //TODO: standardize the names with dashes and their filenames
     modelValidation.$inject = ['breeze', 'common'];
 
     function modelValidation(breeze, common) {

@@ -7,6 +7,7 @@
 
     common.$inject = ['$location', '$q', '$rootScope', '$timeout', 'logger'];
 
+    /* @ngInject */
     function common($location, $q, $rootScope, $timeout, logger) {
         var throttles = {};
 
@@ -56,7 +57,7 @@
             };
 
             return (function () {
-                // Wrapped in outer IFFE so we can use closure
+                // Wrapped in outer IIFE so we can use closure
                 // over filterInputTimeout which references the timeout
                 var filterInputTimeout;
 

@@ -6,8 +6,6 @@
         .provider('routehelperConfig', routehelperConfig)
         .factory('routehelper', routehelper);
 
-    routehelper.$inject = ['$location', '$rootScope', '$route', 'logger', 'routehelperConfig'];
-
     // Must configure via the routehelperConfigProvider
     function routehelperConfig () {
         /* jshint validthis:true */
@@ -24,6 +22,8 @@
             };
         };
     }
+
+    routehelper.$inject = ['$location', '$rootScope', '$route', 'logger', 'routehelperConfig'];
 
     function routehelper($location, $rootScope, $route, logger, routehelperConfig) {
         var handlingRouteChangeError = false;

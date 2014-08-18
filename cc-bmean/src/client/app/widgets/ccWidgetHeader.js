@@ -5,8 +5,6 @@
         .module('app.widgets')
         .directive('ccWidgetHeader', ccWidgetHeader);
 
-    ccWidgetHeader.$inject = ['$window'];
-
     function ccWidgetHeader () {
         //Usage:
         //<div data-cc-widget-header title="vm.map.title"></div>
@@ -26,9 +24,5 @@
             restrict: 'A'
         };
         return directive;
-
-//        function link(scope, element, attrs) {
-//            attrs.$set('class', 'widget-head');
-//        }
     }
 })();

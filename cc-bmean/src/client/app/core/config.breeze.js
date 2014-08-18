@@ -10,6 +10,7 @@
     breezeConfig.$inject = ['breeze'];
 
     // Common Breeze configuration during Ng's "config" phase
+    /* @ngInject */
     function breezeConfig(breeze) {
         var service = {
             breeze: breeze,

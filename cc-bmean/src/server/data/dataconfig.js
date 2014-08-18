@@ -29,8 +29,7 @@ module.exports = function () {
     return{
         db: this.db,
         collections: this.collections
-    }
-
+    };
 
     function openMongoDb() {
         /* jshint camelcase:false */

@@ -4,11 +4,11 @@
     angular.module('app.widgets', []);
 
     angular
-        .module('app.widgets')
-        .factory('testService', function(){
-            return {
-                ping: function(){ return 'pong'; }
-            };
-        });
+        .module('app.widgets');
+//        .factory('testService', function(){
+//            return {
+//                ping: function(){ return 'pong'; }
+//            };
+//        });
 
 })();
