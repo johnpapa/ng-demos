@@ -93,12 +93,12 @@
             routeCfg.config.$routeProvider = $routeProvider;
             routeCfg.config.docTitle = 'CC: ';
             routeCfg.config.resolveAlways = { /* @ngInject */
-//                ready: function (datacontext) {
-//                    return datacontext.ready();
-//                }
-                ready: ['datacontext', function (datacontext) {
+                ready: function (datacontext) {
                     return datacontext.ready();
-                }]
+                }
+//                ready: ['datacontext', function (datacontext) {
+//                    return datacontext.ready();
+//                }]
             };
         }
     }

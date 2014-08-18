@@ -6,6 +6,7 @@
         .run(routeConfig);
 
     routeConfig.$inject = ['routehelper'];
+
     /* @ngInject */
     function routeConfig(routehelper) {
         routehelper.configureRoutes(getRoutes());
