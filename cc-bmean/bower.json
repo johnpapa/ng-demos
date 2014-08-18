@@ -28,5 +28,8 @@
     "breezejs": "~1.4.16",
     "angular.breeze.storagewip": "~1.0.3",
     "extras.angular.plus": "^0.9.0"
+  },
+  "devDependencies": {
+    "angular": "1.2.22"
   }
 }
