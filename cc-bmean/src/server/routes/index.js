@@ -1,9 +1,9 @@
-module.exports = function(app) {
-    /*
-    * MongoDb server routes for data access
-    *
-    * */
-    var dataconfig = require('./../data/dataconfig');
+module.exports = function (app) {
+    /**
+     * MongoDb server routes for data access
+     *
+     */
+    var dataconfig = require('./../data/dataconfig')();
 
     var appDir = '',
         breezeMongo = require('breeze-mongodb'),
