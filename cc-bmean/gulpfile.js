@@ -196,11 +196,11 @@ gulp.task('watch', function () {
     var js = ['gulpfile.js'].concat(pkg.paths.js);
 
     gulp
-        .watch(js, ['js', 'vendorjs'])
+        .watch(js, ['js'])
         .on('change', logWatch);
 
     gulp
-        .watch(css, ['css', 'vendorcss'])
+        .watch(css, ['css'])
         .on('change', logWatch);
 
     gulp
@@ -282,7 +282,7 @@ gulp.task('serve-dev', function () {
 /**
  * serve the staging environment
  */
-gulp.task('serve-stage', ['stage'], function () {
+gulp.task('serve-stage', ['stage', 'watch'], function () {
     serve({env: 'stage'});
     startLivereload('stage');
 });

@@ -77,6 +77,4 @@
             $modalInstance.dismiss('cancel');
         };
     }
-
-    //];
 })();
