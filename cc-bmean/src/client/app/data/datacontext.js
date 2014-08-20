@@ -6,11 +6,13 @@
         .factory('datacontext', datacontext);
 
     datacontext.$inject =
-        ['$injector', '$rootScope', 'breeze',
-            'common', 'config', 'entityManagerFactory',
-            'model', 'zStorage', 'zStorageWip'];
+        ['$injector', '$rootScope',
+            'breeze', 'common', 'config', 'entityManagerFactory',
+            'exception', 'model', 'zStorage', 'zStorageWip'];
 
-    function datacontext ($injector, $rootScope, breeze, common, config, emFactory, model, zStorage, zStorageWip) {
+    function datacontext ($injector, $rootScope,
+                          breeze, common, config, emFactory,
+                          exception, model, zStorage, zStorageWip) {
         var manager = emFactory.newManager();
         var isPrimed = false;
         var primePromise;
@@ -139,16 +141,18 @@
         function ready(nextPromises) {
             var readyPromise = primePromise || prime();
 
-            return readyPromise.then(function(){
-                return $q.all(nextPromises);
-            });
+            return readyPromise
+                .then(function(){return $q.all(nextPromises);})
+                .catch(exception.catcher('"ready" function failed'));
         }
 
         function save() {
             // Learning Point:
             // Must convert all q promises to $q.
             // Breeze uses q, angular uses $q.
-            return manager.saveChanges().then(saveSucceeded).catch(saveFailed);
+            return manager.saveChanges()
+                .then(saveSucceeded)
+                .catch(saveFailed);
 
             function saveSucceeded(result) {
                 common.logger.success('Saved data', result);
@@ -159,7 +163,8 @@
                 var msg = 'Save failed: ' +
                     breeze.saveErrorMessageService.getErrorMessage(error);
                 error.message = msg;
-                common.logger.error(msg, error);
+                exception.catcher(msg)(error);
+//                common.logger.error(msg, error);
                 throw error;
             }
         }
