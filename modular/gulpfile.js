@@ -181,7 +181,7 @@ gulp.task('clean', function () {
     log('Cleaning: ' + plug.util.colors.blue(pkg.paths.stage));
     return gulp
         .src(pkg.paths.build, {read: false})
-        .pipe(plug.clean({force: true}));
+        .pipe(plug.rimraf({force: true}));
 });
 
 /**
