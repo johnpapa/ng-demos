@@ -1,5 +1,6 @@
+var testctx = testctx || {};
 
-function fakeLogger($provide) {
+testctx.fakeLogger = function ($provide) {
     $provide.value('logger', sinon.stub({
             info: function(){},
             error: function(){},
@@ -8,7 +9,28 @@ function fakeLogger($provide) {
         }));
 }
 
-var testctx = testctx || {};
+testctx.fakeRouteProvider = function ($provide) {
+    /**
+     * Stub out the $routeProvider so we avoid
+     * all routing calls, including the default route 
+     * which runs on every test otherwise. 
+     * Make sure this goes before the inject in the spec.
+     */
+    $provide.provider('$route', function() {
+        /* jshint validthis:true */
+        this.when = sinon.stub();
+        this.otherwise = sinon.stub();
+
+        this.$get = function () {
+            return {
+                // current: {},  // fake before each test as needed
+                // routes:  {}  // fake before each test as needed
+                // more? You'll know when it fails :-)
+            };
+        };
+    });
+};
+
 testctx.getMockAvengers = function () {
     return [
         {

@@ -1,4 +1,4 @@
-/*global sinon, describe, it, afterEach, beforeEach, expect, inject, testctx, fakeLogger */
+/*global sinon, describe, it, afterEach, beforeEach, expect, inject, testctx */
 describe('avengers', function () {
     var $controller,
         dataservice,
@@ -12,7 +12,7 @@ describe('avengers', function () {
         toastr;
 
     beforeEach(function () {
-        module('app', fakeLogger);
+        module('app', testctx.fakeLogger);
         inject(function (_$controller_, _$httpBackend_, _$location_, 
 						  _$q_, _$rootScope_, _$route_, _dataservice_, _toastr_) {
             $controller = _$controller_;
