@@ -1,0 +1,33 @@
+{
+    "name": "AngularJS Modular Demo",
+    "version": "0.0.1",
+    "description": "AngularJS Modular Demo",
+    "authors": [
+        "John Papa"
+    ],
+    "license": "MIT",
+    "homepage": "https://github.com/johnpapa/ng-demos",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "devDependencies": {
+        "angular-mocks": "~1.2.19"
+    },
+    "dependencies": {
+        "angular": "~1.2.20",
+        "toastr": "~2.0.1",
+        "bootstrap": "~3.1.1",
+        "moment": "~2.6.0",
+        "jquery": "~2.1.0",
+        "angular-route": "~1.2.20",
+        "angular-animate": "~1.2.20",
+        "angular-sanitize": "~1.2.20",
+        "font-awesome": "~4.0.3",
+        "extras.angular.plus": "~0.9.0",
+        "angular-ui-bootstrap-bower": "~0.11.0"
+    }
+}
