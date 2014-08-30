@@ -9,7 +9,6 @@ var cors         = require('cors');
 var errorHandler = require('./routes/utils/errorHandler')();
 var favicon      = require('serve-favicon');
 var fileServer   = require('serve-static');
-var http         = require('http');
 var logger       = require('morgan');
 var port         = process.env['PORT'] || 7200;
 var routes;
@@ -50,9 +49,7 @@ if(environment === 'stage') {
     });
 }
 
-server = http.createServer(app);
-
-server.listen(port, function(){
+app.listen(port, function(){
     console.log('Express server listening on port ' + port);
     console.log('env = '+ app.get('env') +
         '\n__dirname = ' + __dirname  +

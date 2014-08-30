@@ -26,7 +26,6 @@
     "serve-static": "^1.1.0",
     "serve-favicon": "^2.0.1",
     "express": "^4.6.1",
-    "http-proxy": "^1.1.6",
     "morgan": "^1.1.1"
   },
   "devDependencies": {
