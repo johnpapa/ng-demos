@@ -2,8 +2,6 @@
 # the iisnode configuration settings specified in web.config.
 
 node_env: production
-nodeProcessCommandLine: "c:\program files\nodejs\node.exe"
-interceptor: "c:\program files\iisnode\interceptor.js"
 nodeProcessCountPerApplication: 1
 maxConcurrentRequestsPerProcess: 1024
 maxNamedPipeConnectionRetry: 24
