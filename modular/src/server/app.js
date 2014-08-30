@@ -12,15 +12,12 @@ var fileServer   = require('serve-static');
 var logger       = require('morgan');
 var port         = process.env['PORT'] || 7200;
 var routes;
-var server;
 
 var appDir =  __dirname + '../../'; // Our NG code is served from root
 var environment = process.env.NODE_ENV;
 var pkg = require('./../../package.json');
 
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(compress());            // Compress response data with gzip
 app.use(logger('dev'));
