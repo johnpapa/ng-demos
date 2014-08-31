@@ -131,12 +131,14 @@ fi
 
 # 6. Install gulp packages
 echo "installing gulp"
-cd "$DEPLOYMENT_TARGET"
-eval $NPM_CMD install gulp
-exitWithMessageOnError "installing gulp failed"
-./node_modules/.bin/gulp --version
-exitWithMessageOnError "gulp failed"
-cd - > /dev/null
+if [ -e "$DEPLOYMENT_SOURCE/gulpfile.js" ]; then
+  cd "$DEPLOYMENT_TARGET"
+  eval $NPM_CMD install gulp
+  exitWithMessageOnError "installing gulp failed"
+  ./node_modules/.bin/gulp --version
+  exitWithMessageOnError "gulp failed"
+  cd - > /dev/null
+fi
 
 ##################################################################################################################################
 
