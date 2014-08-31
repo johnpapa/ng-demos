@@ -127,6 +127,14 @@ if [ -e "$DEPLOYMENT_TARGET/bower.json" ]; then
   cd - > /dev/null
 fi
 
+# 6. Install gulp packages
+cd "$DEPLOYMENT_TARGET"
+eval $NPM_CMD install gulp
+exitWithMessageOnError "installing gulp failed"
+./node_modules/.bin/gulp --version
+exitWithMessageOnError "gulp failed"
+cd - > /dev/null
+
 ##################################################################################################################################
 
 # Post deployment stub
