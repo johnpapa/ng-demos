@@ -110,33 +110,10 @@ fi
 selectNodeVersion
 
 # 3. Install npm packages
-echo "installing npm packages"
 if [ -e "$DEPLOYMENT_TARGET/package.json" ]; then
   cd "$DEPLOYMENT_TARGET"
   eval $NPM_CMD install --production
   exitWithMessageOnError "npm failed"
-  cd - > /dev/null
-fi
-
-# 4. Install bower packages
-echo "installing bower packages"
-if [ -e "$DEPLOYMENT_TARGET/bower.json" ]; then
-  cd "$DEPLOYMENT_TARGET"
-  eval $NPM_CMD install bower -g
-  exitWithMessageOnError "installing bower failed"
-  ./node_modules/.bin/bower install
-  exitWithMessageOnError "bower failed"
-  cd - > /dev/null
-fi
-
-# 6. Install gulp packages
-echo "installing gulp"
-if [ -e "$DEPLOYMENT_SOURCE/gulpfile.js" ]; then
-  cd "$DEPLOYMENT_TARGET"
-  eval $NPM_CMD install gulp -g
-  exitWithMessageOnError "installing gulp failed"
-  ./node_modules/.bin/gulp --version
-  exitWithMessageOnError "gulp failed"
   cd - > /dev/null
 fi
 
