@@ -17,14 +17,14 @@ var appDir =  __dirname + '../../'; // Our NG code is served from root
 var environment = process.env.NODE_ENV;
 var pkg = require('./../../package.json');
 
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json());
-app.use(compress());            // Compress response data with gzip
-app.use(logger('dev'));
+// app.use(bodyParser.urlencoded({extended: true}));
+// app.use(bodyParser.json());
+// app.use(compress());            // Compress response data with gzip
+//app.use(logger('dev'));
 app.use(favicon(__dirname + '/favicon.ico'));
 app.use(fileServer(appDir));    // Support static file content
-app.use(cors());                // enable ALL CORS requests
-app.use(errorHandler.init);
+//app.use(cors());                // enable ALL CORS requests
+//app.use(errorHandler.init);
 
 routes = require('./routes/index')(app);
 
