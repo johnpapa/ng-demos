@@ -17,7 +17,7 @@ var appDir =  __dirname + '../../'; // Our NG code is served from root
 var environment = process.env.NODE_ENV;
 var pkg = require('./../../package.json');
 
-process.chdir(appDir);
+process.chdir('./../../');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
