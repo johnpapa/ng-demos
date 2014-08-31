@@ -10,7 +10,7 @@ var errorHandler = require('./routes/utils/errorHandler')();
 var favicon      = require('serve-favicon');
 var fileServer   = require('serve-static');
 var logger       = require('morgan');
-var port         = process.env['PORT'] || 7200;
+var port         = 1337; //process.env['PORT'] || 1337;
 var routes;
 
 var appDir =  __dirname + '../../'; // Our NG code is served from root
