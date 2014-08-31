@@ -4,6 +4,7 @@
 # KUDU Deployment Script
 # Version: 0.1.11
 # ----------------------
+echo "*** starting the KUDU depolyment script ***"
 
 # Helpers
 # -------
@@ -98,7 +99,7 @@ selectNodeVersion () {
 # Deployment
 # ----------
 
-echo Handling node.js deployment.
+echo "Handling node.js deployment"
 
 # 1. KuduSync
 if [[ "$IN_PLACE_DEPLOYMENT" -ne "1" ]]; then
