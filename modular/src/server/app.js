@@ -31,13 +31,16 @@ routes = require('./routes/index')(app);
 console.log('PORT=' + port);
 console.log('NODE_ENV=' + environment);
 
+var source = '';
+
 if(environment === 'stage') {
     console.log('** STAGE **');
-    app.use('/', express.static('./build/stage/'));
+    source = './build/stage/';
+    app.use('/', express.static(source));
 } else {
     console.log('** DEV **');
-//    app.use('/', express.static(appDir));
-    app.use('/', express.static(pkg.paths.client));
+    source = pkg.paths.client;
+    app.use('/', express.static(source));
     app.use('/', express.static('./'));
 
     app.get('/ping', function(req, res, next) {
@@ -50,5 +53,6 @@ app.listen(port, function(){
     console.log('Express server listening on port ' + port);
     console.log('env = '+ app.get('env') +
         '\n__dirname = ' + __dirname  +
-        '\nprocess.cwd = ' + process.cwd() );
+        '\nprocess.cwd = ' + process.cwd() +
+        '\nserving files from source = ' + source);
 });
