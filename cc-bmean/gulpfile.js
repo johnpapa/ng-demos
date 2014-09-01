@@ -260,7 +260,6 @@ gulp.task('serve-dev-debug', function () {
     startLivereload('development');
 });
 
-
 /**
  * serve the dev environment, with debug-brk,
  * and with node inspector
@@ -269,7 +268,6 @@ gulp.task('serve-dev-debug-brk', function () {
     serve({env: 'dev', debug: '--debug-brk'});
     startLivereload('development');
 });
-
 
 /**
  * serve the dev environment
@@ -311,6 +309,12 @@ function serve(args) {
                 pkg.paths.server,
                 pkg.paths.client]
     };
+
+    if(!!plug.util.env.mongo) {
+        log('Starting MongoDB');
+        gulp.src('', {read: false})
+            .pipe(plug.shell(['/usr/local/bin/mongod --config src/server/data/mongodb.config']));
+    }
 
     if(args.debug){
         gulp.src('', {read: false})

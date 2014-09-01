@@ -11,11 +11,10 @@ var favicon = require('serve-favicon');
 var fileServer = require('serve-static');
 var http = require('http');
 var logger = require('morgan');
-var port = process.env['PORT'] || 3001;
+var port = process.env.PORT || 3001;
 var routes;
 var server;
 
-var appDir = __dirname + '../../'; // Our NG code is served from root
 var environment = process.env.NODE_ENV;
 var oneDay = 86400000;
 var pkg = require('./../../package.json');
@@ -28,7 +27,7 @@ routes = require('./routes/index')(app);
 app.use(compress());            // Compress response data with gzip
 app.use(logger('dev'));         // logger
 app.use(favicon(__dirname + '/favicon.ico'));
-app.use(fileServer(appDir));    // Support static file content
+app.use(fileServer(__dirname + '/../../'));    // Support static file content
 app.use(cors());                // enable ALL CORS requests
 app.use(errorHandler.init);
 
@@ -40,7 +39,6 @@ if (environment === 'stage') {
     app.use('/', express.static('./build/stage/'));
 } else {
     console.log('** DEV **');
-//    app.use('/', express.static(appDir));
     app.use('/', express.static(pkg.paths.client, { maxAge: oneDay }));
     app.use('/', express.static('./', { maxAge: oneDay }));
 
@@ -49,7 +47,6 @@ if (environment === 'stage') {
         res.send('pong');
     });
 }
-
 
 server = http.createServer(app);
 
@@ -62,6 +59,5 @@ server.listen(port, function () {
     console.log('env = ' + app.get('env') +
         '\nport = ' + port +
         '\n__dirname = ' + __dirname +
-        '\nprocess.cwd() = ' + process.cwd() +
-        '\nappDir = ' + appDir);
+        '\nprocess.cwd() = ' + process.cwd());
 });
