@@ -17,8 +17,6 @@ var routes;
 var environment = process.env.NODE_ENV;
 var pkg = require('./../../package.json');
 
-//process.chdir('./../../');
-
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(compress());            // Compress response data with gzip
@@ -46,6 +44,10 @@ if(environment === 'stage') {
     source = './build/stage/';
     app.use('/', express.static(source));
 } else {
+    if(environment === 'production') {
+        // Azure
+        process.chdir('./../../');
+    }
     console.log('** DEV **');
     source = pkg.paths.client;
     app.use('/', express.static(source));
