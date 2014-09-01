@@ -8,9 +8,7 @@ var compress     = require('compression');
 var cors         = require('cors');
 var errorHandler = require('./routes/utils/errorHandler')();
 var favicon      = require('serve-favicon');
-var fileServer   = require('serve-static');
 var logger       = require('morgan');
-//var port         = 7200; //process.env['PORT'] || 7200;
 var port         = process.env.PORT || 7200;
 var routes;
 
@@ -22,7 +20,6 @@ app.use(bodyParser.json());
 app.use(compress());            // Compress response data with gzip
 app.use(logger('dev'));
 app.use(favicon(__dirname + '/favicon.ico'));
-app.use(fileServer(__dirname + '/../../'));    // Support static file content
 app.use(cors());                // enable ALL CORS requests
 app.use(errorHandler.init);
 
@@ -39,19 +36,23 @@ app.get('/ping', function(req, res, next) {
     res.send('pong');
 });
 
-if(environment === 'stage') {
-    console.log('** STAGE **');
-    source = './build/stage/';
-    app.use('/', express.static(source));
-} else {
-    if(environment === 'production') {
-        // Azure
+switch (environment){
+    case 'production':
+        console.log('** PRODUCTION ON AZURE **');
         process.chdir('./../../');
-    }
-    console.log('** DEV **');
-    source = pkg.paths.client;
-    app.use('/', express.static(source));
-    app.use('/', express.static('./'));
+        app.use('/', express.static(pkg.paths.client));
+        app.use('/', express.static('./'));
+        break;
+    case 'stage':
+        console.log('** STAGE **');
+        app.use('/', express.static('./build/stage/'));
+        break;
+    case 'dev':
+    default:
+        console.log('** DEV **');
+        app.use('/', express.static(pkg.paths.client));
+        app.use('/', express.static('./'));
+        break;
 }
 
 app.listen(port, function(){
