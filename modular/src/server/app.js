@@ -35,6 +35,11 @@ console.log('NODE_ENV=' + environment);
 
 var source = '';
 
+app.get('/ping', function(req, res, next) {
+    console.log(req.body);
+    res.send('pong');
+});
+
 if(environment === 'stage') {
     console.log('** STAGE **');
     source = './build/stage/';
@@ -44,11 +49,6 @@ if(environment === 'stage') {
     source = pkg.paths.client;
     app.use('/', express.static(source));
     app.use('/', express.static('./'));
-
-    app.get('/ping', function(req, res, next) {
-        console.log(req.body);
-        res.send('pong');
-    });
 }
 
 app.listen(port, function(){
