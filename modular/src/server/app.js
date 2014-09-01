@@ -42,9 +42,9 @@ if(environment === 'stage') {
     app.use('/', express.static(source));
 } else {
     console.log('** DEV **');
-    source = pkg.paths.client;
-    app.use('/', express.static(source));
-    app.use('/', express.static('./'));
+    source = pkg.paths.client; // ./src/client
+    // app.use('/', express.static(source));
+    // app.use('/', express.static('./'));
 
     app.get('/ping', function(req, res, next) {
         console.log(req.body);
@@ -57,5 +57,5 @@ app.listen(port, function(){
     console.log('env = '+ app.get('env') +
         '\n__dirname = ' + __dirname  +
         '\nprocess.cwd = ' + process.cwd() +
-        '\nserving files from source = ' + source);
+        '\nserving static from appDir = ' + appDir);
 });
