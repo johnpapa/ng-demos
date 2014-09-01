@@ -13,11 +13,11 @@ var logger       = require('morgan');
 var port         = 1337; //process.env['PORT'] || 1337;
 var routes;
 
-var appDir =  __dirname + '../../'; // Our NG code is served from root
+var appDir =  __dirname + '/../../'; // Our NG code is served from root
 var environment = process.env.NODE_ENV;
 var pkg = require('./../../package.json');
 
-process.chdir('./../../');
+//process.chdir('./../../');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
