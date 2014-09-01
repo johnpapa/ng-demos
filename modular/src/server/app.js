@@ -10,10 +10,9 @@ var errorHandler = require('./routes/utils/errorHandler')();
 var favicon      = require('serve-favicon');
 var fileServer   = require('serve-static');
 var logger       = require('morgan');
-var port         = 1337; //process.env['PORT'] || 1337;
+var port         = 7200; //process.env['PORT'] || 7200;
 var routes;
 
-var appDir =  __dirname + '/../../'; // Our NG code is served from root
 var environment = process.env.NODE_ENV;
 var pkg = require('./../../package.json');
 
@@ -24,7 +23,7 @@ app.use(bodyParser.json());
 app.use(compress());            // Compress response data with gzip
 app.use(logger('dev'));
 app.use(favicon(__dirname + '/favicon.ico'));
-app.use(fileServer(appDir));    // Support static file content
+app.use(fileServer(__dirname + '/../../'));    // Support static file content
 app.use(cors());                // enable ALL CORS requests
 app.use(errorHandler.init);
 
@@ -42,9 +41,9 @@ if(environment === 'stage') {
     app.use('/', express.static(source));
 } else {
     console.log('** DEV **');
-    source = pkg.paths.client; // ./src/client
-    // app.use('/', express.static(source));
-    // app.use('/', express.static('./'));
+    source = pkg.paths.client;
+    app.use('/', express.static(source));
+    app.use('/', express.static('./'));
 
     app.get('/ping', function(req, res, next) {
         console.log(req.body);
@@ -56,6 +55,5 @@ app.listen(port, function(){
     console.log('Express server listening on port ' + port);
     console.log('env = '+ app.get('env') +
         '\n__dirname = ' + __dirname  +
-        '\nprocess.cwd = ' + process.cwd() +
-        '\nserving static from appDir = ' + appDir);
+        '\nprocess.cwd = ' + process.cwd());
 });
