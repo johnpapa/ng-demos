@@ -6,9 +6,7 @@ module.exports = function() {
 
     function getJsonFromFile(file) {
         var fs = require('fs');
-        var json;
-
-        json = getConfig(file);
+        var json = getConfig(file);
         return json;
 
         function readJsonFileSync(filepath, encoding) {
