@@ -151,14 +151,6 @@ gulp.task('images', function () {
 gulp.task('injectfiles',
     ['js', 'vendorjs', 'css', 'vendorcss'], function () {
     log('Building index.html to stage');
-});
-
-/**
- * @desc Stage the optimized app
- */
-gulp.task('stage',
-    ['injectfiles', 'images', 'fonts'], function () {
-    log('Staging the optimized app');
 
     var minified = pkg.paths.stage + '**/*.min.*';
     var index = pkg.paths.client + 'index.html';
@@ -181,11 +173,7 @@ gulp.task('stage',
         .pipe(plug.revReplace())         // Substitute in new filenames
         .pipe(gulp.dest(pkg.paths.stage)) // write the index.html file changes
         .pipe(plug.rev.manifest()) // create the manifest (must happen last or we screw up the injection)
-        .pipe(gulp.dest(pkg.paths.stage)) // write the manifest
-        .pipe(plug.notify({
-            onLast: true,
-            message: 'Deployed code to stage!'
-        }));
+        .pipe(gulp.dest(pkg.paths.stage)); // write the manifest
 
     function inject(path, name) {
         var glob = pkg.paths.stage + path
@@ -193,11 +181,23 @@ gulp.task('stage',
             ignorePath: pkg.paths.stage.substring(1),
             read: false
         };
-        if (name) {
-            options.name = name;
-        }
+        if (name) { options.name = name; }
         return plug.inject(gulp.src(glob), options);
     }
+
+});
+
+/**
+ * @desc Stage the optimized app
+ */
+gulp.task('stage',
+    ['injectfiles', 'images', 'fonts'], function () {
+    log('Staging the optimized app');
+
+    return gulp.src('').pipe(plug.notify({
+            onLast: true,
+            message: 'Deployed code to stage!'
+        }));
 });
 
 /**
