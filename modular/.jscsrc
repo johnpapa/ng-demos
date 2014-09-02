@@ -1,6 +1,8 @@
 {
     "preset": "google",
 
+    "excludeFiles": ["node_modules/**", "bower_components/**"],
+
     "requireLineFeedAtFileEnd": null,
     "disallowCommaBeforeLineBreak": null,
     "disallowDanglingUnderscores": null,
@@ -17,7 +19,7 @@
     "requireDotNotation": null,
     "requireMultipleVarDecl": null,
     "requireOperatorBeforeLineBreak": null,
-    "requireParenthesesAroundIIFE": null,
-    "validateIndentation": null,
+    "requireParenthesesAroundIIFE": true,
+    "validateIndentation": 4,
     "validateQuoteMarks": null
 }

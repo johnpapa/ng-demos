@@ -44,10 +44,7 @@ gulp.task('analyze', function () {
         .src(sources)
         .pipe(plug.jshint('./.jshintrc'))
         .pipe(plug.jshint.reporter('jshint-stylish'))
-        .pipe(plug.jscs('./.jscsrc'))
-        // .pipe(plug.jscs.reporter({
-        //     reporter: 'checkstyle',
-        //     reporterOutput: 'build/reports/jscsreport.xml'}));
+        .pipe(plug.jscs('./.jscsrc'));
 });
 
 /**
@@ -205,7 +202,7 @@ gulp.task('stage',
 
 /**
  * @desc Remove all files from the build folder
- * One way to run clean before all tasks is to run 
+ * One way to run clean before all tasks is to run
  * from the cmd line: gulp clean && gulp stage
  */
 gulp.task('clean', function () {
@@ -282,7 +279,7 @@ gulp.task('test', ['test-serve-midway'], function () {
 });
 
 /**
- * serve the dev environment, with debug, 
+ * serve the dev environment, with debug,
  * and with node inspector
  */
 gulp.task('serve-dev-debug', function () {
@@ -336,9 +333,9 @@ function serve(args) {
         delayTime: 1,
         ext: 'html js',
         env: {'NODE_ENV': args.env},
-        watch: ['gulpfile.js', 
-                'package.json', 
-                pkg.paths.server, 
+        watch: ['gulpfile.js',
+                'package.json',
+                pkg.paths.server,
                 pkg.paths.client]
     };
 
