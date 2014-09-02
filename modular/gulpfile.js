@@ -66,18 +66,18 @@ gulp.task('templatecache', function () {
  * @desc Minify and bundle the app's JavaScript
  */
 gulp.task('js', ['jshint', 'templatecache'], function () {
-    log('Bundling, minifying, and copying the app\'s  JavaScript');
+    log('Bundling, minifying, and copying the app\'s JavaScript');
 
     var source = [].concat(pkg.paths.js, pkg.paths.stage + 'templates.js');
     return gulp
         .src(source)
-        .pipe(plug.sourcemaps.init())
+//        .pipe(plug.sourcemaps.init()) // get screwed up in the file rev process
         .pipe(plug.concat('all.min.js'))
         .pipe(plug.ngAnnotate({add: true, single_quotes: true}))
         .pipe(plug.bytediff.start())
         .pipe(plug.uglify({mangle: true}))
         .pipe(plug.bytediff.stop(common.bytediffFormatter))
-        .pipe(plug.sourcemaps.write('./'))
+  //      .pipe(plug.sourcemaps.write('./'))
         .pipe(gulp.dest(pkg.paths.stage));
 });
 
@@ -113,7 +113,7 @@ gulp.task('css', function () {
  * @desc Minify and bundle the Vendor CSS
  */
 gulp.task('vendorcss', function () {
-    log('Compressing, bundling, compying vendor CSS');
+    log('Compressing, bundling, copying vendor CSS');
     return gulp.src(pkg.paths.vendorcss)
         .pipe(plug.concat('vendor.min.css'))
         .pipe(plug.bytediff.start())
@@ -148,31 +148,57 @@ gulp.task('images', function () {
 /**
  * @desc Inject all the files into the new index.html
  */
+gulp.task('injectfiles',
+    ['js', 'vendorjs', 'css', 'vendorcss'], function () {
+    log('Building index.html to stage');
+});
+
+/**
+ * @desc Stage the optimized app
+ */
 gulp.task('stage',
-    ['js', 'vendorjs', 'css', 'vendorcss', 'images', 'fonts'], function () {
-        log('Building index.html to stage');
+    ['injectfiles', 'images', 'fonts'], function () {
+    log('Staging the optimized app');
 
-        return gulp
-            .src(pkg.paths.client + '/index.html')
-            .pipe(inject([pkg.paths.stage + 'content/vendor.min.css'], 'inject-vendor'))
-            .pipe(inject([pkg.paths.stage + 'content/all.min.css']))
-            .pipe(inject(pkg.paths.stage + 'vendor/vendor.min.js', 'inject-vendor'))
-            .pipe(inject([pkg.paths.stage + 'all.min.js']))
-            .pipe(gulp.dest(pkg.paths.stage))
-            .pipe(plug.notify({
-                onLast: true,
-                message: 'Deployed code to stage!'
-            }));
+    var minified = pkg.paths.stage + '**/*.min.*';
+    var index = pkg.paths.client + 'index.html';
 
-        function inject(glob, name) {
-            var ignorePath = pkg.paths.stage.substring(1);
-            var options = {ignorePath: ignorePath};
-            if (name) {
-                options.name = name;
-            }
-            return plug.inject(gulp.src(glob), options);
+    var minFilter = plug.filter(['**/*.min.*', '!**/*.map']);
+    var indexFilter = plug.filter(['index.html']);
+
+    return gulp
+        .src([].concat(minified, index)) // add all staged min files and index.html
+        .pipe(minFilter) // filter the stream to minified css and js
+        .pipe(plug.rev()) // create files with rev's
+        .pipe(gulp.dest(pkg.paths.stage)) // write the rev files
+        .pipe(minFilter.restore()) // remove filter, back to original stream
+        .pipe(indexFilter) // filter to index.html
+        .pipe(inject('content/vendor.min.css', 'inject-vendor'))
+        .pipe(inject('content/all.min.css'))
+        .pipe(inject('vendor/vendor.min.js', 'inject-vendor'))
+        .pipe(inject('all.min.js'))
+        .pipe(indexFilter.restore()) // remove filter, back to original stream
+        .pipe(plug.revReplace())         // Substitute in new filenames
+        .pipe(gulp.dest(pkg.paths.stage)) // write the index.html file changes
+        .pipe(plug.rev.manifest()) // create the manifest
+        .pipe(gulp.dest(pkg.paths.stage)) // write the manifest
+        .pipe(plug.notify({
+            onLast: true,
+            message: 'Deployed code to stage!'
+        }));
+
+    function inject(path, name) {
+        var glob = pkg.paths.stage + path
+        var options = {
+            ignorePath: pkg.paths.stage.substring(1),
+            read: false
+        };
+        if (name) {
+            options.name = name;
         }
-    });
+        return plug.inject(gulp.src(glob), options);
+    }
+});
 
 /**
  * @desc Remove all files from the build folder
