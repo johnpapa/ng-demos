@@ -2,7 +2,6 @@
     "preset": "google",
 
     "requireLineFeedAtFileEnd": null,
-
     "disallowCommaBeforeLineBreak": null,
     "disallowDanglingUnderscores": null,
     "disallowEmptyBlocks": null,
@@ -19,6 +18,6 @@
     "requireMultipleVarDecl": null,
     "requireOperatorBeforeLineBreak": null,
     "requireParenthesesAroundIIFE": null,
-    "validateIndentation": 4,
+    "validateIndentation": null,
     "validateQuoteMarks": null
 }
