@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -26,7 +26,7 @@
         }
 
         function getAvengers() {
-            return dataservice.getAvengers().then(function (data) {
+            return dataservice.getAvengers().then(function(data) {
                 vm.avengers = data;
                 return vm.avengers;
             });

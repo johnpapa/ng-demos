@@ -19,7 +19,7 @@ module.exports = function() {
             return JSON.parse(file);
         }
 
-        function getConfig(file){
+        function getConfig(file) {
             var filepath = __dirname + file;
             return readJsonFileSync(filepath);
         }

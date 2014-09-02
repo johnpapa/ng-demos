@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -29,7 +29,7 @@
 
         function hideSplash() {
             //Force a 1 second delay so we can see the splash.
-            $timeout(function () {
+            $timeout(function() {
                 vm.showSplash = false;
             }, 1000);
         }

@@ -1,0 +1,24 @@
+{
+    "preset": "google",
+
+    "requireLineFeedAtFileEnd": null,
+
+    "disallowCommaBeforeLineBreak": null,
+    "disallowDanglingUnderscores": null,
+    "disallowEmptyBlocks": null,
+    "disallowMixedSpacesAndTabs": null,
+    "disallowMultipleLineStrings": null,
+    "disallowTrailingComma": null,
+    "disallowTrailingWhitespace": null,
+    "maximumLineLength": null,
+    "requireCamelCaseOrUpperCaseIdentifiers": null,
+    "requireCapitalizedConstructors": null,
+    "requireCommaBeforeLineBreak": null,
+    "requireCurlyBraces": null,
+    "requireDotNotation": null,
+    "requireMultipleVarDecl": null,
+    "requireOperatorBeforeLineBreak": null,
+    "requireParenthesesAroundIIFE": null,
+    "validateIndentation": 4,
+    "validateQuoteMarks": null
+}

@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     var core = angular.module('app.core');
@@ -6,7 +6,7 @@
     core.config(toastrConfig);
 
     /* @ngInject */
-    function toastrConfig(toastr){
+    function toastrConfig(toastr) {
         toastr.options.timeOut = 4000;
         toastr.options.positionClass = 'toast-bottom-right';
     }
@@ -32,7 +32,7 @@
         routehelperConfigProvider.config.$routeProvider = $routeProvider;
         routehelperConfigProvider.config.docTitle = 'NG-Modular: ';
         var resolveAlways = { /* @ngInject */
-            ready: function (dataservice) {
+            ready: function(dataservice) {
                 return dataservice.ready();
             }
             // ready: ['dataservice', function (dataservice) {
@@ -44,5 +44,4 @@
         // Configure the common exception handler
         exceptionConfigProvider.config.appErrorPrefix = config.appErrorPrefix;
     }
-
 })();

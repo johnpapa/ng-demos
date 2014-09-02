@@ -9,7 +9,7 @@
  * and increases the chances for introducing bugs since the code is duplicated.
  */
 
-(function () {
+(function() {
     'use strict';
 
     angular

@@ -8,7 +8,7 @@ module.exports = function(app) {
         var json = jsonfileservice.getJsonFromFile(pkg.paths.data + 'maa.json');
         json[0].data.results.forEach(function(character) {
             var pos = character.name.indexOf('(MAA)');
-            character.name = character.name.substr(0, pos-1);
+            character.name = character.name.substr(0, pos - 1);
         });
         res.send(json);
     }

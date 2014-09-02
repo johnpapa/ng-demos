@@ -36,14 +36,18 @@ gulp.task('ngAnnotateTest', function () {
 /**
  * @desc Lint the code
  */
-gulp.task('jshint', function () {
+gulp.task('analyze', function () {
     log('Linting the JavaScript');
 
     var sources = [].concat(pkg.paths.js, pkg.paths.nodejs);
     return gulp
         .src(sources)
         .pipe(plug.jshint('./.jshintrc'))
-        .pipe(plug.jshint.reporter('jshint-stylish'));
+        .pipe(plug.jshint.reporter('jshint-stylish'))
+        .pipe(plug.jscs('./.jscsrc'))
+        // .pipe(plug.jscs.reporter({
+        //     reporter: 'checkstyle',
+        //     reporterOutput: 'build/reports/jscsreport.xml'}));
 });
 
 /**
@@ -65,7 +69,7 @@ gulp.task('templatecache', function () {
 /**
  * @desc Minify and bundle the app's JavaScript
  */
-gulp.task('js', ['jshint', 'templatecache'], function () {
+gulp.task('js', ['analyze', 'templatecache'], function () {
     log('Bundling, minifying, and copying the app\'s JavaScript');
 
     var source = [].concat(pkg.paths.js, pkg.paths.stage + 'templates.js');

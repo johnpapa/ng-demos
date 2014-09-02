@@ -55,9 +55,9 @@ switch (environment){
         break;
 }
 
-app.listen(port, function(){
+app.listen(port, function() {
     console.log('Express server listening on port ' + port);
-    console.log('env = '+ app.get('env') +
+    console.log('env = ' + app.get('env') +
         '\n__dirname = ' + __dirname  +
         '\nprocess.cwd = ' + process.cwd());
 });

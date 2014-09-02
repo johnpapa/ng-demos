@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -21,7 +21,7 @@
 
         function link(scope, element, attrs) {
             scope.spinner = null;
-            scope.$watch(attrs.ccSpinner, function (options) {
+            scope.$watch(attrs.ccSpinner, function(options) {
                 if (scope.spinner) {
                     scope.spinner.stop();
                 }

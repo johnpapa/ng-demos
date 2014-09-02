@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -80,7 +80,7 @@
             var readyPromise = primePromise || prime();
 
             return readyPromise
-                .then(function(){ return $q.all(nextPromises); })
+                .then(function() { return $q.all(nextPromises); })
                 .catch(exception.catcher('"ready" function failed'));
         }
 
