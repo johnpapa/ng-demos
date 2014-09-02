@@ -48,7 +48,6 @@ switch (environment){
         console.log('** STAGE **');
         app.use('/', express.static('./build/stage/'));
         break;
-    case 'dev':
     default:
         console.log('** DEV **');
         app.use('/', express.static(pkg.paths.client));

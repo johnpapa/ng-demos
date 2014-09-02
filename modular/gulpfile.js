@@ -176,6 +176,8 @@ gulp.task('stage',
 
 /**
  * @desc Remove all files from the build folder
+ * One way to run clean before all tasks is to run 
+ * from the cmd line: gulp clean && gulp stage
  */
 gulp.task('clean', function () {
     log('Cleaning: ' + plug.util.colors.blue(pkg.paths.stage));
