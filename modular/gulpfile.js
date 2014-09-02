@@ -180,7 +180,7 @@ gulp.task('stage',
         .pipe(indexFilter.restore()) // remove filter, back to original stream
         .pipe(plug.revReplace())         // Substitute in new filenames
         .pipe(gulp.dest(pkg.paths.stage)) // write the index.html file changes
-        .pipe(plug.rev.manifest()) // create the manifest
+        .pipe(plug.rev.manifest()) // create the manifest (must happen last or we screw up the injection)
         .pipe(gulp.dest(pkg.paths.stage)) // write the manifest
         .pipe(plug.notify({
             onLast: true,
