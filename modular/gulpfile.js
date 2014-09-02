@@ -184,7 +184,6 @@ gulp.task('injectfiles',
         if (name) { options.name = name; }
         return plug.inject(gulp.src(glob), options);
     }
-
 });
 
 /**
