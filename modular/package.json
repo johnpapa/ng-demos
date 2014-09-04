@@ -15,7 +15,7 @@
     "init": "npm install",
     "install": "bower install",
     "xstart": "node src/server/app.js",
-    "start": "gulp clean && gulp serve-dev",
+    "start": "gulp serve-dev",
     "test": "gulp test"
   },
   "dependencies": {
