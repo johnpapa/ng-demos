@@ -72,13 +72,13 @@ gulp.task('js', ['analyze', 'templatecache'], function () {
     var source = [].concat(pkg.paths.js, pkg.paths.stage + 'templates.js');
     return gulp
         .src(source)
-//        .pipe(plug.sourcemaps.init()) // get screwed up in the file rev process
+        .pipe(plug.sourcemaps.init()) // get screwed up in the file rev process
         .pipe(plug.concat('all.min.js'))
         .pipe(plug.ngAnnotate({add: true, single_quotes: true}))
         .pipe(plug.bytediff.start())
         .pipe(plug.uglify({mangle: true}))
         .pipe(plug.bytediff.stop(common.bytediffFormatter))
-  //      .pipe(plug.sourcemaps.write('./'))
+        .pipe(plug.sourcemaps.write('./'))
         .pipe(gulp.dest(pkg.paths.stage));
 });
 
@@ -156,10 +156,11 @@ gulp.task('injectfiles',
     var minified = pkg.paths.stage + '**/*.min.*';
     var index = pkg.paths.client + 'index.html';
 
+//    var minFilter = plug.filter(['**/*.min.*', '!**/*.map']);
     var minFilter = plug.filter(['**/*.min.*', '!**/*.map']);
     var indexFilter = plug.filter(['index.html']);
 
-    return gulp
+    var stream = gulp
         .src([].concat(minified, index)) // add all staged min files and index.html
         .pipe(minFilter) // filter the stream to minified css and js
         .pipe(plug.rev()) // create files with rev's
@@ -177,7 +178,7 @@ gulp.task('injectfiles',
         .pipe(gulp.dest(pkg.paths.stage)); // write the manifest
 
     function inject(path, name) {
-        var glob = pkg.paths.stage + path
+        var glob = pkg.paths.stage + path;
         var options = {
             ignorePath: pkg.paths.stage.substring(1),
             read: false
