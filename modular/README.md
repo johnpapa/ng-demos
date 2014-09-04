@@ -1,12 +1,13 @@
 #AngularJS Modular Demo
 Demonstrates Angular modularity, testing, Gulp task automation, and more.
 
+[![Build Status](https://travis-ci.org/johnpapa/ng-demos.svg?branch=master)](https://travis-ci.org/johnpapa/ng-demos)
+
+[ ![Codeship Status for johnpapa/ng-demos](https://codeship.io/projects/4da9d8a0-160c-0132-3072-1640fccf9ec7/status)](https://codeship.io/projects/33792)
+
 >*Opinionated AngularJS style guide for teams by [@john_papa](//twitter.com/john_papa)*
 
 >More details about the styles and patterns used in this app can be found in my [AngularJS Style Guide](https://github.com/johnpapa/angularjs-styleguide) and my **AngularJS Patterns: Clean Code**(coming soon) course at [Pluralsight](http://pluralsight.com/training/Authors/Details/john-papa) and working in teams. 
-
-#Tested
-[ ![Codeship Status for johnpapa/ng-demos](https://codeship.io/projects/4da9d8a0-160c-0132-3072-1640fccf9ec7/status)](https://codeship.io/projects/33792)
 
 ## Structure
 	/build 	(created on the fly)
