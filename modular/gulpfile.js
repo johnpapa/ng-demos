@@ -17,14 +17,14 @@ gulp.task('help', plug.taskListing);
  *      Comment rename, uncomment concat and uglify,
  *      add to index.html, then run it with `gulp serve-dev`.
  */
-gulp.task('ngAnnotateTest', function () {
+gulp.task('ngAnnotateTest', function() {
     log('Annotating AngularJS dependencies');
     var source = [].concat(pkg.paths.js);
     return gulp
         // .src(source)
         .src(pkg.paths.client + '/app/avengers/avengers.js')
         .pipe(plug.ngAnnotate({add: true, single_quotes: true}))
-        .pipe(plug.rename(function (path) {
+        .pipe(plug.rename(function(path) {
             path.extname = '.annotated.js';
         }))
         // .pipe(plug.concat('all.min.js'))
@@ -36,7 +36,7 @@ gulp.task('ngAnnotateTest', function () {
 /**
  * @desc Lint the code
  */
-gulp.task('analyze', function () {
+gulp.task('analyze', function() {
     log('Linting the JavaScript');
 
     var sources = [].concat(pkg.paths.js, pkg.paths.nodejs);
@@ -50,7 +50,7 @@ gulp.task('analyze', function () {
 /**
  * @desc Create $templateCache from the html templates
  */
-gulp.task('templatecache', function () {
+gulp.task('templatecache', function() {
     log('Creating an AngularJS $templateCache');
 
     return gulp
@@ -66,7 +66,7 @@ gulp.task('templatecache', function () {
 /**
  * @desc Minify and bundle the app's JavaScript
  */
-gulp.task('js', ['analyze', 'templatecache'], function () {
+gulp.task('js', ['analyze', 'templatecache'], function() {
     log('Bundling, minifying, and copying the app\'s JavaScript');
 
     var source = [].concat(pkg.paths.js, pkg.paths.stage + 'templates.js');
@@ -85,7 +85,7 @@ gulp.task('js', ['analyze', 'templatecache'], function () {
 /**
  * @desc Copy the Vendor JavaScript
  */
-gulp.task('vendorjs', function () {
+gulp.task('vendorjs', function() {
     log('Bundling, minifying, and copying the Vendor JavaScript');
     return gulp.src(pkg.paths.vendorjs)
         .pipe(plug.concat('vendor.min.js'))
@@ -98,7 +98,7 @@ gulp.task('vendorjs', function () {
 /**
  * @desc Minify and bundle the CSS
  */
-gulp.task('css', function () {
+gulp.task('css', function() {
     log('Bundling, minifying, and copying the app\'s CSS');
     return gulp.src(pkg.paths.css)
         .pipe(plug.concat('all.min.css')) // Before bytediff or after
@@ -113,7 +113,7 @@ gulp.task('css', function () {
 /**
  * @desc Minify and bundle the Vendor CSS
  */
-gulp.task('vendorcss', function () {
+gulp.task('vendorcss', function() {
     log('Compressing, bundling, copying vendor CSS');
     return gulp.src(pkg.paths.vendorcss)
         .pipe(plug.concat('vendor.min.css'))
@@ -126,7 +126,7 @@ gulp.task('vendorcss', function () {
 /**
  * @desc Copy fonts
  */
-gulp.task('fonts', function () {
+gulp.task('fonts', function() {
     var dest = pkg.paths.stage + 'fonts';
     log('Copying fonts');
     return gulp
@@ -137,7 +137,7 @@ gulp.task('fonts', function () {
 /**
  * @desc Compress images
  */
-gulp.task('images', function () {
+gulp.task('images', function() {
     var dest = pkg.paths.stage + 'content/images';
     log('Compressing, caching, and copying images');
     return gulp
@@ -150,63 +150,63 @@ gulp.task('images', function () {
  * @desc Inject all the files into the new index.html
  */
 gulp.task('injectfiles',
-    ['js', 'vendorjs', 'css', 'vendorcss'], function () {
-    log('Building index.html to stage');
+    ['js', 'vendorjs', 'css', 'vendorcss'], function() {
+        log('Building index.html to stage');
 
-    var minified = pkg.paths.stage + '**/*.min.*';
-    var index = pkg.paths.client + 'index.html';
+        var minified = pkg.paths.stage + '**/*.min.*';
+        var index = pkg.paths.client + 'index.html';
 
-//    var minFilter = plug.filter(['**/*.min.*', '!**/*.map']);
-    var minFilter = plug.filter(['**/*.min.*', '!**/*.map']);
-    var indexFilter = plug.filter(['index.html']);
+    //    var minFilter = plug.filter(['**/*.min.*', '!**/*.map']);
+        var minFilter = plug.filter(['**/*.min.*', '!**/*.map']);
+        var indexFilter = plug.filter(['index.html']);
 
-    var stream = gulp
-        .src([].concat(minified, index)) // add all staged min files and index.html
-        .pipe(minFilter) // filter the stream to minified css and js
-        .pipe(plug.rev()) // create files with rev's
-        .pipe(gulp.dest(pkg.paths.stage)) // write the rev files
-        .pipe(minFilter.restore()) // remove filter, back to original stream
-        .pipe(indexFilter) // filter to index.html
-        .pipe(inject('content/vendor.min.css', 'inject-vendor'))
-        .pipe(inject('content/all.min.css'))
-        .pipe(inject('vendor/vendor.min.js', 'inject-vendor'))
-        .pipe(inject('all.min.js'))
-        .pipe(indexFilter.restore()) // remove filter, back to original stream
-        .pipe(plug.revReplace())         // Substitute in new filenames
-        .pipe(gulp.dest(pkg.paths.stage)) // write the index.html file changes
-        .pipe(plug.rev.manifest()) // create the manifest (must happen last or we screw up the injection)
-        .pipe(gulp.dest(pkg.paths.stage)); // write the manifest
+        var stream = gulp
+            .src([].concat(minified, index)) // add all staged min files and index.html
+            .pipe(minFilter) // filter the stream to minified css and js
+            .pipe(plug.rev()) // create files with rev's
+            .pipe(gulp.dest(pkg.paths.stage)) // write the rev files
+            .pipe(minFilter.restore()) // remove filter, back to original stream
+            .pipe(indexFilter) // filter to index.html
+            .pipe(inject('content/vendor.min.css', 'inject-vendor'))
+            .pipe(inject('content/all.min.css'))
+            .pipe(inject('vendor/vendor.min.js', 'inject-vendor'))
+            .pipe(inject('all.min.js'))
+            .pipe(indexFilter.restore()) // remove filter, back to original stream
+            .pipe(plug.revReplace())         // Substitute in new filenames
+            .pipe(gulp.dest(pkg.paths.stage)) // write the index.html file changes
+            .pipe(plug.rev.manifest()) // create the manifest (must happen last or we screw up the injection)
+            .pipe(gulp.dest(pkg.paths.stage)); // write the manifest
 
-    function inject(path, name) {
-        var glob = pkg.paths.stage + path;
-        var options = {
-            ignorePath: pkg.paths.stage.substring(1),
-            read: false
-        };
-        if (name) { options.name = name; }
-        return plug.inject(gulp.src(glob), options);
-    }
-});
+        function inject(path, name) {
+            var glob = pkg.paths.stage + path;
+            var options = {
+                ignorePath: pkg.paths.stage.substring(1),
+                read: false
+            };
+            if (name) { options.name = name; }
+            return plug.inject(gulp.src(glob), options);
+        }
+    });
 
 /**
  * @desc Stage the optimized app
  */
 gulp.task('stage',
-    ['injectfiles', 'images', 'fonts'], function () {
-    log('Staging the optimized app');
+    ['injectfiles', 'images', 'fonts'], function() {
+        log('Staging the optimized app');
 
-    return gulp.src('').pipe(plug.notify({
+        return gulp.src('').pipe(plug.notify({
             onLast: true,
             message: 'Deployed code to stage!'
         }));
-});
+    });
 
 /**
  * @desc Remove all files from the build folder
  * One way to run clean before all tasks is to run
  * from the cmd line: gulp clean && gulp stage
  */
-gulp.task('clean', function () {
+gulp.task('clean', function() {
     log('Cleaning: ' + plug.util.colors.blue(pkg.paths.stage));
     return gulp
         .src(pkg.paths.build, {read: false})
@@ -216,7 +216,7 @@ gulp.task('clean', function () {
 /**
  * @desc Watch files and build
  */
-gulp.task('watch', function () {
+gulp.task('watch', function() {
     log('Watching all files');
 
     var css = ['gulpfile.js'].concat(pkg.paths.css, pkg.paths.vendorcss);
@@ -243,17 +243,17 @@ gulp.task('watch', function () {
 /**
  * @desc Run all tests
  */
-gulp.task('test-serve-midway', function () {
+gulp.task('test-serve-midway', function() {
     log('Pre test serve');
     var testFiles = [pkg.paths.test + 'spec.mocha/*[Ss]pec.js'];
     var options = {
         script: pkg.paths.server + 'app.js',
         env: {'NODE_ENV': 'dev', 'PORT': 8888}
     };
-    plug.nodemon(options);
 });
 
-gulp.task('test', ['test-serve-midway'], function () {
+//gulp.task('test', ['test-serve-midway'], function() {
+gulp.task('test', function() {
     log('Running tests');
     var testFiles = [pkg.paths.test + 'spec.mocha/*[Ss]pec.js'];
     // var options = {
@@ -269,10 +269,10 @@ gulp.task('test', ['test-serve-midway'], function () {
             configFile: pkg.paths.test + '/karma.conf.js',
 //            singleRun: true,
             delay: 5,
-            action: 'watch'  // run or watch
+            action: 'run'  // run or watch
         }))
         .pipe(plug.plumber.stop())
-        .on('error', function (err) {
+        .on('error', function(err) {
             // failed tests cause gulp to exit
             log(err);
             throw err;
@@ -283,26 +283,24 @@ gulp.task('test', ['test-serve-midway'], function () {
  * serve the dev environment, with debug,
  * and with node inspector
  */
-gulp.task('serve-dev-debug', function () {
+gulp.task('serve-dev-debug', function() {
     serve({env: 'dev', debug: '--debug'});
     startLivereload('development');
 });
-
 
 /**
  * serve the dev environment, with debug-brk,
  * and with node inspector
  */
-gulp.task('serve-dev-debug-brk', function () {
+gulp.task('serve-dev-debug-brk', function() {
     serve({env: 'dev', debug: '--debug-brk'});
     startLivereload('development');
 });
 
-
 /**
  * serve the dev environment
  */
-gulp.task('serve-dev', function () {
+gulp.task('serve-dev', function() {
     serve({env: 'dev'});
     startLivereload('development');
 });
@@ -310,7 +308,7 @@ gulp.task('serve-dev', function () {
 /**
  * serve the staging environment
  */
-gulp.task('serve-stage', function () {
+gulp.task('serve-stage', function() {
     serve({env: 'stage'});
     startLivereload('stage');
 });
@@ -321,7 +319,7 @@ function startLivereload(env) {
     plug.livereload.listen(options);
     gulp
         .watch(path)
-        .on('change', function (file) {
+        .on('change', function(file) {
             plug.livereload.changed(file.path);
         });
 
@@ -334,13 +332,15 @@ function serve(args) {
         delayTime: 1,
         ext: 'html js',
         env: {'NODE_ENV': args.env},
-        watch: ['gulpfile.js',
-                'package.json',
-                pkg.paths.server,
-                pkg.paths.client]
+        watch: [
+            'gulpfile.js', 
+            'package.json',
+            pkg.paths.server, 
+            pkg.paths.client
+        ]
     };
 
-    if(args.debug){
+    if (args.debug) {
         gulp.src('', {read: false})
             .pipe(plug.shell(['node-inspector']));
         options.nodeArgs = [args.debug + '=5858'];
@@ -348,7 +348,7 @@ function serve(args) {
 
     return plug.nodemon(options)
         //.on('change', tasks)
-        .on('restart', function () {
+        .on('restart', function() {
             log('restarted!');
         });
 }
