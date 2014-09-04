@@ -8,9 +8,10 @@ branches:
     - master
 
 before_install:
+  - npm install bower -g
   - npm install gulp -g
 
 script:
-  - cd modular
+  - cd modular  
   - npm install
   - gulp test
