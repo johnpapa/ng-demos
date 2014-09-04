@@ -14,3 +14,8 @@ script:
   - cd modular  
   - npm install
   - gulp test
+
+  cache:
+  directories:
+  - bower_components
+  - node_modules
