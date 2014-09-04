@@ -14,8 +14,8 @@
   "scripts": {
     "init": "npm install",
     "install": "bower install",
-    "xstart": "node src/server/app.js",
-    "start": "gulp serve-dev",
+    "start": "node src/server/app.js",
+    "xstart": "gulp serve-dev",
     "test": "gulp test"
   },
   "dependencies": {
