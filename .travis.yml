@@ -15,7 +15,7 @@ script:
   - npm install
   - gulp test
 
-  cache:
+cache:
   directories:
   - bower_components
   - node_modules
