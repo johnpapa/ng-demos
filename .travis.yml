@@ -12,4 +12,5 @@ before_install:
 
 script:
   - cd modular
+  - npm install
   - gulp test
