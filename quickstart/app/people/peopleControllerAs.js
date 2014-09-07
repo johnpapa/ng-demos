@@ -1,12 +1,14 @@
 (function () {
     'use strict';
 
-    var controllerId = 'peopleControllerAs';
+    angular
+        .module('app')
+        .controller('PeopleCtrlAs', PeopleCtrlAs);
 
-    angular.module('app')
-        .controller(controllerId, ['peopleService', peopleControllerAs]);
+    PeopleCtrlAs.$inject = ['peopleService'];
 
-    function peopleControllerAs(peopleService) {
+    function PeopleCtrlAs(peopleService) {
+        /* jshint validthis:true */
         var vm = this;
         vm.title = 'People';
         vm.people = [];

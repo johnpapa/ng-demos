@@ -14,6 +14,7 @@
         return service;
 
         function getAllTips() {
+            //TODO: refactor to local service
             return $http({method: 'GET', url: 'http://meantest.azurewebsites.net/tips/'}).
                 success(function(data, status, headers, config) {
                     // this callback will be called asynchronously

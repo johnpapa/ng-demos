@@ -1,29 +1,16 @@
     (function () {
         'use strict';
 
-        // TODO: Inject modules as needed.
-        var app = angular.module('app', [
-            // Angular modules
-            'ngAnimate',        // animations
-            'ngRoute'           // routing
+        angular
+            .module('app', ['ngAnimate', 'ngRoute'])
+            .config(routeConfig);
+        
+        routeConfig.$inject = ['$routeProvider'];
 
-            // Custom modules
-
-            // 3rd Party Modules
-
-        ]);
-
-        app.config(['$routeProvider', function($routeProvider){
+        function routeConfig($routeProvider) {
             $routeProvider
                 .when('/',{ templateUrl: 'app/people/people.html', title: 'people'})
                 .when('/tips',{ templateUrl: 'app/tips/tips.html', title: 'tips'})
                 .otherwise({ redirectTo: '/' });
-        }]);
-
-        // Execute bootstrapping code and any dependencies.
-        // TODO: inject services as needed.
-        app.run(['$rootScope',
-            function ($rootScope) {
-
-            }]);
+        }
     })();

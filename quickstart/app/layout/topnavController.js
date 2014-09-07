@@ -1,12 +1,13 @@
 (function () {
     'use strict';
 
-    var controllerId = 'topnavController';
-
     angular.module('app')
-        .controller(controllerId, ['$route', topnavController]);
+        .controller('TopNavCtrl', TopNavCtrl);
 
-    function topnavController($route) {
+    TopNavCtrl.$inject = ['$route'];
+
+    function TopNavCtrl($route) {
+        /* jshint validthis:true */
         var vm = this;
 
         vm.isRoute = isRoute;

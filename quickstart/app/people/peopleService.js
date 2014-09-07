@@ -1,10 +1,9 @@
 (function () {
     'use strict';
 
-    var serviceId = 'peopleService';
-
-    angular.module('app')
-        .factory(serviceId, [peopleService]);
+    angular
+        .module('app')
+        .factory('peopleService', peopleService);
 
     function peopleService() {
         var service = {

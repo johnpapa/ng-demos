@@ -1,12 +1,13 @@
 (function () {
     'use strict';
 
-    var controllerId = 'peopleController';
+    angular
+        .module('app')
+        .controller('PeopleCtrl', PeopleCtrl);
 
-    angular.module('app')
-        .controller(controllerId, ['$scope', peopleController]);
+    peopleCtrl.$inject = ['$scope'];
 
-    function peopleController($scope) {
+    function PeopleCtrl($scope) {
         $scope.title = 'People';
         $scope.people = [];
         $scope.activate = activate;

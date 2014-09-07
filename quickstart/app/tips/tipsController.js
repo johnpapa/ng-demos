@@ -1,12 +1,14 @@
 (function () {
     'use strict';
 
-    var controllerId = 'tipsController';
+    angular
+        .module('app')
+        .controller('TipsCtrl', TipsCtrl);
 
-    angular.module('app')
-        .controller(controllerId, ['tipsService', tipsController]);
+    TipsCtrl.$inject = ['tipsService'];
 
-    function tipsController(tipsService) {
+    function TipsCtrl(tipsService) {
+        /* jshint validthis: true */
         var vm = this;
 
         vm.activate = activate;
@@ -26,7 +28,7 @@
             return tipsService.getAllTips().then(function(data){
                 vm.parks = data.data;
                 return vm.parks;
-            })
+            });
         }
 
         function isActive(park){
