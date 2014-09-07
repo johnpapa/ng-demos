@@ -147,52 +147,6 @@ gulp.task('images', function() {
         .pipe(gulp.dest(dest));
 });
 
-// /**
-//  * @desc Inject all the files into the new index.html
-//  */
-// gulp.task('injectfiles-badmap',
-//     ['js', 'vendorjs', 'css', 'vendorcss'], function() {
-//         log('Building index.html to stage');
-
-//         var minified = pkg.paths.stage + '**/*.min.*';
-//         var index = pkg.paths.client + 'index.html';
-
-//         var minFilter = plug.filter(['**/*.min.*', '!**/*.map']);
-//         var indexFilter = plug.filter(['index.html']);
-
-//         var fooFilter = plug.filter(['**/*.min.*', '!**/*.map', 'index.html']);
-
-//         var jsFilter = plug.filter(['**/*.js']);
-
-//         var stream = gulp
-//             .src([].concat(pkg.paths.js, minified, index)) // add all staged min files and index.html
-//             .pipe(jsFilter)
-//             .pipe(plug.sourcemaps.init()) 
-//             .pipe(plug.uglify({mangle: true}))
-//             .pipe(jsFilter.restore())
-
-//             .pipe(minFilter) // filter the stream to minified css and js
-//             .pipe(plug.rev()) // create files with rev's
-//             .pipe(plug.sourcemaps.write('./'))
-//             .pipe(gulp.dest(pkg.paths.stage)) // write the rev files
-//             .pipe(minFilter.restore()) // remove filter, back to original stream
-            
-//             .pipe(indexFilter) // filter to index.html
-//             .pipe(inject('content/vendor.min.css', 'inject-vendor'))
-//             .pipe(inject('content/all.min.css'))
-//             .pipe(inject('vendor.min.js', 'inject-vendor'))
-//             .pipe(inject('all.min.js'))
-//             .pipe(gulp.dest(pkg.paths.stage)) // write the rev files
-//             .pipe(indexFilter.restore()) // remove filter, back to original stream
-            
-//             .pipe(plug.revReplace())         // Substitute in new filenames
-//             .pipe(fooFilter)
-//             .pipe(gulp.dest(pkg.paths.stage)) // write the index.html file changes
-//             .pipe(plug.rev.manifest()) // create the manifest (must happen last or we screw up the injection)
-//             .pipe(gulp.dest(pkg.paths.stage)) // write the manifest
-//             .pipe(fooFilter.restore());
-//     });
-
 /**
  * @desc Inject all the files into the new index.html
  * rev, but no map
