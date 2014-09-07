@@ -147,74 +147,36 @@ gulp.task('images', function() {
         .pipe(gulp.dest(dest));
 });
 
-// /**
-//  * @desc Inject all the files into the new index.html
-//  */
-// gulp.task('injectfiles-badmap',
-//     ['js', 'vendorjs', 'css', 'vendorcss'], function() {
-//         log('Building index.html to stage');
-
-//         var minified = pkg.paths.stage + '**/*.min.*';
-//         var index = pkg.paths.client + 'index.html';
-
-//         var minFilter = plug.filter(['**/*.min.*', '!**/*.map']);
-//         var indexFilter = plug.filter(['index.html']);
-
-//         var fooFilter = plug.filter(['**/*.min.*', '!**/*.map', 'index.html']);
-
-//         var jsFilter = plug.filter(['**/*.js']);
-
-//         var stream = gulp
-//             .src([].concat(pkg.paths.js, minified, index)) // add all staged min files and index.html
-//             .pipe(jsFilter)
-//             .pipe(plug.sourcemaps.init()) 
-//             .pipe(plug.uglify({mangle: true}))
-//             .pipe(jsFilter.restore())
-
-//             .pipe(minFilter) // filter the stream to minified css and js
-//             .pipe(plug.rev()) // create files with rev's
-//             .pipe(plug.sourcemaps.write('./'))
-//             .pipe(gulp.dest(pkg.paths.stage)) // write the rev files
-//             .pipe(minFilter.restore()) // remove filter, back to original stream
-            
-//             .pipe(indexFilter) // filter to index.html
-//             .pipe(inject('content/vendor.min.css', 'inject-vendor'))
-//             .pipe(inject('content/all.min.css'))
-//             .pipe(inject('vendor.min.js', 'inject-vendor'))
-//             .pipe(inject('all.min.js'))
-//             .pipe(gulp.dest(pkg.paths.stage)) // write the rev files
-//             .pipe(indexFilter.restore()) // remove filter, back to original stream
-            
-//             .pipe(plug.revReplace())         // Substitute in new filenames
-//             .pipe(fooFilter)
-//             .pipe(gulp.dest(pkg.paths.stage)) // write the index.html file changes
-//             .pipe(plug.rev.manifest()) // create the manifest (must happen last or we screw up the injection)
-//             .pipe(gulp.dest(pkg.paths.stage)) // write the manifest
-//             .pipe(fooFilter.restore());
-//     });
-
 /**
  * @desc Inject all the files into the new index.html
- * rev, but no map
  */
-gulp.task('rev-and-inject',
+gulp.task('injectfiles-badmap',
     ['js', 'vendorjs', 'css', 'vendorcss'], function() {
-        log('Rev\'ing files and building index.html');
+        log('Building index.html to stage');
 
         var minified = pkg.paths.stage + '**/*.min.*';
         var index = pkg.paths.client + 'index.html';
+
         var minFilter = plug.filter(['**/*.min.*', '!**/*.map']);
         var indexFilter = plug.filter(['index.html']);
 
+        var fooFilter = plug.filter(['**/*.min.*', '!**/*.map', 'index.html']);
+
+        var jsFilter = plug.filter(['**/*.js']);
+
         var stream = gulp
-            // Write the revisioned files
-            .src([].concat(minified, index)) // add all staged min files and index.html
+            .src([].concat(pkg.paths.js, minified, index)) // add all staged min files and index.html
+            .pipe(jsFilter)
+            .pipe(plug.sourcemaps.init()) 
+            .pipe(plug.uglify({mangle: true}))
+            .pipe(jsFilter.restore())
+
             .pipe(minFilter) // filter the stream to minified css and js
             .pipe(plug.rev()) // create files with rev's
+            .pipe(plug.sourcemaps.write('./'))
             .pipe(gulp.dest(pkg.paths.stage)) // write the rev files
             .pipe(minFilter.restore()) // remove filter, back to original stream
             
-            // inject the files into index.html
             .pipe(indexFilter) // filter to index.html
             .pipe(inject('content/vendor.min.css', 'inject-vendor'))
             .pipe(inject('content/all.min.css'))
@@ -222,35 +184,76 @@ gulp.task('rev-and-inject',
             .pipe(inject('all.min.js'))
             .pipe(gulp.dest(pkg.paths.stage)) // write the rev files
             .pipe(indexFilter.restore()) // remove filter, back to original stream
+            
+            .pipe(plug.revReplace())         // Substitute in new filenames
+            .pipe(fooFilter)
+            .pipe(gulp.dest(pkg.paths.stage)) // write the index.html file changes
+            .pipe(plug.rev.manifest()) // create the manifest (must happen last or we screw up the injection)
+            .pipe(gulp.dest(pkg.paths.stage)) // write the manifest
+            .pipe(fooFilter.restore());
+    });
 
-            // replace the files referenced in index.html with the rev'd files            
+/**
+ * @desc Inject all the files into the new index.html
+ * rev, but no map
+ */
+gulp.task('injectfiles',
+    ['js', 'vendorjs', 'css', 'vendorcss'], function() {
+        log('Building index.html to stage');
+
+        var minified = pkg.paths.stage + '**/*.min.*';
+        var index = pkg.paths.client + 'index.html';
+
+        var minFilter = plug.filter(['**/*.min.*', '!**/*.map']);
+        var indexFilter = plug.filter(['index.html']);
+
+        var stream = gulp
+            .src([].concat(minified, index)) // add all staged min files and index.html
+            .pipe(minFilter) // filter the stream to minified css and js
+            .pipe(plug.rev()) // create files with rev's
+            .pipe(gulp.dest(pkg.paths.stage)) // write the rev files
+            .pipe(minFilter.restore()) // remove filter, back to original stream
+            
+            .pipe(indexFilter) // filter to index.html
+            .pipe(inject('content/vendor.min.css', 'inject-vendor'))
+            .pipe(inject('content/all.min.css'))
+            .pipe(inject('vendor.min.js', 'inject-vendor'))
+            .pipe(inject('all.min.js'))
+            .pipe(gulp.dest(pkg.paths.stage)) // write the rev files
+            .pipe(indexFilter.restore()) // remove filter, back to original stream
+            
             .pipe(plug.revReplace())         // Substitute in new filenames
             .pipe(gulp.dest(pkg.paths.stage)) // write the index.html file changes
             .pipe(plug.rev.manifest()) // create the manifest (must happen last or we screw up the injection)
             .pipe(gulp.dest(pkg.paths.stage)); // write the manifest
-
-        function inject(path, name) {
-            var glob = pkg.paths.stage + path;
-            var options = {
-                ignorePath: pkg.paths.stage.substring(1),
-                read: false
-            };
-            if (name) { options.name = name; }
-            return plug.inject(gulp.src(glob), options);
-        }
     });
+
+function inject(path, name) {
+    var glob = pkg.paths.stage + path;
+    var options = {
+        ignorePath: pkg.paths.stage.substring(1),
+        read: false
+    };
+    if (name) { options.name = name; }
+    return plug.inject(gulp.src(glob), options);
+}
 
 /**
  * @desc Stage the optimized app
  */
 gulp.task('stage',
-    ['rev-and-inject', 'images', 'fonts'], function() {
+    ['injectfiles', 'images', 'fonts'], function() {
         log('Staging the optimized app');
 
-        return gulp.src('').pipe(plug.notify({
-            onLast: true,
-            message: 'Deployed code to stage!'
-        }));
+        return clean(pkg.paths.build)
+            .then(gulp.src('').pipe(plug.notify({
+                onLast: true,
+                message: 'Deployed code to stage!'
+            })));
+        // return gulp.src('').pipe(plug.notify({
+        //     onLast: true,
+        //     message: 'Deployed code to stage!'
+        // }));
     });
 
 /**
@@ -258,14 +261,25 @@ gulp.task('stage',
  * One way to run clean before all tasks is to run
  * from the cmd line: gulp clean && gulp stage
  */
-gulp.task('clean', function() {
-    var paths = pkg.paths.build;
-    log('Cleaning: ' + plug.util.colors.blue(paths));
-
+gulp.task('clean', function clean() {
+    log('Cleaning: ' + plug.util.colors.blue(pkg.paths.stage));
     return gulp
+        .src(pkg.paths.build, {read: false})
+        .pipe(plug.rimraf({force: true}))
+});
+
+function clean(paths) {
+    var deferred = Q.defer();
+
+    gulp
+        // .src(pkg.paths.build, {read: false})
         .src(paths, {read: false})
         .pipe(plug.rimraf({force: true}));
-});
+
+    deferred.resolve();
+
+    return deferred.promise;
+}
 
 /**
  * @desc Watch files and build
@@ -325,7 +339,7 @@ gulp.task('test', function() {
             delay: 5,
             action: 'run'  // run or watch
         }))
-        // .pipe(plug.plumber.stop())
+        .pipe(plug.plumber.stop())
         .on('error', function(err) {
             // failed tests cause gulp to exit
             log(err);
