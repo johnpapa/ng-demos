@@ -5,7 +5,6 @@ var common = require('./gulp/common.js');
 var plug = require('gulp-load-plugins')();
 var env = plug.util.env;
 var log = plug.util.log;
-var Q = require('q');
 
 gulp.task('help', plug.taskListing);
 
