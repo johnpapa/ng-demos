@@ -321,16 +321,19 @@ gulp.task('serve-stage', function() {
 });
 
 function startLivereload(env) {
-    var path = (env === 'stage' ? [pkg.paths.stage, pkg.paths.client + '/**'] : [pkg.paths.client + '/**']);
-    var options = {auto: true};
-    plug.livereload.listen(options);
-    gulp
-        .watch(path)
-        .on('change', function(file) {
-            plug.livereload.changed(file.path);
-        });
+    
+    //TODO: gulp-livereload is failing due to tiny-lr issue. Re-enable when fixed.
 
-    log('Serving from ' + env);
+    // var path = (env === 'stage' ? [pkg.paths.stage, pkg.paths.client + '/**'] : [pkg.paths.client + '/**']);
+    // var options = {auto: true};
+    // plug.livereload.listen(options);
+    // gulp
+    //     .watch(path)
+    //     .on('change', function(file) {
+    //         plug.livereload.changed(file.path);
+    //     });
+
+    // log('Serving from ' + env);
 }
 
 function serve(args) {
