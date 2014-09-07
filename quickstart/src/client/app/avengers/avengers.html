@@ -1,0 +1,32 @@
+<div data-ng-controller="AvengersCtrl as vm" >
+    <h2 class="row">{{vm.title}} - $route, config, track by, order by, promises</h2>
+
+    <div class="row btn-group">
+        <button type="button" class="btn btn-default"
+                data-ng-repeat="a in vm.avengers track by a.name"
+                data-ng-click="vm.selectedAvenger = a">{{a.name}}</button>
+    </div>
+    <div class="row">
+        <span class="label label-primary">{{vm.selectedAvenger.name}}</span>
+    </div>
+
+    <div class="row">
+        <label>Filter</label>
+        <input data-ng-model="avengerFilter"/>
+    </div>
+
+    <div data-ng-if="vm.selectedAvenger" class="row">
+        <table class="table table-bordered table-striped table-condensed">
+            <thead>
+                <th>Name</th>
+                <th>Description</th>
+            </thead>
+            <tbody>
+                <tr data-ng-repeat="a in vm.avengers | filter:avengerFilter | orderBy:'name' track by a.id ">
+                    <td>{{a.name}}</td>
+                    <td>{{a.description}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

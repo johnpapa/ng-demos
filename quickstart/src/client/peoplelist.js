@@ -33,7 +33,7 @@ $(function(){
     });
 
     function contains(text, matcher){
-        return text.toLowerCase().indexOf(matcher.toLowerCase()) !== -1
+        return text.toLowerCase().indexOf(matcher.toLowerCase()) !== -1;
     }
 
     $('#personFilter').keyup(function(event){

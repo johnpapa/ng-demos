@@ -1,21 +1,21 @@
 (function () {
     'use strict';
 
-    var serviceId = 'tipsService';
+    angular
+        .module('app')
+        .factory('dataservice', dataservice);
 
-    angular.module('app')
-        .factory(serviceId, ['$http', tipsService]);
+    dataservice.$inject = ['$http'];
 
-    function tipsService($http) {
+    function dataservice($http) {
         var service = {
-            getAllTips: getAllTips
+            getAvengers: getAvengers
         };
 
         return service;
 
-        function getAllTips() {
-            //TODO: refactor to local service
-            return $http({method: 'GET', url: 'http://meantest.azurewebsites.net/tips/'}).
+        function getAvengers() {
+            return $http({method: 'GET', url: '/api/maa'}).
                 success(function(data, status, headers, config) {
                     // this callback will be called asynchronously
                     // when the response is available

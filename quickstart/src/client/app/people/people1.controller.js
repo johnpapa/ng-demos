@@ -5,7 +5,7 @@
         .module('app')
         .controller('PeopleCtrl', PeopleCtrl);
 
-    peopleCtrl.$inject = ['$scope'];
+    PeopleCtrl.$inject = ['$scope'];
 
     function PeopleCtrl($scope) {
         $scope.title = 'People';

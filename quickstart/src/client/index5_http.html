@@ -6,18 +6,18 @@
     <link rel="stylesheet" href="content/styles.css"/>
     <link rel="stylesheet" href="content/animations.css"/>
 </head>
-<body class="container" data-ng-controller="TipsCtrl as vm">
+<body class="container" data-ng-controller="AvengersCtrl as vm">
     <h2>$http, ng-class, ng-click</h2>
 
     <div class="row">
-        <button data-ng-click="vm.getTips()"
+        <button data-ng-click="vm.getAvengers()"
                 class="btn btn-info">Refresh</button>
     </div>
 
     <ul class="nav nav-tabs nav-justified">
-        <li data-ng-repeat="p in vm.parks track by p.ShortName"
-            data-ng-class="{active: vm.isActive(p)}">
-            <a href="" data-ng-click="vm.selectedPark=p">{{p.ShortName}}</a>
+        <li data-ng-repeat="a in vm.avengers track by a.id"
+            data-ng-class="{active: vm.isActive(a)}">
+            <a href="" data-ng-click="vm.selectedAvenger=a">{{a.name}}</a>
         </li>
     </ul>
 
@@ -27,10 +27,8 @@
     <script src="scripts/angular-route.js"></script>
     <script src="scripts/angular-animate.js"></script>
 
-    <script src="app/app.js"></script>
-    <script src="app/people/peopleControllerAs.js"></script>
-    <script src="app/people/peopleService.js"></script>
-    <script src="app/tips/tipsController.js"></script>
-    <script src="app/tips/tipsService.js"></script>
+    <script src="app/app.module.js"></script>
+    <script src="app/avengers/avengers.controller.js"></script>
+    <script src="app/avengers/avengers.service.js"></script>
 </body>
 </html>

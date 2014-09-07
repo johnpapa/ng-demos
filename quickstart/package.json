@@ -1,0 +1,17 @@
+{
+  "name": "quickstart",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.8.0",
+    "compression": "^1.0.11",
+    "express": "^4.8.8",
+    "morgan": "^1.3.0"
+  }
+}

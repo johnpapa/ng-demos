@@ -5,8 +5,8 @@
     <link rel="stylesheet" href="content/bootstrap.css"/>
     <link rel="stylesheet" href="content/styles.css"/>
 </head>
-<body class="container" data-ng-controller="PeopleCtrlAs as vm">
-    <h2>1st Service/Factory</h2>
+<body class="container" data-ng-controller="PeopleCtrl">
+    <h2>1st Controller, Dependency Injection, Named Module, and $scope</h2>
     <div>
         <label>Filter</label>
         <input data-ng-model="personFilter"/>
@@ -14,14 +14,11 @@
     <table class="table table-bordered table-striped table-condensed">
         <thead>
             <th>First</th>
-            <th>Last</th>
-            <th>Lunch $</th>
         </thead>
         <tbody>
-            <tr data-ng-repeat="p in vm.people | filter:personFilter">
+            <tr data-ng-repeat="p in people | filter:personFilter">
                 <td>{{p.first}}</td>
                 <td>{{p.last}}</td>
-                <td>{{p.lunchMoney | currency}}</td>
             </tr>
         </tbody>
     </table>
@@ -30,8 +27,8 @@
     <script src="scripts/angular-route.js"></script>
     <script src="scripts/angular-animate.js"></script>
 
-    <script src="app/app.js"></script>
-    <script src="app/people/peopleControllerAs.js"></script>
-    <script src="app/people/peopleService.js"></script>
+    <script src="app/app.module.js"></script>
+    <script src="app/people/people1.controller.js"></script>
+    <script src="app/people/people.service.js"></script>
 </body>
 </html>

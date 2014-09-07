@@ -10,7 +10,7 @@
         function routeConfig($routeProvider) {
             $routeProvider
                 .when('/',{ templateUrl: 'app/people/people.html', title: 'people'})
-                .when('/tips',{ templateUrl: 'app/tips/tips.html', title: 'tips'})
+                .when('/avengers',{ templateUrl: 'app/avengers/avengers.html', title: 'avengers'})
                 .otherwise({ redirectTo: '/' });
         }
     })();
