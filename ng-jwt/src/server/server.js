@@ -5,31 +5,31 @@ var express      = require('express'),
     cors         = require('cors'),
     auth         = require('./auth'),
     errorHandler = require('./errorHandler'),
-    favicon      = require('static-favicon'),
-    fileServer   = require('serve-static'),
+    favicon      = require('serve-favicon'),
     http         = require('http'),
     isDev        = app.get('env') === 'development',
     logger       = require('morgan'),
-    port         = process.env['PORT'] || 7171,
+    port         = process.env.PORT || 7171,
     routes       = require('./routes');
 
-var appDir =  __dirname + '/../'; // Our NG code
-
-app.use(bodyParser()); // body parser, json, and url encoding
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 app.use(compress()); // Compress response data with gzip
 app.use(logger('dev')); // logger
-app.use(fileServer(process.cwd())); // Support static file content
+//app.use(fileServer(process.cwd())); // Support static file content
 app.use(cors());          // enable ALL CORS requests
 app.use(errorHandler.init);
-app.use('/', express.static(appDir));
+console.log('** DEV **');
+app.use('/', express.static('./src/client'));
+app.use('/', express.static('./'));
 
 auth.init(app);
 routes.init(app);
 
 if(isDev){
-    app.get('/test', function(req, res, next) {
+    app.get('/ping', function(req, res, next) {
         console.log(req.body);
-        res.send('ping');
+        res.send('pong');
     });
 }
 
