@@ -12,11 +12,6 @@ var logger       = require('morgan');
 var port         = process.env.PORT || 7200;
 var routes;
 
-require('nodetime').profile({
-    accountKey: '9dbf09853e525de071eae88a3b8cbd9615a3ae13', 
-    appName: 'Node.js Application'
-});
-
 var environment = process.env.NODE_ENV;
 var pkg = require('./../../package.json');
 

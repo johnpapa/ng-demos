@@ -78,7 +78,6 @@
     "minimist": "^0.2.0",
     "mocha": "^1.20.1",
     "ng-midway-tester": "^2.0.5",
-    "nodetime": "^0.8.15",
     "phantomjs": "^1.9.7-14",
     "q": "^1.0.1",
     "sinon": "^1.10.3"
