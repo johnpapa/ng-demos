@@ -13,6 +13,7 @@ before_install:
 script:
   - cd modular  
   - npm install
+  - bower install
   - gulp test
 
 cache:
