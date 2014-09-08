@@ -8,49 +8,49 @@ var compress = require('compression');
 var cors = require('cors');
 var errorHandler = require('./routes/utils/errorHandler')();
 var favicon = require('serve-favicon');
-var fileServer = require('serve-static');
-var http = require('http');
 var logger = require('morgan');
 var port = process.env.PORT || 3001;
 var routes;
-var server;
 
 var environment = process.env.NODE_ENV;
 var oneDay = 86400000;
 var pkg = require('./../../package.json');
 
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-routes = require('./routes/index')(app);
 app.use(compress());            // Compress response data with gzip
 app.use(logger('dev'));         // logger
 app.use(favicon(__dirname + '/favicon.ico'));
-app.use(fileServer(__dirname + '/../../'));    // Support static file content
 app.use(cors());                // enable ALL CORS requests
 app.use(errorHandler.init);
 
+routes = require('./routes/index')(app);
+
+console.log('About to crank up node');
 console.log('PORT=' + port);
 console.log('NODE_ENV=' + environment);
 
-if (environment === 'stage') {
-    console.log('** STAGE **');
-    app.use('/', express.static('./build/stage/'));
-} else {
-    console.log('** DEV **');
-    app.use('/', express.static(pkg.paths.client, { maxAge: oneDay }));
-    app.use('/', express.static('./', { maxAge: oneDay }));
+var source = '';
 
-    app.get('/ping', function (req, res, next) {
-        console.log(req.body);
-        res.send('pong');
-    });
+app.get('/ping', function(req, res, next) {
+    console.log(req.body);
+    res.send('pong');
+});
+
+switch (environment){
+    case 'stage':
+        console.log('** STAGE **');
+        app.use('/', express.static('./build/stage/'));
+        break;
+    default:
+        console.log('** DEV **');
+        app.use('/', express.static(pkg.paths.client, { maxAge: oneDay }));
+        app.use('/', express.static('./'));
+        break;
 }
 
-server = http.createServer(app);
 
-server.listen(port, function () {
+app.listen(port, function () {
     console.log('************************');
     console.log('Code Camper MEAN Server');
     console.log('Listening on port ' + port);
