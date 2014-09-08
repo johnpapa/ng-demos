@@ -1,15 +1,15 @@
 /*jshint node:true*/
 'use strict';
 
-var express      = require('express');
-var app          = express();
-var bodyParser   = require('body-parser');
-var compress     = require('compression');
-var cors         = require('cors');
+var express = require('express');
+var app = express();
+var bodyParser = require('body-parser');
+var compress = require('compression');
+var cors = require('cors');
 var errorHandler = require('./routes/utils/errorHandler')();
-var favicon      = require('serve-favicon');
-var logger       = require('morgan');
-var port         = process.env.PORT || 7200;
+var favicon = require('serve-favicon');
+var logger = require('morgan');
+var port = process.env.PORT || 7200;
 var routes;
 
 var environment = process.env.NODE_ENV;
