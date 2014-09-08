@@ -23,7 +23,6 @@
     "debug": "^0.8.0",
     "cors": "^2.2.0",
     "method-override": "^1.0.0",
-    "serve-static": "^1.1.0",
     "body-parser": "^1.0.2",
     "compression": "^1.0.1",
     "serve-favicon": "^2.0.1",

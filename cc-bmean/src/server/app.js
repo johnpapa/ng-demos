@@ -49,7 +49,6 @@ switch (environment){
         break;
 }
 
-
 app.listen(port, function () {
     console.log('************************');
     console.log('Code Camper MEAN Server');

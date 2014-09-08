@@ -324,6 +324,12 @@ function serve(args) {
         ]
     };
 
+    if(!!plug.util.env.mongo) {
+        log('Starting MongoDB');
+        gulp.src('', {read: false})
+            .pipe(plug.shell(['/usr/local/bin/mongod --config src/server/data/mongodb.config']));
+    }
+
     if (args.debug) {
         gulp.src('', {read: false})
             .pipe(plug.shell(['node-inspector']));
