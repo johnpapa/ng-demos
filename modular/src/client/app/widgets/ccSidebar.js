@@ -14,7 +14,10 @@
         //  <div data-cc-sidebar class="sidebar">
         var directive = {
             link: link,
-            restrict: 'A'
+            restrict: 'A',
+            scope: {
+                whenDoneAnimating: '=?'
+            }
         };
         return directive;
 
@@ -23,22 +26,17 @@
             var $dropdownElement = element.find('.sidebar-dropdown a');
             element.addClass('sidebar');
             $dropdownElement.click(dropdown);
+            var whenDone = (typeof scope.whenDoneAnimating === 'function')? scope.whenDoneAnimating : function(){};
 
             function dropdown(e) {
                 var dropClass = 'dropy';
                 e.preventDefault();
                 if (!$dropdownElement.hasClass(dropClass)) {
-                    hideAllSidebars();
-                    $sidebarInner.slideDown(350);
+                    $sidebarInner.slideDown(350, whenDone);
                     $dropdownElement.addClass(dropClass);
                 } else if ($dropdownElement.hasClass(dropClass)) {
                     $dropdownElement.removeClass(dropClass);
-                    $sidebarInner.slideUp(350);
-                }
-
-                function hideAllSidebars() {
-                    $sidebarInner.slideUp(350);
-                    $('.sidebar-dropdown a').removeClass(dropClass);
+                    $sidebarInner.slideUp(350, whenDone);
                 }
             }
         }
