@@ -8,8 +8,8 @@ module.exports = function (config) {
         basePath: '../../',
 
         // frameworks to use
-        // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-        frameworks: ['mocha', 'chai', 'sinon'],
+        // some available frameworks: https://npmjs.org/browse/keyword/karma-adapter
+        frameworks: ['mocha', 'chai', 'sinon', 'chai-sinon'],
 //        frameworks: ['jasmine'],
 
         // list of files / patterns to load in the browser
@@ -40,7 +40,7 @@ module.exports = function (config) {
             './client/test/spec.mocha/**/specHelper.js',
             './client/test/spec.mocha/**/*.spec.js'
         ],
-        
+
         proxies: {
             '/': 'http://localhost:8888/'
         },

@@ -26,7 +26,7 @@
 
 })();
 
-describe('Team', function () {
+describe('Basics - team ctrl with dependency', function () {
 
     var scope, scope2,
         controller;
