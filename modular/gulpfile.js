@@ -257,24 +257,31 @@ gulp.task('test-serve-midway', function() {
         script: pkg.paths.server + 'app.js',
         env: {'NODE_ENV': 'dev', 'PORT': 8888}
     };
+    plug.nodemon(options);
 });
 
 /**
  * @desc Run non-midway tests
  * @example
- *    gulp test            // Run once and then close
- *    gulp test --watch    // Run and keep open with watch
+ *    gulp test                         // Run once and then close
+ *    gulp test --watch                 // Run and keep open with watch
+ *    gulp test --watch --startServers  // Start servers, run, and keep open with watch
  */
  //gulp.task('test', ['test-serve-midway'], function() {
 gulp.task('test', function() {
+    
+    if (env.startServers){
+        log('Starting servers');
+        var options = {
+            script: pkg.paths.server + 'app.js',
+            env: {'NODE_ENV': 'dev', 'PORT': 8888}
+        };
+        plug.nodemon(options);    
+    }
+
     log('Running tests');
     var action = (env.watch == null || env.watch === 'run') ? 'run' : 'watch';
     var testFiles = [pkg.paths.test + 'spec.mocha/*[Ss]pec.js'];
-    // var options = {
-    //     script: pkg.paths.server + 'app.js',
-    //     env: {'NODE_ENV': 'dev', 'PORT': 8888}
-    // };
-    // plug.nodemon(options);
 
     return gulp
         .src('./useKarmaConfAndNotThis')
