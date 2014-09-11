@@ -16,7 +16,7 @@
  *
  * These points are illustrated here.
  */
-describe.only("ng Promises", function () {
+describe("Basics - ng Promises", function () {
     var $q, $rootScope,
         bingo,
         deferred,

@@ -75,11 +75,11 @@ describe("Basics - controller w/ sync dataservice", function () {
 
         beforeEach(inject(function($controller, _dataservice_){
             dataservice = _dataservice_;
-            getAvengersSpy = sinon.stub(dataservice, 'getAvengers', fakeGetAvengers);
+            getAvengersSpy = sinon.stub(dataservice, 'getAvengers', testctx.getMockAvengers);
             controller = $controller(controllerName);
         }));
 
-        it("has faked avengers immediately upon creation", function () {
+        it("has test avengers immediately upon creation", function () {
             expect(controller.avengers.length).above(1);
         });
 
@@ -88,13 +88,14 @@ describe("Basics - controller w/ sync dataservice", function () {
 
 
 
-    describe("when using fake dataservice", function () {
+    describe("when using mock dataservice", function () {
 
         beforeEach(module(function($provide){
 
-            $provide.factory('dataservice', function fakeDataservice(){
+            $provide.factory('dataservice', function mockDataservice(){
                 return {
-                    getAvengers: fakeGetAvengers
+                    // testctx is in specHelper.js
+                    getAvengers: testctx.getMockAvengers
                 }
             });
 
@@ -104,32 +105,9 @@ describe("Basics - controller w/ sync dataservice", function () {
             controller = $controller(controllerName);
         }));
 
-        it("has faked avengers immediately upon creation", function () {
+        it("has test avengers immediately upon creation", function () {
             expect(controller.avengers.length).above(1);
         });
 
     });
-
-    ////////// Private
-    function fakeGetAvengers(){
-        return [
-            {
-                "id": 1017109,
-                "name": "Black Widow/Natasha Romanoff (MAA)",
-                "description": "Natasha Romanoff, also known as Black Widow, is a world-renowned super spy and one of S.H.I.E.L.D.'s top agents. Her hand-to-hand combat skills, intelligence, and unpredictability make her a deadly secret weapon. True to her mysterious nature, Black Widow comes and goes as she pleases, but always appears exactly when her particular skills are needed.",
-                "thumbnail": {
-                    "path": "http://i.annihil.us/u/prod/marvel/i/mg/a/03/523219743a99b",
-                    "extension": "jpg"
-                }
-            },
-            {
-                "id": 1017105,
-                "name": "Captain America/Steve Rogers (MAA)",
-                "description": "During World War II, Steve Rogers enlisted in the military and was injected with a super-serum that turned him into super-soldier Captain America! He's a skilled strategist and even more skilled with his shield, but it's his courage and good heart that makes Captain America both a leader and a true hero. ",
-                "thumbnail": {
-                    "path": "http://i.annihil.us/u/prod/marvel/i/mg/3/10/52321928eaa72",
-                    "extension": "jpg"
-                }
-            }];
-    }
 });
