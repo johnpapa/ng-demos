@@ -1,4 +1,4 @@
-describe("Basics - factory w/ dependency", function () {
+describe("Basics - factory w/ dependency:", function () {
     //this.timeout(3000);  // can change the mocha timeout for any `describe` or `it`
     var $log,
         service;

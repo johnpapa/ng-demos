@@ -1,4 +1,5 @@
-/*
+/* ngPromises.spec.js:
+ *
  * ngMocks mocks angular's $q library so that functions
  * that "wait" for synchronously fulfilled $q promises
  * can be tested synchronously
@@ -16,7 +17,7 @@
  *
  * These points are illustrated here.
  */
-describe("Basics - ng Promises", function () {
+describe("Basics - ng Promises:", function () {
     var $q, $rootScope,
         bingo,
         deferred,

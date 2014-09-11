@@ -20,7 +20,7 @@
  *
  * [ A WORK IN PROGRESS ]
  */
-describe("Basics - ngModules", function() {
+describe("Basics - ngModules:", function() {
 
     /*** Fictive Module Arrangement ***/
     /*

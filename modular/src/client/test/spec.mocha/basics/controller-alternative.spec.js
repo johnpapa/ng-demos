@@ -1,4 +1,4 @@
-describe("Basics - controller (alternative)", function () {
+describe("Basics - controller (alternative):", function () {
     /*
      * Registers the imaginary app components directly with the angular mock module registry
      *

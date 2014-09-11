@@ -1,4 +1,4 @@
-describe("Basics - factory (alternate)", function () {
+describe("Basics - factory (alternate):", function () {
     /*
      * Registers the imaginary app components directly with the angular mock module registry
      *

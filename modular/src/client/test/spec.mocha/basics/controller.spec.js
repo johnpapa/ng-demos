@@ -1,10 +1,15 @@
-describe("Basics - controller", function () {
+describe("Basics - controller:", function () {
     /*
      * Registers a new test module with global angular, 'app.test'
+     * In Basics, 'app.test' is a stand-in for a production app module.
      * Unlike your production module (e.g., 'app')
      * the 'app.test' module is redefined with each new individual test run
      * Same substance as 'controller-alternative.spec' ... different setup style
      * You'll likely prefer this style.
+     * 
+     * DO NOT move 'app.test' module definition outside of a `beforeEach`
+     * because 'app.test' redefinition elsewhere will wipe it out, 
+     * breaking other tests unpredictably
      */
     var controller,
         controllerName = 'testController';
@@ -33,7 +38,7 @@ describe("Basics - controller", function () {
 
     beforeEach(function(){
         angular
-            .module('app.test', [])  // 'app.test' is a new module that is redefined over and over
+            .module('app.test', []) 
             .value('config', testConfig)
             .controller(controllerName , testController);
 

@@ -1,4 +1,4 @@
-describe("Basics - controller w/ async dataservice", function () {
+describe("Basics - controller w/ async dataservice:", function () {
 
     var controller,
         controllerName = 'testController';
