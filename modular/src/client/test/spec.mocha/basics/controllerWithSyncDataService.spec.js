@@ -46,6 +46,7 @@ describe("Basics - controller w/ sync dataservice", function () {
 
         module('app.test');
     });
+
     /*** Start using the module registry ***/
 
     describe("when using 'real' dataservice", function () {
@@ -58,12 +59,16 @@ describe("Basics - controller w/ sync dataservice", function () {
                 controller = $controller(controllerName);
             }
         }));
+
         it("controller creation fails", function () {
             expect(controller).to.not.exist; // because we trapped failure in beforeEach
         });
     });
 
-    describe("when using stubbed 'real' dataservice ", function () {
+
+
+
+    describe("when using stubbed 'real' dataservice", function () {
         var dataservice,
             getAvengersSpy;
 
@@ -80,6 +85,30 @@ describe("Basics - controller w/ sync dataservice", function () {
 
     });
 
+
+
+
+    describe("when using fake dataservice", function () {
+
+        beforeEach(module(function($provide){
+
+            $provide.factory('dataservice', function fakeDataservice(){
+                return {
+                    getAvengers: fakeGetAvengers
+                }
+            });
+
+        }));
+
+        beforeEach(inject(function($controller){
+            controller = $controller(controllerName);
+        }));
+
+        it("has faked avengers immediately upon creation", function () {
+            expect(controller.avengers.length).above(1);
+        });
+
+    });
 
     ////////// Private
     function fakeGetAvengers(){

@@ -14,6 +14,8 @@ module.exports = function (config) {
 
         // list of files / patterns to load in the browser
         files: [
+            './client/test/bindPolyfill.js',
+
             './../node_modules/ng-midway-tester/src/ngMidwayTester.js',
 
             './../bower_components/jquery/dist/jquery.js',
