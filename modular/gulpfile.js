@@ -276,7 +276,7 @@ gulp.task('test', function() {
             configFile: pkg.paths.test + '/karma.conf.js',
 //            singleRun: true,
             delay: 5,
-            action: 'run'  // run or watch
+            action: 'run'  // run (once) or watch (keep open)
         }))
         // .pipe(plug.plumber.stop())
         .on('error', function(err) {
