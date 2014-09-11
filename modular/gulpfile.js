@@ -257,11 +257,10 @@ gulp.task('test-serve-midway', function() {
         script: pkg.paths.server + 'app.js',
         env: {'NODE_ENV': 'dev', 'PORT': 8888}
     };
-    plug.nodemon(options);
 });
 
-gulp.task('test', ['test-serve-midway'], function() {
-//gulp.task('test', function() {
+//gulp.task('test', ['test-serve-midway'], function() {
+gulp.task('test', function() {
     log('Running tests');
     var testFiles = [pkg.paths.test + 'spec.mocha/*[Ss]pec.js'];
     // var options = {
@@ -271,7 +270,7 @@ gulp.task('test', ['test-serve-midway'], function() {
     // plug.nodemon(options);
 
     return gulp
-        .src('./wardThisIsNotRealSoDoNotLookForItInsteadUseKarmaConf')
+        .src('./useKarmaConfAndNotThis')
         .pipe(plug.plumber())
         .pipe(plug.karma({
             configFile: pkg.paths.test + '/karma.conf.js',
