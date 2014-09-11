@@ -1,12 +1,10 @@
 describe("Basics - factory", function () {
     /*
-     * Registers a new test module with global angular, 'app.test'
-     * Unlike your production module (e.g., 'app')
-     * the 'app.test' module is redefined with each new individual test run
-     * Same substance as 'factory-alternative.spec' ... different setup style
-     * You'll likely prefer this style.
+     * Registers the imaginary app components directly with the angular mock module registry
+     *
+     * Reveals the magic behind module registration.
+     * Same substance as 'factory.spec' ... different setup style
      */
-
     var calc,
         service;
 
@@ -28,18 +26,13 @@ describe("Basics - factory", function () {
 
     /*** Setup module registry ***/
 
-    beforeEach(function () {
-        // DO NOT move 'app.test' module definition outside of a `beforeEach`
-        // because 'app.test' redefinition elsewhere will wipe it out
-        // and some tests, somewhere will break.
-        // Can only move it out if NO other test defines an 'app.test' module.
-        angular
-            .module('app.test', [])  // 'app.test' is a new module that is redefined over and over
-            .factory('testService', testService);
-
-        module('app.test');
-    });
-
+    // Register our test service anonymously with `angular.mock.module`.
+    // We don't need to mention any actual modules because our test service doesn't depend on them.
+    // If we were testing an app service our module setup might be more like: beforeEach(module('app'));
+    beforeEach(module(function($provide){
+        // just like `angular.module('app').factory('testService', testService)
+        $provide.factory('testService', testService);
+    }));
 
 
     /*** Start using the module registry ***/

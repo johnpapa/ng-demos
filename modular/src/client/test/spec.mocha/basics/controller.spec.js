@@ -1,9 +1,8 @@
 describe("Basics - controller", function () {
-
     /*
      * Registers a new test module with global angular, 'app.test'
      * Unlike your production module (e.g., 'app')
-     * The 'app.test' module is redefined with each new individual test run
+     * the 'app.test' module is redefined with each new individual test run
      * Same substance as 'controller-alternative.spec' ... different setup style
      * You'll likely prefer this style.
      */
@@ -30,15 +29,18 @@ describe("Basics - controller", function () {
     }
 
 
-
     /*** Setup module registry ***/
 
-    angular
-        .module('app.test', [])  // 'app.test' is a new module that is redefined over and over
-        .value('config', testConfig)
-        .controller(controllerName , testController);
+    beforeEach(function(){
+        angular
+            .module('app.test', [])  // 'app.test' is a new module that is redefined over and over
+            .value('config', testConfig)
+            .controller(controllerName , testController);
 
-    beforeEach(module('app.test'));
+        module('app.test');
+    });
+
+
 
     /*** Start using the module registry ***/
     // The first `angular.mock.inject` closes module registration and modification
@@ -49,6 +51,8 @@ describe("Basics - controller", function () {
         // controller is an instance of `testController`
         controller = $controller(controllerName);
     }));
+
+
 
     /*** Let's test! ***/
 

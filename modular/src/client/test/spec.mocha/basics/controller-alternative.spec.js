@@ -1,11 +1,9 @@
 describe("Basics - controller (alternative)", function () {
     /*
      * Registers the imaginary app components directly with the angular mock module registry
-     * just as we did with factory.spec
      *
      * Reveals the magic behind module registration.
      * Same substance as 'controller.spec' ... different setup style
-     * Probably not how you'd do it
      */
     var controller,
         controllerName = 'testController';
