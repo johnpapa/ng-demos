@@ -2,7 +2,9 @@ describe("Basics - factory", function () {
     var calc,
         service;
 
-    // the "factory" (AKA "service") to test
+    /*** Define service in our imaginary application  ***/
+
+    // "factory" (AKA "service") to test
     function testService() {
         return {
             calc: calc
@@ -15,22 +17,30 @@ describe("Basics - factory", function () {
         }
     }
 
-    /**
-     *  Register our test service anonymously with `anguler.mock.module`.
-     *  N.B.: We don't need to mention any other modules
-     *        because our test service doesn't depend on anything.
-     */
+
+    /*** Setup module registry ***/
+
+    // Register our test service anonymously with `angular.mock.module`.
+    // We don't need to mention any actual modules because our test service doesn't depend on them.
+    // If we were testing an app service our module setup might be more like: beforeEach(module('app'));
     beforeEach(module(function($provide){
+        // just like `angular.module('app').factory('testService', testService)
         $provide.factory('testService', testService);
     }));
 
+
+    /*** Start using the module registry ***/
     // The first `angular.mock.inject` closes module registration and modification
+
+    // Get the service
     beforeEach(inject(function(testService){
         service = testService;
         calc = service.calc; // DRY out the tests
     }));
 
 
+
+    /*** Let's test! ***/
 
     describe("(happy paths)", function () {
 

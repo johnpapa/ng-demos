@@ -3,12 +3,15 @@ describe("Basics - factory w/ dependency", function () {
     var $log,
         service;
 
-    // the "factory" (AKA "service") to test
+    /*** Define a service in our imaginary application  ***/
+
+    // "factory" (AKA "service") to test
     function testService($log) {
         return {
             calc: calc
         };
         /////////////
+        // Same service as in *factory.spec.js*, extended with logging
         function calc(input, previousOutput){
             var inp =  +(input || 0);
             var prev = +(previousOutput || 0);
@@ -20,22 +23,31 @@ describe("Basics - factory w/ dependency", function () {
             return result;
         }
     }
-    testService.$inject=['$log']; // not needed but ... shows you can
 
-    /**
-     *  Register our test service anonymously with `anguler.mock.module`.
-     *  N.B.: We don't need to mention any other modules$
-     *        because our test service doesn't depend on anything.
-     */
+
+    /*** Setup module registry ***/
+
+    // Register our test service anonymously with `angular.mock.module`.
+    // We don't need to mention any actual modules because our test service doesn't depend on them.
+    // If we were testing an app service our module setup might be more like: beforeEach(module('app'));
     beforeEach(module(function($provide){
+        // just like `angular.module('app').factory('testService', testService)
         $provide.factory('testService', testService);
     }));
 
+
+
+    /*** Start using the module registry ***/
     // The first `angular.mock.inject` closes module registration and modification
+
+    // Get the service
     beforeEach(inject(function(testService, _$log_){
         service = testService;
         $log = _$log_;  // grab the dependent service so we can have some fun
     }));
+
+
+    /*** Let's test! ***/
 
     describe("when using real dependency", function () {
         // will use the ngMocks $log which does NOT write to console
@@ -63,12 +75,18 @@ describe("Basics - factory w/ dependency", function () {
             logSpy = sinon.spy($log, 'log');
         });
 
-        // will use the ngMocks $log which does NOT write to console
         it('calc(0) called $log.log', function () {
             service.calc(0);
             expect(logSpy).to.have.been.called;
         });
-        it('calc(0) called $log.log ($log.log is the spy)', function () {
+
+        it('calc(0) called $log.log with expected message', function () {
+            service.calc(0);
+            // match with regular expression
+            expect(logSpy).to.have.been.calledWithMatch(/calc\(0, undefined\)/i);
+        });
+
+        it('$log.log is actually the spy', function () {
             service.calc(1);
             expect($log.log).to.have.been.called;
         });
