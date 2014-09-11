@@ -270,7 +270,7 @@ gulp.task('test-serve-midway', function() {
  //gulp.task('test', ['test-serve-midway'], function() {
 gulp.task('test', function() {
     
-    if (env.startServers){
+    if (env.startServers) {
         log('Starting servers');
         var options = {
             script: pkg.paths.server + 'app.js',
@@ -289,7 +289,7 @@ gulp.task('test', function() {
         .pipe(plug.karma({
             configFile: pkg.paths.test + '/karma.conf.js',
 //            singleRun: true,
-            delay: 5,
+            delay: 5, //TODO: this does nada?
             action: action // run (once) or watch (keep open)
         }))
         // .pipe(plug.plumber.stop())
