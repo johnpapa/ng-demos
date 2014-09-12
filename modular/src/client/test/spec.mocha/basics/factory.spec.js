@@ -1,4 +1,5 @@
 describe("Basics - factory:", function () {
+    "use strict";
 
     var calc;
 

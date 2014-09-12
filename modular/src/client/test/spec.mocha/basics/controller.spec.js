@@ -1,4 +1,5 @@
 describe("Basics - controller:", function () {
+    "use strict";
 
     var controller;
 

@@ -1,4 +1,5 @@
 describe("Basics - controller w/ async dataservice:", function () {
+    "use strict";
 
     var controller,
         controllerName = 'basicAsyncDataController';

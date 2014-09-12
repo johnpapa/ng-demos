@@ -1,4 +1,5 @@
 describe("Basics - value redefined:", function () {
+    "use strict";
 
     beforeEach(module('basics'));
 
