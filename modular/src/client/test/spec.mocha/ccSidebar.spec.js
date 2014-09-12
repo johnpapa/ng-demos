@@ -1,15 +1,17 @@
-describe("ccSidebar directive", function () {
-
-    var dropClass = 'dropy',
-        dropdownElement,
-        el,
-        innerElement,
-        scope;
+/* global describe, it, beforeEach, afterEach, expect, inject, sinon, testctx */
+/* global $controller, $httpBackend, $location, $q, $rootScope, $route */
+/* jshint expr: true, multistr: true */
+describe('ccSidebar directive', function () {
+    var dropClass = 'dropy';
+    var dropdownElement;
+    var el;
+    var innerElement;
+    var scope;
 
     beforeEach(module('app.widgets'));
+
     beforeEach(inject(function($compile, $rootScope){
         scope = $rootScope;
-
         // The minimum necessary template
         el = angular.element(
                 '<div cc-sidebar > \
@@ -23,33 +25,33 @@ describe("ccSidebar directive", function () {
         innerElement = el.find('.sidebar-inner');
     }));
 
-    // helper to setup the element in the "menu open" state
+    // helper to setup the element in the 'menu open' state
     function setupAsOpen(){
         dropdownElement.addClass(dropClass);
         innerElement.css('display','block');
     }
 
-    it("a closed menu lacks dropClass", function () {
+    it('a closed menu lacks dropClass', function () {
         expect(dropdownElement.hasClass(dropClass)).to.be.false;
     });
 
-    it("clicking menu when closed should add dropClass", function () {
+    it('clicking menu when closed should add dropClass', function () {
         dropdownElement.trigger('click'); //click it
         expect(dropdownElement.hasClass(dropClass)).to.be.true;
     });
 
-    it("an open menu has dropClass", function () {
+    it('an open menu has dropClass', function () {
         setupAsOpen();
         expect(dropdownElement.hasClass(dropClass)).to.be.true;
     });
 
-    it("clicking menu when open should remove dropClass", function () {
+    it('clicking menu when open should remove dropClass', function () {
         setupAsOpen();
         dropdownElement.trigger('click'); //click it
         expect(dropdownElement.hasClass(dropClass)).to.be.false;
     });
 
-    describe("when animating w/ jQuery fx off", function () {
+    describe('when animating w/ jQuery fx off', function () {
         beforeEach(function () {
             // remember current state of jQuery's global FX duration switch
             this.oldFxOff = $.fx.off;
@@ -64,7 +66,7 @@ describe("ccSidebar directive", function () {
             el.remove();
         });
 
-        it("inner is visible after opening menu", function () {
+        it('inner is visible after opening menu', function () {
             // should be hidden when we start
             expect(innerElement.css('display')).to.equal('none');
             dropdownElement.trigger('click'); //click it
@@ -72,7 +74,7 @@ describe("ccSidebar directive", function () {
             expect(innerElement.css('display')).to.equal('block');
         });
 
-        it("inner is not visible after closing menu", function () {
+        it('inner is not visible after closing menu', function () {
             setupAsOpen();
 
             // should be visible when we start
@@ -83,15 +85,11 @@ describe("ccSidebar directive", function () {
         });
     });
 
-
-
-
-
     //////////  uncomment only during demonstration ///////
     // What if you don't know about turning JQuery animation durations off ($.fx.off?
     // You have to write async tests
     /*
-    describe("when animating  w/ jQuery fx turned on", function () {
+    describe('when animating  w/ jQuery fx turned on', function () {
         beforeEach(function () {
             // must add to DOM when testing jQuery animation result
             el.appendTo(document.body);
@@ -101,7 +99,7 @@ describe("ccSidebar directive", function () {
             el.remove();
         });
 
-        it("inner is visible after opening menu - async", function (done) {
+        it('inner is visible after opening menu - async', function (done) {
             // should be hidden when we start
             expect(innerElement.css('display')).to.equal('none');
             dropdownElement.trigger('click'); //click it
@@ -118,7 +116,7 @@ describe("ccSidebar directive", function () {
             }, 400); // guess at animation time + a little more
         });
 
-        it("inner is not visible after closing menu - async", function (done) {
+        it('inner is not visible after closing menu - async', function (done) {
             $.fx.off = true;
             setupAsOpen();
 
