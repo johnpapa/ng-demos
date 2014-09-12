@@ -23,7 +23,7 @@ describe("Basics - ng Promises:", function () {
         deferred,
         flush;
 
-    function sayBingo()         { bingo = 'bingo!'; };
+    function sayBingo()         { bingo = 'bingo!'; }
     function saidBingo()        { expect(bingo).to.exist; }
     function haveNotSaidBingo() { expect(bingo).to.be.null; }
 

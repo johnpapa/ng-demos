@@ -40,6 +40,8 @@ module.exports = function (config) {
 
             /* MOCHA */
             './client/test/spec.mocha/**/specHelper.js',
+
+            './client/test/spec.mocha/basics/**/*.src.js',
             './client/test/spec.mocha/basics/**/*.spec.js',
 
             // all specs ... comment out during early test training

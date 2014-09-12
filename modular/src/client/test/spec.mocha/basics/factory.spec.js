@@ -1,91 +1,87 @@
 describe("Basics - factory:", function () {
 
-    /*** Create the module that we'll test in this Basics spec ***/
-    angular
-        .module('app.factory.test', [])
-        .factory('testService', testService);
+    var calc;
 
-    // "factory" (AKA "service") to test
-    function testService() {
-        return {
-            calc: calc
-        };
-        ///////////
-        function calc(input, previousOutput){
-            var inp =  +(input || 0);
-            var prev = +(previousOutput || 0);
-            return inp + prev;
-        }
-    }
-
-
-    /*** Testing begins ***/
-    var service;
-
-    beforeEach(module('app.factory.test'));
+    beforeEach(module('basics'));
 
     // Get the service
     // This first `angular.mock.inject` closes module registration and modification
-    beforeEach(inject(function(testService){
-        service = testService;
-    }));
+    beforeEach(
+        inject(function(calcService) {
+            calc = calcService.calc;
+        })
+    );
 
-
-    /*** Let's test! ***/
+    /*** Multiple test paths ***/
 
     describe("(happy path test)", function () {
 
         it('calc() => 0', function () {
-            expect(service.calc()).to.equal(0);
+            expect(calc()).to.equal(0);
         });
+
+
+        it('$log is an ngMock and can tell us about logged messages',
+            inject(function ($log) {
+                calc(1);
+
+                // assert calc logged the result
+                expect($log.debug.logs.length).to.equal(1,
+                    "Should have called $log.debug exactly once");
+
+                // with the expected message
+                expect($log.debug.logs[0][0]).to.equal('calc(1, undefined) => 1');
+            })
+        );
+
     });
 
     describe("(more happy path tests)", function () {
         it('calc(1) => 1 ', function () {
-            expect(service.calc(1)).to.equal(1);
+            expect(calc(1)).to.equal(1);
         });
 
         it('calc(1,1) => 2', function () {
-            expect(service.calc(1,1)).to.equal(2);
+            expect(calc(1,1)).to.equal(2);
         });
 
         it('calc(-1) => -1', function () {
-            expect(service.calc(-1)).to.equal(-1);
+            expect(calc(-1)).to.equal(-1);
         });
 
         it('calc("0") => 0', function () {
-            expect(service.calc('0')).to.equal(0);
+            expect(calc('0')).to.equal(0);
         });
 
         it('calc("1") => 1', function () {
-            expect(service.calc('1')).to.equal(1);
+            expect(calc('1')).to.equal(1);
         });
 
         it('calc("-1") => -1', function () {
-            expect(service.calc('-1')).to.equal(-1);
+            expect(calc('-1')).to.equal(-1);
         });
 
         it('calc("") => 0', function () {
-            expect(service.calc('')).to.equal(0);
+            expect(calc('')).to.equal(0);
         });
 
         it('calc(null) => 0', function () {
-            expect(service.calc()).to.equal(0);
+            expect(calc()).to.equal(0);
         });
 
         it('calc(undefined) => 0', function () {
-            expect(service.calc(undefined)).to.equal(0);
+            expect(calc(undefined)).to.equal(0);
         });
     });
 
     describe("(sad paths)", function () {
 
         it('calc("not a number") => NaN ', function () {
-            expect(isNaN(service.calc('not a number'))).to.be.true;
+            expect(isNaN(calc('not a number'))).to.be.true;
         });
 
         it('calc(1, "not a number") => NaN ', function () {
-            expect(isNaN(service.calc(1, 'not a number'))).to.be.true;
+            expect(isNaN(calc(1, 'not a number'))).to.be.true;
         });
     });
 
