@@ -166,7 +166,7 @@ gulp.task('rev-and-inject',
             .pipe(plug.rev()) // create files with rev's
             .pipe(gulp.dest(pkg.paths.stage)) // write the rev files
             .pipe(minFilter.restore()) // remove filter, back to original stream
-            
+
             // inject the files into index.html
             .pipe(indexFilter) // filter to index.html
             .pipe(inject('content/vendor.min.css', 'inject-vendor'))
@@ -176,7 +176,7 @@ gulp.task('rev-and-inject',
             .pipe(gulp.dest(pkg.paths.stage)) // write the rev files
             .pipe(indexFilter.restore()) // remove filter, back to original stream
 
-            // replace the files referenced in index.html with the rev'd files            
+            // replace the files referenced in index.html with the rev'd files
             .pipe(plug.revReplace())         // Substitute in new filenames
             .pipe(gulp.dest(pkg.paths.stage)) // write the index.html file changes
             .pipe(plug.rev.manifest()) // create the manifest (must happen last or we screw up the injection)
@@ -248,26 +248,27 @@ gulp.task('watch', function() {
 });
 
 /**
- * @desc Run all tests
+ * @desc Run non-midway tests
+ * @example
+ *    gulp test                         // Run once and then close
+ *    gulp test --watch                 // Run and keep open with watch
+ *    gulp test --watch --startServers  // Start servers, run, and keep open with watch
  */
-gulp.task('test-serve-midway', function() {
-    log('Pre test serve');
-    var testFiles = [pkg.paths.test + 'spec.mocha/*[Ss]pec.js'];
-    var options = {
-        script: pkg.paths.server + 'app.js',
-        env: {'NODE_ENV': 'dev', 'PORT': 8888}
-    };
-});
-
-//gulp.task('test', ['test-serve-midway'], function() {
+ //gulp.task('test', ['test-serve-midway'], function() {
 gulp.task('test', function() {
+
+    if (env.startServers) {
+        log('Starting servers');
+        var options = {
+            script: pkg.paths.server + 'app.js',
+            env: {'NODE_ENV': 'dev', 'PORT': 8888}
+        };
+        plug.nodemon(options);
+    }
+
     log('Running tests');
+    var action = (env.watch == null || env.watch === 'run') ? 'run' : 'watch';
     var testFiles = [pkg.paths.test + 'spec.mocha/*[Ss]pec.js'];
-    // var options = {
-    //     script: pkg.paths.server + 'app.js',
-    //     env: {'NODE_ENV': 'dev', 'PORT': 8888}
-    // };
-    // plug.nodemon(options);
 
     return gulp
         .src('./useKarmaConfAndNotThis')
@@ -275,8 +276,8 @@ gulp.task('test', function() {
         .pipe(plug.karma({
             configFile: pkg.paths.test + '/karma.conf.js',
 //            singleRun: true,
-            delay: 5,
-            action: 'run'  // run or watch
+            delay: 5, //TODO: this does nada?
+            action: action // run (once) or watch (keep open)
         }))
         // .pipe(plug.plumber.stop())
         .on('error', function(err) {
@@ -321,7 +322,7 @@ gulp.task('serve-stage', function() {
 });
 
 function startLivereload(env) {
-    
+
     //TODO: gulp-livereload is failing due to tiny-lr issue. Re-enable when fixed.
 
     // var path = (env === 'stage' ? [pkg.paths.stage, pkg.paths.client + '/**'] : [pkg.paths.client + '/**']);
@@ -343,9 +344,9 @@ function serve(args) {
         ext: 'html js',
         env: {'NODE_ENV': args.env},
         watch: [
-            'gulpfile.js', 
+            'gulpfile.js',
             'package.json',
-            pkg.paths.server, 
+            pkg.paths.server,
             pkg.paths.client
         ]
     };

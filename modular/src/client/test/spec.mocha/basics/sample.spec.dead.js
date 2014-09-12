@@ -1,3 +1,6 @@
+/*
+
+// John's original sample.spec.js. Displaced by controllerWithSyncDataservice.spec.js
 (function(){
     angular
         .module('app.sample', [])
@@ -26,7 +29,7 @@
 
 })();
 
-describe('Team', function () {
+describe('Basics - team ctrl with dependency', function () {
 
     var scope, scope2,
         controller;
@@ -84,3 +87,5 @@ describe('Team', function () {
     });
 
 });
+
+*/

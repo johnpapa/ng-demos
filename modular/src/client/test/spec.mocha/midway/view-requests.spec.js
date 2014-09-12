@@ -1,4 +1,4 @@
-describe.skip('Midway: view requets', function() {
+describe('Midway: view requets', function() {
 	var tester;
 	beforeEach(function() {
 		if(tester) {

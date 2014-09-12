@@ -8,12 +8,14 @@ module.exports = function (config) {
         basePath: '../../',
 
         // frameworks to use
-        // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-        frameworks: ['mocha', 'chai', 'sinon'],
+        // some available frameworks: https://npmjs.org/browse/keyword/karma-adapter
+        frameworks: ['mocha', 'chai', 'sinon', 'chai-sinon'],
 //        frameworks: ['jasmine'],
 
         // list of files / patterns to load in the browser
         files: [
+            './client/test/bindPolyfill.js',
+
             './../node_modules/ng-midway-tester/src/ngMidwayTester.js',
 
             './../bower_components/jquery/dist/jquery.js',
@@ -38,17 +40,24 @@ module.exports = function (config) {
 
             /* MOCHA */
             './client/test/spec.mocha/**/specHelper.js',
+            './client/test/spec.mocha/basics/**/*.spec.js',
+
+            // all specs ... comment out during early test training
             './client/test/spec.mocha/**/*.spec.js'
+
+
         ],
-        
-        proxies: {
-            '/': 'http://localhost:8888/'
-        },
 
         // list of files to exclude
         exclude: [
+            // Excluding midway tests for now; comment this line out when you want to run them
+            './client/test/spec.mocha/midway/**/*.spec.js',
             './client/app/**/*spaghetti.js'
         ],
+
+        proxies: {
+            '/': 'http://localhost:8888/'
+        },
 
         // preprocess matching files before serving them to the browser
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor

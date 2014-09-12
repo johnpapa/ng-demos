@@ -1,4 +1,4 @@
-describe.skip("Midway: dataservice requests", function() {
+describe("Midway: dataservice requests", function() {
 	var dataservice, tester;
 
 	beforeEach(function() {
@@ -13,7 +13,7 @@ describe.skip("Midway: dataservice requests", function() {
 		expect(dataservice).not.to.equal(null);
     });
 
-    describe.skip('getAvengers function', function () {
+    describe('getAvengers function', function () {
         it('should return 7 Avengers', function (done) {
             dataservice.getAvengers().then(function(data) {
 		        expect(data).not.to.equal(null);
