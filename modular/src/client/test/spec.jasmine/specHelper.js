@@ -13,8 +13,8 @@ beforeEach(function () {
     }
 });
 
-var testctx = testctx || {};
-testctx.getMockAvengers = function () {
+var specHelper = specHelper || {};
+specHelper.getMockAvengers = function () {
     return [
         {
             "id": 1017109,

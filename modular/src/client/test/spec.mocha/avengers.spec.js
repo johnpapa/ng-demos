@@ -1,4 +1,4 @@
-/* global describe, it, beforeEach, afterEach, expect, inject, sinon, testctx */
+/* global describe, it, beforeEach, afterEach, expect, inject, sinon, specHelper */
 /* global $controller, $httpBackend, $location, $q, $rootScope, $route */
 /* jshint expr: true */
 describe('app.avengers', function() {
@@ -9,10 +9,10 @@ describe('app.avengers', function() {
 
     beforeEach(function() {
         module('app', function($provide) {
-            testctx.fakeRouteProvider($provide);
-            testctx.fakeLogger($provide);
+            specHelper.fakeRouteProvider($provide);
+            specHelper.fakeLogger($provide);
         });
-        testctx.injectDependencies(true);
+        specHelper.injectDependencies(true);
         inject(function(_dataservice_, _toastr_) {
             dataservice = _dataservice_;
             toastr = _toastr_;
@@ -22,7 +22,7 @@ describe('app.avengers', function() {
     beforeEach(function () {
         sinon.stub(dataservice, 'getAvengers', function() {
             var deferred = $q.defer();
-            deferred.resolve(testctx.getMockAvengers());
+            deferred.resolve(specHelper.getMockAvengers());
             return deferred.promise;
         });
 

@@ -27,11 +27,17 @@ describe("Basics - controller w/ sync dataservice:", function () {
         var stub;
 
         beforeEach(inject(function($controller, syncDataservice){
-            stub = sinon.stub(syncDataservice, 'getAvengers', testctx.getMockAvengers);
+
+            // replace the problematic 'getAvengers' method with a mock version
+            stub = sinon.stub(
+                syncDataservice,
+                'getAvengers',
+                specHelper.getMockAvengers);
+
             controller = $controller(controllerName);
         }));
 
-        it("has test avengers immediately upon creation", function () {
+        it("has avengers immediately after creation", function () {
             expect(controller.avengers.length).above(1);
         });
 
@@ -45,21 +51,17 @@ describe("Basics - controller w/ sync dataservice:", function () {
 
         beforeEach(inject(function($controller){
 
-            // mock service object whose getAvengers() returns test data
-            var mockSyncDataservice = {
-                getAvengers: mockGetAvengers
-            };
-
             // 'local' values that the $controller service passes to
             //  the constructor instead of values from the injector
             var ctorArgs = {
-                syncDataservice: mockSyncDataservice
+                // mock service instance swhose getAvengers() returns test data
+                syncDataservice: { getAvengers: specHelper.getMockAvengers }
             };
 
             controller = $controller(controllerName, ctorArgs);
         }));
 
-        it("has test avengers immediately upon creation", function () {
+        it("has avengers immediately after creation", function () {
             expect(controller.avengers.length).above(1);
         });
     });
@@ -75,23 +77,14 @@ describe("Basics - controller w/ sync dataservice:", function () {
             controller = $controller(controllerName);
         }));
 
-        it("has test avengers immediately upon creation", function () {
+        it("has avengers immediately after creation", function () {
             expect(controller.avengers.length).above(1);
         });
 
         // definition of a mock service whose getAvengers() returns test data
         function mockSyncDataservice(){
-            return {
-                getAvengers: testctx.getMockAvengers
-            };
+            return { getAvengers: specHelper.getMockAvengers };
         }
     });
-
-    ///////// Private
-    function mockGetAvengers(){
-        // testctx is in specHelper.js
-        return testctx.getMockAvengers();
-    }
-
 
 });

@@ -1,4 +1,4 @@
-/* global describe, it, beforeEach, afterEach, expect, inject, sinon, testctx */
+/* global describe, it, beforeEach, afterEach, expect, inject, sinon, specHelper */
 /* global $controller, $httpBackend, $location, $q, $rootScope, $route */
 /* jshint expr: true */
 describe('layout', function () {
@@ -9,8 +9,8 @@ describe('layout', function () {
         var toastr;
 
         beforeEach(function() {
-            module('app', testctx.fakeLogger);
-            testctx.injectDependencies(true);
+            module('app', specHelper.fakeLogger);
+            specHelper.injectDependencies(true);
             inject(function(_dataservice_, _toastr_) {
                 dataservice = _dataservice_;
                 toastr = _toastr_;

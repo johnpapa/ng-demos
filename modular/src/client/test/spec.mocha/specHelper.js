@@ -1,7 +1,7 @@
 /* globals inject, sinon, $controller, $httpBackend, $location, $q, $rootScope, $route, $routeParams */
-var testctx = testctx || {};
+var specHelper = specHelper || {};
 
-testctx.fakeLogger = function($provide) {
+specHelper.fakeLogger = function($provide) {
     $provide.value('logger', sinon.stub({
         info: function() {},
         error: function() {},
@@ -10,7 +10,7 @@ testctx.fakeLogger = function($provide) {
     }));
 };
 
-testctx.injectDependencies = function(global) {
+specHelper.injectDependencies = function(global) {
     var deps;
     inject(commonDeps);
     if (global) {
@@ -37,7 +37,7 @@ testctx.injectDependencies = function(global) {
     }
 };
 
-testctx.fakeRouteProvider = function($provide) {
+specHelper.fakeRouteProvider = function($provide) {
     /**
      * Stub out the $routeProvider so we avoid
      * all routing calls, including the default route
@@ -59,7 +59,7 @@ testctx.fakeRouteProvider = function($provide) {
     });
 };
 
-testctx.getMockAvengers = function() {
+specHelper.getMockAvengers = function() {
     return [
         {
             'id': 1017109,

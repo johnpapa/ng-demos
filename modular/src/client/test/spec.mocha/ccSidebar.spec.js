@@ -1,4 +1,4 @@
-/* global describe, it, beforeEach, afterEach, expect, inject, sinon, testctx */
+/* global describe, it, beforeEach, afterEach, expect, inject, sinon, specHelper */
 /* global $controller, $httpBackend, $location, $q, $rootScope, $route */
 /* jshint expr: true, multistr: true */
 describe('ccSidebar directive', function () {

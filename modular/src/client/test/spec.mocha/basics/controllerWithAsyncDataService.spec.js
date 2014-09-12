@@ -48,13 +48,13 @@ describe("Basics - controller w/ async dataservice:", function () {
             beforeEach(function () {
                 // dataservice's $http.get handler looks for 'data.data[0].data.results' (yikes!)
                 // the response needs to be the single element data.data array
-                var response = [{data: {results: testctx.getMockAvengers()}}];
+                var response = [{data: {results: specHelper.getMockAvengers()}}];
 
                 $httpBackend.whenGET(avengersUri).respond(response);
                 createController();
             });
 
-            it("has test avengers immediately upon creation", function () {
+            it("has avengers immediately after creation", function () {
                 expect(controller.avengers.length).above(1);
             });
         });
@@ -68,7 +68,7 @@ describe("Basics - controller w/ async dataservice:", function () {
             // mock service object whose getAvengers() returns test data
             var mockAsyncDataService = {
                 getAvengers: function () {
-                    return $q.when(testctx.getMockAvengers());
+                    return $q.when(specHelper.getMockAvengers());
                 }
             };
 
@@ -82,7 +82,7 @@ describe("Basics - controller w/ async dataservice:", function () {
             $rootScope.$apply(); // flush promise queue.
         }));
 
-        it("has test avengers immediately upon creation", function () {
+        it("has avengers immediately after creation", function () {
             expect(controller.avengers.length).above(1);
         });
 
@@ -102,14 +102,14 @@ describe("Basics - controller w/ async dataservice:", function () {
                 $rootScope.$apply(); // flush promise queue.
         }));
 
-        it("has test avengers immediately upon creation", function () {
+        it("has avengers immediately after creation", function () {
             expect(controller.avengers.length).above(1);
         });
 
         function mockAsyncDataService($q) {
             return {
                 getAvengers: function () {
-                    return $q.when(testctx.getMockAvengers());
+                    return $q.when(specHelper.getMockAvengers());
                 }
             };
         }
