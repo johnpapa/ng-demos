@@ -21,5 +21,10 @@
     "requireOperatorBeforeLineBreak": null,
     "requireParenthesesAroundIIFE": true,
     "validateIndentation": 4,
-    "validateQuoteMarks": null
+    "validateQuoteMarks": null,
+
+
+    "requireSpacesInFunctionExpression": {
+        "beforeOpeningCurlyBrace": false
+    },
 }
