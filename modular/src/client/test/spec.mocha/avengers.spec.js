@@ -1,7 +1,7 @@
 /* global describe, it, beforeEach, afterEach, expect, inject, sinon, testctx */
 /* global $controller, $httpBackend, $location, $q, $rootScope, $route */
 /* jshint expr: true */
-describe('avengers', function() {
+describe('app.avengers', function() {
     var dataservice;
     var scope;
     var controller;
@@ -36,16 +36,20 @@ describe('avengers', function() {
         $rootScope.$apply();
     });
 
-    it('should have Avengers controller', function() {
-        expect(controller).not.to.equal(null);
-    });
+    describe('Avengers controller', function() {
+        it('should be created successfully', function () {
+            expect(controller).to.be.defined;
+        });
 
-    it('should have title of Avengers', function() {
-        expect(controller.title).to.equal('Avengers');
-    });
+        describe('after activate', function() {
+            it('should have title of Avengers', function() {
+                expect(controller.title).to.equal('Avengers');
+            });
 
-    it('should have 5 Avengers', function() {
-        expect(controller.avengers.length).to.equal(5);
+            it('should have 5 Avengers', function() {
+                expect(controller.avengers).to.have.length(5);
+            });
+        });
     });
 
     afterEach(function() {
