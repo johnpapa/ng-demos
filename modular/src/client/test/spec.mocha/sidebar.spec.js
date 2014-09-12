@@ -18,10 +18,7 @@ describe('layout', function () {
         });
 
         beforeEach(function () {
-            scope = $rootScope.$new();
-            controller = $controller('Sidebar as vm', {
-                '$scope': scope
-            });
+            controller = $controller('Sidebar');
         });
 
         it('should have isCurrent() for / to return `current`', function () {
@@ -29,7 +26,7 @@ describe('layout', function () {
             $location.path('/');
             $httpBackend.flush();
             $rootScope.$apply();
-            expect(scope.vm.isCurrent($route.current)).to.equal('current');
+            expect(controller.isCurrent($route.current)).to.equal('current');
         });
 
         it('should have isCurrent() for /avengers to return `current`', function () {
@@ -37,7 +34,7 @@ describe('layout', function () {
             $location.path('/avengers');
             $httpBackend.flush();
             $rootScope.$apply();
-            expect(scope.vm.isCurrent($route.current)).to.equal('current');
+            expect(controller.isCurrent($route.current)).to.equal('current');
         });
 
         it('should have isCurrent() for non route not return `current`', function () {
@@ -45,7 +42,7 @@ describe('layout', function () {
             $location.path('/invalid');
             $httpBackend.flush();
             $rootScope.$apply();
-            expect(scope.vm.isCurrent({title: 'invalid'})).not.to.equal('current');
+            expect(controller.isCurrent({title: 'invalid'})).not.to.equal('current');
         });
 
         afterEach(function () {
