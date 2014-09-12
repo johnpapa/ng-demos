@@ -15,9 +15,7 @@ describe('avengers', function () {
                 dataservice = _dataservice_;
                 toastr = _toastr_;
             });
-        });
 
-        beforeEach(function () {
             $httpBackend.expectGET('app/avengers/avengers.html').respond(200);
         });
 
