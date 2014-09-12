@@ -1,33 +1,25 @@
-describe('dashboard', function () {
-    var $controller,
-        dataservice,
-        $httpBackend,
-        $location,
-        $q,
-        $rootScope,
-        $route,
-        scope,
-        toastr;
+/* global describe, it, beforeEach, afterEach, expect, inject, sinon, testctx */
+/* global $controller, $httpBackend, $location, $q, $rootScope, $route */
+/* jshint expr: true */
+describe('app.dashboard', function() {
+    var dataservice;
+    var scope;
+    var controller;
+    var toastr;
 
-    beforeEach(function () {
-        module('app', testctx.fakeLogger);
-        inject(function (_$controller_, _$httpBackend_, _$location_, _$q_, _$rootScope_, _$route_, _dataservice_, _toastr_) {
-            $controller = _$controller_;
-            $httpBackend = _$httpBackend_;
-            $location = _$location_;
-            $q = _$q_;
-            $rootScope = _$rootScope_;
-            $route = _$route_;
+    beforeEach(function() {
+        module('app', function($provide) {
+            testctx.fakeRouteProvider($provide);
+            testctx.fakeLogger($provide);
+        });
+        testctx.injectDependencies(true);
+        inject(function(_dataservice_, _toastr_) {
             dataservice = _dataservice_;
             toastr = _toastr_;
         });
     });
 
     beforeEach(function () {
-        $httpBackend.when('GET', 'app/dashboard/dashboard.html').respond(200);
-//        $httpBackend.expectGET(/\w+.html/).respond(200, '');
-        $httpBackend.flush();
-
         sinon.stub(dataservice, 'getAvengerCount', function () {
             var deferred = $q.defer();
             deferred.resolve(testctx.getMockAvengers().length);
@@ -43,23 +35,32 @@ describe('dashboard', function () {
 
 
     beforeEach(inject(function ($rootScope, $controller) {
-        scope = $rootScope.$new();
-        controller = $controller('Dashboard as vm', {
-            '$scope': scope
-        });
+        controller = $controller('Dashboard');
         $rootScope.$apply();
     }));
 
-    it('should have Dashboard controller', function () {
-        expect(controller).not.to.equal(null);
-    });
+    describe('Dashboard controller', function() {
+        it('should be created successfully', function () {
+            expect(controller).to.be.defined;
+        });
 
-    it('should have title of Dashboard', function () {
-        expect(scope.vm.title).to.equal('Dashboard');
-    });
+        describe('after activate', function() {
+            it('should have title of Dashboard', function () {
+                expect(controller.title).to.equal('Dashboard');
+            });
 
-    it('should have Avenger Count of 5', function () {
-        expect(scope.vm.avengerCount).to.equal(5);
+            it('should have news', function () {
+                expect(controller.news).to.not.be.empty;
+            });
+
+            it('should have at least 1 avenger', function () {
+                expect(controller.avengers).to.have.length.above(0);
+            });
+
+            it('should have Avenger Count of 5', function () {
+                expect(controller.avengerCount).to.equal(5);
+            });
+        });
     });
 
     afterEach(function () {

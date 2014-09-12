@@ -1,34 +1,24 @@
+/* global describe, it, beforeEach, afterEach, expect, inject, sinon, testctx */
+/* global $controller, $httpBackend, $location, $q, $rootScope, $route */
+/* jshint expr: true */
 describe('layout', function () {
     describe('sidebar', function () {
-        var $controller,
-            dataservice,
-            $httpBackend,
-            $location,
-            $q,
-            $rootScope,
-            $route,
-            scope,
-            toastr;
+        var dataservice;
+        var scope;
+        var controller;
+        var toastr;
 
-        beforeEach(function () {
+        beforeEach(function() {
             module('app', testctx.fakeLogger);
-            inject(function (_$controller_, _$httpBackend_, _$location_, _$q_, _$rootScope_, _$route_, _dataservice_, _toastr_) {
-                $controller = _$controller_;
-                $httpBackend = _$httpBackend_;
-                $location = _$location_;
-                $q = _$q_;
-                $rootScope = _$rootScope_;
-                $route = _$route_;
+            testctx.injectDependencies(true);
+            inject(function(_dataservice_, _toastr_) {
                 dataservice = _dataservice_;
                 toastr = _toastr_;
             });
         });
 
         beforeEach(function () {
-            scope = $rootScope.$new();
-            controller = $controller('Sidebar as vm', {
-                '$scope': scope
-            });
+            controller = $controller('Sidebar');
         });
 
         it('should have isCurrent() for / to return `current`', function () {
@@ -36,7 +26,7 @@ describe('layout', function () {
             $location.path('/');
             $httpBackend.flush();
             $rootScope.$apply();
-            expect(scope.vm.isCurrent($route.current)).to.equal('current');
+            expect(controller.isCurrent($route.current)).to.equal('current');
         });
 
         it('should have isCurrent() for /avengers to return `current`', function () {
@@ -44,7 +34,7 @@ describe('layout', function () {
             $location.path('/avengers');
             $httpBackend.flush();
             $rootScope.$apply();
-            expect(scope.vm.isCurrent($route.current)).to.equal('current');
+            expect(controller.isCurrent($route.current)).to.equal('current');
         });
 
         it('should have isCurrent() for non route not return `current`', function () {
@@ -52,7 +42,7 @@ describe('layout', function () {
             $location.path('/invalid');
             $httpBackend.flush();
             $rootScope.$apply();
-            expect(scope.vm.isCurrent({title: 'invalid'})).not.to.equal('current');
+            expect(controller.isCurrent({title: 'invalid'})).not.to.equal('current');
         });
 
         afterEach(function () {
