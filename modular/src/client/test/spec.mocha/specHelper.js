@@ -108,3 +108,10 @@ specHelper.getMockAvengers = function() {
         }
     ];
 };
+
+specHelper.verifyNoOutstandingHttpRequests = function(){
+    afterEach(inject(function($httpBackend) {
+        $httpBackend.verifyNoOutstandingExpectation();
+        $httpBackend.verifyNoOutstandingRequest();
+    }));
+};

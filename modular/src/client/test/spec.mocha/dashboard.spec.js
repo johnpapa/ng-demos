@@ -63,8 +63,5 @@ describe('app.dashboard', function() {
         });
     });
 
-    afterEach(function () {
-        $httpBackend.verifyNoOutstandingExpectation();
-        $httpBackend.verifyNoOutstandingRequest();
-    });
+    specHelper.verifyNoOutstandingHttpRequests();
 });

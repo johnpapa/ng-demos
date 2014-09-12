@@ -52,8 +52,5 @@ describe('app.avengers', function() {
         });
     });
 
-    afterEach(function() {
-        $httpBackend.verifyNoOutstandingExpectation();
-        $httpBackend.verifyNoOutstandingRequest();
-    });
+    specHelper.verifyNoOutstandingHttpRequests();
 });

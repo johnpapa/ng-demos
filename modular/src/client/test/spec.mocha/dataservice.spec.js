@@ -119,8 +119,5 @@ describe('dataservice', function () {
         });
     });
 
-    afterEach(function () {
-        $httpBackend.verifyNoOutstandingExpectation();
-        $httpBackend.verifyNoOutstandingRequest();
-    });
+    specHelper.verifyNoOutstandingHttpRequests();
 });

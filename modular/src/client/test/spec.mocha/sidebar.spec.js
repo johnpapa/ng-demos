@@ -45,9 +45,6 @@ describe('layout', function () {
             expect(controller.isCurrent({title: 'invalid'})).not.to.equal('current');
         });
 
-        afterEach(function () {
-            $httpBackend.verifyNoOutstandingExpectation();
-            $httpBackend.verifyNoOutstandingRequest();
-        });
+        specHelper.verifyNoOutstandingHttpRequests();
     });
 });
