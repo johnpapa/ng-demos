@@ -18,7 +18,7 @@
  * These points are illustrated here.
  */
 describe("Basics - ng Promises:", function () {
-    "use strict";
+    'use strict';
 
     var $q, $rootScope,
         bingo,

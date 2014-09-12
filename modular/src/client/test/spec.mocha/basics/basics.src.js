@@ -3,7 +3,7 @@
  */
 
 (function() {
-    "use strict";
+    'use strict';
 
 	/* Module */
     var basics = angular.module('basics', []);

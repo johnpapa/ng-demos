@@ -1,5 +1,5 @@
 describe("Basics - value:", function () {
-    "use strict";
+    'use strict';
 
     beforeEach(module('basics'));
 

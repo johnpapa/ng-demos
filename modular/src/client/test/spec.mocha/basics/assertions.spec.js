@@ -1,5 +1,5 @@
 describe('Basics - assertion examples:', function () {
-    "use strict";
+    'use strict';
 
     describe('Array#indexOf()', function () {
 
