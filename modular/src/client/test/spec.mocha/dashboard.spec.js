@@ -35,10 +35,7 @@ describe('app.dashboard', function() {
 
 
     beforeEach(inject(function ($rootScope, $controller) {
-        scope = $rootScope.$new();
-        controller = $controller('Dashboard as vm', {
-            '$scope': scope
-        });
+        controller = $controller('Dashboard');
         $rootScope.$apply();
     }));
 
@@ -49,19 +46,19 @@ describe('app.dashboard', function() {
 
         describe('after activate', function() {
             it('should have title of Dashboard', function () {
-                expect(scope.vm.title).to.equal('Dashboard');
+                expect(controller.title).to.equal('Dashboard');
             });
 
             it('should have news', function () {
-                expect(scope.vm.news).to.not.be.empty;
+                expect(controller.news).to.not.be.empty;
             });
 
             it('should have at least 1 avenger', function () {
-                expect(scope.vm.avengers).to.have.length.above(0);
+                expect(controller.avengers).to.have.length.above(0);
             });
 
             it('should have Avenger Count of 5', function () {
-                expect(scope.vm.avengerCount).to.equal(5);
+                expect(controller.avengerCount).to.equal(5);
             });
         });
     });
