@@ -1,5 +1,5 @@
 /* global describe, it, beforeEach, afterEach, expect, inject, sinon, testctx */
-/* global $controller, $httpBackend, $q, $rootScope */
+/* global $controller, $httpBackend, $location, $q, $rootScope, $route */
 /* jshint expr: true */
 describe('avengers', function() {
     var dataservice;
