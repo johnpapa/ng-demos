@@ -1,25 +1,15 @@
 describe("Basics - controller:", function () {
-    /*
-     * Registers a new test module with global angular, 'app.test'
-     * In Basics, 'app.test' is a stand-in for a production app module.
-     * Unlike your production module (e.g., 'app')
-     * the 'app.test' module is redefined with each new individual test run
-     * Same substance as 'controller-alternative.spec' ... different setup style
-     * You'll likely prefer this style.
-     * 
-     * DO NOT move 'app.test' module definition outside of a `beforeEach`
-     * because 'app.test' redefinition elsewhere will wipe it out, 
-     * breaking other tests unpredictably
-     */
-    var controller,
+
+    /*** Create the module that we'll test in this Basics spec ***/
+    var configTitle = 'Avengers Listing',
         controllerName = 'testController';
 
-    /*** Define a controller and configuration for our test module  ***/
+    angular
+        .module('app.controller.test', [])
+        .value('config', { title: configTitle})
+        .controller(controllerName , testController);
 
-    // Application configuration values ... to be injected in app components
-    var testConfig = { title: 'Avengers Listing'};
-
-    // Controller to test (imagine its a real controller in our app)
+    // Controller to test (imagine it's a real controller in our app)
     function testController($log, config) {
         var vm = this;
         vm.avengers = [];
@@ -34,27 +24,19 @@ describe("Basics - controller:", function () {
     }
 
 
-    /*** Setup module registry ***/
+    /*** Testing begins ***/
 
-    beforeEach(function(){
-        angular
-            .module('app.test', []) 
-            .value('config', testConfig)
-            .controller(controllerName , testController);
+    var controller;
 
-        module('app.test');
-    });
-
-
+    beforeEach(module('app.controller.test'));
 
     /*** Start using the module registry ***/
-    // The first `angular.mock.inject` closes module registration and modification
-
     // Create an instance of the controller before each test
+    // This first `angular.mock.inject` closes module registration and modification
     beforeEach(inject(function($controller){
         // $controller is an Ng service that makes controller instances
         // controller is an instance of `testController`
-        controller = $controller(controllerName);
+        controller = $controller(controllerName, {});
     }));
 
 
@@ -67,7 +49,7 @@ describe("Basics - controller:", function () {
 
 
     it("gets its title from configuration", function () {
-        expect(controller.title).to.equal(testConfig.title);
+        expect(controller.title).to.equal(configTitle);
     });
 
 

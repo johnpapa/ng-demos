@@ -5,8 +5,7 @@ describe("Basics - factory (alternate):", function () {
      * Reveals the magic behind module registration.
      * Same substance as 'factory.spec' ... different setup style
      */
-    var calc,
-        service;
+    var service;
 
     /*** Define service in our imaginary application  ***/
 
@@ -24,13 +23,12 @@ describe("Basics - factory (alternate):", function () {
     }
 
 
-    /*** Setup module registry ***/
+    /*** Testing begins ***/
 
     // Register our test service anonymously with `angular.mock.module`.
-    // We don't need to mention any actual modules because our test service doesn't depend on them.
-    // If we were testing an app service our module setup might be more like: beforeEach(module('app'));
+    // We don't need a module!!!
     beforeEach(module(function($provide){
-        // just like `angular.module('app').factory('testService', testService)
+        // just like `angular.module('app.factory.test').factory('testService', testService)
         $provide.factory('testService', testService);
     }));
 
@@ -41,53 +39,55 @@ describe("Basics - factory (alternate):", function () {
     // Get the service
     beforeEach(inject(function(testService){
         service = testService;
-        calc = service.calc; // DRY out the tests
     }));
 
 
 
     /*** Let's test! ***/
 
-    describe("(happy paths)", function () {
+    describe("(happy path)", function () {
 
         it('calc() => 0', function () {
-            expect(calc()).to.equal(0);
+            expect(service.calc()).to.equal(0);
         });
+    });
 
+
+    describe("(more happy paths)", function () {
         it('calc(1) => 1 ', function () {
-            expect(calc(1)).to.equal(1);
+            expect(service.calc(1)).to.equal(1);
         });
 
         it('calc(1,1) => 2', function () {
-            expect(calc(1,1)).to.equal(2);
+            expect(service.calc(1,1)).to.equal(2);
         });
 
         it('calc(-1) => -1', function () {
-            expect(calc(-1)).to.equal(-1);
+            expect(service.calc(-1)).to.equal(-1);
         });
 
         it('calc("0") => 0', function () {
-            expect(calc('0')).to.equal(0);
+            expect(service.calc('0')).to.equal(0);
         });
 
         it('calc("1") => 1', function () {
-            expect(calc('1')).to.equal(1);
+            expect(service.calc('1')).to.equal(1);
         });
 
         it('calc("-1") => -1', function () {
-            expect(calc('-1')).to.equal(-1);
+            expect(service.calc('-1')).to.equal(-1);
         });
 
         it('calc("") => 0', function () {
-            expect(calc('')).to.equal(0);
+            expect(service.calc('')).to.equal(0);
         });
 
         it('calc(null) => 0', function () {
-            expect(calc()).to.equal(0);
+            expect(service.calc()).to.equal(0);
         });
 
         it('calc(undefined) => 0', function () {
-            expect(calc(undefined)).to.equal(0);
+            expect(service.calc(undefined)).to.equal(0);
         });
     });
 
@@ -95,11 +95,11 @@ describe("Basics - factory (alternate):", function () {
     describe("(sad paths)", function () {
 
         it('calc("not a number") => NaN ', function () {
-            expect(isNaN(calc('not a number'))).to.be.true;
+            expect(isNaN(service.calc('not a number'))).to.be.true;
         });
 
         it('calc(1, "not a number") => NaN ', function () {
-            expect(isNaN(calc(1, 'not a number'))).to.be.true;
+            expect(isNaN(service.calc(1, 'not a number'))).to.be.true;
         });
     });
 

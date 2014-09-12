@@ -1,20 +1,9 @@
 describe("Basics - factory:", function () {
-    /*
-     * Registers a new test module with global angular, 'app.test'
-     * In Basics, 'app.test' is a stand-in for a production app module.
-     * Unlike your production module (e.g., 'app')
-     * the 'app.test' module is redefined with each new individual test run
-     * Same substance as 'factory-alternative.spec' ... different setup style
-     * You'll likely prefer this style.
-     * 
-     * DO NOT move 'app.test' module definition outside of a `beforeEach`
-     * because 'app.test' redefinition elsewhere will wipe it out, 
-     * breaking other tests unpredictably     
-     */
 
-    var service;
-
-    /*** Define service in our imaginary application  ***/
+    /*** Create the module that we'll test in this Basics spec ***/
+    angular
+        .module('app.factory.test', [])
+        .factory('testService', testService);
 
     // "factory" (AKA "service") to test
     function testService() {
@@ -30,36 +19,28 @@ describe("Basics - factory:", function () {
     }
 
 
-    /*** Setup module registry ***/
+    /*** Testing begins ***/
+    var service;
 
-    beforeEach(function () {
-        angular
-            .module('app.test', [])
-            .factory('testService', testService);
-
-        module('app.test');
-    });
-
-
-
-    /*** Start using the module registry ***/
-    // The first `angular.mock.inject` closes module registration and modification
+    beforeEach(module('app.factory.test'));
 
     // Get the service
+    // This first `angular.mock.inject` closes module registration and modification
     beforeEach(inject(function(testService){
         service = testService;
     }));
 
 
-
     /*** Let's test! ***/
 
-    describe("(happy paths)", function () {
+    describe("(happy path test)", function () {
 
         it('calc() => 0', function () {
             expect(service.calc()).to.equal(0);
         });
+    });
 
+    describe("(more happy path tests)", function () {
         it('calc(1) => 1 ', function () {
             expect(service.calc(1)).to.equal(1);
         });
@@ -96,7 +77,6 @@ describe("Basics - factory:", function () {
             expect(service.calc(undefined)).to.equal(0);
         });
     });
-
 
     describe("(sad paths)", function () {
 

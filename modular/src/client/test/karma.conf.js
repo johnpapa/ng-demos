@@ -48,14 +48,16 @@ module.exports = function (config) {
 
         ],
 
+        // list of files to exclude
+        exclude: [
+            // Excluding midway tests for now; comment this line out when you want to run them
+            './client/test/spec.mocha/midway/**/*.spec.js',
+            './client/app/**/*spaghetti.js'
+        ],
+
         proxies: {
             '/': 'http://localhost:8888/'
         },
-
-        // list of files to exclude
-        exclude: [
-            './client/app/**/*spaghetti.js'
-        ],
 
         // preprocess matching files before serving them to the browser
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
