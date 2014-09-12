@@ -1,15 +1,18 @@
-/*global sinon, describe, it, afterEach, beforeEach, expect, inject, testctx */
-describe.only('avengers', function() {
-    var deps;
+/* global describe, it, beforeEach, afterEach, expect, inject, sinon, testctx */
+/* global $controller, $httpBackend, $q, $rootScope */
+/* jshint expr: true */
+describe('avengers', function() {
     var dataservice;
     var scope;
     var controller;
     var toastr;
 
     beforeEach(function() {
-        module('app', testctx.fakeLogger);
-        deps = testctx.injectDependencies(true);
-
+        module('app', function($provide) {
+            testctx.fakeRouteProvider($provide);
+            testctx.fakeLogger($provide);
+        });
+        testctx.injectDependencies(true);
         inject(function(_dataservice_, _toastr_) {
             dataservice = _dataservice_;
             toastr = _toastr_;
@@ -17,10 +20,6 @@ describe.only('avengers', function() {
     });
 
     beforeEach(function () {
-        $httpBackend.when('GET', 'app/dashboard/dashboard.html').respond(200);
-//        $httpBackend.expectGET(/\w+.html/).respond(200, '');
-        $httpBackend.flush();
-
         sinon.stub(dataservice, 'getAvengers', function() {
             var deferred = $q.defer();
             deferred.resolve(testctx.getMockAvengers());

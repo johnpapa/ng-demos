@@ -1,33 +1,25 @@
-describe('dashboard', function () {
-    var $controller,
-        dataservice,
-        $httpBackend,
-        $location,
-        $q,
-        $rootScope,
-        $route,
-        scope,
-        toastr;
+/* global describe, it, beforeEach, afterEach, expect, inject, sinon, testctx */
+/* global $controller, $httpBackend, $q, $rootScope */
+/* jshint expr: true */
+describe('dashboard', function() {
+    var dataservice;
+    var scope;
+    var controller;
+    var toastr;
 
-    beforeEach(function () {
-        module('app', testctx.fakeLogger);
-        inject(function (_$controller_, _$httpBackend_, _$location_, _$q_, _$rootScope_, _$route_, _dataservice_, _toastr_) {
-            $controller = _$controller_;
-            $httpBackend = _$httpBackend_;
-            $location = _$location_;
-            $q = _$q_;
-            $rootScope = _$rootScope_;
-            $route = _$route_;
+    beforeEach(function() {
+        module('app', function($provide) {
+            testctx.fakeRouteProvider($provide);
+            testctx.fakeLogger($provide);
+        });
+        testctx.injectDependencies(true);
+        inject(function(_dataservice_, _toastr_) {
             dataservice = _dataservice_;
             toastr = _toastr_;
         });
     });
 
     beforeEach(function () {
-        $httpBackend.when('GET', 'app/dashboard/dashboard.html').respond(200);
-//        $httpBackend.expectGET(/\w+.html/).respond(200, '');
-        $httpBackend.flush();
-
         sinon.stub(dataservice, 'getAvengerCount', function () {
             var deferred = $q.defer();
             deferred.resolve(testctx.getMockAvengers().length);
