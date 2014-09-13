@@ -1,4 +1,4 @@
-describe('Basics - getInjectables:', function () {
+describe('specHelper.getInjectables:', function () {
     'use strict';
 
     describe('in the starting test path', function () {
