@@ -1,19 +1,29 @@
-describe('specHelper.getInjectables:', function () {
+describe.only('specHelper.getInjectables', function () {
     'use strict';
 
-    describe('in the starting test path', function () {
-        it('#1 window.$log and window.calcService should not exist', function() {
+    beforeEach(module('basics'));
+
+    beforeEach(function(){
+        // Confirm no window pollution from a prior getInjectables() call
+        expect(window.$log).to.not.exist;
+        expect(window.calcService).to.not.exist;
+        expect(window.baz).to.not.exist;
+        expect(window.foo).to.not.exist;
+    });
+
+    describe('(describe #1):', function () {
+
+        it('window.$log and window.calcService should not exist', function() {
             expect(window.$log).to.not.exist;
             expect(window.calcService).to.not.exist;
         });
+
     });
 
-    describe('in the middle test path', function () {
-
-    	beforeEach(module('basics'));
+    describe('(describe #2):', function () {
 
     	beforeEach(function(){
-            //window.$log and window.calcService should not exist
+            // window.$log and window.calcService should not exist before any test
 		    expect(window.$log).to.not.exist;
 	        expect(window.calcService).to.not.exist;
 		});
@@ -21,7 +31,7 @@ describe('specHelper.getInjectables:', function () {
         // Although getInjectables() puts injectables in the window,
         // it also removes them after each test by scheduling an afterEach
         // Notice ... no private vars for $log or calcService! ... no injecting of them either.
-        it('#2a should set window.$log and window.calcService when call getInjectables with a func', function () {
+        it('should set window.$log and window.calcService when call getInjectables with a func', function () {
 
 	        specHelper.getInjectables(function($log, calcService){});
 
@@ -38,11 +48,9 @@ describe('specHelper.getInjectables:', function () {
                 expect(window.$log).to.not.exist;
                 expect(window.calcService).to.not.exist;
             });
-
         });
 
-
-        it('#2b should set window.$log and window.calcService when call getInjectables with string array', function () {
+        it('should set window.$log and window.calcService when call getInjectables with string array', function () {
 
             specHelper.getInjectables(['$log', 'calcService']);
 
@@ -50,7 +58,7 @@ describe('specHelper.getInjectables:', function () {
             expect(calcService).to.exist;
         });
 
-        it('#2c should set window.$log and window.calcService when call getInjectables with string params', function () {
+        it('should set window.$log and window.calcService when call getInjectables with string params', function () {
 
             specHelper.getInjectables('$log', 'calcService');
 
@@ -58,7 +66,7 @@ describe('specHelper.getInjectables:', function () {
             expect(calcService).to.exist;
         });
 
-        it('#2d should set window.$log and window.foo when call getInjectables("$log","block.foo")', function () {
+        it('should set window.$log and window.foo when call getInjectables("$log","block.foo")', function () {
 
             // register this ridiculous value for just this test
             module(function($provide){
@@ -79,21 +87,54 @@ describe('specHelper.getInjectables:', function () {
                 expect(window.foo).to.not.exist;
             });
         });
-
-/*      Would fail because THIS afterEach is registered BEFORE the one created by specHelper.getInjectables
-
+         
+        /*
+        // Would fail because THIS afterEach is registered BEFORE the one created by specHelper.getInjectables      
         afterEach(function(){
             // Should have cleaned up after itself
             expect(window.$log).to.not.exist;
             expect(window.calcService).to.not.exist;
         });
- */
+
+        */
     });
 
-    describe('in the ending test path', function () {
-        it('#4 window.$log and window.calcService should not exist', function(){
+    describe('(describe #3):', function () {
+
+        it('window.$log and window.calcService should not exist', function(){
             expect(window.$log).to.not.exist;
             expect(window.calcService).to.not.exist;
         });
     });
+
+    describe('(describe #4):', function () {
+
+        beforeEach(function(){
+
+            // register this ridiculous value for just this describe
+            module(function($provide){
+                $provide.value('baz', 'baz');
+            })
+            
+            specHelper.getInjectables('baz'); // get baz in outer describe
+        });
+
+
+        describe('in nested describe', function(){
+
+            it('baz is available from parent describe', function(){
+                expect(baz).to.exist;
+            }); 
+
+            it('baz from getInjectables() is same object as baz from direct injection', function () {
+
+                specHelper.getInjectables('baz');
+
+                inject(function(_baz_){
+                    expect(baz).to.equal(_baz_);
+                });
+            });           
+        })
+    });
+
 });
