@@ -1,4 +1,4 @@
-describe.only('Basics - getInjectables:', function () {
+describe('Basics - getInjectables:', function () {
     'use strict';
 
     describe('in the starting test path', function () {
@@ -18,10 +18,10 @@ describe.only('Basics - getInjectables:', function () {
 	        expect(window.calcService).to.not.exist;
 		});
 
-        it('#2 should set window.$log and window.calcService when call getInjectables', function () {
+        it('#2a should set window.$log and window.calcService when call getInjectables with func', function () {
 			var fn = function($log, calcService){}
+
 	        specHelper.getInjectables(fn);
-	        //eval(specHelper.getInjectables(fn));
 
 	        expect(window.$log).to.exist;
 	        expect(window.calcService).to.exist;
@@ -35,9 +35,21 @@ describe.only('Basics - getInjectables:', function () {
 
         });
 
-        it('#3 window.$log and window.calcService should not exist', function() {
-            expect(window.$log).to.not.exist;
-            expect(window.calcService).to.not.exist;
+
+        it('#2b should set window.$log and window.calcService when call getInjectables with [strings]', function () {
+
+            specHelper.getInjectables(['$log', 'calcService']);
+
+            expect(window.$log).to.exist;
+            expect(window.calcService).to.exist;
+        });
+
+        it('#2c should set window.$log and window.calcService when call getInjectables with string params', function () {
+
+            specHelper.getInjectables('$log', 'calcService');
+
+            expect(window.$log).to.exist;
+            expect(window.calcService).to.exist;
         });
 
 /*      Would fail because THIS afterEach is registered BEFORE the one created by specHelper.getInjectables

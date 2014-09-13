@@ -78,13 +78,14 @@ specHelper.getFnParams = function (fn) {
 };
 
 specHelper.getInjectables= function(){
-    var anonymous;
     var params = arguments;
     if (typeof params[0]==='function') {
         params = specHelper.getFnParams(params[0]);
     } else if (angular.isArray(params[0])) {
         params = params[0];
-    } // else assume that arguments are all strings
+    } else { // assume that arguments are all strings
+        params = Array.prototype.slice.call(arguments);
+    }
 
     var body = '',
         cleanupBody = '';
@@ -99,7 +100,14 @@ specHelper.getInjectables= function(){
             'afterEach(function(){'+cleanupBody+'});'; // remove from window.
     Function(f)(); // the assigned vars are now global. `afterEach` will remove them
 
-    //return f; // if caller executes in it's context (`eval(f)`); they'll be local
+    // Alternative that would not touch window but would require eval()!!
+    // Don't do `Function(f)()`; don't do afterEach cleanup
+    // Instead do ..
+    //     return f; 
+    //
+    // Then caller does something like:
+    //     eval(specHelper.getInjectables(fn));
+
 };
 
 
