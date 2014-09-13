@@ -18,11 +18,17 @@ describe('Basics - getInjectables:', function () {
 	        expect(window.calcService).to.not.exist;
 		});
 
+        // Although getInjectables() puts injectables in the window, 
+        // it also removes them after each test by scheduling an afterEach
+        // Notice ... no private vars for $log or calcService! ... no injecting of them either.
         it('#2a should set window.$log and window.calcService when call getInjectables with func', function () {
-			var fn = function($log, calcService){}
 
-	        specHelper.getInjectables(fn);
+	        specHelper.getInjectables(function($log, calcService){});
 
+            expect($log).to.exist;
+            expect(calcService).to.exist;
+
+            // They are actually in the window
 	        expect(window.$log).to.exist;
 	        expect(window.calcService).to.exist;
 
@@ -40,16 +46,16 @@ describe('Basics - getInjectables:', function () {
 
             specHelper.getInjectables(['$log', 'calcService']);
 
-            expect(window.$log).to.exist;
-            expect(window.calcService).to.exist;
+            expect($log).to.exist;
+            expect(calcService).to.exist;
         });
 
         it('#2c should set window.$log and window.calcService when call getInjectables with string params', function () {
 
             specHelper.getInjectables('$log', 'calcService');
 
-            expect(window.$log).to.exist;
-            expect(window.calcService).to.exist;
+            expect($log).to.exist;
+            expect(calcService).to.exist;
         });
 
 /*      Would fail because THIS afterEach is registered BEFORE the one created by specHelper.getInjectables
