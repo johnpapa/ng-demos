@@ -60,6 +60,11 @@ describe('Basics - getInjectables:', function () {
 
         it('#2d should set window.$log and window.foo when call getInjectables("$log","block.foo")', function () {
 
+            // register this ridiculous value for just this test
+            module(function($provide){
+                $provide.value('block.foo', 'foo');
+            })
+
             // Can inject a service with a dotted name!
             specHelper.getInjectables('$log', 'block.foo');
 

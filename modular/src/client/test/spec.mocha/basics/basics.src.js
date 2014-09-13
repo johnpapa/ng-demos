@@ -172,10 +172,4 @@
         }
     }
 
-
-
-
-    // dotted component name
-    basics.value('block.foo', 'foo');
-
 }());
