@@ -261,6 +261,7 @@ gulp.task('watch', function() {
  *    gulp autotest --startServers 
  */
 gulp.task('test', function (done) {
+    var child;
     // var spawn = require('child_process').spawn;
     var exec = require('child_process').exec;
     // var options = {
@@ -271,7 +272,7 @@ gulp.task('test', function (done) {
 
     if (env.startServers) {
         log('Starting servers');
-        var child = exec('NODE_ENV=dev PORT=8888 node ' + pkg.paths.server + 'app.js');
+        child = exec('NODE_ENV=dev PORT=8888 node ' + pkg.paths.server + 'app.js');
     } else {
         excludeFiles.push('./src/client/test/midway/**/*.spec.js');
     }
@@ -281,7 +282,7 @@ gulp.task('test', function (done) {
         exclude: excludeFiles,
         singleRun: true
     }, function() {
-        child.kill();
+        child && child.kill();
         done();
     });
 });
