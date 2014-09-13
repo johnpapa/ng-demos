@@ -78,36 +78,61 @@ specHelper.getFnParams = function (fn) {
 };
 
 specHelper.getInjectables= function(){
-    var params = arguments;
-    if (typeof params[0]==='function') {
-        params = specHelper.getFnParams(params[0]);
-    } else if (angular.isArray(params[0])) {
-        params = params[0];
-    } else { // assume that arguments are all strings
+    var annotation,
+        body = '',
+        cleanupBody = '',
+        mustAnnotate = false,
+        params;
+
+    if (typeof arguments[0]==='function') {
+        params = specHelper.getFnParams(arguments[0]);
+    }
+    // else from here on assume that arguments are all strings
+    else if (angular.isArray(arguments[0])) {
+        params = arguments[0];
+    }
+    else {
         params = Array.prototype.slice.call(arguments);
     }
 
-    var body = '',
-        cleanupBody = '';
+    annotation = params.join("','"), // might need to annotate
+
     angular.forEach(params, function(name, ix){
-        // Todo: deal with names that have periods, e.g. 'block1.foo'
-        var _name = '_'+name+'_';
-        params[ix]=_name
-        body+=name+'='+_name+';';
+        var _name,
+            pathName = name.split('.'),
+            pathLen = pathName.length;
+
+        if (pathLen > 1){
+            // name is a path like 'block.foo'. Can't use as identifier
+            // assume last segment should be identifier name, e.g. 'foo'
+            name = pathName[pathLen-1];
+            mustAnnotate = true;
+        }
+
+        _name = '_'+name+'_';
+        params[ix] = _name
+        body += name + '=' + _name+';';
         cleanupBody += 'delete window.'+name+';';
     });
-    var f = 'inject(function('+params.join(',')+'){'+body+'});'+
-            'afterEach(function(){'+cleanupBody+'});'; // remove from window.
-    Function(f)(); // the assigned vars are now global. `afterEach` will remove them
+
+    var fn = 'function('+params.join(',')+'){'+body+'}';
+
+    if (mustAnnotate){
+        fn = "['" + annotation +"'," + fn + ']';
+    }
+
+    var exp = 'inject(' + fn + ');' +
+              'afterEach(function(){'+cleanupBody+'});'; // remove from window.
+
+    Function(exp)(); // the assigned vars will be global. `afterEach` will remove them
 
     // Alternative that would not touch window but would require eval()!!
-    // Don't do `Function(f)()`; don't do afterEach cleanup
+    // Don't do `Function(exp)()` and don't do afterEach cleanup
     // Instead do ..
-    //     return f; 
+    //     return exp;
     //
-    // Then caller does something like:
-    //     eval(specHelper.getInjectables(fn));
-
+    // Then caller must say something like:
+    //     eval(specHelper.getInjectables('$log', 'foo'));
 };
 
 
