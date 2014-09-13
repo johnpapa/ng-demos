@@ -33,14 +33,13 @@ module.exports = function (config) {
             './client/app/**/*.js',
 
             /* MOCHA */
-            './client/test/spec.mocha/**/specHelper.js',
+            './client/test/**/specHelper.js',
 
-            './client/test/spec.mocha/basics/**/*.src.js',
-            './client/test/spec.mocha/basics/**/*.spec.js',
+            './client/test/basics/**/*.src.js',
+            './client/test/basics/**/*.spec.js',
 
             // all specs ... comment out during early test training
-            './client/test/spec.mocha/**/*.spec.js'
-
+            './client/test/**/*.spec.js'
 
         ],
 

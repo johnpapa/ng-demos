@@ -276,7 +276,7 @@ gulp.task('test', function() {
 
     log('Running tests');
     var action = (env.watch == null || env.watch === 'run') ? 'run' : 'watch';
-    var testFiles = [pkg.paths.test + 'spec.mocha/*[Ss]pec.js'];
+//    var testFiles = [pkg.paths.test + '*[Ss]pec.js'];
 
     return gulp
         .src('./useKarmaConfAndNotThis')
