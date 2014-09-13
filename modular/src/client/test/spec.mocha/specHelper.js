@@ -1,5 +1,4 @@
-/* globals inject, sinon, afterEach, $controller, $httpBackend, $location, $q, $rootScope, $route, $routeParams */
-var specHelper = specHelper || {};
+var specHelper = {};
 
 specHelper.fakeLogger = function($provide) {
     $provide.value('logger', sinon.stub({

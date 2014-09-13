@@ -1,6 +1,3 @@
-/* global describe, it, beforeEach, afterEach, expect, inject, sinon, specHelper */
-/* global $controller, $httpBackend, $location, $q, $rootScope, $route */
-/* jshint expr: true */
 describe('dataservice', function () {
     var dataservice;
     var scope;

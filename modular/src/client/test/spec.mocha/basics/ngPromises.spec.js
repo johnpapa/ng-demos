@@ -1,6 +1,3 @@
-/* global describe, it, beforeEach, afterEach, expect, inject, sinon, specHelper */
-/* global $controller, $httpBackend, $location, $q, $rootScope, $route */
-/* jshint expr: true */
 /* ngPromises.spec.js:
  *
  * ngMocks mocks angular's $q library so that functions

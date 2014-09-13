@@ -1,6 +1,3 @@
-/* global describe, it, beforeEach, afterEach, expect, inject, sinon, specHelper, ngMidwayTester */
-/* global $controller, $httpBackend, $location, $q, $rootScope, $route */
-/* jshint expr: true */
 describe('Midway: view requets', function() {
     var tester;
     beforeEach(function() {

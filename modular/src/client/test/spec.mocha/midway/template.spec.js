@@ -1,6 +1,3 @@
-/* global describe, it, beforeEach, afterEach, expect, inject, sinon, specHelper, ngMidwayTester */
-/* global $controller, $httpBackend, $location, $q, $rootScope, $route */
-/* jshint expr: true */
 describe('Midway: templates', function() {
     it('should load the template for the avengers view properly',
         function(done) {

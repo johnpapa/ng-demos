@@ -1,7 +1,4 @@
-/* global describe, it, beforeEach, afterEach, expect, inject, sinon, specHelper */
 /* global calcService, $log, foo, baz */
-/* global $controller, $httpBackend, $location, $q, $rootScope, $route */
-/* jshint expr: true */
 describe('specHelper.getInjectables', function() {
     'use strict';
 
