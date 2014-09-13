@@ -1,67 +1,20 @@
 describe("Basics - controller w/ async dataservice:", function () {
+    'use strict';
 
     var controller,
-        controllerName = 'testController';
+        controllerName = 'basicAsyncDataController';
 
-    /*** Define a controller and configuration for our test module  ***/
-
-    // Application configuration values ... to be injected in app components
-    var testConfig = { title: 'Avengers Listing'};
-
-    // Controller to test (imagine its a real controller in our app)
-    function testController($log, config, dataservice) {
-        var vm = this;
-        vm.avengers = [];
-        vm.title = config.title;
-
-        activate();
-
-        ///////////
-        function activate(){
-            dataservice.getAvengers().then(function(avengers){
-                vm.avengers = avengers;
-            });
-            $log.debug(vm.title + ' activated');
-        }
-    }
-
-    // imagine this is the REAL dataservice
-    function dataservice($http) {
-        var service = {
-            getAvengers: getAvengers
-        };
-        return service;
-        ///////////
-        function getAvengers(){
-
-            return $http.get('/api/avengers')
-                .then(function (data, status, headers, config) {
-                    return data.data[0].data.results;
-                })
-                .catch(function(message) {
-                    throw new Error('XHR failed to get Avengers\n' + message);
-                });
-
-        }
-    }
-
-
-    /*** Setup module registry ***/
-
-    beforeEach(function(){
-        angular
-            .module('app.test', [])  // 'app.test' is a new module that is redefined over and over
-            .factory('dataservice', dataservice)
-            .controller(controllerName , testController)
-            .value('config', testConfig) ;
-
-        module('app.test');
-    });
-
-    /*** Start using the module registry ***/
+    beforeEach(module('basics'));
 
     describe("when using 'real' dataservice", function () {
-        var $controller, $httpBackend, $log;
+        var $controller, $httpBackend, $log, avengersUri;
+
+        beforeEach(inject(function(_$controller_, _$httpBackend_,  _$log_, config){
+            $controller  = _$controller_;
+            $httpBackend = _$httpBackend_;
+            $log         = _$log_;
+            avengersUri  = config.apiBaseUri + 'avengers';
+        }));
 
         function createController(){
             controller = $controller(controllerName);
@@ -73,11 +26,6 @@ describe("Basics - controller w/ async dataservice:", function () {
             }
         }
 
-        beforeEach(inject(function(_$controller_, _$httpBackend_,  _$log_){
-            $controller = _$controller_;
-            $httpBackend = _$httpBackend_;
-            $log = _$log_;
-        }));
 
         describe("with unprepared $httpBackend", function () {
 
@@ -89,78 +37,81 @@ describe("Basics - controller w/ async dataservice:", function () {
                 expect($log.error.logs[0]).to.match(/no more request expected/i);
             });
 
-            it("controller was activated", function () {
-                expect($log.debug.logs[0]).to.match(/activated/i);
-            });
-
             it("controller does not have avengers", function () {
                 expect(controller.avengers).to.be.empty; // because getAvengers failed
             });
         });
+
 
         describe("with prepared $httpBackend", function () {
 
             beforeEach(function () {
                 // dataservice's $http.get handler looks for 'data.data[0].data.results' (yikes!)
                 // the response needs to be the single element data.data array
-                var response = [{data: {results: testctx.getMockAvengers()}}];
+                var response = [{data: {results: specHelper.getMockAvengers()}}];
 
-                // must know the server's API in the test
-                $httpBackend.whenGET('/api/avengers').respond(response);
+                $httpBackend.whenGET(avengersUri).respond(response);
                 createController();
             });
 
-            it("controller was activated", function () {
-                expect($log.debug.logs[0]).to.match(/activated/i);
-            });
-
-            it("controller does have avengers", function () {
-                var len = controller.avengers.length;
-                expect(len).above(1, "avengers.length is " +len);
+            it("has avengers immediately after creation", function () {
+                expect(controller.avengers.length).above(1);
             });
         });
     });
 
 
-    /*** Try a dataservice test double ***/
+    describe("when create controller with mock dataservice", function () {
 
-    describe("when using mock dataservice", function () {
+        beforeEach(inject(function($controller, $q, $rootScope){
 
-        // replace this app's dataservice with a test double
-        beforeEach(module(mockBasicDataService));
+            // mock service object whose getAvengers() returns test data
+            var mockAsyncDataService = {
+                getAvengers: function () {
+                    return $q.when(specHelper.getMockAvengers());
+                }
+            };
 
-        beforeEach(inject(function($controller, $rootScope){
-            controller = $controller(controllerName);
+            // 'local' values that the $controller service passes to
+            //  the constructor instead of values from the injector
+            var ctorArgs = {
+                asyncDataservice: mockAsyncDataService
+            };
+
+            controller = $controller(controllerName, ctorArgs);
             $rootScope.$apply(); // flush promise queue.
         }));
 
-        it("controller was activated", inject(function ($log) {
-            expect($log.debug.logs[0]).to.match(/activated/i);
-        }));
-
-        it("controller has avengers", function () {
-            var len = controller.avengers.length;
-            expect(len).above(1, "avengers.length is " +len);
+        it("has avengers immediately after creation", function () {
+            expect(controller.avengers.length).above(1);
         });
 
     });
 
-    ///// Private //////////
 
-    // Todo: move to specHelper.js if needed again
-    function mockBasicDataService($provide) {
-        $provide.factory('dataservice', dataservice);
 
-        function dataservice($q) {
+    describe("when re-register with mock dataservice", function () {
+
+        beforeEach(module(function($provide){
+            $provide.factory('asyncDataservice', mockAsyncDataService);
+        }));
+
+        beforeEach(inject(
+            function($controller, $rootScope){
+                controller = $controller(controllerName);
+                $rootScope.$apply(); // flush promise queue.
+        }));
+
+        it("has avengers immediately after creation", function () {
+            expect(controller.avengers.length).above(1);
+        });
+
+        function mockAsyncDataService($q) {
             return {
-                getAvengers: getAvengers
+                getAvengers: function () {
+                    return $q.when(specHelper.getMockAvengers());
+                }
             };
-            ///////////
-            function getAvengers(){
-                // testctx is in specHelper.js
-                return $q.when(testctx.getMockAvengers());
-            }
         }
-    };
-
+    });
 });

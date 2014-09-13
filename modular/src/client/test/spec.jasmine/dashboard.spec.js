@@ -31,7 +31,7 @@ describe('dashboard', function () {
 
             spyOn(dataservice, 'getAvengerCount').and.callFake(function () {
                 var deferred = $q.defer();
-                deferred.resolve(testctx.getMockAvengers().length);
+                deferred.resolve(specHelper.getMockAvengers().length);
                 return deferred.promise;
             });
 

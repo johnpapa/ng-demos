@@ -10,7 +10,7 @@ describe("Midway: controllers and routes", function() {
     });
 
     beforeEach(function () {
-        module('app', testctx.fakeLogger);
+        module('app', specHelper.fakeLogger);
     });
 
     it('should load the Avengers controller properly when /avengers route is accessed', function(done) {

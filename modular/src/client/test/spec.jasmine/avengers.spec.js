@@ -29,7 +29,7 @@ describe('avengers', function () {
 
             spyOn(dataservice, 'getAvengers').and.callFake(function () {
                 var deferred = $q.defer();
-                deferred.resolve(testctx.getMockAvengers());
+                deferred.resolve(specHelper.getMockAvengers());
                 return deferred.promise;
             });
 

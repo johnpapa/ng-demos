@@ -21,6 +21,7 @@
  * [ A WORK IN PROGRESS ]
  */
 describe("Basics - ngModules:", function() {
+    'use strict';
 
     /*** Fictive Module Arrangement ***/
     /*

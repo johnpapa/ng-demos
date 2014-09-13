@@ -8,7 +8,7 @@ describe('Midway: view requets', function() {
 	}); 
 
     beforeEach(function () {
-        module('app', testctx.fakeLogger);
+        module('app', specHelper.fakeLogger);
     });
 
 	it('should goto the dashboard by default', function(done) {
