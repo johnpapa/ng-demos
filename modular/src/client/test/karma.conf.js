@@ -46,7 +46,7 @@ module.exports = function (config) {
         // list of files to exclude
         exclude: [
             // Excluding midway tests for now; comment this line out when you want to run them
-            './client/test/spec.mocha/midway/**/*.spec.js',
+            './client/test/midway/**/*.spec.js',
             './client/app/**/*spaghetti.js'
         ],
 
