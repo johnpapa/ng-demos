@@ -276,15 +276,23 @@ gulp.task('test', function (done) {
     } else {
         excludeFiles.push('./src/client/test/midway/**/*.spec.js');
     }
+    startTests();
 
-    karma.start({
-        configFile: __dirname + '/karma.conf.js',
-        exclude: excludeFiles,
-        singleRun: true
-    }, function() {
-        child && child.kill();
-        done();
-    });
+    function startTests(error, stdout, stderr) {
+        log('stdout: ' + stdout);
+        log('stderr: ' + stderr);
+        if (error !== null) {
+            log('exec error: ' + error);
+        } 
+        karma.start({
+            configFile: __dirname + '/karma.conf.js',
+            exclude: excludeFiles,
+            singleRun: true
+        }, function() {
+            if (child) {child.kill();}
+            done();
+        });
+    }
 });
 
 /**
