@@ -59,6 +59,50 @@ specHelper.fakeRouteProvider = function($provide) {
     });
 };
 
+specHelper.getFnParams = function (fn) {
+    var FN_ARGS = /^function\s*[^\(]*\(\s*([^\)]*)\)/m;
+    var FN_ARG_SPLIT = /,/;
+    var FN_ARG = /^\s*(_?)(\S+?)\1\s*$/;
+    var STRIP_COMMENTS = /((\/\/.*$)|(\/\*[\s\S]*?\*\/))/mg;
+    var params = [];
+    if (fn.length) {
+        fnText = fn.toString().replace(STRIP_COMMENTS, '');
+        argDecl = fnText.match(FN_ARGS);
+        angular.forEach(argDecl[1].split(FN_ARG_SPLIT), function(arg){
+                arg.replace(FN_ARG, function(all, underscore, name){
+                params.push(name);
+            });
+        });
+    }
+    return params;
+};
+
+specHelper.getInjectables= function(){
+    var anonymous;
+    var params = arguments;
+    if (typeof params[0]==='function') {
+        params = specHelper.getFnParams(params[0]);
+    } else if (angular.isArray(params[0])) {
+        params = params[0];
+    } // else assume that arguments are all strings
+
+    var body = '',
+        cleanupBody = '';
+    angular.forEach(params, function(name, ix){
+        // Todo: deal with names that have periods, e.g. 'block1.foo'
+        var _name = '_'+name+'_';
+        params[ix]=_name
+        body+=name+'='+_name+';';
+        cleanupBody += 'delete window.'+name+';';
+    });
+    var f = 'inject(function('+params.join(',')+'){'+body+'});'+
+            'afterEach(function(){'+cleanupBody+'});'; // remove from window.
+    Function(f)(); // the assigned vars are now global. `afterEach` will remove them
+
+    //return f; // if caller executes in it's context (`eval(f)`); they'll be local
+};
+
+
 specHelper.getMockAvengers = function() {
     return [
         {
