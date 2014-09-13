@@ -1,5 +1,4 @@
-/* globals inject, sinon, $controller, $httpBackend, $location, $q, $rootScope, $route, $routeParams */
-var specHelper = specHelper || {};
+var specHelper = {};
 
 specHelper.fakeLogger = function($provide) {
     $provide.value('logger', sinon.stub({
@@ -95,7 +94,7 @@ specHelper.getInjectables= function(){
         params = Array.prototype.slice.call(arguments);
     }
 
-    annotation = params.join("','"), // might need to annotate
+    annotation = params.join('\',\''); // might need to annotate
 
     angular.forEach(params, function(name, ix){
         var _name,
@@ -110,7 +109,7 @@ specHelper.getInjectables= function(){
         }
 
         _name = '_'+name+'_';
-        params[ix] = _name
+        params[ix] = _name;
         body += name + '=' + _name+';';
         cleanupBody += 'delete window.'+name+';';
 
@@ -120,7 +119,7 @@ specHelper.getInjectables= function(){
     var fn = 'function('+params.join(',')+'){'+body+'}';
 
     if (mustAnnotate){
-        fn = "['" + annotation +"'," + fn + ']';
+        fn = '[\'' + annotation +'\',' + fn + ']';
     }
 
     var exp = 'inject(' + fn + ');' +

@@ -26,7 +26,7 @@
             var $dropdownElement = element.find('.sidebar-dropdown a');
             element.addClass('sidebar');
             $dropdownElement.click(dropdown);
-            var whenDone = (typeof scope.whenDoneAnimating === 'function')? scope.whenDoneAnimating : function(){};
+            var whenDone = (typeof scope.whenDoneAnimating === 'function')? scope.whenDoneAnimating : function() {};
 
             function dropdown(e) {
                 var dropClass = 'dropy';

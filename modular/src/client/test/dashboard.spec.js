@@ -1,6 +1,3 @@
-/* global describe, it, beforeEach, afterEach, expect, inject, sinon, specHelper */
-/* global $controller, $httpBackend, $location, $q, $rootScope, $route */
-/* jshint expr: true */
 describe('app.dashboard', function() {
     var dataservice;
     var scope;
@@ -32,7 +29,6 @@ describe('app.dashboard', function() {
             return deferred.promise;
         });
     });
-
 
     beforeEach(inject(function ($rootScope, $controller) {
         controller = $controller('Dashboard');

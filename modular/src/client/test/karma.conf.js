@@ -10,7 +10,6 @@ module.exports = function (config) {
         // frameworks to use
         // some available frameworks: https://npmjs.org/browse/keyword/karma-adapter
         frameworks: ['mocha', 'chai', 'sinon', 'chai-sinon'],
-//        frameworks: ['jasmine'],
 
         // list of files / patterns to load in the browser
         files: [
@@ -33,20 +32,14 @@ module.exports = function (config) {
             './client/app/**/*.module.js',
             './client/app/**/*.js',
 
-            /* JASMINE */
-//            'test/spec.jasmine/**/matchers.js',
-//            'test/spec.jasmine/**/specHelper.js',
-//            'test/spec.jasmine/**/*.spec.js',
-
             /* MOCHA */
-            './client/test/spec.mocha/**/specHelper.js',
+            './client/test/**/specHelper.js',
 
-            './client/test/spec.mocha/basics/**/*.src.js',
-            './client/test/spec.mocha/basics/**/*.spec.js',
+            './client/test/basics/**/*.src.js',
+            './client/test/basics/**/*.spec.js',
 
             // all specs ... comment out during early test training
-            './client/test/spec.mocha/**/*.spec.js'
-
+            './client/test/**/*.spec.js'
 
         ],
 

@@ -1,6 +1,3 @@
-/* global describe, it, beforeEach, afterEach, expect, inject, sinon, specHelper */
-/* global $controller, $httpBackend, $location, $q, $rootScope, $route */
-/* jshint expr: true */
 describe('dataservice', function () {
     var dataservice;
     var scope;
@@ -19,7 +16,7 @@ describe('dataservice', function () {
         });
         
         mocks.maaData = [{ 
-            data: { results: specHelper.getMockAvengers() }
+            data: {results: specHelper.getMockAvengers()}
         }];
         // sinon.stub(dataservice, 'getAvengers', function () {
         //     var deferred = $q.defer();
@@ -29,7 +26,7 @@ describe('dataservice', function () {
     });
 
     it('should be registered', function() {
-      expect(dataservice).not.to.equal(null);
+        expect(dataservice).not.to.equal(null);
     });
 
     describe('getAvengers function', function () {
@@ -111,7 +108,7 @@ describe('dataservice', function () {
                 .then(function(data) {
                     expect(true).to.be.true;
                     done();
-                }, function(data){
+                }, function(data) {
                     expect('promise rejected').to.be.true;
                     done();
                 });

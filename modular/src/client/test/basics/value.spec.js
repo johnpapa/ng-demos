@@ -1,4 +1,4 @@
-describe("Basics - value:", function () {
+describe('Basics - value:', function() {
     'use strict';
 
     beforeEach(module('basics'));
@@ -6,7 +6,7 @@ describe("Basics - value:", function () {
     // The first use of inject
     // closes the module cookbook to further modification
     it('config.apiBaseUri has expected original value',
-        inject(function(config){
+        inject(function(config) {
             expect(config.apiBaseUri).to.equal('/api/marvel/');
         })
     );
