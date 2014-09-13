@@ -292,7 +292,7 @@ gulp.task('test', function() {
  * and with node inspector
  */
 gulp.task('serve-dev-debug', function() {
-    serve({env: 'dev', debug: '--debug'});
+    serve({mode: 'dev', debug: '--debug'});
     startLivereload('development');
 });
 
@@ -301,7 +301,7 @@ gulp.task('serve-dev-debug', function() {
  * and with node inspector
  */
 gulp.task('serve-dev-debug-brk', function() {
-    serve({env: 'dev', debug: '--debug-brk'});
+    serve({mode: 'dev', debug: '--debug-brk'});
     startLivereload('development');
 });
 
@@ -309,7 +309,7 @@ gulp.task('serve-dev-debug-brk', function() {
  * serve the dev environment
  */
 gulp.task('serve-dev', function() {
-    serve({env: 'dev'});
+    serve({mode: 'dev'});
     startLivereload('development');
 });
 
@@ -317,24 +317,23 @@ gulp.task('serve-dev', function() {
  * serve the staging environment
  */
 gulp.task('serve-stage', function() {
-    serve({env: 'stage'});
+    serve({mode: 'stage'});
     startLivereload('stage');
 });
 
-function startLivereload(env) {
+function startLivereload(mode) {
+    if (!env.liveReload) { return; }
 
-    //TODO: gulp-livereload is failing due to tiny-lr issue. Re-enable when fixed.
+    var path = (env === 'stage' ? [pkg.paths.stage, pkg.paths.client + '/**'] : [pkg.paths.client + '/**']);
+    var options = {auto: true};
+    plug.livereload.listen(options);
+    gulp
+        .watch(path)
+        .on('change', function(file) {
+            plug.livereload.changed(file.path);
+        });
 
-    // var path = (env === 'stage' ? [pkg.paths.stage, pkg.paths.client + '/**'] : [pkg.paths.client + '/**']);
-    // var options = {auto: true};
-    // plug.livereload.listen(options);
-    // gulp
-    //     .watch(path)
-    //     .on('change', function(file) {
-    //         plug.livereload.changed(file.path);
-    //     });
-
-    // log('Serving from ' + env);
+    log('Serving from ' + mode);
 }
 
 function serve(args) {
@@ -342,7 +341,7 @@ function serve(args) {
         script: pkg.paths.server + 'app.js',
         delayTime: 1,
         ext: 'html js',
-        env: {'NODE_ENV': args.env},
+        env: {'NODE_ENV': args.mode},
         watch: [
             'gulpfile.js',
             'package.json',
