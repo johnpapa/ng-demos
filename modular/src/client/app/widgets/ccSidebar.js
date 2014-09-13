@@ -9,7 +9,7 @@
     function ccSidebar () {
         // Opens and closes the sidebar menu.
         // Usage:
-        //  <div data-cc-sidebar>
+        //  <div data-cc-sidebar whenDoneAnimating="vm.wrapUp()">
         // Creates:
         //  <div data-cc-sidebar class="sidebar">
         var directive = {

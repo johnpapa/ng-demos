@@ -17,6 +17,7 @@
         var wipRouteName = 'workinprogress';
         var directive = {
             controller: ['$scope', wipController],
+            controllerAs: 'vm',
             link: link,
             template: getTemplate(),
             scope: {
@@ -29,12 +30,12 @@
 
         return directive;
 
-        function link(scope, element, attrs) {
+        function link(scope, element, attrs, ctrl) {
             scope.$watch(wipIsCurrent, function (value) {
-                if (value) {
+                if(value) {
                     element.addClass('current');
                 } else {
-                    element.removeClass('current');
+                    element.removeClass('current'); 
                 }
             });
 
@@ -46,33 +47,36 @@
             }
         }
 
-        wipController.$inject = ['$scope'];
         function wipController($scope) {
-            $scope.wipExists = function () {
-                return !!$scope.wip.length;
-            };
-            $scope.wipRoute = undefined;
-            $scope.getWipClass = function () {
-                return $scope.wipExists() ? ['fa', 'fa-asterisk', 'fa-asterisk-alert'] : ['fa', 'fa-asterisk'];
-            };
+            /* jshint validthis: true */
+            var vm = this;
+            vm.wip = $scope.wip;
+            vm.wipExists = wipExists;
+            vm.wipRoute = undefined;
+            vm.getWipClass = getWipClass;
 
             activate();
 
             function activate() {
-                var eventName = $scope.changedEvent;
-                $scope.$on(eventName, function (event, data) {
-                    $scope.wip = data.wip;
+                $scope.$on($scope.changedEvent, function (event, data) {
+                    vm.wip = data.wip;
                 });
-                $scope.wipRoute = $scope.routes.filter(function (r) {
+                vm.wipRoute = $scope.routes.filter(function (r) {
                     return r.title === wipRouteName;
                 })[0];
+            }
+
+            function wipExists() { return !!vm.wip.length; }
+
+            function getWipClass() {
+                return vm.wipExists() ? ['fa', 'fa-asterisk', 'fa-asterisk-alert'] : ['fa', 'fa-asterisk'];
             }
         }
 
         function getTemplate() {
-            return '<a href="#{{wipRoute.originalPath}}" >' +
-                '<i class="fa fa-asterisk" data-ng-class="getWipClass()"></i>' +
-                'Work in Progress ({{wip.length}})</a>';
+            return '<a href="#{{vm.wipRoute.originalPath}}" >' +
+                '<i class="fa fa-asterisk" data-ng-class="vm.getWipClass()"></i>' +
+                'Work in Progress ({{vm.wip.length}})</a>';
         }
     }
 })();
