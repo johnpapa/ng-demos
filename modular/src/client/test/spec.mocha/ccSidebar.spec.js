@@ -10,7 +10,7 @@ describe('ccSidebar directive', function () {
 
     beforeEach(module('app.widgets'));
 
-    beforeEach(inject(function($compile, $rootScope){
+    beforeEach(inject(function($compile, $rootScope) {
         scope = $rootScope;
         // The minimum necessary template
         el = angular.element(
@@ -26,9 +26,9 @@ describe('ccSidebar directive', function () {
     }));
 
     // helper to setup the element in the 'menu open' state
-    function setupAsOpen(){
+    function setupAsOpen() {
         dropdownElement.addClass(dropClass);
-        innerElement.css('display','block');
+        innerElement.css('display', 'block');
     }
 
     it('a closed menu lacks dropClass', function () {

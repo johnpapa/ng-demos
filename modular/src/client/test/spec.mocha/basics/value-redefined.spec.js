@@ -1,4 +1,7 @@
-describe("Basics - value redefined:", function () {
+/* global describe, it, beforeEach, afterEach, expect, inject, sinon, specHelper */
+/* global $controller, $httpBackend, $location, $q, $rootScope, $route */
+/* jshint expr: true */
+describe('Basics - value redefined:', function() {
     'use strict';
 
     beforeEach(module('basics'));
@@ -6,21 +9,21 @@ describe("Basics - value redefined:", function () {
     // A new apiBaseUri to reach a different server, our test server
     var mockApiBaseUri = '/api/to/who/knows/where/';
 
-    beforeEach(module(function($provide){
+    beforeEach(module(function($provide) {
 
         // Re-define the entire 'config' component by
         // re-registering with a completely new value
         $provide.value('config', {
             apiBaseUri: mockApiBaseUri,
-            appTitle:   'Mock Avengers'
+            appTitle: 'Mock Avengers'
         });
 
     }));
 
     // The first use of inject closes the module cookbook to further modification
     it('config.apiBaseUri has mocked value',
-        inject(function(config){
+        inject(function(config) {
             expect(config.apiBaseUri).to.equal(mockApiBaseUri);
-    }));
+        }));
 
 });

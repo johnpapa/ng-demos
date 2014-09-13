@@ -1,4 +1,7 @@
-describe("Basics - controller:", function () {
+/* global describe, it, beforeEach, afterEach, expect, inject, sinon, specHelper */
+/* global $controller, $httpBackend, $location, $q, $rootScope, $route */
+/* jshint expr: true */
+describe('Basics - controller:', function() {
     'use strict';
 
     var controller;
@@ -6,25 +9,21 @@ describe("Basics - controller:", function () {
     beforeEach(module('basics'));
 
     // Create an instance of the controller (ViewModel) before each test
-    beforeEach(inject(function($controller){
+    beforeEach(inject(function($controller) {
         // '$controller' is an Ng service that makes controller instances
         // 'controller'  is an instance of `basicController`
         controller = $controller('basicController');
     }));
 
-
-
-    it("exists", function () {
+    it('exists', function() {
         expect(controller).to.exist;
     });
 
-
-    it("has no avengers", function () {
+    it('has no avengers', function() {
         expect(controller.avengers).to.be.empty;
     });
 
-
-    it("activates immediately", inject(function ($log) {
+    it('activates immediately', inject(function($log) {
         // We can only infer that this is true because
         // we know that activation results in a log entry
         // $log has been mocked by ngMocks and can tell us it's been called

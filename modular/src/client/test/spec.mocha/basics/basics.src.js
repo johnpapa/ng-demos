@@ -1,3 +1,4 @@
+/* jscs: disable */
 /*
  * Source for the "Basics" tests
  */
@@ -49,7 +50,7 @@
             var result = inp + prev;
 
             // use the dependency
-            $log.debug("calc("+input+", "+previousOutput+") => "+ result);
+            $log.debug('calc(' + input + ', ' + previousOutput + ') => '+ result);
 
             return result;
         }
@@ -73,6 +74,7 @@
     basics.controller('basicController', basicController);
 
     function basicController($log) {
+        /* jshint validthis:true */
         var vm = this;
         vm.avengers = [];
         vm.title = 'Avengers Listing';
@@ -99,6 +101,7 @@
 
 
     function basicDataController($log, syncDataservice) {
+        /* jshint validthis:true */
         var vm = this;
         vm.avengers = [];
         vm.title = 'Avengers II Listing';
@@ -136,6 +139,7 @@
     	.factory('asyncDataservice', asyncDataservice);
 
     function basicAsyncDataController($log, asyncDataservice) {
+        /* jshint validthis:true */
         var vm = this;
         vm.avengers = [];
         vm.title = 'Avengers III Listing';
@@ -173,3 +177,4 @@
     }
 
 }());
+/* jscs: enable */

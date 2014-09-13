@@ -39,7 +39,7 @@ gulp.task('ngAnnotateTest', function() {
 gulp.task('analyze', function() {
     log('Linting the JavaScript');
 
-    var sources = [].concat(pkg.paths.js, pkg.paths.nodejs);
+    var sources = [].concat(pkg.paths.js, pkg.paths.nodejs, './src/client/test/**/*.spec.js');
     return gulp
         .src(sources)
         .pipe(plug.jshint('./.jshintrc'))

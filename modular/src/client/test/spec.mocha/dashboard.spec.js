@@ -33,7 +33,6 @@ describe('app.dashboard', function() {
         });
     });
 
-
     beforeEach(inject(function ($rootScope, $controller) {
         controller = $controller('Dashboard');
         $rootScope.$apply();

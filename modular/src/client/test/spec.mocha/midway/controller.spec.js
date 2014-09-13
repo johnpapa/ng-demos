@@ -1,9 +1,12 @@
+/* global describe, it, beforeEach, afterEach, expect, inject, sinon, specHelper, ngMidwayTester */
+/* global $controller, $httpBackend, $location, $q, $rootScope, $route */
+/* jshint expr: true */
 //http://www.yearofmoo.com/2013/01/full-spectrum-testing-with-angularjs-and-karma.html
 //https://github.com/yearofmoo-articles/AngularJS-Testing-Article
-describe("Midway: controllers and routes", function() {
+describe('Midway: controllers and routes', function() {
     var tester;
     beforeEach(function() {
-        if(tester) {
+        if (tester) {
             tester.destroy();
         }
         tester = ngMidwayTester('app');
