@@ -355,7 +355,7 @@ function testCore(singleRun, done) {
         karma.start({
             configFile: __dirname + '/karma.conf.js',
             exclude: excludeFiles,
-            singleRun: singleRun
+            singleRun: !!singleRun
         }, function() {
             if (child) {child.kill();}
             done();
