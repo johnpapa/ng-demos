@@ -1,6 +1,4 @@
 /*jshint maxlen:120 */
-/* global $controller:true, $httpBackend:true, $location:true, $q:true */
-/* global $rootScope:true, $route:true, $routeParams:true */
 /*jshint -W079 */
 var specHelper = {};
 
