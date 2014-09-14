@@ -33,7 +33,7 @@ module.exports = function (config) {
             './src/client/app/**/*.js',
 
             /* MOCHA */
-            './src/client/test/**/specHelper.js',
+            './src/client/test/specHelper.js',
 
             './src/client/test/basics/**/*.src.js',
             './src/client/test/basics/**/*.spec.js',
