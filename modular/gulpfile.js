@@ -1,9 +1,11 @@
 /* jshint camelcase:false */
 var gulp = require('gulp');
-var pkg = require('./package.json');
 var common = require('./gulp/common.js');
 var karma = require('karma').server;
+var merge = require('merge-stream');
+var pkg = require('./package.json');
 var plug = require('gulp-load-plugins')();
+
 var env = plug.util.env;
 var log = plug.util.log;
 
@@ -13,23 +15,20 @@ gulp.task('help', plug.taskListing);
  * @desc Lint the code
  */
 gulp.task('analyze', function() {
-    log('Linting the JavaScript');
+    log('Analyzing source with JSHint and JSCS');
 
-    // lint the tests first
-    gulp
-        .src('./src/client/test/**/*.spec.js')
-        .pipe(plug.jshint('./src/client/test/.jshintrc'))
-        .pipe(plug.jshint.reporter('jshint-stylish'))
-        .pipe(plug.jscs('./.jscsrc'));
+    var jshint = analyze('./src/client/test/**/*.js', './src/client/test/.jshintrc');
+    var jscs = analyze([].concat(pkg.paths.js, pkg.paths.nodejs), './.jshintrc');
+    return merge(jshint, jscs);
+});
 
-    // lint the code
-    var sources = [].concat(pkg.paths.js, pkg.paths.nodejs);
+function analyze(sources, jshintrc) {
     return gulp
         .src(sources)
-        .pipe(plug.jshint('./.jshintrc'))
+        .pipe(plug.jshint(jshintrc))
         .pipe(plug.jshint.reporter('jshint-stylish'))
         .pipe(plug.jscs('./.jscsrc'));
-});
+}
 
 /**
  * @desc Create $templateCache from the html templates

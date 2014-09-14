@@ -1,3 +1,7 @@
+/*jshint maxlen:120 */
+/* global $controller:true, $httpBackend:true, $location:true, $q:true */
+/* global $rootScope:true, $route:true, $routeParams:true */
+/*jshint -W079 */
 var specHelper = {};
 
 specHelper.fakeLogger = function($provide) {
@@ -59,6 +63,9 @@ specHelper.fakeRouteProvider = function($provide) {
 };
 
 specHelper.getFnParams = function (fn) {
+    var fnText;
+    var argDecl;
+
     var FN_ARGS = /^function\s*[^\(]*\(\s*([^\)]*)\)/m;
     var FN_ARG_SPLIT = /,/;
     var FN_ARG = /^\s*(_?)(\S+?)\1\s*$/;
@@ -67,8 +74,8 @@ specHelper.getFnParams = function (fn) {
     if (fn.length) {
         fnText = fn.toString().replace(STRIP_COMMENTS, '');
         argDecl = fnText.match(FN_ARGS);
-        angular.forEach(argDecl[1].split(FN_ARG_SPLIT), function(arg){
-                arg.replace(FN_ARG, function(all, underscore, name){
+        angular.forEach(argDecl[1].split(FN_ARG_SPLIT), function(arg) {
+            arg.replace(FN_ARG, function(all, underscore, name) {
                 params.push(name);
             });
         });
@@ -76,14 +83,14 @@ specHelper.getFnParams = function (fn) {
     return params;
 };
 
-specHelper.getInjectables= function(){
+specHelper.getInjectables = function() {
     var annotation,
         body = '',
         cleanupBody = '',
         mustAnnotate = false,
         params;
 
-    if (typeof arguments[0]==='function') {
+    if (typeof arguments[0] === 'function') {
         params = specHelper.getFnParams(arguments[0]);
     }
     // else from here on assume that arguments are all strings
@@ -96,36 +103,38 @@ specHelper.getInjectables= function(){
 
     annotation = params.join('\',\''); // might need to annotate
 
-    angular.forEach(params, function(name, ix){
+    angular.forEach(params, function(name, ix) {
         var _name,
             pathName = name.split('.'),
             pathLen = pathName.length;
 
-        if (pathLen > 1){
+        if (pathLen > 1) {
             // name is a path like 'block.foo'. Can't use as identifier
             // assume last segment should be identifier name, e.g. 'foo'
-            name = pathName[pathLen-1];
+            name = pathName[pathLen - 1];
             mustAnnotate = true;
         }
 
-        _name = '_'+name+'_';
+        _name = '_' + name + '_';
         params[ix] = _name;
-        body += name + '=' + _name+';';
-        cleanupBody += 'delete window.'+name+';';
+        body += name + '=' + _name + ';';
+        cleanupBody += 'delete window.' + name + ';';
 
         // todo: tolerate component names that are invalid JS identifiers, e.g. 'burning man'
     });
 
-    var fn = 'function('+params.join(',')+'){'+body+'}';
+    var fn = 'function(' + params.join(',') + '){' + body + '}';
 
-    if (mustAnnotate){
-        fn = '[\'' + annotation +'\',' + fn + ']';
+    if (mustAnnotate) {
+        fn = '[\'' + annotation + '\',' + fn + ']';
     }
 
     var exp = 'inject(' + fn + ');' +
-              'afterEach(function(){'+cleanupBody+'});'; // remove from window.
+              'afterEach(function(){' + cleanupBody + '});'; // remove from window.
 
-    Function(exp)(); // the assigned vars will be global. `afterEach` will remove them
+    //Function(exp)(); // the assigned vars will be global. `afterEach` will remove them
+    /* jshint evil:true */
+    new Function(exp)();
 
     // Alternative that would not touch window but would require eval()!!
     // Don't do `Function(exp)()` and don't do afterEach cleanup
@@ -136,13 +145,16 @@ specHelper.getInjectables= function(){
     //     eval(specHelper.getInjectables('$log', 'foo'));
 };
 
-
 specHelper.getMockAvengers = function() {
     return [
         {
             'id': 1017109,
             'name': 'Black Widow/Natasha Romanoff (MAA)',
-            'description': 'Natasha Romanoff, also known as Black Widow, is a world-renowned super spy and one of S.H.I.E.L.D.\'s top agents. Her hand-to-hand combat skills, intelligence, and unpredictability make her a deadly secret weapon. True to her mysterious nature, Black Widow comes and goes as she pleases, but always appears exactly when her particular skills are needed.',
+            'description': 'Natasha Romanoff, also known as Black Widow, is a world-renowned super' +
+                    ' spy and one of S.H.I.E.L.D.\'s top agents. Her hand-to-hand combat skills, intelligence,' +
+                    ' and unpredictability make her a deadly secret weapon. True to her mysterious nature,' +
+                    ' Black Widow comes and goes as she pleases, but always appears exactly when her particular' +
+                    ' skills are needed.',
             'thumbnail': {
                 'path': 'http://i.annihil.us/u/prod/marvel/i/mg/a/03/523219743a99b',
                 'extension': 'jpg'
@@ -151,7 +163,10 @@ specHelper.getMockAvengers = function() {
         {
             'id': 1017105,
             'name': 'Captain America/Steve Rogers (MAA)',
-            'description': 'During World War II, Steve Rogers enlisted in the military and was injected with a super-serum that turned him into super-soldier Captain America! He\'s a skilled strategist and even more skilled with his shield, but it\'s his courage and good heart that makes Captain America both a leader and a true hero. ',
+            'description': 'During World War II, Steve Rogers enlisted in the military and was injected' +
+                    ' with a super-serum that turned him into super-soldier Captain America! He\'s a' +
+                    ' skilled strategist and even more skilled with his shield, but it\'s his courage' +
+                    ' and good heart that makes Captain America both a leader and a true hero. ',
             'thumbnail': {
                 'path': 'http://i.annihil.us/u/prod/marvel/i/mg/3/10/52321928eaa72',
                 'extension': 'jpg'
@@ -160,7 +175,10 @@ specHelper.getMockAvengers = function() {
         {
             'id': 1017108,
             'name': 'Hawkeye/Clint Barton (MAA)',
-            'description': 'Hawkeye is an expert archer with an attitude just as on-target as his aim. His stealth combat experience and his ability to hit any target with any projectile make him a valuable member of the Avengers. However, he refuses to let things get too serious, as he has as many jokes as he does arrows!',
+            'description': 'Hawkeye is an expert archer with an attitude just as on-target as his aim.' +
+                    ' His stealth combat experience and his ability to hit any target with any projectile' +
+                    ' make him a valuable member of the Avengers. However, he refuses to let things get' +
+                    ' too serious, as he has as many jokes as he does arrows!',
             'thumbnail': {
                 'path': 'http://i.annihil.us/u/prod/marvel/i/mg/4/03/5232198a81c17',
                 'extension': 'jpg'
@@ -169,7 +187,11 @@ specHelper.getMockAvengers = function() {
         {
             'id': 1017104,
             'name': 'Iron Man/Tony Stark (MAA)',
-            'description': 'Tony Stark is the genius inventor/billionaire/philanthropist owner of Stark Industries. With his super high-tech Iron Man suit, he is practically indestructible, able to fly, and has a large selection of weapons to choose from - but it\'s Tony\'s quick thinking and ability to adapt and improvise that make him an effective leader of the Avengers.',
+            'description': 'Tony Stark is the genius inventor/billionaire/philanthropist owner of Stark' +
+                    ' Industries. With his super high-tech Iron Man suit, he is practically indestructible,' +
+                    ' able to fly, and has a large selection of weapons to choose from - but it\'s Tony\'s' +
+                    ' quick thinking and ability to adapt and improvise that make him an effective leader' +
+                    ' of the Avengers.',
             'thumbnail': {
                 'path': 'http://i.annihil.us/u/prod/marvel/i/mg/2/d0/5232190d42df2',
                 'extension': 'jpg'
@@ -178,7 +200,12 @@ specHelper.getMockAvengers = function() {
         {
             'id': 1017106,
             'name': 'Thor (MAA)',
-            'description': 'Thor is the Asgardian Prince of Thunder, the son of Odin, and the realm\'s mightiest warrior. He loves the thrill of battle and is always eager to show off his power to the other Avengers, especially the Hulk. Thor\'s legendary Uru hammer, Mjolnir, gives him the power to control thunder and the ability to fly. He\'s found a new home on Earth and will defend it as his own... even if he doesn\'t understand its sayings and customs.',
+            'description': 'Thor is the Asgardian Prince of Thunder, the son of Odin, and the realm\'s' +
+                    ' mightiest warrior. He loves the thrill of battle and is always eager to show off his' +
+                    ' power to the other Avengers, especially the Hulk. Thor\'s legendary Uru hammer,' +
+                    ' Mjolnir, gives him the power to control thunder and the ability to fly. He\'s found' +
+                    ' a new home on Earth and will defend it as his own... even if he doesn\'t understand' +
+                    ' its sayings and customs.',
             'thumbnail': {
                 'path': 'http://i.annihil.us/u/prod/marvel/i/mg/2/03/52321948a51f2',
                 'extension': 'jpg'
@@ -187,7 +214,7 @@ specHelper.getMockAvengers = function() {
     ];
 };
 
-specHelper.verifyNoOutstandingHttpRequests = function(){
+specHelper.verifyNoOutstandingHttpRequests = function() {
     afterEach(inject(function($httpBackend) {
         $httpBackend.verifyNoOutstandingExpectation();
         $httpBackend.verifyNoOutstandingRequest();
