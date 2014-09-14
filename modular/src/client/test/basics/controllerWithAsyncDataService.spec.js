@@ -47,7 +47,7 @@ describe('Basics - controller w/ async dataservice:', function() {
                 // dataservice's $http.get handler looks for 'data.data[0].data.results' (yikes!)
                 // the response needs to be the single element data.data array
                 var response = [
-                    {data: {results: specHelper.getMockAvengers()}}
+                    {data: {results: mockData.getMockAvengers()}}
                 ];
 
                 $httpBackend.whenGET(avengersUri).respond(response);
@@ -67,7 +67,7 @@ describe('Basics - controller w/ async dataservice:', function() {
             // mock service object whose getAvengers() returns test data
             var mockAsyncDataService = {
                 getAvengers: function() {
-                    return $q.when(specHelper.getMockAvengers());
+                    return $q.when(mockData.getMockAvengers());
                 }
             };
 
@@ -106,7 +106,7 @@ describe('Basics - controller w/ async dataservice:', function() {
         function mockAsyncDataService($q) {
             return {
                 getAvengers: function() {
-                    return $q.when(specHelper.getMockAvengers());
+                    return $q.when(mockData.getMockAvengers());
                 }
             };
         }

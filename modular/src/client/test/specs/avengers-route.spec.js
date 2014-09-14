@@ -4,7 +4,7 @@ describe('avengers', function () {
 
         beforeEach(function() {
             module('app', specHelper.fakeLogger);
-            specHelper.inject(function($httpBackend, $location, $rootScope, $route) {});
+            specHelper.injector(function($httpBackend, $location, $rootScope, $route) {});
             $httpBackend.expectGET('app/avengers/avengers.html').respond(200);
         });
 

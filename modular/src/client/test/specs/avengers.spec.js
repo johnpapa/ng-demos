@@ -7,13 +7,13 @@ describe('app.avengers', function() {
             specHelper.fakeRouteProvider($provide);
             specHelper.fakeLogger($provide);
         });
-        specHelper.inject(function($controller, $q, $rootScope, dataservice) {});
+        specHelper.injector(function($controller, $q, $rootScope, dataservice) {});
     });
 
     beforeEach(function () {
         sinon.stub(dataservice, 'getAvengers', function() {
             var deferred = $q.defer();
-            deferred.resolve(specHelper.getMockAvengers());
+            deferred.resolve(mockData.getMockAvengers());
             return deferred.promise;
         });
 

@@ -4,7 +4,7 @@ describe('dashboard', function () {
 
         beforeEach(function() {
             module('app', specHelper.fakeLogger);
-            specHelper.inject(function($httpBackend, $location, $rootScope, $route) {});            
+            specHelper.injector(function($httpBackend, $location, $rootScope, $route) {});            
             $httpBackend.expectGET('app/dashboard/dashboard.html').respond(200);
         });
 

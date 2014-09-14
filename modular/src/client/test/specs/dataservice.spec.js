@@ -8,14 +8,14 @@ describe('dataservice', function () {
             specHelper.fakeRouteProvider($provide);
             specHelper.fakeLogger($provide);
         });
-        specHelper.inject(function($httpBackend, $rootScope, dataservice) {});            
+        specHelper.injector(function($httpBackend, $rootScope, dataservice) {});            
         
         mocks.maaData = [{ 
-            data: {results: specHelper.getMockAvengers()}
+            data: {results: mockData.getMockAvengers()}
         }];
         // sinon.stub(dataservice, 'getAvengers', function () {
         //     var deferred = $q.defer();
-        //     deferred.resolve(specHelper.getMockAvengers());
+        //     deferred.resolve(mockData.getMockAvengers());
         //     return deferred.promise;
         // });
     });

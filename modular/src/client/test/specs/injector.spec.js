@@ -1,5 +1,5 @@
 /* global calcService, $log, foo, baz */
-describe('specHelper.inject', function() {
+describe('specHelper.injectoror', function() {
     'use strict';
 
     beforeEach(module('basics'));
@@ -31,7 +31,7 @@ describe('specHelper.inject', function() {
         // it also removes them after each test by scheduling an afterEach
         // Notice ... no private vars for $log or calcService! ... no injecting of them either.
         it('should set window.$log and window.calcService when call inject with a func', function() {
-            specHelper.inject(function($log, calcService) {});
+            specHelper.injector(function($log, calcService) {});
 
             expect($log).to.exist;
             expect(calcService).to.exist;
@@ -40,7 +40,7 @@ describe('specHelper.inject', function() {
             expect(window.$log).to.exist;
             expect(window.calcService).to.exist;
 
-            // THIS afterEach is registered AFTER the one created by specHelper.inject
+            // THIS afterEach is registered AFTER the one created by specHelper.injector
             afterEach(function() {
                 // Should have cleaned up after itself
                 expect(window.$log).to.not.exist;
@@ -49,14 +49,14 @@ describe('specHelper.inject', function() {
         });
 
         it('should set window.$log and window.calcService when call inject with string array', function() {
-            specHelper.inject(['$log', 'calcService']);
+            specHelper.injector(['$log', 'calcService']);
 
             expect($log).to.exist;
             expect(calcService).to.exist;
         });
 
         it('should set window.$log and window.calcService when call inject with string params', function() {
-            specHelper.inject('$log', 'calcService');
+            specHelper.injector('$log', 'calcService');
 
             expect($log).to.exist;
             expect(calcService).to.exist;
@@ -66,7 +66,7 @@ describe('specHelper.inject', function() {
         it('locally defined $log hides the $log injected by inject', function() {
             var $log; // declaration hides the one in window.$log created by inject
 
-            specHelper.inject('$log');
+            specHelper.injector('$log');
 
             expect($log).to.not.exist;
             expect(window.$log).to.exist;
@@ -79,7 +79,7 @@ describe('specHelper.inject', function() {
             });
 
             // Can inject a service with a dotted name!
-            specHelper.inject('$log', 'block.foo');
+            specHelper.injector('$log', 'block.foo');
 
             expect($log).to.exist;
             expect(foo).to.exist;
@@ -93,7 +93,7 @@ describe('specHelper.inject', function() {
         });
 
         /*
-         // Would fail because THIS afterEach is registered BEFORE the one created by specHelper.inject
+         // Would fail because THIS afterEach is registered BEFORE the one created by specHelper.injector
          afterEach(function(){
          // Should have cleaned up after itself
          expect(window.$log).to.not.exist;
@@ -117,7 +117,7 @@ describe('specHelper.inject', function() {
                 $provide.value('baz', 'baz');
             });
 
-            specHelper.inject('baz'); // get baz in outer describe
+            specHelper.injector('baz'); // get baz in outer describe
         });
 
         describe('in nested describe', function() {
@@ -127,7 +127,7 @@ describe('specHelper.inject', function() {
 
             it('baz from inject() is same object as baz from direct injection', function() {
 
-                specHelper.inject('baz');
+                specHelper.injector('baz');
 
                 inject(function(_baz_) {
                     expect(baz).to.equal(_baz_);

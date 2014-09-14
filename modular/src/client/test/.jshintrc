@@ -62,6 +62,7 @@
         "afterEach": false, 
         "expect": false, 
         "inject": false, 
+        "mockData": false,
         "sinon": false, 
         "specHelper": false, 
 		"$controller": false, 
