@@ -266,18 +266,44 @@ gulp.task('childprocesstest', function (done) {
     done();
 });
 
+gulp.task('childprocesstest2', function(done) {
+    var spawn = require('child_process').spawn;
+
+    var savedEnv = process.env; 
+    savedEnv.NODE_ENV = 'dev';
+    savedEnv.PORT = 8888;
+    var child = spawn('node', ['src/server/app.js'], {env: savedEnv});
+
+// this didnt work
+//    var child = spawn('node', ['src/server/app.js'], {env: {NODE_ENV: 'dev'}});
+     
+    child.stdout.on('data', function(d) {
+        console.log(d + '');
+    });
+     
+    child.stderr.on('data', function(d) {
+        console.log(d + '');
+    });
+     
+    child.on('exit', function(code) {
+        console.log('child exited with code', code);
+    });
+});
+
 gulp.task('test', function (done) {
     var child;
-    var exec = require('child_process').exec;
-    // var options = {
-    //     script: pkg.paths.server + 'app.js',
-    //     env: {'NODE_ENV': 'dev', 'PORT': 8888}
-    // };
     var excludeFiles = ['./src/client/app/**/*spaghetti.js'];
+    // var exec = require('child_process').exec;
+    var savedEnv = process.env; 
+    var spawn = require('child_process').spawn;
 
     if (env.startServers) {
         log('Starting servers');
-        child = exec('NODE_ENV=dev PORT=8888 node ' + pkg.paths.server + 'app.js', childCompleted);
+        // child = exec('NODE_ENV=dev PORT=8888 node ' + pkg.paths.server + 'app.js', childCompleted);
+
+        savedEnv.NODE_ENV = 'dev';
+        savedEnv.PORT = 8888;
+        child = spawn('node', ['src/server/app.js'], {env: savedEnv});
     } else {
         excludeFiles.push('./src/client/test/midway/**/*.spec.js');
     }
