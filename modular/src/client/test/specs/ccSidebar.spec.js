@@ -127,24 +127,23 @@ describe('ccSidebar directive: ', function () {
     }
 
     // click the "menu" link
-    function clickIt(){
+    function clickIt() {
         dropdownElement.trigger('click');
     }
 
     // assert whether the "menu" link has the class that means 'is open'
-    function hasIsOpenClass(isTrue){
+    function hasIsOpenClass(isTrue) {
         var hasClass = dropdownElement.hasClass(isOpenClass);
         expect(hasClass).equal(!!isTrue,
             'dropdown has the "is open" class is ' + hasClass);
     }
 
     // assert whether the dropdown container is 'block' (visible) or 'none' (hidden)
-    function dropdownIsVisible(isTrue){
+    function dropdownIsVisible(isTrue) {
         var display = innerElement.css('display');
         expect(display).to.equal(isTrue ? 'block' : 'none',
             'innerElement display value is ' + display);
     }
-
 
     //////////  uncomment only during demonstration ///////
     // What if you don't know about turning JQuery animation durations off ($.fx.off?

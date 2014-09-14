@@ -1,9 +1,11 @@
 /* jshint camelcase:false */
 var gulp = require('gulp');
-var pkg = require('./package.json');
 var common = require('./gulp/common.js');
 var karma = require('karma').server;
+var merge = require('merge-stream');
+var pkg = require('./package.json');
 var plug = require('gulp-load-plugins')();
+
 var env = plug.util.env;
 var log = plug.util.log;
 
@@ -13,12 +15,14 @@ gulp.task('help', plug.taskListing);
  * @desc Lint the code
  */
 gulp.task('analyze', function() {
-    analyze('./src/client/test/**/*.js', './src/client/test/.jshintrc');
-    analyze([].concat(pkg.paths.js, pkg.paths.nodejs), './.jshintrc');
+    log('Analyzing source with JSHint and JSCS');
+
+    var jshint = analyze('./src/client/test/**/*.js', './src/client/test/.jshintrc');
+    var jscs = analyze([].concat(pkg.paths.js, pkg.paths.nodejs), './.jshintrc');
+    return merge(jshint, jscs);
 });
 
 function analyze(sources, jshintrc) {
-    log('Linting: ', sources);
     return gulp
         .src(sources)
         .pipe(plug.jshint(jshintrc))
