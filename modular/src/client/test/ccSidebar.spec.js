@@ -103,6 +103,9 @@ describe('ccSidebar directive: ', function () {
             // tell angular to look again for that vm.sidebarReady property
             scope.$digest();
 
+            // spy not called until after click which triggers the animation
+            expect(spy).not.to.have.been.called;
+
             // this click triggers an animation
             clickIt();
 
