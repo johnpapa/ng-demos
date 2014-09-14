@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     var useManualMetadata = true; // true: use model.metadata; false: use generated metadata
@@ -62,13 +62,13 @@
             nullosExist = true;
             var unchanged = breeze.EntityState.Unchanged;
 
-            createNullo(entityNames.timeslot, { start: nulloDate, isSessionSlot: true });
+            createNullo(entityNames.timeslot, {start: nulloDate, isSessionSlot: true});
             createNullo(entityNames.room);
-            createNullo(entityNames.speaker, { firstName: ' [Select a person]' });
+            createNullo(entityNames.speaker, {firstName: ' [Select a person]'});
             createNullo(entityNames.track);
 
             function createNullo(entityName, values) {
-                var initialValues = values || { name: ' [Select a ' + entityName.toLowerCase() + ']' };
+                var initialValues = values || {name: ' [Select a ' + entityName.toLowerCase() + ']'};
                 return manager.createEntity(entityName, initialValues, unchanged);
             }
         }
@@ -77,14 +77,14 @@
         function registerResourceNames(metadataStore) {
             // every entityName is its own resource name
             var types = metadataStore.getEntityTypes();
-            types.forEach(function (type) {
+            types.forEach(function(type) {
                 if (type instanceof breeze.EntityType) {
                     set(type.shortName, type);
                 }
             });
 
             var personEntityName = entityNames.person;
-            ['Speakers', 'Speaker', 'Attendees', 'Attendee'].forEach(function (r) {
+            ['Speakers', 'Speaker', 'Attendees', 'Attendee'].forEach(function(r) {
                 set(r, personEntityName);
             });
 
@@ -101,10 +101,10 @@
             }
 
             Object.defineProperty(Session.prototype, 'tagsFormatted', {
-                get: function () {
+                get: function() {
                     return this.tags ? this.tags.replace(/\|/g, ', ') : this.tags;
                 },
-                set: function (value) {
+                set: function(value) {
                     this.tags = value.replace(/\, /g, '|');
                 }
             });
@@ -119,7 +119,7 @@
             }
 
             Object.defineProperty(Person.prototype, 'fullName', {
-                get: function () {
+                get: function() {
                     var fn = this.firstName;
                     var ln = this.lastName;
                     return ln ? fn + ' ' + ln : fn;
@@ -136,7 +136,7 @@
             }
 
             Object.defineProperty(TimeSlot.prototype, 'name', {
-                get: function () {
+                get: function() {
                     var start = this.start;
                     var value = ((start - nulloDate) === 0) ?
                         ' [Select a timeslot]' :

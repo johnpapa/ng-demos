@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -34,7 +34,7 @@
         }
 
         function getTrackCounts() {
-            return datacontext.session.getSessionsPerTrack().then(function (trackMap) {
+            return datacontext.session.getSessionsPerTrack().then(function(trackMap) {
                 vm.content.tracks = trackMap;
             });
         }
@@ -52,20 +52,20 @@
         }
 
         function getAttendeeCount() {
-            return datacontext.attendee.getCount().then(function (data) {
+            return datacontext.attendee.getCount().then(function(data) {
                 vm.attendeeCount = data;
                 return vm.attendeeCount;
             });
         }
 
         function getSessionCount() {
-            return datacontext.session.getCount().then(function (data) {
+            return datacontext.session.getCount().then(function(data) {
                 vm.sessionCount = data;
                 return vm.sessionCount;
             });
         }
 
-        function setBasicData(){
+        function setBasicData() {
             vm.map = {
                 title: 'Location'
             };

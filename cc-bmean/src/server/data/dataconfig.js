@@ -1,4 +1,4 @@
-module.exports = function () {
+module.exports = function() {
     /**
      * MongoDb database access
      *
@@ -14,19 +14,19 @@ module.exports = function () {
 
     // properties with getter functions for export
     Object.defineProperty(this, 'db', {
-        get: function () {
+        get: function() {
             return db;
         }
     });
     Object.defineProperty(this, 'collections', {
-        get: function () {
+        get: function() {
             return collections;
         }
     });
 
     openMongoDb();
 
-    return{
+    return {
         db: this.db,
         collections: this.collections
     };
@@ -36,7 +36,7 @@ module.exports = function () {
         var dbServer = new mongodb.Server(
             mongoDbConfig.host,
             mongoDbConfig.port,
-            { auto_reconnect: true}
+            {auto_reconnect: true}
         );
 
         db = new mongodb.Db(mongoDbConfig.dbName, dbServer, {
@@ -53,8 +53,8 @@ module.exports = function () {
             // We do this all at once to save effort later.
             var collectionNames = ['Persons', 'Rooms', 'Sessions', 'TimeSlots', 'Tracks'];
             var countDown = collectionNames.length;
-            collectionNames.forEach(function (name) {
-                db.collection(name, {strict: true}, function (err, collection) {
+            collectionNames.forEach(function(name) {
+                db.collection(name, {strict: true}, function(err, collection) {
                     if (err) {
                         console.log('\n!!! Failed while getting MongoDb collections; is the MongoDb server running?');
                         throw new Error('Unable to locate collection ' + name + ': ' + err);

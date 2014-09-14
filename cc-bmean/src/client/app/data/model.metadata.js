@@ -2,7 +2,7 @@
  * CC Model Metadata by hand
  */
 // ReSharper disable InconsistentNaming
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -28,7 +28,7 @@
         var store; // the metadataStore that we'll be building
 
         // addType - make it easy to add the type to the store using the helper
-        var addType = function (type) {
+        var addType = function(type) {
             helper.addTypeToStore(store, type);
         };
 
@@ -59,23 +59,23 @@
             addType({
                 name: 'Person',
                 dataProperties: {
-                    id: { type: ID },
-                    firstName: { max: 50, nullOk: false },
-                    lastName: { max: 50, nullOk: false },
+                    id: {type: ID},
+                    firstName: {max: 50, nullOk: false},
+                    lastName: {max: 50, nullOk: false},
                     // could add validators here; let model.validation add them
-                    email: { max: 400 },
-                    blog: { max: 400 },
-                    twitter: { max: 400 },
-                    gender: { max: 1 },
-                    imageSource: { max: 400 },
+                    email: {max: 400},
+                    blog: {max: 400},
+                    twitter: {max: 400},
+                    gender: {max: 1},
+                    imageSource: {max: 400},
 
                     // could let Breeze add unmapped but we do so to lock in the Boolean data type
-                    isPartial: { type: BOOL, nullOk: false, isUnmapped: true },
-                    isSpeaker: { type: BOOL, nullOk: false, isUnmapped: true }
+                    isPartial: {type: BOOL, nullOk: false, isUnmapped: true},
+                    isSpeaker: {type: BOOL, nullOk: false, isUnmapped: true}
                 },
 
                 navigationProperties: {
-                    speakerSessions: { type: 'Session', hasMany: true }
+                    speakerSessions: {type: 'Session', hasMany: true}
                 }
             });
         }
@@ -84,12 +84,12 @@
             addType({
                 name: 'Session',
                 dataProperties: {
-                    id: {type: ID },
+                    id: {type: ID},
                     title: {max: 50, nullOk: false},
-                    code: {max: 10 },
-                    description: {max: 4000 },
-                    level: {max: 30 },
-                    tags: {max: 4000 },
+                    code: {max: 10},
+                    description: {max: 4000},
+                    level: {max: 30},
+                    tags: {max: 4000},
 
                     roomId: {type: ID, nullOk: false},
                     speakerId: {type: ID, nullOk: false},
@@ -114,8 +114,8 @@
             addType({
                 name: 'Room',
                 dataProperties: {
-                    id: {type: ID },
-                    name: {max: 50, nullOk: false }
+                    id: {type: ID},
+                    name: {max: 50, nullOk: false}
                 }
             });
         }
@@ -124,10 +124,10 @@
             addType({
                 name: 'TimeSlot',
                 dataProperties: {
-                    id: {type: ID },
-                    start: {type: DATE, nullOk: false },
-                    isSessionSlot: {type: BOOL, nullOk: false },
-                    duration: {type: ID, nullOk: false }
+                    id: {type: ID},
+                    start: {type: DATE, nullOk: false},
+                    isSessionSlot: {type: BOOL, nullOk: false},
+                    duration: {type: ID, nullOk: false}
                 }
             });
         }
@@ -136,11 +136,10 @@
             addType({
                 name: 'Track',
                 dataProperties: {
-                    id: {type: ID },
-                    name: {max: 50, nullOk: false }
+                    id: {type: ID},
+                    name: {max: 50, nullOk: false}
                 }
             });
         }
-
     }
 })();

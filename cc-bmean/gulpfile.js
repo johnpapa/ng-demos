@@ -1,8 +1,11 @@
 /* jshint camelcase:false */
 var gulp = require('gulp');
-var pkg = require('./package.json');
 var common = require('./gulp/common.js');
+var karma = require('karma').server;
+var merge = require('merge-stream');
+var pkg = require('./package.json');
 var plug = require('gulp-load-plugins')();
+
 var env = plug.util.env;
 var log = plug.util.log;
 
@@ -12,15 +15,20 @@ gulp.task('help', plug.taskListing);
  * @desc Lint the code
  */
 gulp.task('analyze', function() {
-    log('Linting the JavaScript');
+    log('Analyzing source with JSHint and JSCS');
 
-    var sources = [].concat(pkg.paths.js, pkg.paths.nodejs);
+    var jshint = analyze('./src/client/test/**/*.js', './src/client/test/.jshintrc');
+    var jscs = analyze([].concat(pkg.paths.js, pkg.paths.nodejs), './.jshintrc');
+    return merge(jshint, jscs);
+});
+
+function analyze(sources, jshintrc) {
     return gulp
         .src(sources)
-        .pipe(plug.jshint('./.jshintrc'))
+        .pipe(plug.jshint(jshintrc))
         .pipe(plug.jshint.reporter('jshint-stylish'))
         .pipe(plug.jscs('./.jscsrc'));
-});
+}
 
 /**
  * @desc Create $templateCache from the html templates
@@ -47,7 +55,7 @@ gulp.task('js', ['analyze', 'templatecache'], function() {
     var source = [].concat(pkg.paths.js, pkg.paths.stage + 'templates.js');
     return gulp
         .src(source)
-       // .pipe(plug.sourcemaps.init()) // get screwed up in the file rev process
+        // .pipe(plug.sourcemaps.init()) // get screwed up in the file rev process
         .pipe(plug.concat('all.min.js'))
         .pipe(plug.ngAnnotate({add: true, single_quotes: true}))
         .pipe(plug.bytediff.start())
@@ -76,11 +84,12 @@ gulp.task('vendorjs', function() {
 gulp.task('css', function() {
     log('Bundling, minifying, and copying the app\'s CSS');
     return gulp.src(pkg.paths.css)
-        .pipe(plug.concat('all.min.css')) 
+        .pipe(plug.concat('all.min.css')) // Before bytediff or after
         .pipe(plug.autoprefixer('last 2 version', '> 5%'))
         .pipe(plug.bytediff.start())
         .pipe(plug.minifyCss({}))
         .pipe(plug.bytediff.stop(common.bytediffFormatter))
+//        .pipe(plug.concat('all.min.css')) // Before bytediff or after
         .pipe(gulp.dest(pkg.paths.stage + 'content'));
 });
 
@@ -140,7 +149,7 @@ gulp.task('rev-and-inject',
             .pipe(plug.rev()) // create files with rev's
             .pipe(gulp.dest(pkg.paths.stage)) // write the rev files
             .pipe(minFilter.restore()) // remove filter, back to original stream
-            
+
             // inject the files into index.html
             .pipe(indexFilter) // filter to index.html
             .pipe(inject('content/vendor.min.css', 'inject-vendor'))
@@ -150,7 +159,7 @@ gulp.task('rev-and-inject',
             .pipe(gulp.dest(pkg.paths.stage)) // write the rev files
             .pipe(indexFilter.restore()) // remove filter, back to original stream
 
-            // replace the files referenced in index.html with the rev'd files            
+            // replace the files referenced in index.html with the rev'd files
             .pipe(plug.revReplace())         // Substitute in new filenames
             .pipe(gulp.dest(pkg.paths.stage)) // write the index.html file changes
             .pipe(plug.rev.manifest()) // create the manifest (must happen last or we screw up the injection)
@@ -222,42 +231,22 @@ gulp.task('watch', function() {
 });
 
 /**
- * @desc Run all tests
+ * Run specs once and exit
+ * To start servers and run midway specs as well:
+ *    gulp test --startServers
  */
-gulp.task('test-serve-midway', function() {
-    log('Pre test serve');
-    var testFiles = [pkg.paths.test + 'spec.mocha/*[Ss]pec.js'];
-    var options = {
-        script: pkg.paths.server + 'app.js',
-        env: {'NODE_ENV': 'dev', 'PORT': 8888}
-    };
+gulp.task('test', function (done) {
+    testCore(true /*singleRun*/, done);
 });
 
-//gulp.task('test', ['test-serve-midway'], function() {
-gulp.task('test', function() {
-    log('Running tests');
-    var testFiles = [pkg.paths.test + 'spec.mocha/*[Ss]pec.js'];
-    // var options = {
-    //     script: pkg.paths.server + 'app.js',
-    //     env: {'NODE_ENV': 'dev', 'PORT': 8888}
-    // };
-    // plug.nodemon(options);
-
-    return gulp
-        .src('./useKarmaConfAndNotThis')
-        .pipe(plug.plumber())
-        .pipe(plug.karma({
-            configFile: pkg.paths.test + '/karma.conf.js',
-//            singleRun: true,
-            delay: 5,
-            action: 'run'  // run or watch
-        }))
-        // .pipe(plug.plumber.stop())
-        .on('error', function(err) {
-            // failed tests cause gulp to exit
-            log(err);
-            throw err;
-        });
+/**
+ * Run specs and wait.
+ * Watch for file changes and re-run tests on each change
+ * To start servers and run midway specs as well:
+ *    gulp autotest --startServers
+ */
+gulp.task('autotest', function (done) {
+    testCore(false /*singleRun*/, done);
 });
 
 /**
@@ -300,8 +289,7 @@ function startLivereload(mode) {
     var path = (env === 'stage' ? [pkg.paths.stage, pkg.paths.client + '/**'] : [pkg.paths.client + '/**']);
     var options = {auto: true};
     plug.livereload.listen(options);
-    gulp
-        .watch(path)
+    gulp.watch(path)
         .on('change', function(file) {
             plug.livereload.changed(file.path);
         });
@@ -323,16 +311,16 @@ function serve(args) {
         ]
     };
 
-    if(!!env.mongo) {
-        log('Starting MongoDB');
-        gulp.src('', {read: false})
-            .pipe(plug.shell(['/usr/local/bin/mongod --config src/server/data/mongodb.config']));
-    }
-
     if (args.debug) {
         gulp.src('', {read: false})
             .pipe(plug.shell(['node-inspector']));
         options.nodeArgs = [args.debug + '=5858'];
+    }
+
+    if(!!env.mongo) {
+        log('Starting MongoDB');
+        gulp.src('', {read: false})
+            .pipe(plug.shell(['/usr/local/bin/mongod --config src/server/data/mongodb.config']));
     }
 
     return plug.nodemon(options)
@@ -340,4 +328,42 @@ function serve(args) {
         .on('restart', function() {
             log('restarted!');
         });
+}
+
+function testCore(singleRun, done) {
+    var child;
+    var excludeFiles = ['./src/client/app/**/*spaghetti.js'];
+    var spawn = require('child_process').spawn;
+
+    if (env.startServers) {
+        log('Starting servers');
+        var savedEnv = process.env;
+        savedEnv.NODE_ENV = 'dev';
+        savedEnv.PORT = 8888;
+        child = spawn('node', ['src/server/app.js'], {env: savedEnv}, childCompleted);
+    } else {
+        excludeFiles.push('./src/client/test/midway/**/*.spec.js');
+    }
+
+    startTests();
+
+    ////////////////////
+    function childCompleted(error, stdout, stderr) {
+        log('stdout: ' + stdout);
+        log('stderr: ' + stderr);
+        if (error !== null) {
+            log('exec error: ' + error);
+        }
+    }
+
+    function startTests() {
+        karma.start({
+            configFile: __dirname + '/karma.conf.js',
+            exclude: excludeFiles,
+            singleRun: !!singleRun
+        }, function() {
+            if (child) {child.kill();}
+            done();
+        });
+    }
 }

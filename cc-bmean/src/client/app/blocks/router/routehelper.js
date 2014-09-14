@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -7,7 +7,7 @@
         .factory('routehelper', routehelper);
 
     // Must configure via the routehelperConfigProvider
-    function routehelperConfig () {
+    function routehelperConfig() {
         /* jshint validthis:true */
         this.config = {
             // These are the properties we need to set
@@ -16,16 +16,21 @@
             // resolveAlways: {ready: function(){ } }
         };
 
-        this.$get = function () {
+        this.$get = function() {
             return {
                 config: this.config
             };
         };
     }
 
-    routehelper.$inject = ['$location', '$rootScope', '$route', 'logger', 'routehelperConfig'];
+    routehelper.$inject = [
+        '$location', '$rootScope', '$route',
+        'logger', 'routehelperConfig'
+    ];
 
-    function routehelper($location, $rootScope, $route, logger, routehelperConfig) {
+    function routehelper(
+        $location, $rootScope, $route,
+        logger, routehelperConfig) {
         var handlingRouteChangeError = false;
         var routeCounts = {
             errors: 0,
@@ -45,13 +50,13 @@
         return service;
         ///////////////
 
-        function configureRoutes(routes){
-            routes.forEach(function (route) {
+        function configureRoutes(routes) {
+            routes.forEach(function(route) {
                 route.config.resolve =
                     angular.extend(route.config.resolve || {}, routehelperConfig.config.resolveAlways);
                 $routeProvider.when(route.url, route.config);
             });
-            $routeProvider.otherwise({ redirectTo: '/' });
+            $routeProvider.otherwise({redirectTo: '/'});
         }
 
         function handleRoutingErrors() {
@@ -59,7 +64,7 @@
             // On routing error, go to the dashboard.
             // Provide an exit clause if it tries to do it twice.
             $rootScope.$on('$routeChangeError',
-                function (event, current, previous, rejection) {
+                function(event, current, previous, rejection) {
                     if (handlingRouteChangeError) {
                         return;
                     }
@@ -94,7 +99,7 @@
 
         function updateDocTitle() {
             $rootScope.$on('$routeChangeSuccess',
-                function (event, current, previous) {
+                function(event, current, previous) {
                     routeCounts.changes++;
                     handlingRouteChangeError = false;
                     var title = routehelperConfig.config.docTitle + ' ' + (current.title || '');

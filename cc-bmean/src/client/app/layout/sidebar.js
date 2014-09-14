@@ -1,12 +1,14 @@
-(function () {
+(function() {
     'use strict';
 
     angular
         .module('app.layout')
         .controller('Sidebar', Sidebar);
 
-    Sidebar.$inject = ['$location', '$route',
-        'bootstrap.dialog', 'config', 'datacontext', 'routehelper'];
+    Sidebar.$inject = [
+        '$location', '$route',
+        'bootstrap.dialog', 'config', 'datacontext', 'routehelper'
+    ];
 
     function Sidebar($location, $route, bsDialog, config, datacontext, routehelper) {
         /*jshint validthis: true */
@@ -42,11 +44,11 @@
         }
 
         function getNavRoutes() {
-            vm.navRoutes = vm.routes.filter(function (r) {
+            vm.navRoutes = vm.routes.filter(function(r) {
                 return r.settings && r.settings.nav;
-            }).sort(function (r1, r2) {
-                    return r1.settings.nav - r2.settings.nav;
-                });
+            }).sort(function(r1, r2) {
+                return r1.settings.nav - r2.settings.nav;
+            });
         }
 
         function isCurrent(route) {

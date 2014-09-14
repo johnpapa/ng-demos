@@ -37,19 +37,19 @@ app.get('/ping', function(req, res, next) {
     res.send('pong');
 });
 
-switch (environment){
+switch (environment) {
     case 'stage':
         console.log('** STAGE **');
         app.use('/', express.static('./build/stage/'));
         break;
     default:
         console.log('** DEV **');
-        app.use('/', express.static(pkg.paths.client, { maxAge: oneDay }));
+        app.use('/', express.static(pkg.paths.client, {maxAge: oneDay}));
         app.use('/', express.static('./'));
         break;
 }
 
-app.listen(port, function () {
+app.listen(port, function() {
     console.log('************************');
     console.log('Code Camper MEAN Server');
     console.log('Listening on port ' + port);

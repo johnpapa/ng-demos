@@ -1,6 +1,6 @@
 // Include in index.html so that app level exceptions are handled.
 // Exclude from testRunner.html which should run exactly what it wants to run
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -17,7 +17,7 @@
             //appErrorPrefix: ''
         };
 
-        this.$get = function () {
+        this.$get = function() {
             return {
                 config: this.config
             };
@@ -37,9 +37,9 @@
     // Extend the $exceptionHandler service to also display a toast.
     function extendExceptionHandler($delegate, exceptionConfig, logger) {
         var appErrorPrefix = exceptionConfig.config.appErrorPrefix || '';
-        return function (exception, cause) {
+        return function(exception, cause) {
             $delegate(exception, cause);
-            var errorData = { exception: exception, cause: cause };
+            var errorData = {exception: exception, cause: cause};
             var msg = appErrorPrefix + exception.message;
             /**
              * Could add the error to a service's collection,

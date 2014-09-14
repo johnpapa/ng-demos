@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -37,7 +37,7 @@
                 config: {
                     templateUrl: 'app/session/sessiondetail.html',
                     title: 'session',
-                    settings: { }
+                    settings: {}
                 }
             }
         ];
