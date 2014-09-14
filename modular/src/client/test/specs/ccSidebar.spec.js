@@ -79,7 +79,6 @@ describe('ccSidebar directive: ', function () {
             el.remove();
         });
 
-
         it('dropdown is visible after opening a closed menu', function () {
             dropdownIsVisible(false); // hidden before click
             clickIt();
@@ -93,7 +92,6 @@ describe('ccSidebar directive: ', function () {
             dropdownIsVisible(false); // hidden after click
         });
 
-
         it('click triggers "when-done-animating" expression', function () {
 
             // spy on directive's callback when the animation is done
@@ -103,7 +101,7 @@ describe('ccSidebar directive: ', function () {
             // '    <div cc-sidebar  when-done-animating="vm.sidebarReady(42)" >
             // therefore, the directive looks for scope.vm.sidebarReady
             // and should call that method with the value '42'
-            scope.vm = { sidebarReady: spy };
+            scope.vm = {sidebarReady: spy};
 
             // tell angular to look again for that vm.sidebarReady property
             scope.$digest();

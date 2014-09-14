@@ -13,23 +13,18 @@ gulp.task('help', plug.taskListing);
  * @desc Lint the code
  */
 gulp.task('analyze', function() {
-    log('Linting the JavaScript');
+    analyze('./src/client/test/**/*.js', './src/client/test/.jshintrc');
+  //  analyze([].concat(pkg.paths.js, pkg.paths.nodejs), './.jshintrc');
+});
 
-    // lint the tests first
-    gulp
-        .src('./src/client/test/**/*.spec.js')
-        .pipe(plug.jshint('./src/client/test/.jshintrc'))
-        .pipe(plug.jshint.reporter('jshint-stylish'))
-        .pipe(plug.jscs('./.jscsrc'));
-
-    // lint the code
-    var sources = [].concat(pkg.paths.js, pkg.paths.nodejs);
+function analyze(sources, jshintrc) {
+    log('Linting: ', sources);
     return gulp
         .src(sources)
-        .pipe(plug.jshint('./.jshintrc'))
+        .pipe(plug.jshint(jshintrc))
         .pipe(plug.jshint.reporter('jshint-stylish'))
         .pipe(plug.jscs('./.jscsrc'));
-});
+}
 
 /**
  * @desc Create $templateCache from the html templates
