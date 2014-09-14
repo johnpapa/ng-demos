@@ -12,12 +12,16 @@ describe('ccSidebar directive: ', function () {
         // The minimum necessary template HTML for this spec.
         // Simulates a menu link that opens and closes a dropdown of menu items
         // The `when-done-animating` attribute is optional (as is the vm's implementation)
-        // N.B.: the expression must execute the callback method when evaluated
-        //       so it includes '()': "vm.sidebarReady()"
+        //
+        // N.B.: the attribute value is supposed to be an expression that invokes a $scope method
+        //       so make sure the expression includes '()', e.g., "vm.sidebarReady(42)"
+        //       no harm if the expression fails ... but then scope.sidebarReady will be undefined.
+        //       All parameters in the expression are passed to vm.sidebarReady ... if it exists
+        //
         // N.B.: We do NOT add this element to the browser DOM (although we could).
         //       spec runs faster if we don't touch the DOM (even the PhantomJS DOM).
         el = angular.element(
-            '<div cc-sidebar  when-done-animating="vm.sidebarReady()" > \
+            '<div cc-sidebar  when-done-animating="vm.sidebarReady(42)" > \
                 <div class="sidebar-dropdown"><a href="">Menu</a></div> \
                 <div class="sidebar-inner" style="display: none"></div> \
             </div>');
@@ -96,8 +100,9 @@ describe('ccSidebar directive: ', function () {
             var spy = sinon.spy();
 
             // Recall the pertinent tag in the template ...
-            // '    <div cc-sidebar  when-done-animating="vm.sidebarReady()" >
-            // therefore, the directive expects scope.vm.sidebarReady
+            // '    <div cc-sidebar  when-done-animating="vm.sidebarReady(42)" >
+            // therefore, the directive looks for scope.vm.sidebarReady
+            // and should call that method with the value '42'
             scope.vm = { sidebarReady: spy };
 
             // tell angular to look again for that vm.sidebarReady property
@@ -109,7 +114,9 @@ describe('ccSidebar directive: ', function () {
             // this click triggers an animation
             clickIt();
 
-            expect(spy).to.have.been.called;
+            // verify that the vm's method (sidebarReady) was called with '42'
+            // FYI: spy.args[0] is the array of args passed to sidebarReady()
+            expect(spy).to.have.been.calledWith(42);
         });
     });
 
