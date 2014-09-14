@@ -260,9 +260,14 @@ gulp.task('watch', function() {
  * Run test once and exit
  *    gulp autotest --startServers 
  */
+gulp.task('childprocesstest', function (done) {
+    var exec = require('child_process').exec;
+    var c = exec('NODE_ENV=dev PORT=8888 node src/server/app.js');
+    done();
+});
+
 gulp.task('test', function (done) {
     var child;
-    // var spawn = require('child_process').spawn;
     var exec = require('child_process').exec;
     // var options = {
     //     script: pkg.paths.server + 'app.js',
@@ -272,18 +277,21 @@ gulp.task('test', function (done) {
 
     if (env.startServers) {
         log('Starting servers');
-        child = exec('NODE_ENV=dev PORT=8888 node ' + pkg.paths.server + 'app.js');
+        child = exec('NODE_ENV=dev PORT=8888 node ' + pkg.paths.server + 'app.js', childCompleted);
     } else {
         excludeFiles.push('./src/client/test/midway/**/*.spec.js');
     }
     startTests();
 
-    function startTests(error, stdout, stderr) {
+    function childCompleted(error, stdout, stderr) {
         log('stdout: ' + stdout);
         log('stderr: ' + stderr);
         if (error !== null) {
             log('exec error: ' + error);
         } 
+    }
+
+    function startTests() {
         karma.start({
             configFile: __dirname + '/karma.conf.js',
             exclude: excludeFiles,
