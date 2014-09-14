@@ -303,7 +303,7 @@ gulp.task('test', function (done) {
 
         savedEnv.NODE_ENV = 'dev';
         savedEnv.PORT = 8888;
-        child = spawn('node', ['src/server/app.js'], {env: savedEnv});
+        child = spawn('node', ['src/server/app.js'], {env: savedEnv}, childCompleted);
     } else {
         excludeFiles.push('./src/client/test/midway/**/*.spec.js');
     }
