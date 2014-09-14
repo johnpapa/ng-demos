@@ -2,36 +2,12 @@
 var gulp = require('gulp');
 var pkg = require('./package.json');
 var common = require('./gulp/common.js');
+var karma = require('karma').server;
 var plug = require('gulp-load-plugins')();
 var env = plug.util.env;
 var log = plug.util.log;
 
 gulp.task('help', plug.taskListing);
-
-/**
- * @desc Annotate only
- *  Mostly for show.
- *  See the output of each file?
- *      Uncomment rename, comment concat and uglify
- *  See min'd and concat'd output?
- *      Comment rename, uncomment concat and uglify,
- *      add to index.html, then run it with `gulp serve-dev`.
- */
-gulp.task('ngAnnotateTest', function() {
-    log('Annotating AngularJS dependencies');
-    var source = [].concat(pkg.paths.js);
-    return gulp
-        // .src(source)
-        .src(pkg.paths.client + '/app/avengers/avengers.js')
-        .pipe(plug.ngAnnotate({add: true, single_quotes: true}))
-        .pipe(plug.rename(function(path) {
-            path.extname = '.annotated.js';
-        }))
-        // .pipe(plug.concat('all.min.js'))
-        // .pipe(plug.uglify({mangle: true}))
-        // .pipe(gulp.dest(pkg.paths.client + '/app'));
-        .pipe(gulp.dest(pkg.paths.client + '/app/avengers'));
-});
 
 /**
  * @desc Lint the code
@@ -256,43 +232,62 @@ gulp.task('watch', function() {
 });
 
 /**
- * @desc Run non-midway tests
- * @example
- *    gulp test                         // Run once and then close
- *    gulp test --watch                 // Run and keep open with watch
- *    gulp test --watch --startServers  // Start servers, run, and keep open with watch
+ * Run test once and exit
+ *    gulp autotest --startServers 
  */
- //gulp.task('test', ['test-serve-midway'], function() {
-gulp.task('test', function() {
+gulp.task('test', function (done) {
+    var child;
+    var excludeFiles = ['./src/client/app/**/*spaghetti.js'];
+    // var exec = require('child_process').exec;
+    var savedEnv = process.env; 
+    var spawn = require('child_process').spawn;
 
     if (env.startServers) {
         log('Starting servers');
-        var options = {
-            script: pkg.paths.server + 'app.js',
-            env: {'NODE_ENV': 'dev', 'PORT': 8888}
-        };
-        plug.nodemon(options);
+        // child = exec('NODE_ENV=dev PORT=8888 node ' + pkg.paths.server + 'app.js', childCompleted);
+
+        savedEnv.NODE_ENV = 'dev';
+        savedEnv.PORT = 8888;
+        log(savedEnv);
+        child = spawn('node', ['src/server/app.js'], {env: savedEnv}, childCompleted);
+    } else {
+        excludeFiles.push('./src/client/test/midway/**/*.spec.js');
+    }
+    startTests();
+
+    function childCompleted(error, stdout, stderr) {
+        log('stdout: ' + stdout);
+        log('stderr: ' + stderr);
+        if (error !== null) {
+            log('exec error: ' + error);
+        } 
     }
 
-    log('Running tests');
-    var action = (env.watch == null || env.watch === 'run') ? 'run' : 'watch';
-//    var testFiles = [pkg.paths.test + '*[Ss]pec.js'];
-
-    return gulp
-        .src('./useKarmaConfAndNotThis')
-        .pipe(plug.plumber())
-        .pipe(plug.karma({
-            configFile: pkg.paths.test + '/karma.conf.js',
-//            singleRun: true,
-            delay: 5, //TODO: this does nada?
-            action: action // run (once) or watch (keep open)
-        }))
-        // .pipe(plug.plumber.stop())
-        .on('error', function(err) {
-            // failed tests cause gulp to exit
-            log(err);
-            throw err;
+    function startTests() {
+        karma.start({
+            configFile: __dirname + '/karma.conf.js',
+            exclude: excludeFiles,
+            singleRun: true
+        }, function() {
+            if (child) {child.kill();}
+            done();
         });
+    }
+});
+
+/**
+ * Watch for file changes and re-run tests on each change
+ *    gulp autotest --startServers  // Start servers, run, and keep open with watch
+ */
+gulp.task('autotest', function (done) {
+    var excludeFiles = [
+        './src/client/app/**/*spaghetti.js',
+        './src/client/test/midway/**/*.spec.js'
+    ];
+    karma.start({
+        configFile: __dirname + '/karma.conf.js',
+        exclude: excludeFiles
+    }, done);
 });
 
 /**
@@ -370,3 +365,31 @@ function serve(args) {
             log('restarted!');
         });
 }
+
+/**
+ * @desc Annotate only
+ *  ONLY USED IN PLURALSIGHT COURSE ANGULARJS PATTERNS: CLEAN CODE
+ *  ONLY FOR DEMO PURPOSES
+ *  ALL OTHER TASKS ARE AWESOME-SAUCE
+ *
+ *  See the output of each file?
+ *      Uncomment rename, comment concat and uglify
+ *  See min'd and concat'd output?
+ *      Comment rename, uncomment concat and uglify,
+ *      add to index.html, then run it with `gulp serve-dev`.
+ */
+gulp.task('ngAnnotateTest', function() {
+    log('Annotating AngularJS dependencies');
+    var source = [].concat(pkg.paths.js);
+    return gulp
+        // .src(source)
+        .src(pkg.paths.client + '/app/avengers/avengers.js')
+        .pipe(plug.ngAnnotate({add: true, single_quotes: true}))
+        .pipe(plug.rename(function(path) {
+            path.extname = '.annotated.js';
+        }))
+        // .pipe(plug.concat('all.min.js'))
+        // .pipe(plug.uglify({mangle: true}))
+        // .pipe(gulp.dest(pkg.paths.client + '/app'));
+        .pipe(gulp.dest(pkg.paths.client + '/app/avengers'));
+});

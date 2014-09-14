@@ -5,7 +5,7 @@ module.exports = function (config) {
     config.set({
 
         // base path that will be used to resolve all patterns (eg. files, exclude)
-        basePath: '../../',
+        basePath: './',
 
         // frameworks to use
         // some available frameworks: https://npmjs.org/browse/keyword/karma-adapter
@@ -13,41 +13,41 @@ module.exports = function (config) {
 
         // list of files / patterns to load in the browser
         files: [
-            './client/test/bindPolyfill.js',
+            './src/client/test/bindPolyfill.js',
 
-            './../node_modules/ng-midway-tester/src/ngMidwayTester.js',
+            './node_modules/ng-midway-tester/src/ngMidwayTester.js',
 
-            './../bower_components/jquery/dist/jquery.js',
-            './../bower_components/angular/angular.js',
-            './../bower_components/angular-mocks/angular-mocks.js',
-            './../bower_components/angular-animate/angular-animate.js',
-            './../bower_components/angular-route/angular-route.js',
-            './../bower_components/angular-sanitize/angular-sanitize.js',
-            './../bower_components/bootstrap/dist/js/bootstrap.js',
-            './../bower_components/toastr/toastr.js',
-            './../bower_components/moment/moment.js',
-            './../bower_components/extras.angular.plus/ngplus-overlay.js',
+            './bower_components/jquery/dist/jquery.js',
+            './bower_components/angular/angular.js',
+            './bower_components/angular-mocks/angular-mocks.js',
+            './bower_components/angular-animate/angular-animate.js',
+            './bower_components/angular-route/angular-route.js',
+            './bower_components/angular-sanitize/angular-sanitize.js',
+            './bower_components/bootstrap/dist/js/bootstrap.js',
+            './bower_components/toastr/toastr.js',
+            './bower_components/moment/moment.js',
+            './bower_components/extras.angular.plus/ngplus-overlay.js',
 
-            './client/app/app.module.js',
-            './client/app/**/*.module.js',
-            './client/app/**/*.js',
+            './src/client/app/app.module.js',
+            './src/client/app/**/*.module.js',
+            './src/client/app/**/*.js',
 
             /* MOCHA */
-            './client/test/**/specHelper.js',
+            './src/client/test/**/specHelper.js',
 
-            './client/test/basics/**/*.src.js',
-            './client/test/basics/**/*.spec.js',
+            './src/client/test/basics/**/*.src.js',
+            './src/client/test/basics/**/*.spec.js',
 
             // all specs ... comment out during early test training
-            './client/test/**/*.spec.js'
+            './src/client/test/**/*.spec.js'
 
         ],
 
         // list of files to exclude
         exclude: [
             // Excluding midway tests for now; comment this line out when you want to run them
-            './client/test/spec.mocha/midway/**/*.spec.js',
-            './client/app/**/*spaghetti.js'
+            './src/client/test/midway/**/*.spec.js',
+            './src/client/app/**/*spaghetti.js'
         ],
 
         proxies: {
@@ -57,7 +57,7 @@ module.exports = function (config) {
         // preprocess matching files before serving them to the browser
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
         preprocessors: {
-            'client/app/**/*.js': 'coverage'
+            'src/client/app/**/*.js': 'coverage'
         },
 
         // test results reporter to use
