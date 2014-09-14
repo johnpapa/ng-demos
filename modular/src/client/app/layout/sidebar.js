@@ -11,8 +11,8 @@
         /*jshint validthis: true */
         var vm = this;
         var routes = routehelper.getRoutes();
-
         vm.isCurrent = isCurrent;
+        //vm.sidebarReady = function(){console.log('done animating menu')}; // example
 
         activate();
 
