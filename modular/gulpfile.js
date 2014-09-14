@@ -10,31 +10,6 @@ var log = plug.util.log;
 gulp.task('help', plug.taskListing);
 
 /**
- * @desc Annotate only
- *  Mostly for show.
- *  See the output of each file?
- *      Uncomment rename, comment concat and uglify
- *  See min'd and concat'd output?
- *      Comment rename, uncomment concat and uglify,
- *      add to index.html, then run it with `gulp serve-dev`.
- */
-gulp.task('ngAnnotateTest', function() {
-    log('Annotating AngularJS dependencies');
-    var source = [].concat(pkg.paths.js);
-    return gulp
-        // .src(source)
-        .src(pkg.paths.client + '/app/avengers/avengers.js')
-        .pipe(plug.ngAnnotate({add: true, single_quotes: true}))
-        .pipe(plug.rename(function(path) {
-            path.extname = '.annotated.js';
-        }))
-        // .pipe(plug.concat('all.min.js'))
-        // .pipe(plug.uglify({mangle: true}))
-        // .pipe(gulp.dest(pkg.paths.client + '/app'));
-        .pipe(gulp.dest(pkg.paths.client + '/app/avengers'));
-});
-
-/**
  * @desc Lint the code
  */
 gulp.task('analyze', function() {
@@ -390,3 +365,31 @@ function serve(args) {
             log('restarted!');
         });
 }
+
+/**
+ * @desc Annotate only
+ *  ONLY USED IN PLURALSIGHT COURSE ANGULARJS PATTERNS: CLEAN CODE
+ *  ONLY FOR DEMO PURPOSES
+ *  ALL OTHER TASKS ARE AWESOME-SAUCE
+ *
+ *  See the output of each file?
+ *      Uncomment rename, comment concat and uglify
+ *  See min'd and concat'd output?
+ *      Comment rename, uncomment concat and uglify,
+ *      add to index.html, then run it with `gulp serve-dev`.
+ */
+gulp.task('ngAnnotateTest', function() {
+    log('Annotating AngularJS dependencies');
+    var source = [].concat(pkg.paths.js);
+    return gulp
+        // .src(source)
+        .src(pkg.paths.client + '/app/avengers/avengers.js')
+        .pipe(plug.ngAnnotate({add: true, single_quotes: true}))
+        .pipe(plug.rename(function(path) {
+            path.extname = '.annotated.js';
+        }))
+        // .pipe(plug.concat('all.min.js'))
+        // .pipe(plug.uglify({mangle: true}))
+        // .pipe(gulp.dest(pkg.paths.client + '/app'));
+        .pipe(gulp.dest(pkg.paths.client + '/app/avengers'));
+});
