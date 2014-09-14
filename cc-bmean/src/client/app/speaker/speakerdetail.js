@@ -1,15 +1,18 @@
-(function () {
+(function() {
     'use strict';
 
     angular
         .module('app')
         .controller('SpeakerDetail', SpeakerDetail);
 
-    SpeakerDetail.$inject = ['$location', '$scope', '$routeParams', '$window',
-        'common', 'config', 'datacontext', 'model'];
+    SpeakerDetail.$inject = [
+        '$location', '$scope', '$routeParams', '$window',
+        'common', 'config', 'datacontext', 'model'
+    ];
 
-    function SpeakerDetail($location, $scope, $routeParams, $window,
-                           common, config, datacontext, model) {
+    function SpeakerDetail(
+        $location, $scope, $routeParams, $window,
+        common, config, datacontext, model) {
         /*jshint validthis: true */
         var vm = this;
         var entityName = model.entityNames.speaker;
@@ -25,7 +28,7 @@
         vm.speaker = null;
         vm.speakers = [];
 
-        Object.defineProperty(vm, 'canSave', { get: canSave });
+        Object.defineProperty(vm, 'canSave', {get: canSave});
 
         activate();
 
@@ -62,7 +65,7 @@
             }
 
             return datacontext.speaker.getEntityByIdOrFromWip(val)
-                .then(function (data) {
+                .then(function(data) {
                     if (data) {
                         // data is either an entity or an {entity, wipKey} pair
                         wipEntityKey = data.key;
@@ -72,7 +75,7 @@
                         gotoSpeakers();
                     }
                 })
-                .catch(function (error) {
+                .catch(function(error) {
                     logger.error('Error while getting speaker id = ' + val + '; ' + error);
                     gotoSpeakers();
                 });
@@ -87,21 +90,21 @@
         }
 
         function onDestroy() {
-            $scope.$on('$destroy', function () {
+            $scope.$on('$destroy', function() {
                 autoStoreWip(true);
                 datacontext.cancel();
             });
         }
 
         function onEveryChange() {
-            $scope.$on(config.events.entitiesChanged, function (event, data) {
+            $scope.$on(config.events.entitiesChanged, function(event, data) {
                 autoStoreWip();
             });
         }
 
         function onHasChanges() {
             $scope.$on(config.events.hasChangesChanged,
-                function (event, data) {
+                function(event, data) {
                     vm.hasChanges = data.hasChanges;
                 });
         }
@@ -116,13 +119,13 @@
             } // Must return a promise
 
             vm.isSaving = true;
-            return datacontext.save().then(function (saveResult) {
+            return datacontext.save().then(function(saveResult) {
                 vm.isSaving = false;
                 removeWipEntity();
                 common.replaceLocationUrlGuidWithId(vm.speaker.id);
-            }).catch(function (error) {
-                    vm.isSaving = false;
-                });
+            }).catch(function(error) {
+                vm.isSaving = false;
+            });
         }
 
         function storeWipEntity() {

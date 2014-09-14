@@ -1,22 +1,22 @@
-module.exports = function (app) {
+module.exports = function(app) {
     /**
      * MongoDb server routes for data access
      *
      */
     var dataconfig = require('./../data/dataconfig')();
 
-    var appDir = '',
-        breezeMongo = require('breeze-mongodb'),
-        collections = dataconfig.collections,
-        db = dataconfig.db,
-        fs = require('fs'),
-        metadata,
-        // These are exceptions where we override the routes
-        namedGet = { // keys always all lower case!
-            lookups: getLookups,
-            metadata: getMetadata,
-            speakers: getSpeakers
-        };
+    var appDir = '';
+    var breezeMongo = require('breeze-mongodb');
+    var collections = dataconfig.collections;
+    var db = dataconfig.db;
+    var fs = require('fs');
+    var metadata;
+    // These are exceptions where we override the routes
+    var namedGet = { // keys always all lower case!
+        lookups: getLookups,
+        metadata: getMetadata,
+        speakers: getSpeakers
+    };
 
     setBreezeRoutes();
 
@@ -28,7 +28,11 @@ module.exports = function (app) {
             // could add filters here
             moQuery.execute(db, collectionName, processResults(res, next));
         } catch (ex) {
-            var err = { statusCode: 404, message: 'Unable to execute query " ' + req.url + '"', error: ex };
+            var err = {
+                statusCode: 404,
+                message: 'Unable to execute query " ' + req.url + '"',
+                error: ex
+            };
             reportError(err, next);
         }
     }
@@ -47,7 +51,7 @@ module.exports = function (app) {
     function getCollectionNameFrom(slug) {
         // extract up to first {\,/,?} and PascalCase it
         var m = slug.match(/(\w)(\w*)([\/\\\?]?)/);
-        return  m[1].toUpperCase() + (m[2] || '');
+        return m[1].toUpperCase() + (m[2] || '');
     }
 
     function getLookups(req, res, next) {
@@ -66,14 +70,14 @@ module.exports = function (app) {
             queryCountDown += 1;
             // Find all items in the collection, and get cursor.
             // Convert them to an array and return the results.
-            collections[collectionName].find().toArray(function (err, results) {
+            collections[collectionName].find().toArray(function(err, results) {
                 queryCountDown -= 1;
                 if (err) {
                     done(err, null);
                     return;
                 }
                 //Todo: explain why we add $type
-                results.forEach(function (r) {
+                results.forEach(function(r) {
                     r.$type = typeName + namespace;
                 });
                 lookups[lookupName] = results;
@@ -133,9 +137,13 @@ module.exports = function (app) {
         // Get all distinct speakerId's from sessions.
         // Then for each speakerId create a query to find the Person.
         // Collect these and return them.
-        collections.Sessions.distinct('speakerId', function (err, speakerIds) {
+        collections.Sessions.distinct('speakerId', function(err, speakerIds) {
             if (err) {
-                err = { statusCode: 404, message: 'Can\'t get speakerIds from \'Sessions\'', error: err };
+                err = {
+                    statusCode: 404,
+                    message: 'Can\'t get speakerIds from \'Sessions\'',
+                    error: err
+                };
                 reportError(err, next);
             } else {
                 var query = new breezeMongo.MongoQuery(req.query);
@@ -143,10 +151,10 @@ module.exports = function (app) {
                 // Restrict to persons who have sessions.
                 // _id is the Mongo required PK/id.
                 // $in is a filter (containing speakerIds)
-                var isSpeaker = { _id: { $in: speakerIds } };
+                var isSpeaker = {_id: {$in: speakerIds}};
 
                 // AND with filter if defined else filter = isSpeaker
-                query.filter = req.query.$filter ? { $and: [isSpeaker, query.filter] } : isSpeaker;
+                query.filter = req.query.$filter ? {$and: [isSpeaker, query.filter]} : isSpeaker;
 
                 query.execute(db, 'Persons', processResults(res, next));
             }
@@ -154,7 +162,7 @@ module.exports = function (app) {
     }
 
     function processResults(res, next, description) {
-        return function (err, results) {
+        return function(err, results) {
             if (err) {
                 reportError(err, next, description);
             } else {

@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -24,7 +24,7 @@
             var store = new breeze.MetadataStore();
             model.configureMetadataStore(store);
             if (model.useManualMetadata) {
-                store.addDataService(new breeze.DataService({ serviceName: serviceName }));
+                store.addDataService(new breeze.DataService({serviceName: serviceName}));
             }
             return store;
         }

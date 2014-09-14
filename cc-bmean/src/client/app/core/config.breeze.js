@@ -1,5 +1,5 @@
 /* global breeze:false */
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -25,7 +25,7 @@
         function configureMongoForBreeze() {
             // Do not validate when we attach a newly created entity to an EntityManager.
             // We could also set this per entityManager
-            new breeze.ValidationOptions({ validateOnAttach: false }).setAsDefault();
+            new breeze.ValidationOptions({validateOnAttach: false}).setAsDefault();
             breeze.config.initializeAdapterInstance('dataService', 'mongo', true);
             setMongoDbNamingConvention();
         }
@@ -35,7 +35,7 @@
             // because MongoDb lacks relationships to TimeSlot and Speaker
             // so it can't perform the proper sort on the data tier
             // This sort should reproduce effect of 'orderBy' in repository.session.js
-            sessions.sort(function (left, right) {
+            sessions.sort(function(left, right) {
                 if (left.timeSlot.start < right.timeSlot.start) {
                     return -1;
                 }
@@ -59,7 +59,7 @@
             // Translate certain property names between MongoDb names and client names
             var convention = new breeze.NamingConvention({
                 name: 'mongo-naming-convention',
-                serverPropertyNameToClient: function (serverPropertyName) {
+                serverPropertyNameToClient: function(serverPropertyName) {
                     switch (serverPropertyName) {
                         case '_id':
                             return 'id';
@@ -67,7 +67,7 @@
                             return serverPropertyName;
                     }
                 },
-                clientPropertyNameToServer: function (clientPropertyName) {
+                clientPropertyNameToServer: function(clientPropertyName) {
                     switch (clientPropertyName) {
                         case 'id':
                             return '_id';

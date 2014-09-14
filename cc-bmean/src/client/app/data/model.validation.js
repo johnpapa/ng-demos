@@ -78,7 +78,7 @@
         function createRequireReferenceValidator() {
             var name = 'requireReferenceEntity';
             // isRequired = true so zValidate directive displays required indicator
-            var ctx = { messageTemplate: 'Missing %displayName%', isRequired: true };
+            var ctx = {messageTemplate: 'Missing %displayName%', isRequired: true};
             var val = new Validator(name, valFunction, ctx);
             return val;
 

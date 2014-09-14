@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -31,11 +31,11 @@
         return directive;
 
         function link(scope, element, attrs, ctrl) {
-            scope.$watch(wipIsCurrent, function (value) {
-                if(value) {
+            scope.$watch(wipIsCurrent, function(value) {
+                if (value) {
                     element.addClass('current');
                 } else {
-                    element.removeClass('current'); 
+                    element.removeClass('current');
                 }
             });
 
@@ -58,15 +58,17 @@
             activate();
 
             function activate() {
-                $scope.$on($scope.changedEvent, function (event, data) {
+                $scope.$on($scope.changedEvent, function(event, data) {
                     vm.wip = data.wip;
                 });
-                vm.wipRoute = $scope.routes.filter(function (r) {
+                vm.wipRoute = $scope.routes.filter(function(r) {
                     return r.title === wipRouteName;
                 })[0];
             }
 
-            function wipExists() { return !!vm.wip.length; }
+            function wipExists() {
+                return !!vm.wip.length;
+            }
 
             function getWipClass() {
                 return vm.wipExists() ? ['fa', 'fa-asterisk', 'fa-asterisk-alert'] : ['fa', 'fa-asterisk'];

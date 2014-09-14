@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -26,11 +26,11 @@
             element.addClass('totop');
             $win.scroll(toggleIcon);
 
-            element.find('a').click(function (e) {
+            element.find('a').click(function(e) {
                 e.preventDefault();
                 // Learning Point: $anchorScroll works, but no animation
                 //$anchorScroll();
-                $('body').animate({ scrollTop: 0 }, 500);
+                $('body').animate({scrollTop: 0}, 500);
             });
 
             function toggleIcon() {

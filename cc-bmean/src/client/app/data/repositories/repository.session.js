@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -48,7 +48,7 @@
                 // ask the server for a count and remember it
                 return sessionsQuery.take(0).inlineCount()
                     .using(manager).execute()
-                    .then(function (data) {
+                    .then(function(data) {
                         count = data.inlineCount;
                         return count;
                     });
@@ -99,7 +99,7 @@
                     var trackIds = response.results;
                     var tidCounts = {}; // {trackid: count} hash
 
-                    trackIds.forEach(function (t) {
+                    trackIds.forEach(function(t) {
                         // increment or create-and-set
                         tidCounts[t.trackId] = tidCounts[t.trackId] ?
                             tidCounts[t.trackId] += 1 : 1;
@@ -107,8 +107,8 @@
 
                     sessionsPerTrack =
                         base.getAllLocal(model.entityNames.track, 'name', base.predicates.isNotNullo)
-                            .map(function (t) {
-                                return { id: t.id, track: t.name, count: tidCounts[t.id] || 0 };
+                            .map(function(t) {
+                                return {id: t.id, track: t.name, count: tidCounts[t.id] || 0};
                             });
 
                     return sessionsPerTrack;

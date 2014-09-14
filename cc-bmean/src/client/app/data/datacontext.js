@@ -1,18 +1,19 @@
-(function () {
+(function() {
     'use strict';
 
     angular
         .module('app.data')
         .factory('datacontext', datacontext);
 
-    datacontext.$inject =
-        ['$injector', '$rootScope',
-            'breeze', 'common', 'config', 'entityManagerFactory',
-            'exception', 'model', 'zStorage', 'zStorageWip'];
+    datacontext.$inject = [
+        '$injector', '$rootScope',
+        'breeze', 'common', 'config', 'entityManagerFactory',
+        'exception', 'model', 'zStorage', 'zStorageWip'
+    ];
 
-    function datacontext ($injector, $rootScope,
-                          breeze, common, config, emFactory,
-                          exception, model, zStorage, zStorageWip) {
+    function datacontext(
+        $injector, $rootScope, breeze, common, config, emFactory,
+        exception, model, zStorage, zStorageWip) {
         var manager = emFactory.newManager();
         var isPrimed = false;
         var primePromise;
@@ -57,10 +58,10 @@
 
         // Add ES5 property to datacontext for each named repo
         function defineLazyLoadedRepos() {
-            repoNames.forEach(function (name) {
+            repoNames.forEach(function(name) {
                 Object.defineProperty(service, name, {
                     configurable: true, // will redefine this property once
-                    get: function () {
+                    get: function() {
                         // The 1st time the repo is request via this property,
                         // we ask the repositories for it (which will inject it).
                         var repo = getRepo(name);
@@ -85,13 +86,13 @@
         }
 
         function listenForStorageEvents() {
-            $rootScope.$on(config.events.storage.storeChanged, function (event, data) {
+            $rootScope.$on(config.events.storage.storeChanged, function(event, data) {
                 common.logger.info('Updated local storage', data);
             });
-            $rootScope.$on(config.events.storage.wipChanged, function (event, data) {
+            $rootScope.$on(config.events.storage.wipChanged, function(event, data) {
                 common.logger.info('Updated WIP', data);
             });
-            $rootScope.$on(config.events.storage.error, function (event, data) {
+            $rootScope.$on(config.events.storage.error, function(event, data) {
                 common.logger.error('Error with local storage. ' + data.activity, data);
             });
         }
@@ -123,11 +124,11 @@
                 var promise = $q.all([service.lookup.getAll(), service.speaker.getPartials(true)]);
                 if (!model.useManualMetadata) {
                     // got metadata from remote service; now extend it
-                    promise = promise.then(function () {
+                    promise = promise.then(function() {
                         model.extendMetadata(manager.metadataStore);
                     });
                 }
-                return promise.then(function () {
+                return promise.then(function() {
                     zStorage.save();
                 });
             }
@@ -142,7 +143,9 @@
             var readyPromise = primePromise || prime();
 
             return readyPromise
-                .then(function(){return $q.all(nextPromises);})
+                .then(function() {
+                    return $q.all(nextPromises);
+                })
                 .catch(exception.catcher('"ready" function failed'));
         }
 
@@ -173,7 +176,7 @@
 
         function setupEventForEntitiesChanged() {
             // We use this for detecting changes of any kind so we can save them to local storage
-            manager.entityChanged.subscribe(function (changeArgs) {
+            manager.entityChanged.subscribe(function(changeArgs) {
                 if (changeArgs.entityAction === breeze.EntityAction.PropertyChange) {
                     interceptPropertyChange(changeArgs);
                     common.$broadcast(config.events.entitiesChanged, changeArgs);
@@ -182,8 +185,8 @@
         }
 
         function setupEventForHasChangesChanged() {
-            manager.hasChangesChanged.subscribe(function (eventArgs) {
-                var data = { hasChanges: eventArgs.hasChanges };
+            manager.hasChangesChanged.subscribe(function(eventArgs) {
+                var data = {hasChanges: eventArgs.hasChanges};
                 common.$broadcast(config.events.hasChangesChanged, data);
             });
         }

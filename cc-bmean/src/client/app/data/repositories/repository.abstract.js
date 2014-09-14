@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -107,7 +107,7 @@
             if (importedEntity) {
                 // Need to re-validate the entity we are re-hydrating
                 importedEntity.entityAspect.validateEntity();
-                wipResult = { entity: importedEntity, key: wipEntityKey };
+                wipResult = {entity: importedEntity, key: wipEntityKey};
             } else {
                 self.logger.info('Could not find [' + entityName + '] id in WIP:' + wipEntityKey, null);
             }

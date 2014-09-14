@@ -1,15 +1,18 @@
-(function () {
+(function() {
     'use strict';
 
     angular
         .module('app')
         .controller('SessionDetail', SessionDetail);
 
-    SessionDetail.$inject = ['$location', '$scope', '$routeParams', '$window',
-        'bootstrap.dialog', 'common', 'config', 'datacontext', 'model'];
+    SessionDetail.$inject = [
+        '$location', '$scope', '$routeParams', '$window',
+        'bootstrap.dialog', 'common', 'config', 'datacontext', 'model'
+    ];
 
-    function SessionDetail ($location, $scope, $routeParams, $window,
-                            bsDialog, common, config, datacontext, model) {
+    function SessionDetail(
+        $location, $scope, $routeParams, $window,
+        bsDialog, common, config, datacontext, model) {
         /*jshint validthis: true */
         var vm = this;
         var entityName = model.entityNames.session;
@@ -29,11 +32,11 @@
         vm.timeslots = [];
         vm.tracks = [];
 
-        Object.defineProperty(vm, 'canSave', { get: canSave });
+        Object.defineProperty(vm, 'canSave', {get: canSave});
 
         activate();
 
-        function activate() {
+        function activate()     {
             initLookups();
             onDestroy();
             onHasChanges();
@@ -87,7 +90,7 @@
             }
 
             return datacontext.session.getEntityByIdOrFromWip(val)
-                .then(function (data) {
+                .then(function(data) {
                     if (data) {
                         // data is either an entity or an {entity, wipKey} pair
                         wipEntityKey = data.key;
@@ -97,7 +100,7 @@
                         gotoSessions();
                     }
                 })
-                .catch(function (error) {
+                .catch(function(error) {
                     logger.error('Error while getting session id = ' + val + '; ' + error);
                     gotoSessions();
                 });
@@ -122,7 +125,7 @@
         }
 
         function onDestroy() {
-            $scope.$on('$destroy', function () {
+            $scope.$on('$destroy', function() {
                 autoStoreWip(true);
                 datacontext.cancel();
             });
@@ -130,14 +133,14 @@
 
         function onEveryChange() {
             $scope.$on(config.events.entitiesChanged,
-                function (event, data) {
+                function(event, data) {
                     autoStoreWip();
                 });
         }
 
         function onHasChanges() {
             $scope.$on(config.events.hasChangesChanged,
-                function (event, data) {
+                function(event, data) {
                     vm.hasChanges = data.hasChanges;
                 });
         }
@@ -152,12 +155,12 @@
             } // Must return a promise
 
             vm.isSaving = true;
-            return datacontext.save().then(function (saveResult) {
+            return datacontext.save().then(function(saveResult) {
                 vm.isSaving = false;
                 removeWipEntity();
                 common.replaceLocationUrlGuidWithId(vm.session.id);
                 datacontext.speaker.calcIsSpeaker();
-            }).catch(function (error) {
+            }).catch(function(error) {
                 vm.isSaving = false;
             });
         }
@@ -171,4 +174,3 @@
         }
     }
 })();
-
