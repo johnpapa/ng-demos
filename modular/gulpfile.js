@@ -14,7 +14,7 @@ gulp.task('help', plug.taskListing);
  */
 gulp.task('analyze', function() {
     analyze('./src/client/test/**/*.js', './src/client/test/.jshintrc');
-  //  analyze([].concat(pkg.paths.js, pkg.paths.nodejs), './.jshintrc');
+    analyze([].concat(pkg.paths.js, pkg.paths.nodejs), './.jshintrc');
 });
 
 function analyze(sources, jshintrc) {
