@@ -231,64 +231,64 @@ gulp.task('watch', function() {
     }
 });
 
+///////////// TEST HERE //////////
+
 /**
- * Run test once and exit
- *    gulp autotest --startServers 
+ * Run specs once and exit
+ * To start servers and run midway specs as well:
+ *    gulp test --startServers
  */
 gulp.task('test', function (done) {
+    testCore(true /*singleRun*/, done)
+});
+
+/**
+ * Run specs and wait.
+ * Watch for file changes and re-run tests on each change
+ * To start servers and run midway specs as well:
+ *    gulp autotest --startServers  
+ */
+gulp.task('autotest', function (done) {
+    testCore(false /*singleRun*/, done)
+});
+
+function testCore(singleRun, done){
     var child;
     var excludeFiles = ['./src/client/app/**/*spaghetti.js'];
-    // var exec = require('child_process').exec;
-    var savedEnv = process.env; 
     var spawn = require('child_process').spawn;
 
     if (env.startServers) {
         log('Starting servers');
-        // child = exec('NODE_ENV=dev PORT=8888 node ' + pkg.paths.server + 'app.js', childCompleted);
-
+        var savedEnv = process.env;
         savedEnv.NODE_ENV = 'dev';
         savedEnv.PORT = 8888;
-        log(savedEnv);
         child = spawn('node', ['src/server/app.js'], {env: savedEnv}, childCompleted);
     } else {
         excludeFiles.push('./src/client/test/midway/**/*.spec.js');
     }
+
     startTests();
 
+    ////////////////////
     function childCompleted(error, stdout, stderr) {
         log('stdout: ' + stdout);
         log('stderr: ' + stderr);
         if (error !== null) {
             log('exec error: ' + error);
-        } 
+        }
     }
 
     function startTests() {
         karma.start({
             configFile: __dirname + '/karma.conf.js',
             exclude: excludeFiles,
-            singleRun: true
+            singleRun: singleRun
         }, function() {
             if (child) {child.kill();}
             done();
         });
     }
-});
-
-/**
- * Watch for file changes and re-run tests on each change
- *    gulp autotest --startServers  // Start servers, run, and keep open with watch
- */
-gulp.task('autotest', function (done) {
-    var excludeFiles = [
-        './src/client/app/**/*spaghetti.js',
-        './src/client/test/midway/**/*.spec.js'
-    ];
-    karma.start({
-        configFile: __dirname + '/karma.conf.js',
-        exclude: excludeFiles
-    }, done);
-});
+}
 
 /**
  * serve the dev environment, with debug,
