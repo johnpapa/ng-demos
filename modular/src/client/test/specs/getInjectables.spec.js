@@ -13,7 +13,6 @@ describe('specHelper.getInjectables', function() {
     });
 
     describe('(describe #1):', function() {
-
         it('window.$log and window.calcService should not exist', function() {
             expect(window.$log).to.not.exist;
             expect(window.calcService).to.not.exist;
@@ -22,7 +21,6 @@ describe('specHelper.getInjectables', function() {
     });
 
     describe('(describe #2):', function() {
-
         beforeEach(function() {
             // window.$log and window.calcService should not exist before any test
             expect(window.$log).to.not.exist;
@@ -33,7 +31,6 @@ describe('specHelper.getInjectables', function() {
         // it also removes them after each test by scheduling an afterEach
         // Notice ... no private vars for $log or calcService! ... no injecting of them either.
         it('should set window.$log and window.calcService when call getInjectables with a func', function() {
-
             specHelper.getInjectables(function($log, calcService) {});
 
             expect($log).to.exist;
@@ -52,7 +49,6 @@ describe('specHelper.getInjectables', function() {
         });
 
         it('should set window.$log and window.calcService when call getInjectables with string array', function() {
-
             specHelper.getInjectables(['$log', 'calcService']);
 
             expect($log).to.exist;
@@ -60,7 +56,6 @@ describe('specHelper.getInjectables', function() {
         });
 
         it('should set window.$log and window.calcService when call getInjectables with string params', function() {
-
             specHelper.getInjectables('$log', 'calcService');
 
             expect($log).to.exist;
@@ -69,7 +64,6 @@ describe('specHelper.getInjectables', function() {
 
         // reinforcing the point that getInjectables adds to globals, not local fn scope
         it('locally defined $log hides the $log injected by getInjectables', function() {
-
             var $log; // declaration hides the one in window.$log created by getInjectables
 
             specHelper.getInjectables('$log');
@@ -79,7 +73,6 @@ describe('specHelper.getInjectables', function() {
         });
 
         it('should set window.$log and window.foo when call getInjectables("$log","block.foo")', function() {
-
             // register this ridiculous value for just this test
             module(function($provide) {
                 $provide.value('block.foo', 'foo');
@@ -111,7 +104,6 @@ describe('specHelper.getInjectables', function() {
     });
 
     describe('(describe #3):', function() {
-
         it('window.$log and window.calcService should not exist', function() {
             expect(window.$log).to.not.exist;
             expect(window.calcService).to.not.exist;
@@ -119,9 +111,7 @@ describe('specHelper.getInjectables', function() {
     });
 
     describe('(describe #4):', function() {
-
         beforeEach(function() {
-
             // register this ridiculous value for just this describe
             module(function($provide) {
                 $provide.value('baz', 'baz');
@@ -131,7 +121,6 @@ describe('specHelper.getInjectables', function() {
         });
 
         describe('in nested describe', function() {
-
             it('baz is available from parent describe', function() {
                 expect(baz).to.exist;
             });
@@ -146,5 +135,4 @@ describe('specHelper.getInjectables', function() {
             });
         });
     });
-
 });
