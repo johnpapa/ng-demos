@@ -112,6 +112,8 @@ specHelper.getInjectables= function(){
         params[ix] = _name;
         body += name + '=' + _name+';';
         cleanupBody += 'delete window.'+name+';';
+
+        // todo: tolerate component names that are invalid JS identifiers, e.g. 'burning man'
     });
 
     var fn = 'function('+params.join(',')+'){'+body+'}';

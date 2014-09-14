@@ -34,8 +34,7 @@ describe('specHelper.getInjectables', function() {
         // Notice ... no private vars for $log or calcService! ... no injecting of them either.
         it('should set window.$log and window.calcService when call getInjectables with a func', function() {
 
-            specHelper.getInjectables(function($log, calcService) {
-            });
+            specHelper.getInjectables(function($log, calcService) {});
 
             expect($log).to.exist;
             expect(calcService).to.exist;
@@ -66,6 +65,17 @@ describe('specHelper.getInjectables', function() {
 
             expect($log).to.exist;
             expect(calcService).to.exist;
+        });
+
+        // reinforcing the point that getInjectables adds to globals, not local fn scope
+        it('locally defined $log hides the $log injected by getInjectables', function() {
+
+            var $log; // declaration hides the one in window.$log created by getInjectables
+
+            specHelper.getInjectables('$log');
+
+            expect($log).to.not.exist;
+            expect(window.$log).to.exist;
         });
 
         it('should set window.$log and window.foo when call getInjectables("$log","block.foo")', function() {
