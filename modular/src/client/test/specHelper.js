@@ -54,7 +54,7 @@ specHelper.getFnParams = function (fn) {
     return params;
 };
 
-specHelper.getInjectables = function() {
+specHelper.inject = function() {
     var annotation,
         body = '',
         cleanupBody = '',
@@ -113,7 +113,7 @@ specHelper.getInjectables = function() {
     //     return exp;
     //
     // Then caller must say something like:
-    //     eval(specHelper.getInjectables('$log', 'foo'));
+    //     eval(specHelper.inject('$log', 'foo'));
 };
 
 specHelper.getMockAvengers = function() {

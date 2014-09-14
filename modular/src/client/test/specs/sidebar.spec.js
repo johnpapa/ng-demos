@@ -4,7 +4,7 @@ describe('layout', function () {
 
         beforeEach(function() {
             module('app', specHelper.fakeLogger);
-            specHelper.getInjectables(function($controller, $httpBackend, $location, $rootScope, $route) {});
+            specHelper.inject(function($controller, $httpBackend, $location, $rootScope, $route) {});
         });
 
         beforeEach(function () {

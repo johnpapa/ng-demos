@@ -8,7 +8,7 @@ describe('dataservice', function () {
             specHelper.fakeRouteProvider($provide);
             specHelper.fakeLogger($provide);
         });
-        specHelper.getInjectables(function($httpBackend, $rootScope, dataservice) {});            
+        specHelper.inject(function($httpBackend, $rootScope, dataservice) {});            
         
         mocks.maaData = [{ 
             data: {results: specHelper.getMockAvengers()}

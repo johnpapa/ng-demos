@@ -7,7 +7,7 @@ describe('app.avengers', function() {
             specHelper.fakeRouteProvider($provide);
             specHelper.fakeLogger($provide);
         });
-        specHelper.getInjectables(function($controller, $q, $rootScope, dataservice) {});
+        specHelper.inject(function($controller, $q, $rootScope, dataservice) {});
     });
 
     beforeEach(function () {
