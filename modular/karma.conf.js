@@ -13,7 +13,7 @@ module.exports = function (config) {
 
         // list of files / patterns to load in the browser
         files: [
-            './src/client/test/bindPolyfill.js',
+            'src/client/test/lib/bindPolyfill.js',
 
             './node_modules/ng-midway-tester/src/ngMidwayTester.js',
 
@@ -33,7 +33,8 @@ module.exports = function (config) {
             './src/client/app/**/*.js',
 
             /* MOCHA */
-            './src/client/test/specHelper.js',
+            'src/client/test/lib/specHelper.js',
+            'src/client/test/lib/mockData.js',
 
             './src/client/test/basics/**/*.src.js',
             './src/client/test/basics/**/*.spec.js',

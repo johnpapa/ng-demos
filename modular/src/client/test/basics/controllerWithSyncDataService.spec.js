@@ -31,7 +31,7 @@ describe('Basics - controller w/ sync dataservice:', function() {
             stub = sinon.stub(
                 syncDataservice,
                 'getAvengers',
-                specHelper.getMockAvengers);
+                mockData.getMockAvengers);
 
             controller = $controller(controllerName);
         }));
@@ -53,7 +53,7 @@ describe('Basics - controller w/ sync dataservice:', function() {
             //  the constructor instead of values from the injector
             var ctorArgs = {
                 // mock service instance swhose getAvengers() returns test data
-                syncDataservice: {getAvengers: specHelper.getMockAvengers}
+                syncDataservice: {getAvengers: mockData.getMockAvengers}
             };
 
             controller = $controller(controllerName, ctorArgs);
@@ -80,7 +80,7 @@ describe('Basics - controller w/ sync dataservice:', function() {
 
         // definition of a mock service whose getAvengers() returns test data
         function mockSyncDataservice() {
-            return {getAvengers: specHelper.getMockAvengers};
+            return {getAvengers: mockData.getMockAvengers};
         }
     });
 

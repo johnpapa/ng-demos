@@ -1,17 +1,10 @@
 describe('layout', function () {
     describe('sidebar', function () {
-        var dataservice;
-        var scope;
         var controller;
-        var toastr;
 
         beforeEach(function() {
             module('app', specHelper.fakeLogger);
-            specHelper.injectDependencies(true);
-            inject(function(_dataservice_, _toastr_) {
-                dataservice = _dataservice_;
-                toastr = _toastr_;
-            });
+            specHelper.injector(function($controller, $httpBackend, $location, $rootScope, $route) {});
         });
 
         beforeEach(function () {

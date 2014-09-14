@@ -1,5 +1,4 @@
 describe('ccSidebar directive: ', function () {
-
     var dropdownElement;
     var el;
     var innerElement;
@@ -41,7 +40,6 @@ describe('ccSidebar directive: ', function () {
 
     /// tests ///
     describe('the isOpenClass', function () {
-
         it('is absent for a closed menu', function () {
             hasIsOpenClass(false);
         });
@@ -64,7 +62,6 @@ describe('ccSidebar directive: ', function () {
     });
 
     describe('when animating w/ jQuery fx off', function () {
-
         beforeEach(function () {
             // remember current state of jQuery's global FX duration switch
             this.oldFxOff = $.fx.off;

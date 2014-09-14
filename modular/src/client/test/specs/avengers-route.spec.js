@@ -1,21 +1,10 @@
-/* global describe, it, beforeEach, afterEach, expect, inject, sinon, specHelper */
-/* global $controller, $httpBackend, $location, $q, $rootScope, $route */
-/* jshint expr: true */
 describe('avengers', function () {
     describe('route', function () {
-        var dataservice;
-        var scope;
         var controller;
-        var toastr;
 
         beforeEach(function() {
             module('app', specHelper.fakeLogger);
-            specHelper.injectDependencies(true);
-            inject(function(_dataservice_, _toastr_) {
-                dataservice = _dataservice_;
-                toastr = _toastr_;
-            });
-
+            specHelper.injector(function($httpBackend, $location, $rootScope, $route) {});
             $httpBackend.expectGET('app/avengers/avengers.html').respond(200);
         });
 

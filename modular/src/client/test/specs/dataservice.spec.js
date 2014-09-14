@@ -1,7 +1,6 @@
+/* global dataservice, */
 describe('dataservice', function () {
-    var dataservice;
     var scope;
-    var toastr;
     var mocks = {};
 
     beforeEach(function () {
@@ -9,18 +8,14 @@ describe('dataservice', function () {
             specHelper.fakeRouteProvider($provide);
             specHelper.fakeLogger($provide);
         });
-        specHelper.injectDependencies(true);
-        inject(function (_dataservice_, _toastr_) {
-            dataservice = _dataservice_;
-            toastr = _toastr_;
-        });
+        specHelper.injector(function($httpBackend, $rootScope, dataservice) {});            
         
         mocks.maaData = [{ 
-            data: {results: specHelper.getMockAvengers()}
+            data: {results: mockData.getMockAvengers()}
         }];
         // sinon.stub(dataservice, 'getAvengers', function () {
         //     var deferred = $q.defer();
-        //     deferred.resolve(specHelper.getMockAvengers());
+        //     deferred.resolve(mockData.getMockAvengers());
         //     return deferred.promise;
         // });
     });

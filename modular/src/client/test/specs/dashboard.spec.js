@@ -1,25 +1,19 @@
+/* global dataservice, */
 describe('app.dashboard', function() {
-    var dataservice;
-    var scope;
     var controller;
-    var toastr;
 
     beforeEach(function() {
         module('app', function($provide) {
             specHelper.fakeRouteProvider($provide);
             specHelper.fakeLogger($provide);
         });
-        specHelper.injectDependencies(true);
-        inject(function(_dataservice_, _toastr_) {
-            dataservice = _dataservice_;
-            toastr = _toastr_;
-        });
+        specHelper.injector(function($controller, $q, $rootScope, dataservice) {});            
     });
 
     beforeEach(function () {
         sinon.stub(dataservice, 'getAvengerCount', function () {
             var deferred = $q.defer();
-            deferred.resolve(specHelper.getMockAvengers().length);
+            deferred.resolve(mockData.getMockAvengers().length);
             return deferred.promise;
         });
 
@@ -28,12 +22,10 @@ describe('app.dashboard', function() {
             deferred.resolve({test: 123});
             return deferred.promise;
         });
-    });
-
-    beforeEach(inject(function ($rootScope, $controller) {
+      
         controller = $controller('Dashboard');
         $rootScope.$apply();
-    }));
+    });
 
     describe('Dashboard controller', function() {
         it('should be created successfully', function () {
