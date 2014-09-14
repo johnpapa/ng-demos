@@ -151,9 +151,32 @@ gulp.src('', {read: false})
 Run `gulp serve-dev-debug` or `gulp serve-dev-debug-brk` to debug node via the Gulp tasks in this project.
 
 ### Issues 
-If a process stays connected find it and kill with these commands
+
+####If a process stays connected find it and kill with these commands
 
 ```
 lsof -i TCP|fgrep LISTEN
 kill -9 34608
 ```    
+
+####Set up some aliases for the Mac
+
+Edit the bash profile
+
+    nano ~/.bash_profile
+
+Enter the aliases
+
+    /usr/local/bin
+    alias lsp='sudo lsof -i -n -P | grep LISTEN'
+
+    alias cdmod='cd _git/ng-demos/modular'
+
+    alias gadd='git add . -A'
+
+CTRL-X and save
+
+Source the file
+
+    source ~/.bash_profile
+
