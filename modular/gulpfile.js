@@ -260,36 +260,6 @@ gulp.task('watch', function() {
  * Run test once and exit
  *    gulp autotest --startServers 
  */
-gulp.task('childprocesstest', function (done) {
-    var exec = require('child_process').exec;
-    var c = exec('NODE_ENV=dev PORT=8888 node src/server/app.js');
-    done();
-});
-
-gulp.task('childprocesstest2', function(done) {
-    var spawn = require('child_process').spawn;
-
-    var savedEnv = process.env; 
-    savedEnv.NODE_ENV = 'dev';
-    savedEnv.PORT = 8888;
-    var child = spawn('node', ['src/server/app.js'], {env: savedEnv});
-
-// this didnt work
-//    var child = spawn('node', ['src/server/app.js'], {env: {NODE_ENV: 'dev'}});
-     
-    child.stdout.on('data', function(d) {
-        console.log(d + '');
-    });
-     
-    child.stderr.on('data', function(d) {
-        console.log(d + '');
-    });
-     
-    child.on('exit', function(code) {
-        console.log('child exited with code', code);
-    });
-});
-
 gulp.task('test', function (done) {
     var child;
     var excludeFiles = ['./src/client/app/**/*spaghetti.js'];
