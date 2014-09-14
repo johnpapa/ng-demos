@@ -1,7 +1,6 @@
+/* global dataservice, */
 describe('dataservice', function () {
-    var dataservice;
     var scope;
-    var toastr;
     var mocks = {};
 
     beforeEach(function () {
@@ -9,11 +8,7 @@ describe('dataservice', function () {
             specHelper.fakeRouteProvider($provide);
             specHelper.fakeLogger($provide);
         });
-        specHelper.injectDependencies(true);
-        inject(function (_dataservice_, _toastr_) {
-            dataservice = _dataservice_;
-            toastr = _toastr_;
-        });
+        specHelper.getInjectables(function($httpBackend, $rootScope, dataservice) {});            
         
         mocks.maaData = [{ 
             data: {results: specHelper.getMockAvengers()}

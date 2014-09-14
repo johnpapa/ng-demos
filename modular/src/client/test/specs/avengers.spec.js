@@ -1,19 +1,13 @@
+/* global dataservice, */
 describe('app.avengers', function() {
-    var dataservice;
-    var scope;
     var controller;
-    var toastr;
 
     beforeEach(function() {
         module('app', function($provide) {
             specHelper.fakeRouteProvider($provide);
             specHelper.fakeLogger($provide);
         });
-        specHelper.injectDependencies(true);
-        inject(function(_dataservice_, _toastr_) {
-            dataservice = _dataservice_;
-            toastr = _toastr_;
-        });
+        specHelper.getInjectables(function($controller, $q, $rootScope, dataservice) {});
     });
 
     beforeEach(function () {

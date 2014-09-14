@@ -13,33 +13,6 @@ specHelper.fakeLogger = function($provide) {
     }));
 };
 
-specHelper.injectDependencies = function(global) {
-    var deps;
-    inject(commonDeps);
-    if (global) {
-        $controller = deps.$controller;
-        $httpBackend = deps.$httpBackend;
-        $location = deps.$location;
-        $q = deps.$q;
-        $rootScope = deps.$rootScope;
-        $route = deps.$route;
-        $routeParams = deps.$routeParams;
-    }
-    return deps;
-
-    function commonDeps(_$controller_, _$httpBackend_, _$location_, _$q_, _$rootScope_, _$route_, _$routeParams_) {
-        deps = {
-            $controller: _$controller_,
-            $httpBackend: _$httpBackend_,
-            $location: _$location_,
-            $q: _$q_,
-            $rootScope: _$rootScope_,
-            $route: _$route_,
-            $routeParams: _$routeParams_
-        };
-    }
-};
-
 specHelper.fakeRouteProvider = function($provide) {
     /**
      * Stub out the $routeProvider so we avoid
