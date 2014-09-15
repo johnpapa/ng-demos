@@ -1,4 +1,4 @@
-describe('Midway: view requets', function() {
+describe('Midway: view requests', function() {
     var tester;
     beforeEach(function() {
         if (tester) {
