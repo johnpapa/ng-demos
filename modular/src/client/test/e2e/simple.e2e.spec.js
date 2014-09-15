@@ -12,12 +12,6 @@
 //     });
 // });
 
-// Mocha setup ... not quite ready, using Jasmine for now
-// var chai = require('chai');
-// var chaiAsPromised = require('chai-as-promised');
-// chai.use(chaiAsPromised);
-// var expect = chai.expect;
-
 /**
  * Setting up protractor and selenium
  * 	npm install -g protractor
@@ -44,25 +38,33 @@
  * You can then use Chai As Promised as such:
  *  expect(myElement.getText()).to.eventually.equal('some text');
  */
+
+// Jasmine Test
 describe('modular app', function() {
     it('should find avengers', function() {
         browser.get('http://localhost:7200/#/avengers');
         var list = element.all(by.repeater('c in vm.avengers'));
-
         expect(list.count()).toEqual(7);
-
         element(by.model('vm.filter.name')).sendKeys('iron');
-
-// Mocha
-//        expect(element(by.model('vm.filter.name')).getText()).to.eventually.equal('Iron Man/Tony Stark');
-
         expect(element(by.binding('c.name')).getText()).toEqual('Iron Man/Tony Stark');
-
-// Mocha
-//        expect(list.count()).to.eventually.equal(1);
-
         expect(list.count()).toEqual(1);
-
         expect(list.get(0).getText()).toContain('Iron Man/Tony Stark');
     });
 });
+//
+// Mocha Test
+// var chai = require('chai');
+// var chaiAsPromised = require('chai-as-promised');
+// chai.use(chaiAsPromised);
+// var expect = chai.expect;
+// describe('modular app', function() {
+//     it('should find avengers', function() {
+//         browser.get('http://localhost:7200/#/avengers');
+//         var list = element.all(by.repeater('c in vm.avengers'));
+//         expect(list.count()).to.eventually.equal(7);
+//         element(by.model('vm.filter.name')).sendKeys('iron');
+//         expect(element(by.model('vm.filter.name')).getText()).to.eventually.equal('Iron Man/Tony Stark');
+//         expect(list.count()).to.eventually.equal(1);
+//         expect(list.get(0).getText()).to.contain('Iron Man/Tony Stark');
+//     });
+// });
