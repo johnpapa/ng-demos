@@ -21,12 +21,10 @@
             config.resolveAlways = cfg.resolveAlways;
         };
 
-        this.$get = providerFactory;
-
         /* @ngInject */
-        function providerFactory($location, $rootScope, $state, logger) {
+        this.$get = function ($location, $rootScope, $state, logger) {
             return new RouterHelper($location, $rootScope, $state, logger);
-        }
+        };
 
         function RouterHelper($location, $rootScope, $state, logger) {
             var handlingStateChangeError = false;
