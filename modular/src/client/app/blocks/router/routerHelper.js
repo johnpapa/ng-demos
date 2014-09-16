@@ -3,9 +3,9 @@
 
     angular
         .module('blocks.router')
-        .provider('routeHelper', routeHelperProvider);
+        .provider('routerHelper', routerHelperProvider);
 
-    function routeHelperProvider() {
+    function routerHelperProvider() {
         /* jshint validthis:true */
         var config = {
             $stateProvider: undefined,
@@ -25,10 +25,10 @@
 
         /* @ngInject */
         function providerFactory($location, $rootScope, $state, logger) {
-            return new RouteHelper($location, $rootScope, $state, logger);
+            return new RouterHelper($location, $rootScope, $state, logger);
         }
 
-        function RouteHelper($location, $rootScope, $state, logger) {
+        function RouterHelper($location, $rootScope, $state, logger) {
             var handlingStateChangeError = false;
             var hasOtherwise = false;
             var stateCounts = {
@@ -67,16 +67,18 @@
                 // On routing error, go to the dashboard.
                 // Provide an exit clause if it tries to do it twice.
                 $rootScope.$on('$stateChangeError',
-                    function(event, current, previous, rejection) {
+                    function(event, toState, toParams, fromState, fromParams, error) {
                         if (handlingStateChangeError) {
                             return;
                         }
                         stateCounts.errors++;
                         handlingStateChangeError = true;
-                        var destination = (current && (current.title || current.name || current.loadedTemplateUrl)) ||
+                        var destination = (toState && (toState.title || toState.name || toState.loadedTemplateUrl)) ||
                             'unknown target';
-                        var msg = 'Error routing to ' + destination + '. ' + (rejection.msg || '');
-                        logger.warning(msg, [current]);
+                        var msg = 'Error routing to ' + destination + '. ' +
+                            (error.data || '') + '. <br/>' + (error.statusText || '') +
+                            ': ' + (error.status || '');
+                        logger.warning(msg, [toState]);
                         $location.path('/');
                     }
                 );

@@ -6,8 +6,8 @@
         .run(appRun);
 
     /* @ngInject */
-    function appRun(routeHelper) {
-        routeHelper.configureStates(getStates(), '/');
+    function appRun(routerHelper) {
+        routerHelper.configureStates(getStates(), '/');
     }
 
     function getStates() {

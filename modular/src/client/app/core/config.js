@@ -24,7 +24,7 @@
     /* @ngInject */
     function configure (
         $logProvider, $stateProvider, $urlRouterProvider, 
-        routeHelperProvider, exceptionConfigProvider) {
+        routerHelperProvider, exceptionConfigProvider) {
 
         // turn debugging off/on (no info or warn)
         if ($logProvider.debugEnabled) {
@@ -45,7 +45,7 @@
                 // }]
             };
 
-            routeHelperProvider.configure({
+            routerHelperProvider.configure({
                 $stateProvider: $stateProvider, 
                 $urlRouterProvider: $urlRouterProvider,
                 docTitle: 'NG-Modular: ',

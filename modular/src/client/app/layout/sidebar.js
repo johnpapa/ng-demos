@@ -6,10 +6,10 @@
         .controller('Sidebar', Sidebar);
 
     /* @ngInject */
-    function Sidebar($state, routeHelper) {
+    function Sidebar($state, routerHelper) {
         /*jshint validthis: true */
         var vm = this;
-        var states = routeHelper.getStates();
+        var states = routerHelper.getStates();
         vm.isCurrent = isCurrent;
         //vm.sidebarReady = function(){console.log('done animating menu')}; // example
 
