@@ -24,13 +24,13 @@
     /* @ngInject */
     function configure (
         $logProvider, $stateProvider, $urlRouterProvider, 
-        routerHelperProvider, exceptionConfigProvider) {
+        routerHelperProvider, exceptionHandlerProvider) {
 
         // turn debugging off/on (no info or warn)
         if ($logProvider.debugEnabled) {
             $logProvider.debugEnabled(true);
         }
-        exceptionConfigProvider.config.appErrorPrefix = config.appErrorPrefix;
+        exceptionHandlerProvider.configure(config.appErrorPrefix);
         configureStateHelper();
 
         ////////////////
