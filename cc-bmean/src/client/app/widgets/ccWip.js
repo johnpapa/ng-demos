@@ -16,7 +16,7 @@
         //  class="nlightblue"></li>
         var wipRouteName = 'workinprogress';
         var directive = {
-            controller: ['$scope', wipController],
+            controller: wipController,
             controllerAs: 'vm',
             link: link,
             template: getTemplate(),
@@ -47,6 +47,7 @@
             }
         }
 
+        /* @ngInject */
         function wipController($scope) {
             /* jshint validthis: true */
             var vm = this;
