@@ -5,11 +5,9 @@
         .module('app.dashboard')
         .run(appRun);
 
-    // appRun.$inject = ['routehelper'];
-
     /* @ngInject */
-    function appRun(routehelper) {
-        routehelper.configureStates(getStates(), 'dashboard');
+    function appRun(routeHelper) {
+        routeHelper.configureStates(getStates(), 'dashboard');
     }
 
     function getStates() {

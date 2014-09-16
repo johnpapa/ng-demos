@@ -5,21 +5,12 @@
         .module('app.avengers')
         .run(appRun);
 
-    // appRun.$inject = ['routehelper']
-
     /* @ngInject */
-    function appRun(routehelper) {
-        routehelper.configureStates(getStates());
+    function appRun(routeHelper) {
+        routeHelper.configureStates(getStates());
     }
 
     function getStates() {
-    // .state('state1.list', {
-    //     url: "/list",
-    //     templateUrl: "partials/state1.list.html",
-    //     controller: function($scope) {
-    //         $scope.items = ["A", "List", "Of", "Items"];
-    //     }
-    // })
         return [
             {
                 state: 'avengers',
