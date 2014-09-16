@@ -5,37 +5,25 @@
         .module('blocks.router')
         .provider('routerHelper', routerHelperProvider);
 
-    function routerHelperProvider() {
+    function routerHelperProvider($stateProvider, $urlRouterProvider) {
         /* jshint validthis:true */
         var config = {
-            $stateProvider: undefined,
-            $urlRouterProvider: undefined,
             docTitle: undefined,
-            resolveAlways: undefined
+            resolveAlways: {}
         };
 
         this.configure = function(cfg) {
-            config.$stateProvider = cfg.$stateProvider;
-            config.$urlRouterProvider = cfg.$urlRouterProvider;
-            config.docTitle = cfg.docTitle;
-            config.resolveAlways = cfg.resolveAlways;
+            angular.extend(config, cfg);
         };
 
         /* @ngInject */
-        this.$get = function ($location, $rootScope, $state, logger) {
-            return new RouterHelper($location, $rootScope, $state, logger);
-        };
-
-        function RouterHelper($location, $rootScope, $state, logger) {
+        this.$get = function RouterHelper($location, $rootScope, $state, logger) {
             var handlingStateChangeError = false;
             var hasOtherwise = false;
             var stateCounts = {
                 errors: 0,
                 changes: 0
             };
-
-            var $stateProvider = config.$stateProvider;
-            var $urlRouterProvider = config.$urlRouterProvider;
 
             var service = {
                 configureStates: configureStates,
