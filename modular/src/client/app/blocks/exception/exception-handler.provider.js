@@ -5,38 +5,48 @@
 
     angular
         .module('blocks.exception')
-        .provider('exceptionConfig', exceptionConfigProvider)
-        .config(exceptionConfig);
+        .provider('exceptionHandler', exceptionHandlerProvider)
+        .config(config);
 
-    // Must configure the service and set its
-    // events via the exceptionConfigProvider
-    function exceptionConfigProvider() {
+    /**
+     * Must configure the exception handling
+     * @return {[type]}
+     */
+    function exceptionHandlerProvider() {
         /* jshint validthis:true */
-        this.config = {
-            // These are the properties we need to set
-            //appErrorPrefix: ''
+        var appErrorPrefix;
+
+        this.configure = function (appErrorPrefix) {
+            appErrorPrefix = appErrorPrefix;
         };
 
         this.$get = function() {
             return {
-                config: this.config
+                appErrorPrefix: this.appErrorPrefix
             };
         };
     }
 
-    exceptionConfig.$inject = ['$provide'];
-
-    // Configure by setting an optional string value for appErrorPrefix.
-    // Accessible via config.appErrorPrefix (via config value).
-    function exceptionConfig($provide) {
+    /**
+     * Configure by setting an optional string value for appErrorPrefix.
+     * Accessible via config.appErrorPrefix (via config value).
+     * @param  {[type]} $provide
+     * @return {[type]}
+     * @ngInject
+     */
+    function config($provide) {
         $provide.decorator('$exceptionHandler', extendExceptionHandler);
     }
 
-    extendExceptionHandler.$inject = ['$delegate', 'exceptionConfig', 'logger'];
-
-    // Extend the $exceptionHandler service to also display a toast.
-    function extendExceptionHandler($delegate, exceptionConfig, logger) {
-        var appErrorPrefix = exceptionConfig.config.appErrorPrefix || '';
+    /**
+     * Extend the $exceptionHandler service to also display a toast.
+     * @param  {Object} $delegate
+     * @param  {Object} exceptionHandler
+     * @param  {Object} logger
+     * @return {Function} the decorated $exceptionHandler service
+     */
+    function extendExceptionHandler($delegate, exceptionHandler, logger) {
+        var appErrorPrefix = exceptionHandler.appErrorPrefix || '';
         return function(exception, cause) {
             $delegate(exception, cause);
             var errorData = {exception: exception, cause: cause};
@@ -49,7 +59,6 @@
              *
              * @example
              *     throw { message: 'error message we added' };
-             *
              */
             logger.error(msg, errorData);
         };
