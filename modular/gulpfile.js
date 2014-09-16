@@ -9,10 +9,14 @@ var plug = require('gulp-load-plugins')();
 var env = plug.util.env;
 var log = plug.util.log;
 
+/**
+ * List the available gulp tasks
+ */
 gulp.task('help', plug.taskListing);
 
 /**
- * @desc Lint the code
+ * Lint the code
+ * @return {Stream}
  */
 gulp.task('analyze', function() {
     log('Analyzing source with JSHint and JSCS');
@@ -22,16 +26,9 @@ gulp.task('analyze', function() {
     return merge(jshint, jscs);
 });
 
-function analyze(sources, jshintrc) {
-    return gulp
-        .src(sources)
-        .pipe(plug.jshint(jshintrc))
-        .pipe(plug.jshint.reporter('jshint-stylish'))
-        .pipe(plug.jscs('./.jscsrc'));
-}
-
 /**
- * @desc Create $templateCache from the html templates
+ * Create $templateCache from the html templates
+ * @return {Stream}
  */
 gulp.task('templatecache', function() {
     log('Creating an AngularJS $templateCache');
@@ -47,7 +44,8 @@ gulp.task('templatecache', function() {
 });
 
 /**
- * @desc Minify and bundle the app's JavaScript
+ * Minify and bundle the app's JavaScript
+ * @return {Stream}
  */
 gulp.task('js', ['analyze', 'templatecache'], function() {
     log('Bundling, minifying, and copying the app\'s JavaScript');
@@ -66,7 +64,8 @@ gulp.task('js', ['analyze', 'templatecache'], function() {
 });
 
 /**
- * @desc Copy the Vendor JavaScript
+ * Copy the Vendor JavaScript
+ * @return {Stream}
  */
 gulp.task('vendorjs', function() {
     log('Bundling, minifying, and copying the Vendor JavaScript');
@@ -79,7 +78,8 @@ gulp.task('vendorjs', function() {
 });
 
 /**
- * @desc Minify and bundle the CSS
+ * Minify and bundle the CSS
+ * @return {Stream}
  */
 gulp.task('css', function() {
     log('Bundling, minifying, and copying the app\'s CSS');
@@ -94,7 +94,8 @@ gulp.task('css', function() {
 });
 
 /**
- * @desc Minify and bundle the Vendor CSS
+ * Minify and bundle the Vendor CSS
+ * @return {Stream}
  */
 gulp.task('vendorcss', function() {
     log('Compressing, bundling, copying vendor CSS');
@@ -107,7 +108,8 @@ gulp.task('vendorcss', function() {
 });
 
 /**
- * @desc Copy fonts
+ * Copy fonts
+ * @return {Stream}
  */
 gulp.task('fonts', function() {
     var dest = pkg.paths.stage + 'fonts';
@@ -118,7 +120,8 @@ gulp.task('fonts', function() {
 });
 
 /**
- * @desc Compress images
+ * Compress images
+ * @return {Stream}
  */
 gulp.task('images', function() {
     var dest = pkg.paths.stage + 'content/images';
@@ -130,8 +133,9 @@ gulp.task('images', function() {
 });
 
 /**
- * @desc Inject all the files into the new index.html
+ * Inject all the files into the new index.html
  * rev, but no map
+ * @return {Stream}
  */
 gulp.task('rev-and-inject',
     ['js', 'vendorjs', 'css', 'vendorcss'], function() {
@@ -177,7 +181,8 @@ gulp.task('rev-and-inject',
     });
 
 /**
- * @desc Stage the optimized app
+ * Stage the optimized app
+ * @return {Stream}
  */
 gulp.task('stage',
     ['rev-and-inject', 'images', 'fonts'], function() {
@@ -190,9 +195,10 @@ gulp.task('stage',
     });
 
 /**
- * @desc Remove all files from the build folder
+ * Remove all files from the build folder
  * One way to run clean before all tasks is to run
  * from the cmd line: gulp clean && gulp stage
+ * @return {Stream}
  */
 gulp.task('clean', function() {
     var paths = pkg.paths.build;
@@ -204,7 +210,8 @@ gulp.task('clean', function() {
 });
 
 /**
- * @desc Watch files and build
+ * Watch files and build
+ * @return {Stream}
  */
 gulp.task('watch', function() {
     log('Watching all files');
@@ -234,9 +241,10 @@ gulp.task('watch', function() {
  * Run specs once and exit
  * To start servers and run midway specs as well:
  *    gulp test --startServers
+ * @return {Stream}
  */
 gulp.task('test', function (done) {
-    testCore(true /*singleRun*/, done);
+    startTests(true /*singleRun*/, done);
 });
 
 /**
@@ -244,14 +252,16 @@ gulp.task('test', function (done) {
  * Watch for file changes and re-run tests on each change
  * To start servers and run midway specs as well:
  *    gulp autotest --startServers  
+ * @return {Stream}
  */
 gulp.task('autotest', function (done) {
-    testCore(false /*singleRun*/, done);
+    startTests(false /*singleRun*/, done);
 });
 
 /**
  * serve the dev environment, with debug,
  * and with node inspector
+ * @return {Stream}
  */
 gulp.task('serve-dev-debug', function() {
     serve({mode: 'dev', debug: '--debug'});
@@ -261,6 +271,7 @@ gulp.task('serve-dev-debug', function() {
 /**
  * serve the dev environment, with debug-brk,
  * and with node inspector
+ * @return {Stream}
  */
 gulp.task('serve-dev-debug-brk', function() {
     serve({mode: 'dev', debug: '--debug-brk'});
@@ -269,6 +280,7 @@ gulp.task('serve-dev-debug-brk', function() {
 
 /**
  * serve the dev environment
+ * @return {Stream}
  */
 gulp.task('serve-dev', function() {
     serve({mode: 'dev'});
@@ -277,26 +289,35 @@ gulp.task('serve-dev', function() {
 
 /**
  * serve the staging environment
+ * @return {Stream}
  */
 gulp.task('serve-stage', function() {
     serve({mode: 'stage'});
     startLivereload('stage');
 });
 
-function startLivereload(mode) {
-    if (!env.liveReload) { return; }
+////////////////
 
-    var path = (env === 'stage' ? [pkg.paths.stage, pkg.paths.client + '/**'] : [pkg.paths.client + '/**']);
-    var options = {auto: true};
-    plug.livereload.listen(options);
-    gulp.watch(path)
-        .on('change', function(file) {
-            plug.livereload.changed(file.path);
-        });
-
-    log('Serving from ' + mode);
+/**
+ * Execute JSHint and JSCS on given source files
+ * @param  {Array} sources
+ * @param  {string} jshintrc - file
+ * @return {Stream}
+ */
+function analyze(sources, jshintrc) {
+    return gulp
+        .src(sources)
+        .pipe(plug.jshint(jshintrc))
+        .pipe(plug.jshint.reporter('jshint-stylish'))
+        .pipe(plug.jscs('./.jscsrc'));
 }
 
+/**
+ * Start the node server using nodemon.
+ * Optionally start the node debugging.
+ * @param  {Object} args - debugging arguments
+ * @return {Stream}
+ */
 function serve(args) {
     var options = {
         script: pkg.paths.server + 'app.js',
@@ -324,7 +345,31 @@ function serve(args) {
         });
 }
 
-function testCore(singleRun, done) {
+/**
+ * Start Live Reload for a specific environment.
+ * @param  {string} mode
+ * @return {Steram}
+ */
+function startLivereload(mode) {
+    if (!env.liveReload) { return; }
+
+    log('Serving from ' + mode);
+    var path = (env === 'stage' ? [pkg.paths.stage, pkg.paths.client + '/**'] : [pkg.paths.client + '/**']);
+    var options = {auto: true};
+    plug.livereload.listen(options);
+    return gulp.watch(path)
+        .on('change', function(file) {
+            plug.livereload.changed(file.path);
+        });
+}
+
+/**
+ * Start the tests using karma.
+ * @param  {boolean} singleRun - True means run once and end (CI), or keep running (dev)
+ * @param  {Function} done - Callback to fire when karma is done
+ * @return {undefined}
+ */
+function startTests(singleRun, done) {
     var child;
     var excludeFiles = ['./src/client/app/**/*spaghetti.js'];
     var spawn = require('child_process').spawn;
@@ -334,15 +379,19 @@ function testCore(singleRun, done) {
         var savedEnv = process.env;
         savedEnv.NODE_ENV = 'dev';
         savedEnv.PORT = 8888;
-        child = spawn('node', ['src/server/app.js'], {env: savedEnv}, childCompleted);
+        child = spawn('node', ['src/server/app.js'], {env: savedEnv}, childProcessCompleted);
     } else {
         excludeFiles.push('./src/client/test/midway/**/*.spec.js');
     }
 
-    startTests();
+    karma.start({
+        configFile: __dirname + '/karma.conf.js',
+        exclude: excludeFiles,
+        singleRun: !!singleRun
+    }, karmaCompleted);
 
-    ////////////////////
-    function childCompleted(error, stdout, stderr) {
+    ////////////////
+    function childProcessCompleted(error, stdout, stderr) {
         log('stdout: ' + stdout);
         log('stderr: ' + stderr);
         if (error !== null) {
@@ -350,20 +399,14 @@ function testCore(singleRun, done) {
         }
     }
 
-    function startTests() {
-        karma.start({
-            configFile: __dirname + '/karma.conf.js',
-            exclude: excludeFiles,
-            singleRun: !!singleRun
-        }, function() {
-            if (child) {child.kill();}
-            done();
-        });
+    function karmaCompleted() {
+        if (child) {child.kill();}
+        done();
     }
 }
 
 /**
- * @desc Annotate only
+ * Annotate only
  *  ONLY USED IN PLURALSIGHT COURSE ANGULARJS PATTERNS: CLEAN CODE
  *  ONLY FOR DEMO PURPOSES
  *  ALL OTHER TASKS ARE AWESOME-SAUCE
@@ -373,19 +416,14 @@ function testCore(singleRun, done) {
  *  See min'd and concat'd output?
  *      Comment rename, uncomment concat and uglify,
  *      add to index.html, then run it with `gulp serve-dev`.
+ *      
+ * @return {Stream}
  */
 gulp.task('ngAnnotateTest', function() {
     log('Annotating AngularJS dependencies');
     var source = [].concat(pkg.paths.js);
     return gulp
-        // .src(source)
         .src(pkg.paths.client + '/app/avengers/avengers.js')
         .pipe(plug.ngAnnotate({add: true, single_quotes: true}))
-        .pipe(plug.rename(function(path) {
-            path.extname = '.annotated.js';
-        }))
-        // .pipe(plug.concat('all.min.js'))
-        // .pipe(plug.uglify({mangle: true}))
-        // .pipe(gulp.dest(pkg.paths.client + '/app'));
-        .pipe(gulp.dest(pkg.paths.client + '/app/avengers'));
+        .pipe(gulp.dest(pkg.paths.client + '/app/avengers/annotated'));
 });
