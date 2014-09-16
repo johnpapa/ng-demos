@@ -89,9 +89,7 @@
                 updateDocTitle();
             }
 
-            function getStates() {
-                return $state.get();
-            }
+            function getStates() { return $state.get(); }
 
             function updateDocTitle() {
                 $rootScope.$on('$stateChangeSuccess',
