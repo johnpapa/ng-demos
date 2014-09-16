@@ -22,15 +22,18 @@
     core.config(configure);
 
     /* @ngInject */
-    function configure ($logProvider, $routeProvider, routehelperConfigProvider, exceptionConfigProvider) {
+    function configure (
+        $logProvider, $stateProvider, $urlRouterProvider, 
+        routehelperConfigProvider, exceptionConfigProvider) {
         // turn debugging off/on (no info or warn)
         if ($logProvider.debugEnabled) {
             $logProvider.debugEnabled(true);
         }
 
         // Configure the common route provider
-        routehelperConfigProvider.config.$routeProvider = $routeProvider;
-        routehelperConfigProvider.config.docTitle = 'NG-Modular: ';
+        routehelperConfigProvider.$stateProvider = $stateProvider;
+        routehelperConfigProvider.$urlRouterProvider = $urlRouterProvider;
+        routehelperConfigProvider.docTitle = 'NG-Modular: ';
         var resolveAlways = { /* @ngInject */
             ready: function(dataservice) {
                 return dataservice.ready();
@@ -39,7 +42,14 @@
             //    return dataservice.ready();
             // }]
         };
-        routehelperConfigProvider.config.resolveAlways = resolveAlways;
+        routehelperConfigProvider.resolveAlways = resolveAlways;
+
+        // routehelperConfigProvider.configureRouteHelper(
+        //     $stateProvider, 
+        //     $urlRouterProvider,
+        //     'NG-Modular: ',
+        //     resolveAlways
+        // );
 
         // Configure the common exception handler
         exceptionConfigProvider.config.appErrorPrefix = config.appErrorPrefix;
