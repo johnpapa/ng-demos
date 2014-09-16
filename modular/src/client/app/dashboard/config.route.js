@@ -5,18 +5,17 @@
         .module('app.dashboard')
         .run(appRun);
 
-    // appRun.$inject = ['routehelper'];
-
     /* @ngInject */
-    function appRun(routehelper) {
-        routehelper.configureRoutes(getRoutes());
+    function appRun(routerHelper) {
+        routerHelper.configureStates(getStates(), '/');
     }
 
-    function getRoutes() {
+    function getStates() {
         return [
             {
-                url: '/',
+                state: 'dashboard',
                 config: {
+                    url: '/',
                     templateUrl: 'app/dashboard/dashboard.html',
                     controller: 'Dashboard',
                     controllerAs: 'vm',

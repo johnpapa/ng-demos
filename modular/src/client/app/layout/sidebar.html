@@ -4,10 +4,10 @@
     <div class="sidebar-inner">
         <div class="sidebar-widget"></div>
         <ul class="navi">
-            <li class="nlightblue fade-selection-animation" data-ng-class="vm.isCurrent(r)"
-                data-ng-repeat="r in vm.navRoutes">
-                <a href="#{{r.originalPath}}"
-                   data-ng-bind-html="r.settings.content"></a>
+            <li class="nlightblue fade-selection-animation" data-ng-class="vm.isCurrent(state)"
+                data-ng-repeat="state in vm.navStates">
+                <a ui-sref="{{state.name}}"
+                   data-ng-bind-html="state.settings.content"></a>
             </li>
         </ul>
     </div>

@@ -10,7 +10,7 @@
 
     /**
      * Must configure the exception handling
-     * @return {[type]}
+     * @return {Object} configuration settings for exceptionHandler
      */
     function exceptionHandlerProvider() {
         /* jshint validthis:true */

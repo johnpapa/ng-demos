@@ -5,18 +5,17 @@
         .module('app.avengers')
         .run(appRun);
 
-    // appRun.$inject = ['routehelper']
-
     /* @ngInject */
-    function appRun(routehelper) {
-        routehelper.configureRoutes(getRoutes());
+    function appRun(routerHelper) {
+        routerHelper.configureStates(getStates());
     }
 
-    function getRoutes() {
+    function getStates() {
         return [
             {
-                url: '/avengers',
+                state: 'avengers',
                 config: {
+                    url: '/avengers',
                     templateUrl: 'app/avengers/avengers.html',
                     controller: 'Avengers',
                     controllerAs: 'vm',
