@@ -14,16 +14,16 @@
      */
     function exceptionHandlerProvider() {
         /* jshint validthis:true */
-        var appErrorPrefix;
+        this.config = {
+            appErrorPrefix: undefined
+        };
 
         this.configure = function (appErrorPrefix) {
-            appErrorPrefix = appErrorPrefix;
+            this.config.appErrorPrefix = appErrorPrefix;
         };
 
         this.$get = function() {
-            return {
-                appErrorPrefix: this.appErrorPrefix
-            };
+            return {config: this.config};
         };
     }
 
@@ -46,7 +46,7 @@
      * @return {Function} the decorated $exceptionHandler service
      */
     function extendExceptionHandler($delegate, exceptionHandler, logger) {
-        var appErrorPrefix = exceptionHandler.appErrorPrefix || '';
+        var appErrorPrefix = exceptionHandler.config.appErrorPrefix || '';
         return function(exception, cause) {
             $delegate(exception, cause);
             var errorData = {exception: exception, cause: cause};
