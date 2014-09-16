@@ -50,15 +50,15 @@
             return service;
             ///////////////
 
-            function configureStates(states, otherwiseState) {
+            function configureStates(states, otherwisePath) {
                 states.forEach(function(state) {
                     state.config.resolve =
                         angular.extend(state.config.resolve || {}, config.resolveAlways);
                     $stateProvider.state(state.state, state.config);
                 });
-                if (otherwiseState && !hasOtherwise) {
+                if (otherwisePath && !hasOtherwise) {
                     hasOtherwise = true;
-                    $urlRouterProvider.otherwise(otherwiseState);
+                    $urlRouterProvider.otherwise(otherwisePath);
                 }
             }
 

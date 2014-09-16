@@ -7,7 +7,7 @@
 
     /* @ngInject */
     function appRun(routeHelper) {
-        routeHelper.configureStates(getStates(), 'dashboard');
+        routeHelper.configureStates(getStates(), '/');
     }
 
     function getStates() {
@@ -15,7 +15,7 @@
             {
                 state: 'dashboard',
                 config: {
-                    url: '/dashboard',
+                    url: '/',
                     templateUrl: 'app/dashboard/dashboard.html',
                     controller: 'Dashboard',
                     controllerAs: 'vm',
