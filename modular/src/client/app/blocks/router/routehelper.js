@@ -40,10 +40,10 @@
         //     // };
         // };
 
-        this.$stateProvider;
-        this.$urlRouterProvider;
-        this.docTitle;
-        this.resolveAlways;
+        this.$stateProvider = undefined;
+        this.$urlRouterProvider = undefined;
+        this.docTitle = undefined;
+        this.resolveAlways = undefined;
 
         this.$get = function () {
             return {
