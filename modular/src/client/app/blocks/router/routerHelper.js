@@ -95,10 +95,10 @@
 
             function updateDocTitle() {
                 $rootScope.$on('$stateChangeSuccess',
-                    function(event, current, previous) {
+                    function(event, toState, toParams, fromState, fromParams) {
                         stateCounts.changes++;
                         handlingStateChangeError = false;
-                        var title = config.docTitle + ' ' + (current.title || '');
+                        var title = config.docTitle + ' ' + (toState.title || '');
                         $rootScope.title = title; // data bind to <title>
                     }
                 );
