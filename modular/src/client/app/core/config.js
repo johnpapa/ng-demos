@@ -22,7 +22,7 @@
     core.config(configure);
 
     /* @ngInject */
-    function configure ($logProvider, $routeProvider, routehelperConfigProvider, exceptionConfigProvider) {
+    function configure ($logProvider, $routeProvider, routehelperConfigProvider, exceptionHandlerProvider) {
         // turn debugging off/on (no info or warn)
         if ($logProvider.debugEnabled) {
             $logProvider.debugEnabled(true);
@@ -42,6 +42,6 @@
         routehelperConfigProvider.config.resolveAlways = resolveAlways;
 
         // Configure the common exception handler
-        exceptionConfigProvider.config.appErrorPrefix = config.appErrorPrefix;
+        exceptionHandlerProvider.configure(config.appErrorPrefix);
     }
 })();
