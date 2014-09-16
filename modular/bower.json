@@ -23,7 +23,6 @@
     "bootstrap": "~3.1.1",
     "moment": "~2.6.0",
     "jquery": "~2.1.0",
-    "angular-route": "~1.2.24",
     "angular-animate": "~1.2.24",
     "angular-sanitize": "~1.2.24",
     "font-awesome": "~4.0.3",
