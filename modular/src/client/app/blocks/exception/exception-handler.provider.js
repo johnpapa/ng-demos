@@ -3,13 +3,14 @@
 (function() {
     'use strict';
 
-    angular.module('blocks.exception')
+    angular
+        .module('blocks.exception')
         .provider('exceptionHandler', exceptionHandlerProvider)
         .config(config);
 
     /**
      * Must configure the exception handling
-     * @return {[type]}
+     * @return {Object} configuration settings for exceptionHandler
      */
     function exceptionHandlerProvider() {
         /* jshint validthis:true */
@@ -17,14 +18,12 @@
             appErrorPrefix: undefined
         };
 
-        this.configure = function(appErrorPrefix) {
+        this.configure = function (appErrorPrefix) {
             this.config.appErrorPrefix = appErrorPrefix;
         };
 
         this.$get = function() {
-            return {
-                config: this.config
-            };
+            return {config: this.config};
         };
     }
 
@@ -50,10 +49,7 @@
         var appErrorPrefix = exceptionHandler.config.appErrorPrefix || '';
         return function(exception, cause) {
             $delegate(exception, cause);
-            var errorData = {
-                exception: exception,
-                cause: cause
-            };
+            var errorData = {exception: exception, cause: cause};
             var msg = appErrorPrefix + exception.message;
             /**
              * Could add the error to a service's collection,
