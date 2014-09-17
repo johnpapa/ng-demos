@@ -37,7 +37,7 @@ describe('Basics - assertion examples:', function () {
 
         it('of a particular Error type with a specific message', function () {
             var err = new ReferenceError('This is a bad reference.');
-            expect(function () { 
+            expect(function () {
                 throw err;
             }).to.throw(ReferenceError, /bad reference/);
         });
