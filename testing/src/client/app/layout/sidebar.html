@@ -1,0 +1,14 @@
+﻿<div data-cc-sidebar when-done-animating="vm.sidebarReady()" data-ng-controller="Sidebar as vm">
+    <div class="sidebar-filler"></div>
+    <div class="sidebar-dropdown"><a href="#">Menu</a></div>
+    <div class="sidebar-inner">
+        <div class="sidebar-widget"></div>
+        <ul class="navi">
+            <li class="nlightblue fade-selection-animation" data-ng-class="vm.isCurrent(state)"
+                data-ng-repeat="state in vm.navStates">
+                <a ui-sref="{{state.name}}"
+                   data-ng-bind-html="state.settings.content"></a>
+            </li>
+        </ul>
+    </div>
+</div>
