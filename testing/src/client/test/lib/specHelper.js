@@ -3,6 +3,7 @@ var specHelper = (function() {
     var service = {
         fakeLogger: fakeLogger,
         fakeRouteProvider: fakeRouteProvider,
+        fakeStateProvider: fakeStateProvider,
         injector: injector,
         verifyNoOutstandingHttpRequests: verifyNoOutstandingHttpRequests
     };
@@ -15,6 +16,39 @@ var specHelper = (function() {
             warning: function() {},
             success: function() {}
         }));
+    }
+
+    function fakeStateProvider($provide) {
+        /**
+         * Stub out the $stateProvider so we avoid
+         * all routing calls, including the default state
+         * which runs on every test otherwise.
+         * Make sure this goes before the inject in the spec.
+         */
+        $provide.provider('$state', function() {
+            /* jshint validthis:true */
+            this.state = sinon.stub();
+
+            this.$get = function() {
+                return {
+                    // current: {},  // fake before each test as needed
+                    // state:  {}  // fake before each test as needed
+                    // more? You'll know when it fails :-)
+                };
+            };
+        });
+        $provide.provider('$urlRouter', function() {
+            /* jshint validthis:true */
+            this.otherwise = sinon.stub();
+
+            this.$get = function() {
+                return {
+                    // current: {},  // fake before each test as needed
+                    // states:  {}  // fake before each test as needed
+                    // more? You'll know when it fails :-)
+                };
+            };
+        });
     }
 
     function fakeRouteProvider($provide) {

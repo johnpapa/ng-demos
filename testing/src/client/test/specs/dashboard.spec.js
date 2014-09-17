@@ -4,7 +4,7 @@ describe('app.dashboard', function() {
 
     beforeEach(function() {
         module('app', function($provide) {
-            specHelper.fakeRouteProvider($provide);
+            specHelper.fakeStateProvider($provide);
             specHelper.fakeLogger($provide);
         });
         specHelper.injector(function($controller, $q, $rootScope, dataservice) {});            
