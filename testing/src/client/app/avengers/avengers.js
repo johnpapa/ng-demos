@@ -13,11 +13,8 @@
         vm.title = 'Avengers';
 
         activate();
-        
+
         function activate() {
-//            Using a resolver on all routes or dataservice.ready in every controller
-//            var promises = [getAvengers()];
-//            return dataservice.ready(promises).then(function(){
             return getAvengers().then(function() {
                 logger.info('Activated Avengers View');
             });
