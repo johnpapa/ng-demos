@@ -11,7 +11,6 @@
         var vm = this;
         var states = routerHelper.getStates();
         vm.isCurrent = isCurrent;
-        //vm.sidebarReady = function(){console.log('done animating menu')}; // example
 
         activate();
 

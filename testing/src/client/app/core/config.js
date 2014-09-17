@@ -38,9 +38,6 @@
                 ready: function(dataservice) {
                     return dataservice.ready();
                 }
-                // ready: ['dataservice', function (dataservice) {
-                //    return dataservice.ready();
-                // }]
             };
 
             routerHelperProvider.configure({
