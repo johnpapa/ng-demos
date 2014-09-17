@@ -5,8 +5,7 @@ describe('avengers', function () {
     describe('route', function () {
         beforeEach(function() {
             module('app', specHelper.fakeLogger);
-            specHelper.injector(function($httpBackend, $location, $rootScope, $state, $templateCache) {});
-            $httpBackend.expectGET(htmlTemplate).respond(200);
+            specHelper.injector(function($location, $rootScope, $state, $templateCache) {});
             $templateCache.put(htmlTemplate, '');
         });
 
