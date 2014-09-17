@@ -1,0 +1,37 @@
+﻿<section class="mainbar">
+    <section class="matter">
+        <div class="container">
+            <div class="row">
+                <div class="widget wblue">
+                    <div data-cc-widget-header title="{{vm.title}}"></div>
+                    <div class="widget-content user">
+                        <!--<pre>{{vm.avengers.data | json}}</pre>-->
+
+                        <input data-ng-model="vm.filter.name" placeholder="Find Avengers by name" type="search"/>
+                        <table class="table table-condensed table-striped">
+                            <thead>
+                            <tr>
+                                <th></th>
+                                <th>Character</th>
+                                <th>Description</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr data-ng-repeat="c in vm.avengers | filter:vm.filter track by c.id">
+                                <td><img
+                                        ng-src="{{c.thumbnail.path}}.{{c.thumbnail.extension}}"
+                                        class="avenger-thumb img-rounded"/></td>
+                                <td><span class="avenger-name">{{c.name}}</span></td>
+                                <td>{{c.description | limitTo: 2000 }} ...</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="widget-foot">
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
