@@ -1,4 +1,4 @@
-describe.only('blocks.exception', function() {
+describe('blocks.exception', function() {
     var exceptionHandlerProvider;
     var mocks = {
         errorMessage: 'fake error',
