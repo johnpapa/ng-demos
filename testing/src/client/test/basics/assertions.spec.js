@@ -1,3 +1,4 @@
+/* jscs: disable */
 describe('Basics - assertion examples:', function () {
     'use strict';
 
@@ -7,6 +8,8 @@ describe('Basics - assertion examples:', function () {
             expect([1, 2, 3].indexOf(5)).to.be.equal(-1);
         });
     });
+
+
 
 
 
@@ -31,7 +34,6 @@ describe('Basics - assertion examples:', function () {
                 throw new Error('my bad');
             }).to.throw(/bad/);
         });
-
 
         it('of a particular Error type with a specific message', function () {
             var err = new ReferenceError('This is a bad reference.');
