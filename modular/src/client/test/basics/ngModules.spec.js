@@ -180,7 +180,7 @@ describe('Basics - ngModules:', function() {
         }));
     });
 
-    describe('when getting providers', function(){
+    describe('when getting providers', function() {
         var $controllerProvider;
 
         beforeEach(module('test.app',
@@ -190,13 +190,13 @@ describe('Basics - ngModules:', function() {
             }
         ));
 
-        it("the $controllerProvider is NOT available BEFORE inject", function () {
+        it('the $controllerProvider is NOT available BEFORE inject', function () {
             // inject is not called;
             // can't get the $controllerProvider before the first inject
             expect($controllerProvider).to.not.exist;
         });
 
-        it("the $controllerProvider becomes available AFTER inject", function () {
+        it('the $controllerProvider becomes available AFTER inject', function () {
             // When we call inject (see next),
             // the module definition fn is called
             // and $controllerProvider becomes available
