@@ -46,11 +46,11 @@
      * @return {Function} the decorated $exceptionHandler service
      */
     function extendExceptionHandler($delegate, exceptionHandler, logger) {
-        var appErrorPrefix = exceptionHandler.config.appErrorPrefix || '';
         return function(exception, cause) {
-            $delegate(exception, cause);
+            var appErrorPrefix = exceptionHandler.config.appErrorPrefix || '';
             var errorData = {exception: exception, cause: cause};
-            var msg = appErrorPrefix + exception.message;
+            exception.message = appErrorPrefix + exception.message;
+            $delegate(exception, cause);
             /**
              * Could add the error to a service's collection,
              * add errors to $rootScope, log errors to remote web server,
@@ -60,7 +60,7 @@
              * @example
              *     throw { message: 'error message we added' };
              */
-            logger.error(msg, errorData);
+            logger.error(exception.message, errorData);
         };
     }
 })();

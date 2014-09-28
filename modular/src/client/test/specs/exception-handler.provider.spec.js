@@ -46,29 +46,26 @@ describe('blocks.exception', function() {
 
             it('should throw an error when forced', inject(function() {
                 expect(functionThatWillThrow).to.throw();
-
-                function functionThatWillThrow() {
-                    throw new Error(mocks.errorMessage);
-                }
             }));
 
-            it.skip('manual error is handled by decorator', function(exceptionHandler) {
+            it('manual error is handled by decorator', function() {
                 var exception;
                 exceptionHandlerProvider.configure(mocks.prefix);
                 try {
-                    $rootScope.$apply(function() {
-                        throw new Error(mocks.errorMessage);
-                    });
+                    $rootScope.$apply(functionThatWillThrow);
                 }
                 catch (ex) {
                     exception = ex;
                     expect(ex.message).to.equal(mocks.prefix + mocks.errorMessage);
                 }
-                // console.log(exception.message);
-                expect(exception.message).to.equal(mocks.prefix + mocks.errorMessage);
             });
         });
     });
+
+    function functionThatWillThrow() {
+        throw new Error(mocks.errorMessage);
+    }
+
 
     specHelper.verifyNoOutstandingHttpRequests();
 });
