@@ -1,7 +1,7 @@
 {
   "name": "Code Camper B-MEAN Demo",
   "version": "0.0.1",
-  "description": "AngularJS JSON Web Token Demo",
+  "description": "AngularJS Code Camper B-MEAN Demo",
   "authors": [
     "John Papa"
   ],
@@ -15,14 +15,14 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "~1.2.22",
+    "angular": "~1.2.25",
     "toastr": "~2.0.3",
     "bootstrap": "~3.2.0",
     "moment": "~2.8.1",
     "jquery": "~2.1.1",
-    "angular-route": "~1.2.22",
-    "angular-animate": "~1.2.22",
-    "angular-sanitize": "~1.2.22",
+    "angular-route": "~1.2.25",
+    "angular-animate": "~1.2.25",
+    "angular-sanitize": "~1.2.25",
     "font-awesome": "~4.1.0",
     "angular-ui-bootstrap-bower": "~0.11.0",
     "breezejs": "~1.4.16",
@@ -30,7 +30,6 @@
     "extras.angular.plus": "^0.9.0"
   },
   "devDependencies": {
-    "angular": "1.2.22",
-    "angular-mocks": "~1.2.24"
+    "angular-mocks": "~1.2.25"
   }
 }
