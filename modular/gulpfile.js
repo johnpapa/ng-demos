@@ -21,9 +21,10 @@ gulp.task('help', plug.taskListing);
 gulp.task('analyze', function() {
     log('Analyzing source with JSHint and JSCS');
 
-    var jshint = analyze('./src/client/test/**/*.js', './src/client/test/.jshintrc');
-    var jscs = analyze([].concat(pkg.paths.js, pkg.paths.nodejs), './.jshintrc');
-    return merge(jshint, jscs);
+    var jshintTests = analyzejshint('./src/client/test/**/*.spec.js', './src/client/test/.jshintrc');
+    var jshint = analyzejshint([].concat(pkg.paths.js, pkg.paths.nodejs, '!./src/client/test/**/*.spec.js'), './.jshintrc');
+    var jscs = analyzejscs([].concat(pkg.paths.js, pkg.paths.nodejs), './.jshintrc');
+    return merge(jshintTests, jshint, jscs);
 });
 
 /**
@@ -299,16 +300,26 @@ gulp.task('serve-stage', function() {
 ////////////////
 
 /**
- * Execute JSHint and JSCS on given source files
+ * Execute JSHint on given source files
  * @param  {Array} sources
  * @param  {string} jshintrc - file
  * @return {Stream}
  */
-function analyze(sources, jshintrc) {
+function analyzejshint(sources, jshintrc) {
     return gulp
         .src(sources)
         .pipe(plug.jshint(jshintrc))
-        .pipe(plug.jshint.reporter('jshint-stylish'))
+        .pipe(plug.jshint.reporter('jshint-stylish'));
+}
+
+/**
+ * Execute JSCS on given source files
+ * @param  {Array} sources
+ * @return {Stream}
+ */
+function analyzejscs(sources) {
+    return gulp
+        .src(sources)
         .pipe(plug.jscs('./.jscsrc'));
 }
 
