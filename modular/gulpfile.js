@@ -383,14 +383,14 @@ function startLivereload(mode) {
 function startTests(singleRun, done) {
     var child;
     var excludeFiles = ['./src/client/app/**/*spaghetti.js'];
-    var spawn = require('child_process').spawn;
+    var fork = require('child_process').fork;
 
     if (env.startServers) {
         log('Starting servers');
         var savedEnv = process.env;
         savedEnv.NODE_ENV = 'dev';
         savedEnv.PORT = 8888;
-        child = spawn('node', ['src/server/app.js'], {env: savedEnv}, childProcessCompleted);
+        child = fork('src/server/app.js', childProcessCompleted);
     } else {
         excludeFiles.push('./src/client/test/midway/**/*.spec.js');
     }
