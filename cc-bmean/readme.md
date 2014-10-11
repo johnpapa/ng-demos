@@ -14,7 +14,7 @@ Code Camper with Breeze, Mongo, Express, Angular, and Node
 ### MongoDB
 Install mongo via Home Brew via Mac. Or install on Windows using from [MongoDB web site instructions](http://www.mongodb.org/downloads).
 
-  brew install mongodb
+    brew install mongodb
 
 After installing MongoDB, create put your path to your MongoDB location in the file `src\server\data\mongodb.config`. It may look something like this:
 
