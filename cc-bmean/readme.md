@@ -12,11 +12,11 @@ Code Camper with Breeze, Mongo, Express, Angular, and Node
 2. Run `npm install` (this will run `bower install` for you)
 
 ### MongoDB
-Install mongo via Home Brew via Mac. Or install on Windows using from [MongoDB web site instructions](http://www.mongodb.org/downloads).
+Install mongo via [Home Brew](http://brew.sh/) via Mac. Or install on Windows using from [MongoDB web site instructions](http://www.mongodb.org/downloads).
 
     brew install mongodb
 
-After installing MongoDB, create put your path to your MongoDB location in the file `src\server\data\mongodb.config`. It may look something like this:
+After installing MongoDB, open this file `src\server\data\mongodb.config` add your path to location of your database. It may look something like this:
 
 ```
 dbpath=/Users/john/_git/ng-demos/cc-bmean/server/data/ngCodeCamper
