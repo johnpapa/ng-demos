@@ -12,7 +12,7 @@ Code Camper with Breeze, Mongo, Express, Angular, and Node
 2. Run `npm install` (this will run `bower install` for you)
 
 ### MongoDB
-Install mongo via Home Brew
+Install mongo via Home Brew via Mac. Or install on Windows using from [MongoDB web site instructions](http://www.mongodb.org/downloads).
 
   brew install mongodb
 
