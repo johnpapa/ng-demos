@@ -8,23 +8,24 @@ Code Camper with Breeze, Mongo, Express, Angular, and Node
 - Bower
 
 ## Setup
-1. Unzip `\server\data\ngCodeCamper.zip` to expand the Mongo database
-2. Enter `cd client`
-3. Enter `bower install` to install the bower packages
-4. Go to the `server` folder and enter `npm install` to install the node modules
+1. Unzip `/src/server/data/ngCodeCamper.zip` to expand the Mongo database
+2. Run `npm install` (this will run `bower install` for you)
 
 ### MongoDB
-After installing MongoDB, create put your path to your MongoDB location in the file `\server\data\mongodb.config`. It may look something like this:
+Install mongo via Home Brew
+
+  brew install mongodb
+
+After installing MongoDB, create put your path to your MongoDB location in the file `src\server\data\mongodb.config`. It may look something like this:
 
 ```
-dbpath=/Users/johnpapa/_git/ng-demos/cc-bmean/server/data/ngCodeCamper
+dbpath=/Users/john/_git/ng-demos/cc-bmean/server/data/ngCodeCamper
 ```
 
 ## Running CC-BMEAN
 1. Run the MongoDB `mongod --config server/data/mongodb.config`
-2. Run the node server by going to `/server` folder
-3. Enter `node server.js`
-4. Browse to http://localhost:3000
+2. `gulp serve-dev`
+4. Browse to [http://localhost:3001](http://localhost:3001)
 
 # MongoDB and WebStorm
 
