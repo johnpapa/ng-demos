@@ -16,9 +16,9 @@
         var directive = {
             link: link,
             restrict: 'A',
-            scope: {
-                whenDoneAnimating: '&?'
-            }
+            // scope: {
+            //     whenDoneAnimating: '&?'
+            // }
         };
         return directive;
 
