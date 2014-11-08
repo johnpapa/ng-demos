@@ -15,10 +15,10 @@
         //  <div data-cc-sidebar class="sidebar">
         var directive = {
             link: link,
-            restrict: 'A',
-            // scope: {
-            //     whenDoneAnimating: '&?'
-            // }
+            restrict: 'EA',
+            scope: {
+                whenDoneAnimating: '&'
+            }
         };
         return directive;
 
