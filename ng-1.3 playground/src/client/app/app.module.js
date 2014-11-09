@@ -20,7 +20,7 @@
         /*
          * Feature areas
          */
-        'app.avengers',
+        'app.bind-once',
         'app.dashboard',
         'app.bind-to-controller',
         'app.layout'
