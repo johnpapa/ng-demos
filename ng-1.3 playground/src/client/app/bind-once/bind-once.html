@@ -1,0 +1,49 @@
+﻿<section class="mainbar">
+    <section class="matter">
+        <div class="container">
+            <div class="row">
+                <div class="widget wblue">
+                    <div data-cc-widget-header title="{{vm.title}}"></div>
+                    <div class="widget-content user">
+                        <!--<pre>{{vm.maa.data | json}}</pre>-->
+                        <button class="btn btn-primary" ng-click="vm.refresh()">Refresh with New and Modifed Data</button>
+                        <input data-ng-model="vm.filter.name" placeholder="Find Avengers by name"/>
+                        <table class="table table-condensed table-striped">
+                            <thead>
+                            <tr>
+                                <th></th>
+                                <th>ng-model</th>
+                                <th>one way</th>
+                                <th>bind once</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr data-ng-repeat="c in vm.maa | filter:vm.filter track by c.id">
+                                <td><img
+                                        ng-src="{{c.thumbnail.path}}.{{c.thumbnail.extension}}"
+                                        class="avenger-thumb img-rounded"/></td>
+                                <!--<td><span class="avenger-name">{{c.name}}</span></td>-->
+                                <td><input class="avenger-name" ng-model="c.name"/></td>
+                                <td>{{c.name}}</td>
+                                <td>{{::c.name}}</td>
+                                <td>{{c.description | limitTo: 2000 }} ...</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div data-cc-widget-header title="{{vm.title}} - Array"></div>
+                    <div class="widget-content user">
+                        <div>Array is bound once</div>
+                        <ol>
+                            <li ng-repeat="item in ::vm.maa track by item.id">{{item.name}}</li>
+                        </ol>
+                        <button ng-click="vm.addAvenger()">Add Avenger</button>
+                    </div>
+                    <div class="widget-foot">
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
