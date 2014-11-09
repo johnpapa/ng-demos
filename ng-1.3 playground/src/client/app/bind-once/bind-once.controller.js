@@ -39,7 +39,7 @@
                 // "track by" option will keep the bindings there, so bindonce will stay
 //                vm.maa = data.data[0].data.results;
                 vm.maa = data;
-                vm.maa[0].name = 'John Papa';
+                vm.maa[0].name = 'Ella Papa';
                 vm.maa.push({name: 'Ward Bell', description: 'super hero'})
                 return vm.maa;
             });
