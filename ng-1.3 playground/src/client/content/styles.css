@@ -104,7 +104,9 @@ textarea.form-control {
     max-width: 4.5em;
 }
 
-
+.padded {
+    margin: 1em;
+}
 
 .map {
     height: 228px;

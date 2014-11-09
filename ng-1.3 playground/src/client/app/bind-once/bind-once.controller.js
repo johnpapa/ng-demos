@@ -14,6 +14,10 @@
         vm.addAvenger = addAvenger;
         vm.refresh = refresh;
         vm.maa;
+        vm.msg = {
+            bindOnce: 'Comparing 2 way, 1 way and 1 time binding',
+            arrayBindOnce: '1 time binding with an array'
+        };
         vm.title = 'BindOnce';
 
         activate();

@@ -9,11 +9,10 @@
     function BindTo(dataservice, logger) {
         /*jshint validthis: true */
         var vm = this;
-        vm.title = 'BindTo';
+        vm.title = 'BindToController';
 
         vm.customers = [];
-        vm.song = 'Counting Stars';
-        vm.artist = 'One Republic';
+        vm.msg = 'Person directive binds its isolate scope to its directive controller';
 
         activate();
 

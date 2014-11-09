@@ -3,11 +3,13 @@
         <div class="container">
             <div class="row">
                 <div class="widget wblue">
-                    <div data-cc-widget-header title="{{vm.title}}"></div>
+                    <div data-cc-widget-header title="{{vm.title}} - Debounce"></div>
                     <div class="widget-content user">
-                        <input data-ng-model="vm.filter.name" placeholder="Find Avengers by name"
-                            ng-model-options="{ updateOn: 'default blur', debounce: {'default': 2000, 'blur': 0} }"/>
-                            Filtered debounced as you type. Immediate on blur.
+                        <div>
+                            <input data-ng-model="vm.filter.name" placeholder="Find Avengers by name"
+                                ng-model-options="vm.modelOptions.filter"/>
+                        </div>
+                        <cc-note message="vm.msg.debounce" dismissible="true"></cc-note>
                         <table class="table table-condensed table-striped">
                             <thead>
                                 <tr>
@@ -19,12 +21,25 @@
                             <tbody>
                                 <tr data-ng-repeat="c in vm.avengers | filter:vm.filter track by c.id">
                                     <td><input ng-model="c.avengerName" 
-                                        ng-model-options="{updateOn: 'blur', debounce: 1000}"/></td>
+                                        ng-model-options="vm.modelOptions.repeat"/></td>
                                     <td>{{c.avengerName}}</td>
                                     <td>{{c.name}}</td>
                                 </tr>
                             </tbody>
                         </table>
+                    </div>
+                    <div data-cc-widget-header title="{{vm.title}} - $rollbackViewValue"></div>
+                    <div class="widget-content user">
+                        <form name="modelOptionsForm" role="form">
+                            <div class="form-group">
+                                <label for="avengerName">avengerName</label>
+                                <input type="text" name="avengerName" class="form-control" placeholder="avenger name"
+                                    data-ng-model="vm.avengers[0].avengerName"
+                                    ng-model-options="{ debounce: 5000 }"/>
+                                <button class="btn btn-info" ng-click="vm.rollback()">Rollback</button>
+                            </div>
+                            <cc-note message="vm.msg.rollback" dismissible="true"></cc-note>
+                        </form>
                     </div>
                     <div class="widget-foot">
                         <div class="clearfix"></div>

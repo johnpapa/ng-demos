@@ -359,7 +359,7 @@ form {
 }
 
     form input, form button, form textarea, form select {
-        font-size: 13px !important;
+        font-size: 13px; /* !important;*/
     }
 
     form label {
