@@ -22,6 +22,7 @@
          */
         'app.bind-once',
         'app.dashboard',
+        'app.model-options',
         'app.bind-to-controller',
         'app.layout'
     ]);

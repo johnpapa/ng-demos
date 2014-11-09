@@ -5,39 +5,27 @@
                 <div class="widget wblue">
                     <div data-cc-widget-header title="{{vm.title}}"></div>
                     <div class="widget-content user">
-                        <!--<pre>{{vm.maa.data | json}}</pre>-->
-                        <button ng-click="vm.refresh()">Refresh</button>
-                        <input data-ng-model="vm.filter.name" placeholder="Find Avengers by name"/>
-                        <table class="table table-condensed table-striped"
-                               ng-model-options="{ debounce: 2000, updateOn: 'blur' }">
+                        <input data-ng-model="vm.filter.name" placeholder="Find Avengers by name"
+                            ng-model-options="{ updateOn: 'default blur', debounce: {'default': 2000, 'blur': 0} }"/>
+                            Filtered debounced as you type. Immediate on blur.
+                        <table class="table table-condensed table-striped">
                             <thead>
-                            <tr>
-                                <th></th>
-                                <th>Character</th>
-                                <th>Description</th>
-                            </tr>
+                                <tr>
+                                    <th>Avenger - Debounce on Blur</th>
+                                    <th>Avenger</th>
+                                    <th>Name</th>
+                                </tr>
                             </thead>
                             <tbody>
-                            <tr data-ng-repeat="c in vm.maa | filter:vm.filter track by c.id">
-                                <td><img
-                                        ng-src="{{c.thumbnail.path}}.{{c.thumbnail.extension}}"
-                                        class="avenger-thumb img-rounded"/></td>
-                                <!--<td><span class="avenger-name">{{c.name}}</span></td>-->
-                                <td><input class="avenger-name" ng-model="c.name"
-                                           />
-                                    <br/>
-                                {{c.name}}<br/>
-                                {{::c.name}}</td>
-                                <td>{{c.description | limitTo: 2000 }} ...</td>
-                            </tr>
+                                <tr data-ng-repeat="c in vm.avengers | filter:vm.filter track by c.id">
+                                    <td><input ng-model="c.avengerName" 
+                                        ng-model-options="{updateOn: 'blur', debounce: 1000}"/></td>
+                                    <td>{{c.avengerName}}</td>
+                                    <td>{{c.name}}</td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
-                    <div>bind the array once</div>
-                    <ul>
-                        <li ng-repeat="item in ::vm.maa track by item.id">{{item.name}}</li>
-                    </ul>
-                    <button ng-click="vm.addAvenger()">Add Avenger</button>
                     <div class="widget-foot">
                         <div class="clearfix"></div>
                     </div>

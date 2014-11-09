@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app.avengers')
+        .module('app.model-options')
         .run(appRun);
 
     // appRun.$inject = ['routehelper']
@@ -15,14 +15,14 @@
     function getRoutes() {
         return [
             {
-                url: '/avengers',
+                url: '/model-options',
                 config: {
-                    templateUrl: 'app/avengers/avengers.html',
-                    controller: 'Avengers',
+                    templateUrl: 'app/model-options/model-options.html',
+                    controller: 'ModelOptions',
                     controllerAs: 'vm',
-                    title: 'avengers',
+                    title: 'model-options',
                     settings: {
-                        nav: 2,
+                        nav: 4,
                         content: 'Model Options'
                     }
                 }
