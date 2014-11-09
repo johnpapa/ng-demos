@@ -14,11 +14,12 @@
         var directive = {
             link: link,
             restrict: 'E',
-            template: '<div ng-click="vm.showImage()"> \
+            template: '<div ng-click="vm.toggle()"> \
                         <cc-img-person thumbnail="{{vm.thumbnail}}"></cc-img-person> \
                         <h4>{{vm.firstName}} {{vm.lastName}}</h4> \
-                        <p>{{vm.city}}, {{vm.state}} {{vm.zip}}</p> \
-                        <span class="label label-info">{{vm.pets}} pets</span></div>',
+                        <p ng-show="vm.showDetails">{{vm.city}}, {{vm.state}} {{vm.postalCode}}</p> \
+                        <span class="label label-info">{{vm.pets}} pets</span> \
+                        </div>',
             controller: PersonProfile,
             controllerAs: 'vm',
 			scope: {
@@ -46,11 +47,13 @@
         function PersonProfile() {
         	var vm = this;
         	vm.foo = 'test';
+            vm.showDetails = false;
         	vm.fullName = vm.firstName + ' ' + vm.lastName;
         	vm.address = vm.city + ', ' + vm.state + ' ' + vm.postalCode;
         }
 
-		PersonProfile.prototype.showImage = function() {
+		PersonProfile.prototype.toggle = function() {
+            this.showDetails = !this.showDetails
 			console.log('Selected "' + this.fullName + ' of ' + this.address);
 		}
 

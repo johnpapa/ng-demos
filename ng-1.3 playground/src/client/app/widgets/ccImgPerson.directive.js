@@ -15,10 +15,9 @@
             link: link,
             restrict: 'E',
             scope: {
-//                thumbnail: "="
             },
             replace: true,
-            template: '<img src="" class="img-thumbnail"/>'
+            template: '<img src="" class="img-thumbnail img-thumbnail-small"/>'
         };
         return directive;
 

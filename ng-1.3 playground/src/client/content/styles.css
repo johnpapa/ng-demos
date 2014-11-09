@@ -94,9 +94,10 @@ textarea.form-control {
     width: 90px;
 }
 
-.img-thumbnail {
+.img-thumbnail.img-thumbnail-small {
     float: left;
     margin: 0 1em 1em 0 !important;
+    max-width: 4.5em;
 }
 
 
