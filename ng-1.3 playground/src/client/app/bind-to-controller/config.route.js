@@ -15,8 +15,8 @@
             {
                 url: '/btc',
                 config: {
-                    templateUrl: 'app/bind-to-controller/music.html',
-                    controller: 'Music',
+                    templateUrl: 'app/bind-to-controller/bind-to-controller.html',
+                    controller: 'BindTo',
                     controllerAs: 'vm',
                     title: 'bind to controller',
                     settings: {
