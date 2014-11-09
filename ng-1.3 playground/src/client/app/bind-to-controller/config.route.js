@@ -21,7 +21,7 @@
                     title: 'bind to controller',
                     settings: {
                         nav: 3,
-                        content: '<i class="fa fa-music"></i> Bind to Controller'
+                        content: 'Bind to Controller'
                     }
                 }
             }

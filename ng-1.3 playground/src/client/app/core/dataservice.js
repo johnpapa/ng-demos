@@ -14,6 +14,7 @@
             getAvengersCast: getAvengersCast,
             getAvengerCount: getAvengerCount,
             getAvengers: getAvengers,
+            getCustomers: getCustomers, 
             ready: ready
         };
 
@@ -59,6 +60,19 @@
                 {name: 'Clark Gregg', character: 'Agent Phil Coulson'}
             ];
             return $q.when(cast);
+        }
+
+        function getCustomers() {
+            return $http.get('/api/customers')
+                .then(getCustomersComplete)
+                .catch(function(message) {
+                    exception.catcher('XHR Failed for getCustomers')(message);
+                    $location.url('/');
+                });
+
+            function getCustomersComplete(data, status, headers, config) {
+                return data.data;
+            }
         }
 
         function prime() {
