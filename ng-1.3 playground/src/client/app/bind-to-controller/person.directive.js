@@ -15,11 +15,12 @@
             link: link,
             restrict: 'E',
             template: '<div ng-click="vm.toggle()"> \
-                        <cc-img-person thumbnail="{{vm.thumbnail}}"></cc-img-person> \
+                        <cc-img-person thumbnail="{{vm.thumbnail}}" class="side-by-side"></cc-img-person> \
+                        <div class="side-by-side"> \
                         <h4>{{vm.firstName}} {{vm.lastName}}</h4> \
                         <p ng-show="vm.showDetails">{{vm.city}}, {{vm.state}} {{vm.postalCode}}</p> \
                         <span class="label label-info">{{vm.pets}} pets</span> \
-                        </div>',
+                        </div></div>',
             controller: PersonProfile,
             controllerAs: 'vm',
 			scope: {
