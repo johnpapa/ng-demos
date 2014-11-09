@@ -94,6 +94,12 @@ textarea.form-control {
     width: 90px;
 }
 
+.img-thumbnail {
+    float: left;
+    margin: 0 1em 1em 0 !important;
+}
+
+
 
 .map {
     height: 228px;

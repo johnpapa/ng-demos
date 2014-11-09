@@ -14,7 +14,9 @@
         var directive = {
             link: link,
             restrict: 'E',
-            template: '<div ng-click="vm.showImage()"><h4>{{vm.firstName}} {{vm.lastName}}</h4> \
+            template: '<div ng-click="vm.showImage()"> \
+                        <cc-img-person thumbnail="{{vm.thumbnail}}"></cc-img-person> \
+                        <h4>{{vm.firstName}} {{vm.lastName}}</h4> \
                         <p>{{vm.city}}, {{vm.state}} {{vm.zip}}</p> \
                         <span class="label label-info">{{vm.pets}} pets</span></div>',
             controller: PersonProfile,
@@ -24,7 +26,8 @@
 				lastName: '@',
 				city: '@',
 				state: '@',
-				postalCode: '@zip'
+				postalCode: '@zip',
+                thumbnail: '@thumbnail'
 			},
 			bindToController: true
 		};

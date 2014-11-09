@@ -14,6 +14,8 @@
     var config = {
         appErrorPrefix: '[NG-1.3 Error] ', //Configure the exceptionHandler decorator
         appTitle: 'Angular 1.3 Demo',
+        imageBasePath: '/content/images/photos/',
+        unknownPersonImageSource: 'unknown_person.jpg',
         version: '1.0.0'
     };
 

@@ -8,7 +8,8 @@
                         <div class="list-group">
                             <a class="list-group-item" data-ng-repeat="c in vm.customers | filter:vm.filter track by c.id">
                                 <demo-person-profile first-name="{{c.firstName}}"
-                                    last-name="{{c.lastName}}" city="{{c.city}}" state="{{c.state}}" zip="{{c.zip}}"></demo-person-profile>
+                                    last-name="{{c.lastName}}" city="{{c.city}}" state="{{c.state}}" zip="{{c.zip}}"
+                                    thumbnail="{{c.thumbnail}}"></demo-person-profile>
                             </a>
                         </div>
                     </div>
