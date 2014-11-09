@@ -1,0 +1,23 @@
+﻿<section class="mainbar">
+    <section class="matter">
+        <div class="container">
+            <div class="row">
+                <div class="widget wblue">
+                    <div data-cc-widget-header title="{{vm.title}}"></div>
+                    <div class="widget-content user">
+                        <cc-note message="vm.msg" dismissible="true"></cc-note>
+                        <div class="well" ng-show="vm.response">{{vm.response}}</div>
+                        <div class="list-group">
+                            <a class="list-group-item" 
+                                data-ng-repeat="c in vm.customers | orderBy:'firstName'"
+                                ng-click="vm.find(c.firstName)">{{c.firstName}}</a>
+                        </div>
+                    </div>
+                    <div class="widget-foot">
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>

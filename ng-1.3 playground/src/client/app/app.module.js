@@ -23,6 +23,7 @@
         'app.bind-once',
         'app.dashboard',
         'app.model-options',
+        'app.other',
         'app.bind-to-controller',
         'app.layout'
     ]);
