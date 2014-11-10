@@ -14,20 +14,15 @@
         //      title="Avengers Movie"
         //      allow-collapse="true" </div>
         var directive = {
-//            link: link,
             scope: {
-                'title': '@',
-                'subtitle': '@',
-                'rightText': '@',
-                'allowCollapse': '@'
+                title: '@',
+                subtitle: '@',
+                rightText: '@',
+                allowCollapse: '@'
             },
             templateUrl: 'app/widgets/widgetheader.html',
             restrict: 'A'
         };
         return directive;
-
-//        function link(scope, element, attrs) {
-//            attrs.$set('class', 'widget-head');
-//        }
     }
 })();

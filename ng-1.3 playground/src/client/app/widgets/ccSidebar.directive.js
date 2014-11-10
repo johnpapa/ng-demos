@@ -17,7 +17,8 @@
             link: link,
             restrict: 'A',
             scope: {
-                whenDoneAnimating: '&?'
+//                foo: '=?'
+               whenDoneAnimating: '&'
             }
         };
         return directive;

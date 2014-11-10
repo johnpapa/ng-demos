@@ -16,7 +16,6 @@
             restrict: 'E',
             scope: {
             },
-            replace: true,
             template: '<img src="" class="img-thumbnail img-thumbnail-small"/>'
         };
         return directive;
