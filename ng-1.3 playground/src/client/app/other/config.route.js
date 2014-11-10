@@ -23,7 +23,7 @@
                     title: 'q',
                     settings: {
                         nav: 5,
-                        content: 'Q'
+                        content: '$q Ctor'
                     }
                 }
             }
