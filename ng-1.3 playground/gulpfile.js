@@ -13,7 +13,7 @@ var reload = browserSync.reload;
 var colors = plug.util.colors;
 var env = plug.util.env;
 var log = plug.util.log;
-var port = process.env.PORT || 7203;
+var port = process.env.PORT || 7205;
 
 /**
  * List the available gulp tasks
