@@ -1,3 +1,4 @@
+/* jshint -W117, -W030 */
 describe('avengers', function () {
     describe('route', function () {
         var controller;

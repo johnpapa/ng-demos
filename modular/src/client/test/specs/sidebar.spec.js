@@ -1,3 +1,4 @@
+/* jshint -W117, -W030 */
 describe('layout', function () {
     describe('sidebar', function () {
         var controller;

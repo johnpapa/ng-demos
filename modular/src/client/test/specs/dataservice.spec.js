@@ -1,4 +1,4 @@
-/* global dataservice, */
+/* jshint -W117, -W030 */
 describe('dataservice', function () {
     var scope;
     var mocks = {};
