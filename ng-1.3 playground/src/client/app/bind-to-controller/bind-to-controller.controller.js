@@ -12,7 +12,9 @@
         vm.title = 'BindToController';
 
         vm.customers = [];
-        vm.msg = 'Person directive binds its isolate scope to its directive controller';
+        vm.msg = 'Person directive binds its isolate scope to its \
+            directive controller. Tap the name and the details should \
+            appear, when bindToController = true';
 
         activate();
 

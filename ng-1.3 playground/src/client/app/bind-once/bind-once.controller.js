@@ -16,7 +16,9 @@
         vm.maa;
         vm.msg = {
             bindOnce: 'Comparing 2 way, 1 way and 1 time binding',
-            arrayBindOnce: '1 time binding with an array'
+            arrayBindOnce: '1 time binding with an array. Notice that \
+                the new element does not appear in this list, \
+                but it does appear in the above list.'
         };
         vm.title = 'BindOnce';
 
