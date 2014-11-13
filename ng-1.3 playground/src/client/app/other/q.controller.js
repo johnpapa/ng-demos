@@ -25,7 +25,8 @@
 
         function find(name) {
             asyncFindName(name)
-                .then(resolved, rejected);
+                .then(resolved)
+                .catch(rejected);
 
             function resolved(response) {
                 vm.response = 'Success: ' + response;
