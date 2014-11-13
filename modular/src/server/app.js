@@ -13,7 +13,6 @@ var port = process.env.PORT || 7200;
 var routes;
 
 var environment = process.env.NODE_ENV;
-var pkg = require('./../../package.json');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -50,7 +49,7 @@ switch (environment){
         break;
     default:
         console.log('** DEV **');
-        app.use('/', express.static(pkg.paths.client));
+        app.use('/', express.static('./src/client/'));
         app.use('/', express.static('./'));
         break;
 }
