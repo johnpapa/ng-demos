@@ -1,3 +1,71 @@
-# allow build for this project only, for azure push
+# Ignore Visual Studio  Project #
+###################
+*.user
+*.gpState
+*.suo
+bin
+obj
+/packages
 
-!build
+# Ignore Node & Bower
+###################
+node_modules
+/modular/client/build
+/modular/build
+bower_components
+**/test/coverage
+/reports
+
+
+# mongo db
+###################
+#Don't commit Mongo Database files
+*.lock
+*.0
+*.1
+*.ns
+journal
+
+# Ignore Web Storm #
+.idea
+
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Packages #
+############
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.xap
+*.zip
+
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+# *.sdf
+*.mdf
+*.ldf
+
+# OS generated files #
+######################
+.DS_Store*
+ehthumbs.db
+Icon?
+Thumbs.db
+packages
+
