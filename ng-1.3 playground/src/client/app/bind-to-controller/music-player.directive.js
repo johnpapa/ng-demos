@@ -22,10 +22,10 @@
 			},
 			bindToController: true,
 			template:
-				'<button class="btn btn-xlarge btn-primary" ng-click="mp.playTrack()"> \
-				<i class="fa fa-music black"></i> {{mp.song}}&nbsp; \
-				<i class="fa fa-play black"></i> {{mp.artist}} \
-				<i class="fa fa-group black"></i> {{mp.foo}}</button>'
+				'<button class="btn btn-xlarge btn-primary" ng-click="mp.playTrack()"> ' +
+				'<i class="fa fa-music black"></i> {{mp.song}}&nbsp; ' +
+				'<i class="fa fa-play black"></i> {{mp.artist}} ' +
+				'<i class="fa fa-group black"></i> {{mp.foo}}</button>'
 		};
 
         function link(scope, element, attrs, controller) { 
@@ -35,13 +35,13 @@
         	// controller is the controller :)
 			// Point is that we only seem to need link if we need element or attribute access
 			// If I realy want attrs access I should list in isolateScope above in the DDO
-        	var x = scope;
+            var x = scope;
         }
 
         /* @ngInject */
         function MusicPlayer() {
-        	var vm = this;
-        	vm.foo = 'test';
+            var vm = this;
+            vm.foo = 'test';
        //  	vm.playTrack = playTrack;
 
        //  	function playTrack() {
@@ -50,11 +50,11 @@
        //  	}
         }
 
-		MusicPlayer.prototype.playTrack = function() {
-			console.log('Now playing "' + this.song + ' by ' + this.artist + '"...');
-			// console.log('ward = ' + this.ward);
-			// console.log('john = ' + this.john);
-		}
+        MusicPlayer.prototype.playTrack = function() {
+            console.log('Now playing "' + this.song + ' by ' + this.artist + '"...');
+            // console.log('ward = ' + this.ward);
+            // console.log('john = ' + this.john);
+        };
 
         return directive;
     }

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Plato - core/dataservice.js</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <link href="../../assets/css/vendor/morris.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/bootstrap.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/font-awesome.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/codemirror.css" rel="stylesheet">
+  <link href="../../assets/css/plato.css" rel="stylesheet">
+  <link href="../../assets/css/plato-file.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="http://github.com/es-analysis/plato">Plato on Github</a>
+    <ul class="nav navbar-nav">
+      <li>
+        <a href="../../index.html">Report Home</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="jumbotron">
+  <div class="container">
+    <h1>core/dataservice.js</h1>
+  </div>
+</div>
+
+<div class="container aggregate-stats">
+  <div class="row">
+    <div class="col-md-6">
+      <h2 class="header">Maintainability <a href="http://blogs.msdn.com/b/codeanalysis/archive/2007/11/20/maintainability-index-range-and-meaning.aspx"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="A value between 0 and 100 that represents the relative ease of maintaining the code. A high value means better maintainability." data-original-title="Maintainability Index"  data-container="body"></i></a></h2>
+      <p class="stat">73.49</p>
+    </div>
+    <div class="col-md-6">
+      <h2 class="header">Lines of code <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC" data-container="body"></i></h2>
+      <p class="stat">102</p>
+    </div>
+  </div>
+  <div class="row historical">
+    <div class="col-md-6">
+      <p id="chart_historical_maint" class="chart"></p>
+    </div>
+    <div class="col-md-6">
+      <p id="chart_historical_sloc" class="chart"></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <h2 class="header">Difficulty  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="The difficulty measure is related to the difficulty of the program to write or understand." data-original-title="Difficulty" data-container="body"></i></a></h2>
+      <p class="stat">12.99</p>
+    </div>
+    <div class="col-md-6">
+      <h2 class="header">Estimated Errors  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Halstead's delivered bugs is an estimate for the number of errors in the implementation." data-original-title="Delivered Bugs" data-container="body"></i></a></h2>
+      <p class="stat">0.72</p>
+    </div>
+  </div>
+</div>
+
+<div class="container charts">
+  <div class="row">
+    <h2 class="header">Function weight</h2>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <h3 class="chart-header">By Complexity <a href="http://en.wikipedia.org/wiki/Cyclomatic_complexity"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="This metric counts the number of distinct paths through a block of code. Lower values are better." data-original-title="Cyclomatic Complexity" data-container="body"></i></a></h3>
+      <div id="fn-by-complexity" class="stat"></div>
+    </div>
+    <div class="col-md-6">
+      <h3 class="chart-header">By SLOC  <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC" data-container="body"></i></h3>
+      <div id="fn-by-sloc" class="stat"></div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <textarea id="file-source" class="col-md-12">(function() {
+    &#039;use strict&#039;;
+
+    angular
+        .module(&#039;app.core&#039;)
+        .factory(&#039;dataservice&#039;, dataservice);
+
+    /* @ngInject */
+    function dataservice($http, $location, $q, exception, logger) {
+        var isPrimed = false;
+        var primePromise;
+
+        var service = {
+            getAvengersCast: getAvengersCast,
+            getAvengerCount: getAvengerCount,
+            getAvengers: getAvengers,
+            getCustomers: getCustomers, 
+            ready: ready
+        };
+
+        return service;
+
+        function getAvengers() {
+            return $http.get(&#039;/api/maa&#039;)
+                .then(getAvengersComplete)
+                .catch(function(message) {
+                    exception.catcher(&#039;XHR Failed for getAvengers&#039;)(message);
+                    $location.url(&#039;/&#039;);
+                });
+
+            function getAvengersComplete(data, status, headers, config) {
+                return data.data[0].data.results;
+            }
+        }
+
+        function getAvengerCount() {
+            var count = 0;
+            return getAvengersCast()
+                .then(getAvengersCastComplete)
+                .catch(exception.catcher(&#039;XHR Failed for getAvengerCount&#039;));
+
+            function getAvengersCastComplete (data) {
+                count = data.length;
+                return $q.when(count);
+            }
+        }
+
+        function getAvengersCast() {
+            var cast = [
+                {name: &#039;Robert Downey Jr.&#039;, character: &#039;Tony Stark / Iron Man&#039;},
+                {name: &#039;Chris Hemsworth&#039;, character: &#039;Thor&#039;},
+                {name: &#039;Chris Evans&#039;, character: &#039;Steve Rogers / Captain America&#039;},
+                {name: &#039;Mark Ruffalo&#039;, character: &#039;Bruce Banner / The Hulk&#039;},
+                {name: &#039;Scarlett Johansson&#039;, character: &#039;Natasha Romanoff / Black Widow&#039;},
+                {name: &#039;Jeremy Renner&#039;, character: &#039;Clint Barton / Hawkeye&#039;},
+                {name: &#039;Gwyneth Paltrow&#039;, character: &#039;Pepper Potts&#039;},
+                {name: &#039;Samuel L. Jackson&#039;, character: &#039;Nick Fury&#039;},
+                {name: &#039;Paul Bettany&#039;, character: &#039;Jarvis&#039;},
+                {name: &#039;Tom Hiddleston&#039;, character: &#039;Loki&#039;},
+                {name: &#039;Clark Gregg&#039;, character: &#039;Agent Phil Coulson&#039;}
+            ];
+            return $q.when(cast);
+        }
+
+        function getCustomers() {
+            return $http.get(&#039;/api/customers&#039;)
+                .then(getCustomersComplete)
+                .catch(function(message) {
+                    exception.catcher(&#039;XHR Failed for getCustomers&#039;)(message);
+                    $location.url(&#039;/&#039;);
+                });
+
+            function getCustomersComplete(data, status, headers, config) {
+                return data.data;
+            }
+        }
+
+        function prime() {
+            // This function can only be called once.
+            if (primePromise) {
+                return primePromise;
+            }
+
+            primePromise = $q.when(true).then(success);
+            return primePromise;
+
+            function success() {
+                isPrimed = true;
+                logger.info(&#039;Primed data&#039;);
+            }
+        }
+
+        function ready(nextPromises) {
+            var readyPromise = primePromise || prime();
+
+            return readyPromise
+                .then(function() { return $q.all(nextPromises); })
+                .catch(exception.catcher(&#039;&quot;ready&quot; function failed&#039;));
+        }
+
+    }
+})();</textarea>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p>.</p>
+  </div>
+</footer>
+
+<script type="text/html" id="complexity-popover-template">
+  <div class="complexity-notice">
+    Complexity : {{ complexity.cyclomatic }} <br>
+    Length : {{ complexity.halstead.length }} <br>
+    Difficulty : {{ complexity.halstead.difficulty.toFixed(2) }} <br>
+    Est # bugs : {{ complexity.halstead.bugs.toFixed(2) }}<br>
+  </div>
+</script>
+
+<script type="text/javascript" src="../../assets/scripts/bundles/core-bundle.js"></script>
+<script type="text/javascript" src="../../assets/scripts/bundles/codemirror.js"></script>
+<script type="text/javascript" src="../../assets/scripts/codemirror.markpopovertext.js"></script>
+<script type="text/javascript" src="report.js"></script>
+<script type="text/javascript" src="report.history.js"></script>
+<script type="text/javascript" src="../../assets/scripts/plato-file.js"></script>
+</body>
+</html>

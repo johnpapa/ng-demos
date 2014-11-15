@@ -13,12 +13,12 @@
 
         vm.addAvenger = addAvenger;
         vm.refresh = refresh;
-        vm.maa;
+        vm.maa = [];
         vm.msg = {
             bindOnce: 'Comparing 2 way, 1 way and 1 time binding',
-            arrayBindOnce: '1 time binding with an array. Notice that \
-                the new element does not appear in this list, \
-                but it does appear in the above list.'
+            arrayBindOnce: '1 time binding with an array. Notice that' +
+                'the new element does not appear in this list, ' +
+                'but it does appear in the above list.'
         };
         vm.title = 'BindOnce';
 
@@ -33,9 +33,9 @@
         function addAvenger() {
             newId++;
             vm.maa.push({
-                "id": newId,
-                "name": "Ant Man",
-                "description": "Coming soon ..."
+                id: newId,
+                name: 'Ant Man',
+                description: 'Coming soon ...'
             });
         }
 
@@ -46,7 +46,7 @@
 //                vm.maa = data.data[0].data.results;
                 vm.maa = data;
                 vm.maa[0].name = 'Ella Papa';
-                vm.maa.push({name: 'Ward Bell', description: 'super hero'})
+                vm.maa.push({name: 'Ward Bell', description: 'super hero'});
                 return vm.maa;
             });
         }

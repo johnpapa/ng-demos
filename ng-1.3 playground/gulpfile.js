@@ -1,4 +1,4 @@
-/* jshint camelcase:false */
+/* jshint node:true, camelcase:false */
 var gulp = require('gulp');
 var browserSync = require('browser-sync');
 var del = require('del');

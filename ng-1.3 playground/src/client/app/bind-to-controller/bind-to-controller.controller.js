@@ -12,16 +12,16 @@
         vm.title = 'BindToController';
 
         vm.customers = [];
-        vm.msg = 'Person directive binds its isolate scope to its \
-            directive controller. Tap the name and the details should \
-            appear, when bindToController = true';
+        vm.msg = 'Person directive binds its isolate scope to its ' +
+            'directive controller. Tap the name and the details should ' +
+            'appear, when bindToController = true';
 
         activate();
 
         function activate() {
             return getCustomers().then(function() {
-	            logger.info('Activated Bind-to-Controller View');
-	        });
+                logger.info('Activated Bind-to-Controller View');
+            });
         }
 
         function getCustomers() {

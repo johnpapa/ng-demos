@@ -10,7 +10,7 @@
         /*jshint validthis: true */
         var vm = this;
 
-        vm.avengers;
+        vm.avengers = [];
         vm.msg = {
             debounce: 'Filter is debounced as you type. Immediate on blur.',
             rollback: 'Input is debounced by 5000 ms. Click the rollback button to reset to model'
