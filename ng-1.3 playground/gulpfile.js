@@ -383,7 +383,7 @@ function serve(args) {
         .on('restart', function() {
             log('restarted!');
             setTimeout(function () {
-                browserSync.reload({ stream: false });
+                browserSync.reload({stream: false});
             }, 1000);
         });
 }
@@ -392,7 +392,7 @@ function serve(args) {
  * Start BrowserSync
  */
 function startBrowserSync() {
-    if(!env.browserSync || browserSync.active) {
+    if (!env.browserSync || browserSync.active) {
         return;
     }
 
