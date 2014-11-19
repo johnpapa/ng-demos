@@ -24,7 +24,6 @@ var express        = require('express')
     , errorHandler = require('./errorHandler')
     , favicon      = require('static-favicon')
     , fileServer   = require('serve-static')
-    , isDev        = app.get('env') === 'development'
     , logger       = require('morgan')
     , port         = process.env["PORT"] || 7999;
 

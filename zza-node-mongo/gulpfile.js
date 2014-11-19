@@ -17,29 +17,26 @@ gulp.task('help', plug.taskListing);
  * serve the dev environment
  */
 gulp.task('serve-dev', function() {
-    serve({mode: 'dev'});
+    serve();
     startBrowserSync();
 });
 
-function serve(args) {
+function serve() {
     var options = {
         script: 'server/server.js',
         delayTime: 1,
         ext: 'html js',
-        env: {
-            'NODE_ENV': args.mode,
-            'PORT': port
-        },
+        env: {'PORT': port},
         watch: ['./server/']
     };
 
-    if (args.debug) {
-        require('child_process').exec('node-inspector');
-        options.nodeArgs = [args.debug + '=5858'];
-    }
-
-    log('Starting MongoDB');
-    require('child_process').exec('mongod --dbpath db/zza-mongo-database');
+//    if (args.debug) {
+//        require('child_process').exec('node-inspector');
+//        options.nodeArgs = [args.debug + '=5858'];
+//    }
+//
+//    log('Starting MongoDB');
+//    require('child_process').exec('mongod --dbpath db/zza-mongo-database');
 
     return plug.nodemon(options)
         .on('start', function() {
@@ -61,11 +58,11 @@ function startBrowserSync() {
         return;
     }
 
-    log('Starting BrowserSync on port 3000');
+    log('Starting BrowserSync');
     browserSync({
         proxy: 'localhost:' + port,
         port: 3000,
-        files: './client/app/**/*.*',
+        files: '/client/app/**/*.*',
         ghostMode: { // these are the defaults t,f,t,t
             clicks: true,
             location: false,

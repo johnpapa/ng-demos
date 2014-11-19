@@ -4,8 +4,6 @@
  */
 (function( angular ) {
     'use strict';
-
-    
     
     angular.module("app")
         .config(['$stateProvider', '$urlRouterProvider', configureStates]);

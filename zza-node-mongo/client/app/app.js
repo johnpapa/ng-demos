@@ -11,5 +11,5 @@
     app.run( ['appStart', function ( appStart ) {
         appStart.start();
     }]);
-
+    
 })( this.angular );
