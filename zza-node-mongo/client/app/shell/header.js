@@ -1,8 +1,9 @@
-﻿/*
+/*
  * header viewmodel associated with the header.html view
  * at the top of the shell.
  * It displays navigation among the main app 'pages'
  */
+
 (function(angular) {
     'use strict';
 
