@@ -24,7 +24,7 @@ gulp.task('serve-dev', function() {
 function serve(args) {
     var options = {
         script: 'server/server.js',
-//        delayTime: 1,
+        delayTime: 1,
         ext: 'html js',
         env: {
             'NODE_ENV': args.mode,
@@ -43,12 +43,12 @@ function serve(args) {
 
     return plug.nodemon(options)
         .on('start', function() {
-            //startBrowserSync();
+            startBrowserSync();
         })
         .on('restart', function() {
             log('restarted browser-sync!');
             setTimeout(function () {
-              //  browserSync.reload({stream: false});
+                browserSync.reload({stream: false});
             }, 1000);
         });
 }
@@ -57,9 +57,9 @@ function serve(args) {
  * Start BrowserSync
  */
 function startBrowserSync() {
-//    if (browserSync.active) {
-//        return;
-//    }
+    if (browserSync.active) {
+        return;
+    }
 
     log('Starting BrowserSync on port 3000');
     browserSync({
