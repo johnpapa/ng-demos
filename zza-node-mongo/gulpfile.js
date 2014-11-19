@@ -30,17 +30,17 @@ function serve() {
         watch: ['./server/']
     };
 
-//    if (args.debug) {
-//        require('child_process').exec('node-inspector');
-//        options.nodeArgs = [args.debug + '=5858'];
-//    }
-//
-//    log('Starting MongoDB');
-//    require('child_process').exec('mongod --dbpath db/zza-mongo-database');
+   // if (args.debug) {
+   //     require('child_process').exec('node-inspector');
+   //     options.nodeArgs = [args.debug + '=5858'];
+   // }
+
+   log('Starting MongoDB');
+   require('child_process').exec('mongod --dbpath db/zza-mongo-database');
 
     return plug.nodemon(options)
         .on('start', function() {
-            startBrowserSync();
+//            startBrowserSync();
         })
         .on('restart', function() {
             log('restarted browser-sync!');
