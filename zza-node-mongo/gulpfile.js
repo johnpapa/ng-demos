@@ -9,7 +9,7 @@ var reload = browserSync.reload;
 var colors = plug.util.colors;
 var env = plug.util.env;
 var log = plug.util.log;
-var port = 7999;
+var port = 3010;
 
 gulp.task('help', plug.taskListing);
 
@@ -18,7 +18,7 @@ gulp.task('help', plug.taskListing);
  */
 gulp.task('serve-dev', function() {
     serve();
-    startBrowserSync();
+    // startBrowserSync();
 });
 
 function serve() {
@@ -40,7 +40,7 @@ function serve() {
 
     return plug.nodemon(options)
         .on('start', function() {
-//            startBrowserSync();
+            startBrowserSync();
         })
         .on('restart', function() {
             log('restarted browser-sync!');
@@ -62,7 +62,7 @@ function startBrowserSync() {
     browserSync({
         proxy: 'localhost:' + port,
         port: 3000,
-        files: '/client/app/**/*.*',
+        files: ['./client/app/**/*.*'],
         ghostMode: { // these are the defaults t,f,t,t
             clicks: true,
             location: false,
