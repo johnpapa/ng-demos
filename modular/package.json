@@ -35,7 +35,7 @@
     "debug": "^0.8.1",
     "del": "^0.1.3",
     "glob": "^4.0.5",
-    "gulp": "^3.8.8",
+    "gulp": "^3.8.10",
     "gulp-angular-templatecache": "^1.3.0",
     "gulp-autoprefixer": "0.0.10",
     "gulp-bytediff": "^0.2.0",
