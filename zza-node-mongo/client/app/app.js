@@ -1,6 +1,7 @@
 /*
  * Defines the AngularJS application module and initializes it
  */
+
 (function( angular  ) {
     var app = angular.module( "app", [
         'breeze.angular',
