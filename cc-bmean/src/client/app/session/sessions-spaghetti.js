@@ -12,7 +12,7 @@
     'use strict';
 
     angular
-        .module('app')
+        .module('app.session')
         .controller('Sessions', ['$location', '$log', '$q', '$routeParams', 'zStorage', Sessions]);
 
     function Sessions($location, $log, $q, $routeParams, zStorage) {

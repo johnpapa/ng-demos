@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app')
+        .module('app.speaker')
         .controller('Speakers', Speakers);
 
     Speakers.$inject = ['$location', 'common', 'config', 'datacontext'];

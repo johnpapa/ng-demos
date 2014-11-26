@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app')
+        .module('app.session')
         .controller('SessionDetail', SessionDetail);
 
     SessionDetail.$inject = [

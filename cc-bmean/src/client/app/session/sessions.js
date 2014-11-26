@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app')
+        .module('app.session')
         .controller('Sessions', Sessions);
 
     Sessions.$inject = ['$location', '$routeParams', 'common', 'config', 'datacontext'];

@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app')
+        .module('app.speaker')
         .controller('SpeakerDetail', SpeakerDetail);
 
     SpeakerDetail.$inject = [
