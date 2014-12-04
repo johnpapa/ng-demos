@@ -5,8 +5,6 @@
         .module('app.widgets')
         .directive('ccSpinner', ccSpinner);
 
-    // ccSpinner.$inject = ['$window'];
-
     /* @ngInject */
     function ccSpinner ($window) {
         // Description:

@@ -5,8 +5,7 @@
         .module('app.layout')
         .controller('Sidebar', Sidebar);
 
-    Sidebar.$inject = ['$route', 'routehelper'];
-
+    /* @ngInject */
     function Sidebar($route, routehelper) {
         /*jshint validthis: true */
         var vm = this;

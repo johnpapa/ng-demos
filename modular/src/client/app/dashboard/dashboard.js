@@ -5,8 +5,7 @@
         .module('app.dashboard')
         .controller('Dashboard', Dashboard);
 
-    Dashboard.$inject = ['$q', 'dataservice', 'logger'];
-
+    /* @ngInject */
     function Dashboard($q, dataservice, logger) {
 
         /*jshint validthis: true */
