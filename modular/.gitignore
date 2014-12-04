@@ -37,6 +37,7 @@ journal
 *.exe
 *.o
 *.so
+report/
 
 # Packages #
 ############
