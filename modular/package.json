@@ -73,7 +73,6 @@
     "karma-safari-launcher": "^0.1.1",
     "karma-sinon": "^1.0.3",
     "merge-stream": "^0.1.5",
-    "method-override": "^1.0.2",
     "minimist": "^1.1.0",
     "mocha": "^1.20.1",
     "ng-midway-tester": "^2.0.5",
