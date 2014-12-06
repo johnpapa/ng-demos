@@ -222,6 +222,11 @@ gulp.task('build', ['rev-and-inject', 'images', 'fonts'], function() {
 });
 
 /**
+ * Backwards compatible call to make stage and build equivalent
+ */
+gulp.task('stage', ['build'], function() {});
+
+/**
  * Remove all files from the build folder
  * One way to run clean before all tasks is to run
  * from the cmd line: gulp clean && gulp build
@@ -320,6 +325,11 @@ gulp.task('serve-build', function() {
         mode: 'build'
     });
 });
+
+/**
+ * Backwards compatible call to make stage and build equivalent
+ */
+gulp.task('serve-stage', ['serve-build'], function() {});
 
 ////////////////
 
