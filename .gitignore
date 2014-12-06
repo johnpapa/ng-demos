@@ -14,7 +14,7 @@ node_modules
 /modular/build
 bower_components
 **/test/coverage
-
+report/
 
 # mongo db
 ###################
