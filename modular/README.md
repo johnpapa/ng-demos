@@ -21,6 +21,11 @@ Demonstrates Angular modularity, testing, Gulp task automation, and more.
 			/data
 			/routes
 	
+## Requirements
+
+- Open terminal
+- Type `npm install -g node-inspector bower gulp`
+
 ## Installing Node.js and Bower Packages
 - Open terminal
 - Type `npm install`
