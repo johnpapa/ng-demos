@@ -44,11 +44,14 @@ switch (environment){
         // app.use('/', express.static('./'));
         break;
     case 'stage':
-        console.log('** STAGE **');
-        app.use('/', express.static('./build/stage/'));
+    case 'build':
+        console.log('** BUILD **');
+        console.log('serving from ' + './build/');
+        app.use('/', express.static('./build/'));
         break;
     default:
         console.log('** DEV **');
+        console.log('serving from ' + './src/client/ and ./');
         app.use('/', express.static('./src/client/'));
         app.use('/', express.static('./'));
         break;
