@@ -30,7 +30,12 @@
 
         Object.defineProperty(vm.paging, 'pageCount', {
             get: function () {
-                return Math.floor(vm.attendeeFilteredCount / vm.paging.pageSize) + 1;
+                var val = 1;
+    
+                if (vm.attendeeFilteredCount % vm.paging.pageSize == 0)
+                    val = 0;
+    
+                return Math.floor(vm.attendeeFilteredCount / vm.paging.pageSize) + val;                
             }
         });
 
