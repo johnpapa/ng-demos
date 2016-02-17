@@ -32,7 +32,8 @@ The **Breeze** features of particular interest are:
 
 #Installation
 
-All client-side assets are included in the project. 
+
+All client-side assets are included in the project.
 
 No installation is required to run the app against the Microsoft Azure Mobile Service because that server is "in the cloud".
 

@@ -1,5 +1,0 @@
-<ul class="dropdown-menu" ng-style="{display: isOpen()&&'block' || 'none', top: position.top+'px', left: position.left+'px'}">
-    <li ng-repeat="match in matches" ng-class="{active: isActive($index) }" ng-mouseenter="selectActive($index)" ng-click="selectMatch($index)">
-        <div typeahead-match index="$index" match="match" query="query" template-url="templateUrl"></div>
-    </li>
-</ul>
