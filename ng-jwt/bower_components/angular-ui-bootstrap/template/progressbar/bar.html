@@ -1,1 +1,0 @@
-<div class="progress-bar" ng-class="type && 'progress-bar-' + type" ng-transclude></div>
