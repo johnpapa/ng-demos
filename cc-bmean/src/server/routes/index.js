@@ -94,7 +94,7 @@ module.exports = function(app) {
         if (!metadata) {
             getMetadataFromScriptFile();
         }
-        res.setHeader('Content-Type:', 'application/json');
+        res.setHeader('Content-Type', 'application/json');
         res.send(metadata);
 
         function getMetadataFromScriptFile() {
@@ -205,7 +205,7 @@ module.exports = function(app) {
         // Todo: Is this always the right policy? Never right? Or only for certain resources?
         res.setHeader('Cache-Control',
             'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
-        res.setHeader('Content-Type:', 'application/json');
+        res.setHeader('Content-Type', 'application/json');
         res.send(results);
     }
 
