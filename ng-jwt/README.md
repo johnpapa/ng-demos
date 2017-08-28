@@ -4,7 +4,7 @@ Demonstrating Angular [JSON Web Tokens](http://tools.ietf.org/html/draft-ietf-oa
 
 ## Running
 Runs locally, no database required.
-From terminal type `cd server` then type `node server.js` and browse to port 7171
+Navigate to ng-jwt-directory in a terminal then type `node src/server/server.js` and browse to port 7171
 
 ## API Tests Using Postman
 The Chrome Postman plugin can be used to test the APIs. Import the collection from `postman.api.tests.json` to run them. The authentication token in the imported collection is specific for the hardcoded secret in the demo.
