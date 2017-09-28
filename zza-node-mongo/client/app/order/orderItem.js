@@ -5,9 +5,13 @@
 (function(angular) {
     'use strict';
 
-    angular.module( "app" ).controller( 'orderItem',
-        ['$state', '$stateParams', 'dataservice', 'orderItemOptionTypeVm', 'util', controller] );
-
+    angular.module( "app" ).controller( 
+        'orderItem',
+         controller
+    );
+    
+    controller.$inject = ['$state', '$stateParams', 'dataservice', 'orderItemOptionTypeVm', 'util'];
+    
     function controller($state, $stateParams, dataservice, orderItemOptionTypeVm, util ) {
         var vm = this;
         dataservice.ready().then(onReady);
