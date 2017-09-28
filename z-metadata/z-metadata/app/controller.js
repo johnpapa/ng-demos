@@ -7,10 +7,14 @@
  */
 (function() {
 
-    angular.module('app').controller('TodoController',
-    ['$q', '$scope', '$timeout', 'dataservice', 'logger', controller]);
-
-    function controller($q, $scope, $timeout, dataservice, logger) {
+    angular.module('app').controller(
+        'TodoController',
+        TodoController
+    );
+    // @see https://github.com/johnpapa/angular-styleguide/blob/master/a1/README.md#style-y091
+    TodoController.$inject = ['$q', '$scope', '$timeout', 'dataservice', 'logger'];
+    
+    function TodoController($q, $scope, $timeout, dataservice, logger) {
         // The controller's API to which the view binds
         var vm = this;
         vm.addItem = addItem;
